@@ -159,14 +159,46 @@ export const JustifyContentSpaceBetweenSxStyles = {
 };
 
 export const HrResumeAssessmentHeaderSxStyles = {
-  ...DisplayFlexCenter,
+  // ...DisplayFlexCenter,
   fontSize: 20,
   fontWeight: 500,
+  pb: 0,
 };
 
 export const HrProfileAssessementsSxStyles = {
   display: "flex",
-  ml: "5rem",
+  // ml: "5rem",
+};
+
+export const ResumeDownloadBtnSxStyles = {
+  fontSize: 18,
+  fontWeight: 500,
+  pl: 0,
+  textTransform: "none",
+};
+
+export const SuccessAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#2e7d32",
+};
+
+export const InfoAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#0288d1",
+};
+
+export const WarningAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#ed6c02",
+};
+
+export const ErrorAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#d32f2f",
 };
 
 export const ContactInfoLinkSxStyles = {
@@ -178,6 +210,11 @@ export const ContactInfoLinkSxStyles = {
 
 export const Font20Weight500SxStyles = {
   fontSize: 20,
+  fontWeight: 500,
+};
+
+export const Font21Weight500SxStyles = {
+  fontSize: 21,
   fontWeight: 500,
 };
 

@@ -53,6 +53,9 @@ export const CommonTexts = {
   education: "Education",
   previouslyGeneratedAssessments: "Previously Generated Assessments",
   phone: "Phone",
+  assign: "Assign",
+  generateAssessment: "Generate Assessment",
+  scheduleACall: "Schedule a Call",
 };
 
 export const ButtonTexts = {

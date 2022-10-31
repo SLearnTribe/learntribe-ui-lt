@@ -1,7 +1,9 @@
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import {
   Avatar,
   Box,
+  Button,
   Card,
   CardContent,
   Grid,
@@ -14,9 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../../../Assests/Adil.jpeg";
 import {
   ContactInfoLinkSxStyles,
-  DisplayFlexCenter,
   HrProfileAssessementsSxStyles,
   HrResumeAssessmentHeaderSxStyles,
+  ResumeDownloadBtnSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
@@ -46,7 +48,6 @@ export const HrProfileAvatarSection = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "center",
-                  marginBottom: 3,
                 }}>
                 <Avatar
                   alt="Remy Sharp"
@@ -71,16 +72,14 @@ export const HrProfileAvatarSection = () => {
                 {ProfileTexts.resume}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <Typography
-                sx={{
-                  fontSize: 18,
-                  fontWeight: 500,
-                  ...DisplayFlexCenter,
-                  marginBottom: 2,
-                }}>
+            <Grid item xs={12} sx={{ pt: "0 !important", display: "flex" }}>
+              <Button
+                sx={ResumeDownloadBtnSxStyles}
+                variant="text"
+                color="primary"
+                endIcon={<FileDownloadOutlinedIcon />}>
                 {userInfo.resume}
-              </Typography>
+              </Button>
             </Grid>
             <Grid item xs={12}>
               <Typography

@@ -75,6 +75,9 @@ const darkTheme = createTheme({
 
 const lightTheme = createTheme({
   typography: {
+    button: {
+      textTransform: "none"
+    },
     fontFamily: [
       'Mulish',
       'sans-serif',

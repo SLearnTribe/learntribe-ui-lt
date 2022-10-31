@@ -10,12 +10,20 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import sampleImage from "../../../../Assests/Adil.jpeg";
+import { profileRoute } from "../../../Configs/RoutesConfig";
 import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { ButtonTexts, CommonTexts } from "../../../Utils/Text";
 
 export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
+  const navigate = useNavigate();
+
   const applicantDetails = useSelector(getSelectedApplicantDetails);
+
+  const onClickViewDetails = () => {
+    navigate(profileRoute);
+  };
 
   return !isSelectMultipleActive ? (
     <Card sx={{ boxShadow: 0 }}>
@@ -68,7 +76,10 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Button sx={{ width: "16rem" }} variant="contained">
+        <Button
+          onClick={onClickViewDetails}
+          sx={{ width: "16rem" }}
+          variant="contained">
           {ButtonTexts.viewDetails}
         </Button>
       </CardActions>

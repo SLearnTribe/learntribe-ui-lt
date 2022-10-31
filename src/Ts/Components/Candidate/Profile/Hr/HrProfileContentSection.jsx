@@ -4,7 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   Font18Weight500SxStyles,
-  Font20Weight500SxStyles,
+  Font21Weight500SxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { CommonTexts } from "../../../../Utils/Text";
@@ -34,27 +34,33 @@ export const HrProfileContentSection = () => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.description}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font18Weight500SxStyles}>
+              <Typography sx={Font21Weight500SxStyles}>
                 {userInfo.about}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.skills}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font18Weight500SxStyles}>
+              <Typography sx={Font21Weight500SxStyles}>
                 {userInfo.skills}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.experience}
               </Typography>
             </Grid>
@@ -66,19 +72,21 @@ export const HrProfileContentSection = () => {
                 <Grid item xs={12} key={uniqueId()}>
                   <Typography
                     sx={
-                      Font18Weight500SxStyles
+                      Font21Weight500SxStyles
                     }>{`${orgName}, ${location} - ${startDate.slice(
                     0,
                     4
                   )} to ${endDate.slice(0, 4)}`}</Typography>
-                  <Typography sx={Font18Weight500SxStyles}>
+                  <Typography sx={Font21Weight500SxStyles}>
                     {designation}
                   </Typography>
                 </Grid>
               )
             )}
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.education}
               </Typography>
             </Grid>
@@ -88,14 +96,13 @@ export const HrProfileContentSection = () => {
                 index
               ) => (
                 <Grid item xs={12} key={uniqueId()}>
-                  <Typography sx={Font18Weight500SxStyles}>
+                  <Typography sx={Font21Weight500SxStyles}>
                     {collegeName}
                   </Typography>
-                  <Typography sx={Font18Weight500SxStyles}>{degree}</Typography>
-                  <Typography sx={Font18Weight500SxStyles}>
-                    {fieldOfStudy}
+                  <Typography sx={Font21Weight500SxStyles}>
+                    {`${degree}- ${fieldOfStudy}`}
                   </Typography>
-                  <Typography sx={Font18Weight500SxStyles}>
+                  <Typography sx={Font21Weight500SxStyles}>
                     {dateOfCompletion}
                   </Typography>
                 </Grid>
