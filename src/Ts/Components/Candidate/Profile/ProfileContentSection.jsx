@@ -27,9 +27,7 @@ export const ProfileContentSection = () => {
           <ResumeUploadSection />
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" sx={{ textTransform: "none" }}>
-            {ButtonTexts.submit}
-          </Button>
+          <Button variant="contained">{ButtonTexts.submit}</Button>
         </Grid>
       </Grid>
     </Grid>

@@ -6,7 +6,7 @@ export function* handleGetUser(action) {
   try {
     const response = yield call(requestGetUser);
     const { data } = response;
-    yield put(setUserData({ ...data, role: "HR" })); //CANDIDATE HR
+    yield put(setUserData({ ...data, role: "CANDIDATE" })); //CANDIDATE HR
   } catch (error) {
     console.log(error);
   }

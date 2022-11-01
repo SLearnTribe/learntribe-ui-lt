@@ -19,7 +19,11 @@ import {
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { setIsSideMenuCollapsed } from "../../Redux/Ducks/App/AppSlice";
-import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
+import { setUserData } from "../../Redux/Ducks/userSlice";
+import {
+  getIsSideMenuCollapsed,
+  getUserDetails,
+} from "../../Redux/Selectors/AppSelectors";
 import RootRouter from "../../Routing/RootRouter";
 import { SideMenuTexts } from "../../Utils/Text";
 import themes from "../../Utils/Themes/Themes";
@@ -99,6 +103,8 @@ export default function AppContainer(props) {
 
   const open = useSelector(getIsSideMenuCollapsed);
 
+  const userDetails = useSelector(getUserDetails);
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -136,6 +142,21 @@ export default function AppContainer(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+  const onClickDummy = () => {
+    const obj = {
+      CANDIDATE: "HR",
+      HR: "CANDIDATE",
+    };
+    dispatch(
+      setUserData({
+        firstName: "",
+        lastName: "",
+        id: null,
+        role: obj[userDetails.role],
+      })
+    );
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -161,7 +182,11 @@ export default function AppContainer(props) {
                 xs: "flex",
               },
             }}>
-            <Typography sx={{ pr: 2 }} variant="h5" component="h5">
+            <Typography
+              onClick={onClickDummy}
+              sx={{ pr: 2 }}
+              variant="h5"
+              component="h5">
               Welcome Mahesh Babu !
             </Typography>
             <Tooltip title="Account settings">

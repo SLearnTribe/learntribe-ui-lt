@@ -175,14 +175,12 @@ export const ExperienceSection = () => {
             <Button
               disabled={isEmpty(workExperiences)}
               onClick={onClickDeleteEducation}
-              sx={{ textTransform: "none" }}
               color="secondary"
               variant="outlined">
               {ButtonTexts.deleteExperience}
             </Button>
             <Button
               onClick={onClickAddNewExperience}
-              sx={{ textTransform: "none" }}
               color="primary"
               variant="outlined">
               {ButtonTexts.addNewExperience}

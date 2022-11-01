@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
 import { ModalTexts } from "../../../Utils/Text";
 import { GenerateAssessments } from "../../Modals/Applicants/GenerateAssessments";
+import { JobDescription } from "../../Modals/Candidate/Jobs/JobDescription";
 import { ProfileContactInfoModal } from "../../Modals/Hr/ProfileContactInfoModal";
 import { PostJobsModal } from "../../Modals/PostJobs/PostJobsModal";
 
@@ -17,6 +18,8 @@ export default () => {
       return <GenerateAssessments />;
     case ModalTexts.contactInfo:
       return <ProfileContactInfoModal />;
+    case ModalTexts.jobDescription:
+      return <JobDescription />;
     default:
       return null;
   }

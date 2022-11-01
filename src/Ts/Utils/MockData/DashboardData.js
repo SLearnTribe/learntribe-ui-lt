@@ -7,6 +7,8 @@ const roles = [
   "Java Developer",
 ];
 
+const jobTitles = ["SDE-1", "SDE-2", "SDE-3", "SDE-4"];
+
 export const skills = [
   "SpringBoot",
   "Phython",
@@ -55,6 +57,8 @@ const emails = [
 ];
 
 const jobStatus = ["Completed", "On Hold"];
+
+const companyNames = ["Imperva", "Oracle Cerner", "Thomson Reuters"];
 
 const companies = [
   { companyName: "Imperva", companyShortName: "IM" },
@@ -160,7 +164,7 @@ export const AssessmentsMockData = (len = 5) => {
         "Description We put you in touch with your preferred coworking space locations and help you get settled with no hassle.",
       title: sample(skills),
       subTitle: "Test",
-      saved: i == 0 ? true : false,
+      saved: i === 0 ? true : false,
     });
   }
 
@@ -393,3 +397,40 @@ export const AvailableDegreeOptions = [
   { title: "MBA" },
   { title: "MS" },
 ];
+
+export const JobsMockData = (len = 5) => {
+  const data = [];
+  for (let i = 0; i < len; i++) {
+    data.push({
+      jobTitle: sample(jobTitles),
+      location: "India",
+      companyName: sample(companyNames),
+      city: sample(locations),
+      jobLevel: sample(jobLevels),
+      role: sample(roles),
+      employmentType: sample(employmentTypes),
+      description:
+        "Description We put you in touch with your preferred coworking space locations and help you get settled with no hassle.",
+      assessmentsRequired: [
+        { name: "Advance Java", status: sample(AssessmentStatus) },
+        { name: "JavaScript", status: sample(AssessmentStatus) },
+        { name: "Spring Boot", status: sample(AssessmentStatus) },
+        { name: "ReactJs", status: "start" },
+      ],
+      responsibilities:
+        "Designing, developing, and testing UI for mobile and web applications \nBuild reusable code and libraries for future use \nAccurately translate user and business needs into functional frontend code",
+      qualifications: [
+        "A Bachelors of Computer Science or a related field is required ",
+        "5+ years of IT experience in the development of scalable consumer facing digital solutions",
+        "(consumer websites, web applications, mobile sites etc) in HTML, CSS3 and JavaScript framework is required ",
+        "A Bachelors of Computer Science or a related field is required",
+        "Experience in client-side scripting and JavaScript frameworks, like SCSS, HTML5, AngularJS, ReactJS, REST/JSON API is a must.",
+        "Experience with HTML5, Bootstrap, Foundation for mobile/responsive design is desired",
+        "Exposure to cross-browser, multiple device testing and debugging is a required.",
+        "Experience working on an agile team adopting DevOps and CI/CD",
+        "Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plus",
+      ],
+    });
+  }
+  return data;
+};

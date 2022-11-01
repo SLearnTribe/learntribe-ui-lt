@@ -32,6 +32,7 @@ export const CandidateDashboardTexts = {
 
 export const AssessmentTexts = {
   askWhy: "Ask why?",
+  assessmentsRequired: "Assessments Required",
 };
 
 export const CommonTexts = {
@@ -56,6 +57,9 @@ export const CommonTexts = {
   assign: "Assign",
   generateAssessment: "Generate Assessment",
   scheduleACall: "Schedule a Call",
+  requiredSkills: "Required Skills",
+  responsibilities: "Responsibilities",
+  qualificationsOrExperienceRequired: "Qualifications/ Experience Required",
 };
 
 export const ButtonTexts = {
@@ -68,7 +72,7 @@ export const ButtonTexts = {
   generate: "Generate",
   saveJob: "Save Job",
   logout: "Logout",
-  addPhoto: "Add Photo",
+  uploadPhoto: "Upload Photo",
   addNewExperience: "Add New Experience",
   addNewResume: "Add New Resume",
   submit: "Submit",
@@ -108,6 +112,7 @@ export const ModalTexts = {
   generateAssessment: "Generate Assessment",
   editJob: "Edit the job",
   contactInfo: "Contact Info",
+  jobDescription: "Job Description",
 };
 
 export const ProfileTexts = {

@@ -33,7 +33,7 @@ export const PreviouslyGeneratedAssessments = () => {
   };
 
   const onClickEditAssessment = ({ currentTarget }) => {
-    const currentJob = JSON.parse(currentTarget.getAttribute("row-data"));
+    // const currentJob = JSON.parse(currentTarget.getAttribute("row-data"));
   };
   return (
     <Grid item xs={12}>

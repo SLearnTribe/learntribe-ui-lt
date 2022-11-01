@@ -33,7 +33,6 @@ export const PostJobsSearchAndButton = () => {
       <Grid item xs={6}>
         <Button
           onClick={onClickPostNewJob}
-          sx={{ textTransform: "none" }}
           startIcon={<AddIcon />}
           variant="contained">
           {ButtonTexts.postNewJob}

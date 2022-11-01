@@ -54,6 +54,15 @@ export const AssessmentStatusMap = {
   blocked: themes.light.palette.error.dark,
   pending: themes.light.palette.warning.dark,
   saved: themes.light.palette.info.dark,
+  primary: themes.light.palette.primary.main,
+};
+
+export const JobsStatusMap = {
+  completed: themes.light.palette.success.dark,
+  blocked: themes.light.palette.error.contrastText,
+  pending: themes.light.palette.warning.dark,
+  saved: themes.light.palette.info.dark,
+  start: themes.light.palette.primary.main,
 };
 
 export const AssessmentDifficultyLevelColorMap = {

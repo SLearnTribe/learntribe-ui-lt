@@ -174,7 +174,6 @@ export const ResumeDownloadBtnSxStyles = {
   fontSize: 18,
   fontWeight: 500,
   pl: 0,
-  textTransform: "none",
 };
 
 export const SuccessAlertSxStyles = {
@@ -213,6 +212,21 @@ export const Font20Weight500SxStyles = {
   fontWeight: 500,
 };
 
+export const Font20Weight600SxStyles = {
+  fontSize: 20,
+  fontWeight: 600,
+};
+
+export const Font22Weight600SxStyles = {
+  fontSize: 22,
+  fontWeight: 600,
+};
+
+export const Font24Weight600SxStyles = {
+  fontSize: 24,
+  fontWeight: 600,
+};
+
 export const Font21Weight500SxStyles = {
   fontSize: 21,
   fontWeight: 500,
@@ -221,6 +235,31 @@ export const Font21Weight500SxStyles = {
 export const Font18Weight500SxStyles = {
   fontSize: 18,
   fontWeight: 500,
+};
+
+export const Font18Weight600SxStyles = {
+  fontSize: 18,
+  fontWeight: 600,
+};
+
+export const Font15Weight500SxStyles = {
+  fontSize: 15,
+  fontWeight: 500,
+};
+
+export const Font14Weight500SxStyles = {
+  fontSize: 14,
+  fontWeight: 500,
+};
+
+export const Font18Weight400SxStyles = {
+  fontSize: 18,
+  fontWeight: 400,
+};
+
+export const Font26Weight700SxStyles = {
+  fontSize: 26,
+  fontWeight: 700,
 };
 
 export const scrollAssessmentSxStyles = {

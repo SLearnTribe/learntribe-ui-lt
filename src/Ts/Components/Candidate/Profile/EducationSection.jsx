@@ -173,14 +173,12 @@ export const EducationSection = () => {
             <Button
               disabled={isEmpty(education)}
               onClick={onClickDeleteEducation}
-              sx={{ textTransform: "none" }}
               color="secondary"
               variant="outlined">
               {ButtonTexts.deleteEducation}
             </Button>
             <Button
               onClick={onClickAddNewEducation}
-              sx={{ textTransform: "none" }}
               color="primary"
               variant="outlined">
               {ButtonTexts.addNewEducation}
