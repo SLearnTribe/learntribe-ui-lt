@@ -175,7 +175,7 @@ export default function AppContainer(props) {
                 aria-haspopup="true"
                 aria-expanded={anchorElUser ? "true" : undefined}>
                 <Avatar sx={{ bgcolor: themes.light.palette.primary.main }}>
-                  {given_name[0] + family_name[0]}
+                  {given_name?.[0] + family_name?.[0]}
                 </Avatar>
               </IconButton>
             </Tooltip>
