@@ -19,11 +19,8 @@ import {
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { setIsSideMenuCollapsed } from "../../Redux/Ducks/App/AppSlice";
-import { setUserData } from "../../Redux/Ducks/userSlice";
-import {
-  getIsSideMenuCollapsed,
-  getUserDetails,
-} from "../../Redux/Selectors/AppSelectors";
+import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
+import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import RootRouter from "../../Routing/RootRouter";
 import { SideMenuTexts } from "../../Utils/Text";
 import themes from "../../Utils/Themes/Themes";
@@ -103,7 +100,7 @@ export default function AppContainer(props) {
 
   const open = useSelector(getIsSideMenuCollapsed);
 
-  const userDetails = useSelector(getUserDetails);
+  const { name, given_name, family_name } = useSelector(getUserDetails);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -142,21 +139,6 @@ export default function AppContainer(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const onClickDummy = () => {
-    const obj = {
-      CANDIDATE: "HR",
-      HR: "CANDIDATE",
-    };
-    dispatch(
-      setUserData({
-        firstName: "",
-        lastName: "",
-        id: null,
-        role: obj[userDetails.role],
-      })
-    );
-  };
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -182,12 +164,8 @@ export default function AppContainer(props) {
                 xs: "flex",
               },
             }}>
-            <Typography
-              onClick={onClickDummy}
-              sx={{ pr: 2 }}
-              variant="h5"
-              component="h5">
-              Welcome Mahesh Babu !
+            <Typography sx={{ pr: 2 }} variant="h5" component="h5">
+              {name}
             </Typography>
             <Tooltip title="Account settings">
               <IconButton
@@ -197,7 +175,7 @@ export default function AppContainer(props) {
                 aria-haspopup="true"
                 aria-expanded={anchorElUser ? "true" : undefined}>
                 <Avatar sx={{ bgcolor: themes.light.palette.primary.main }}>
-                  M
+                  {given_name[0] + family_name[0]}
                 </Avatar>
               </IconButton>
             </Tooltip>

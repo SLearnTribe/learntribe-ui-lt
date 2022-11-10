@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export function requestGetUser() {
+export function requestGetUser(hashCode) {
   return axios.request({
     method: "get",
-    url: "https://my-json-server.typicode.com/atothey/demo/user",
+    url: `http://www.smilebat.xyz/auth/token?code=${hashCode}`,
   });
 }

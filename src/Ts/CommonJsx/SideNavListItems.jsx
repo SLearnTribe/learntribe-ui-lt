@@ -8,10 +8,8 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { DisplayFlexCenter } from "../CommonStyles/CommonSxStyles";
 import { sideNavMenuItemsConfig } from "../Configs/AppConfig";
-import {
-  getIsSideMenuCollapsed,
-  getUserDetails,
-} from "../Redux/Selectors/AppSelectors";
+import { getIsSideMenuCollapsed } from "../Redux/Selectors/AppSelectors";
+import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
 import { VerticleDivider } from "./CommonJsxUtils";
 import { StyledListItem } from "./SharedJsxStyles";
 
