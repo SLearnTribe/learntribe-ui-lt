@@ -6,6 +6,7 @@ const jobSlice = createSlice({
   initialState: {
     currentEditingJob: null,
     jobs: JobsMockData(),
+    isLoading: true,
   },
   reducers: {
     getJobsData() {},
@@ -15,10 +16,17 @@ const jobSlice = createSlice({
     setCurrentEditingJob(state, { payload }) {
       state.currentEditingJob = payload;
     },
+    setIsJobsDataLoading(state, { payload }) {
+      state.isLoading = payload;
+    },
   },
 });
 
-export const { getJobsData, setJobsData, setCurrentEditingJob } =
-  jobSlice.actions;
+export const {
+  getJobsData,
+  setJobsData,
+  setCurrentEditingJob,
+  setIsJobsDataLoading,
+} = jobSlice.actions;
 
 export default jobSlice.reducer;

@@ -7,6 +7,7 @@ const hrDashboardSlice = createSlice({
     dashboardData: {
       hiringInLastMonth: HrHiringInLastMonthTableMockData(),
       hiringInProgress: HrHiringInLastMonthTableMockData(),
+      isLoading: true,
     },
   },
   reducers: {
@@ -14,10 +15,16 @@ const hrDashboardSlice = createSlice({
     setHrDashboardData(state, { payload }) {
       state.dashboardData = payload;
     },
+    setIsHrDashboardLoading(state, { payload }) {
+      state.isLoading = payload;
+    },
   },
 });
 
-export const { getHrDashboardData, setHrDashboardData } =
-  hrDashboardSlice.actions;
+export const {
+  getHrDashboardData,
+  setHrDashboardData,
+  setIsHrDashboardLoading,
+} = hrDashboardSlice.actions;
 
 export default hrDashboardSlice.reducer;

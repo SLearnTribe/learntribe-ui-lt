@@ -48,12 +48,11 @@ const RouterMap = [
     component: Jobs,
     permission: rolesConfig.CANDIDATE,
   },
-  {
-    path: routes.assessments,
-    component: Assessments,
-    permission: rolesConfig.HR,
-  },
-
+  // {
+  //   path: routes.assessments,
+  //   component: Assessments,
+  //   permission: rolesConfig.HR,
+  // },
   {
     path: routes.assessments,
     component: Assessments,

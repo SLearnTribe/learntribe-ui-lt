@@ -75,11 +75,11 @@ export const hrSideNavMenuItems = [
     path: postJobsRoute,
     icon: <PostAddIcon sx={WhiteColor} />,
   },
-  {
-    title: SideMenuTexts.assessments,
-    path: assessmentsRoute,
-    icon: <AssignmentIcon sx={WhiteColor} />,
-  },
+  // {
+  //   title: SideMenuTexts.assessments,
+  //   path: assessmentsRoute,
+  //   icon: <AssignmentIcon sx={WhiteColor} />,
+  // },
   {
     title: SideMenuTexts.applicants,
     path: applicantsRoute,
@@ -109,6 +109,6 @@ export const candidateSideNavMenuItems = [
     path: jobsRoute,
     icon: <WorkIcon sx={WhiteColor} />,
   },
-  hrSideNavMenuItems[3],
+  // hrSideNavMenuItems[3],
   hrSideNavMenuItems[4],
 ];

@@ -4,16 +4,21 @@ import { userProfileMockData } from "../../../Utils/MockData/DashboardData";
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
-    userInfo: userProfileMockData,
+    userProfileDetails: userProfileMockData,
+    isLoading: true,
   },
   reducers: {
     getUserProfile() {},
     updateUserProfile(state, { payload }) {
-      state.userInfo = payload;
+      state.userProfileDetails = payload;
+    },
+    setIsProfileLoading(state, { payload }) {
+      state.isLoading = false;
     },
   },
 });
 
-export const { getUserProfile, updateUserProfile } = profileSlice.actions;
+export const { getUserProfile, updateUserProfile, setIsProfileLoading } =
+  profileSlice.actions;
 
 export default profileSlice.reducer;

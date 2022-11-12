@@ -31,12 +31,12 @@ export const EducationSection = () => {
 
   const userInfo = useSelector(getUserProfileInfo);
 
-  const { education } = userInfo;
+  const { educationExperiences } = userInfo;
 
   const onClickAddNewEducation = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
 
-    copyUserInfo.education.push(NewEducationObject);
+    copyUserInfo.educationExperiences.push(NewEducationObject);
 
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
@@ -44,7 +44,7 @@ export const EducationSection = () => {
   const onClickDeleteEducation = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
 
-    copyUserInfo.education.splice(-1);
+    copyUserInfo.educationExperiences.splice(-1);
 
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
@@ -55,7 +55,7 @@ export const EducationSection = () => {
 
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].startDate = formattedDate;
+      copyUserInfo.educationExperiences[index].startDate = formattedDate;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -66,7 +66,7 @@ export const EducationSection = () => {
     ({ target: { value } }, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].fieldOfStudy = value;
+      copyUserInfo.educationExperiences[index].fieldOfStudy = value;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -77,7 +77,7 @@ export const EducationSection = () => {
     (value, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].collegeName = value;
+      copyUserInfo.educationExperiences[index].collegeName = value;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -88,7 +88,7 @@ export const EducationSection = () => {
     (_e, { title }, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].degree = title;
+      copyUserInfo.educationExperiences[index].degree = title;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -106,7 +106,7 @@ export const EducationSection = () => {
       />
       <CardContent>
         <Grid container spacing={3}>
-          {education.map(
+          {educationExperiences.map(
             (
               { fieldOfStudy, startDate, endDate, collegeName, degree },
               index
@@ -171,7 +171,7 @@ export const EducationSection = () => {
           )}
           <Grid item xs={12} sx={JustifyContentSpaceBetweenSxStyles}>
             <Button
-              disabled={isEmpty(education)}
+              disabled={isEmpty(educationExperiences)}
               onClick={onClickDeleteEducation}
               color="secondary"
               variant="outlined">

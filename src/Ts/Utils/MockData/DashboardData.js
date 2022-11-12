@@ -373,7 +373,7 @@ export const userProfileMockData = {
   city: "Bengaluru",
   gender: "male",
 
-  education: [
+  educationExperiences: [
     {
       collegeName: "NCET",
       degree: "BE",
@@ -433,4 +433,35 @@ export const JobsMockData = (len = 5) => {
     });
   }
   return data;
+};
+
+export const loggedInUserDetailsMockData = {
+  exp: 1668273472,
+  iat: 1668237473,
+  auth_time: 1668237472,
+  jti: "1131bcce-8d83-43b7-ada7-923d3758adf1",
+  iss: "http://www.smilebat.xyz/auth/realms/master",
+  aud: "account",
+  sub: "953dbd82-f34c-4ae6-b7a8-159f4d98bdc3",
+  typ: "Bearer",
+  azp: "cloud-gateway-client",
+  session_state: "c88d030b-870a-4a64-ae8b-b7a5a1ad7c4b",
+  acr: "1",
+  realm_access: {
+    roles: ["default-roles-master", "offline_access", "uma_authorization"],
+  },
+  resource_access: {
+    account: {
+      roles: ["manage-account", "manage-account-links", "view-profile"],
+    },
+  },
+  scope: "openid profile email",
+  sid: "c88d030b-870a-4a64-ae8b-b7a5a1ad7c4b",
+  role: "HR",
+  email_verified: true,
+  name: "Adil C",
+  preferred_username: "smilebathr",
+  given_name: "Adil",
+  family_name: "C",
+  email: "adil.shezin94@gmail.com",
 };

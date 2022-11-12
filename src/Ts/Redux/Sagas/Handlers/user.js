@@ -1,5 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { parseJwt } from "../../../Utils/AppUtils";
+import { loggedInUserDetailsMockData } from "../../../Utils/MockData/DashboardData";
 import { setUserData, setUserDataLoading } from "../../Ducks/userSlice";
 import { requestGetUser } from "../Requests/user";
 
@@ -15,6 +16,12 @@ export function* handleGetUser({ payload }) {
   } catch (error) {
     console.log(error);
   } finally {
+    yield put(
+      setUserData({
+        userDetails: loggedInUserDetailsMockData,
+        access_token: "",
+      })
+    );
     yield put(setUserDataLoading(false));
   }
 }

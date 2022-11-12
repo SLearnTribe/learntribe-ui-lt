@@ -1,1 +1,2 @@
-export const getUserProfileInfo = (state) => state.profileSlice.userInfo;
+export const getUserProfileInfo = (state) =>
+  state.profileSlice.userProfileDetails;

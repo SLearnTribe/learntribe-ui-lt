@@ -10,7 +10,7 @@ import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors
 import { CommonTexts } from "../../../../Utils/Text";
 
 export const HrProfileContentSection = () => {
-  const userInfo = useSelector(getUserProfileInfo);
+  const userProfileDetails = useSelector(getUserProfileInfo);
   return (
     <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
       <Card sx={{ pl: "1rem", pr: "1rem" }}>
@@ -20,17 +20,17 @@ export const HrProfileContentSection = () => {
               <Typography
                 color="primary"
                 sx={{ fontSize: 30, fontWeight: 700 }}>
-                {userInfo.name}
+                {userProfileDetails.name}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ fontSize: 22, fontWeight: 500 }}>
-                {userInfo.currentRole}
+                {userProfileDetails.currentRole}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={Font18Weight500SxStyles}>
-                {userInfo.city}
+                {userProfileDetails.country}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -42,7 +42,7 @@ export const HrProfileContentSection = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography sx={Font21Weight500SxStyles}>
-                {userInfo.about}
+                {userProfileDetails.about}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -54,7 +54,7 @@ export const HrProfileContentSection = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography sx={Font21Weight500SxStyles}>
-                {userInfo.skills}
+                {userProfileDetails.skills}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -64,7 +64,7 @@ export const HrProfileContentSection = () => {
                 {CommonTexts.experience}
               </Typography>
             </Grid>
-            {userInfo.workExperiences.map(
+            {userProfileDetails.workExperiences.map(
               (
                 { orgName, location, endDate, startDate, designation },
                 index
@@ -90,7 +90,7 @@ export const HrProfileContentSection = () => {
                 {CommonTexts.education}
               </Typography>
             </Grid>
-            {userInfo.education.map(
+            {userProfileDetails.educationExperiences.map(
               (
                 { collegeName, fieldOfStudy, degree, dateOfCompletion },
                 index
