@@ -85,11 +85,11 @@ export const hrSideNavMenuItems = [
     path: applicantsRoute,
     icon: <PeopleIcon sx={WhiteColor} />,
   },
-  {
-    title: SideMenuTexts.profile,
-    path: profileRoute,
-    icon: <AccountCircleIcon sx={WhiteColor} />,
-  },
+  // {
+  //   title: SideMenuTexts.profile,
+  //   path: profileRoute,
+  //   icon: <AccountCircleIcon sx={WhiteColor} />,
+  // },
   {
     title: SideMenuTexts.help,
     path: helpRoute,
@@ -109,6 +109,10 @@ export const candidateSideNavMenuItems = [
     path: jobsRoute,
     icon: <WorkIcon sx={WhiteColor} />,
   },
-  hrSideNavMenuItems[3],
+  {
+    title: SideMenuTexts.profile,
+    path: profileRoute,
+    icon: <AccountCircleIcon sx={WhiteColor} />,
+  },
   hrSideNavMenuItems[4],
 ];

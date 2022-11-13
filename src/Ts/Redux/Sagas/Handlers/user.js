@@ -13,7 +13,7 @@ export function* handleGetUser({ payload }) {
 
     const userDetails = parseJwt(access_token);
 
-    userDetails.role = "CANDIDATE";
+    // userDetails.role = "CANDIDATE";
 
     yield put(setUserData({ userDetails, access_token })); //CANDIDATE HR
 
