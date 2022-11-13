@@ -13,6 +13,10 @@ import {
 import { uniqueId } from "lodash";
 import React from "react";
 import { useSelector } from "react-redux";
+import {
+  HrAssessmentCardSxStyles,
+  scrollAssessmentSxStyles,
+} from "../../../../CommonStyles/CommonSxStyles";
 import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts } from "../../../../Utils/Text";
 
@@ -20,17 +24,14 @@ export const RecommendedJobs = () => {
   const assessmentsData = useSelector(getAssessmentsData);
 
   return (
-    <>
-      {assessmentsData.map(({ title, description, time = "45 mins" }) => (
-        <Grid key={uniqueId()} item xs={12} sm={12} md={3} lg={3} xl={3}>
+    <Grid key={uniqueId()} item xs={12}>
+      <Box sx={scrollAssessmentSxStyles}>
+        {assessmentsData.map(({ title, description, time = "45 mins" }) => (
           <Card
-            sx={{
-              borderRadius: 3,
-              border: "1px solid #7779F5",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-            }}>
+            sx={HrAssessmentCardSxStyles}
+            row
+            key={uniqueId()}
+            variant="outlined">
             <CardHeader
               action={
                 <IconButton>
@@ -71,8 +72,8 @@ export const RecommendedJobs = () => {
               </Link>
             </CardActions>
           </Card>
-        </Grid>
-      ))}
-    </>
+        ))}
+      </Box>
+    </Grid>
   );
 };

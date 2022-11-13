@@ -268,7 +268,7 @@ export const scrollAssessmentSxStyles = {
   py: 1,
   overflowX: "auto",
   width: "100%",
-  whiteSpace: "nowrap",
+  // whiteSpace: "nowrap",
   // scrollSnapType: "x mandatory",
   // "& > *": {
   //   scrollSnapAlign: "center",
