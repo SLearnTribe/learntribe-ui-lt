@@ -402,9 +402,9 @@ export const JobsMockData = (len = 5) => {
   const data = [];
   for (let i = 0; i < len; i++) {
     data.push({
-      jobTitle: sample(jobTitles),
+      title: sample(jobTitles),
       location: "India",
-      companyName: sample(companyNames),
+      businessName: sample(companyNames),
       city: sample(locations),
       jobLevel: sample(jobLevels),
       role: sample(roles),
@@ -417,7 +417,7 @@ export const JobsMockData = (len = 5) => {
         { name: "Spring Boot", status: sample(AssessmentStatus) },
         { name: "ReactJs", status: "start" },
       ],
-      responsibilities:
+      rolesAndResponsibilities:
         "Designing, developing, and testing UI for mobile and web applications \nBuild reusable code and libraries for future use \nAccurately translate user and business needs into functional frontend code",
       qualifications: [
         "A Bachelors of Computer Science or a related field is required ",

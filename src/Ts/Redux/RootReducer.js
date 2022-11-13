@@ -4,6 +4,7 @@ import appSlice from "./Ducks/App/AppSlice";
 import applicantSlice from "./Ducks/Applicants/ApplicantSlice";
 import AppReducer from "./Ducks/AppReducer";
 import assessmentsSlice from "./Ducks/Assessments/AssessmentsSlice";
+import candidateDashboardSlice from "./Ducks/Dashboard/CandidateDashboardSlice";
 import hrDashboardSlice from "./Ducks/Dashboard/HrDashboardSlice";
 import jobSlice from "./Ducks/Jobs/JobsSlice";
 import modalSlice from "./Ducks/Modal/ModalSlice";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   assessmentsSlice,
   profileSlice,
   jobSlice,
+  candidateDashboardSlice,
 });
 
 export default rootReducer;

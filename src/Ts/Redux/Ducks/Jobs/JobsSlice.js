@@ -1,16 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { JobsMockData } from "../../../Utils/MockData/DashboardData";
 
 const jobSlice = createSlice({
   name: "jobSlice",
   initialState: {
     currentEditingJob: null,
-    jobs: JobsMockData(),
+    jobs: [],
     isLoading: true,
   },
   reducers: {
-    getJobsData() {},
-    setJobsData(state, { payload }) {
+    getCandidatesJobsData() {},
+    setCandidatesJobsData(state, { payload }) {
       state.jobs = payload;
     },
     setCurrentEditingJob(state, { payload }) {
@@ -23,8 +22,8 @@ const jobSlice = createSlice({
 });
 
 export const {
-  getJobsData,
-  setJobsData,
+  getCandidatesJobsData,
+  setCandidatesJobsData,
   setCurrentEditingJob,
   setIsJobsDataLoading,
 } = jobSlice.actions;

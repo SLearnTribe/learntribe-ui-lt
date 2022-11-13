@@ -3,25 +3,31 @@ import {
   setAssessmentsData,
   setIsAssessmentsLoading,
 } from "../../../Ducks/Assessments/AssessmentsSlice";
+import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
-import { requestGetAssessments } from "../../Requests/Assessments/AssessmentsRequest";
+import { requestGetCandidateRecommendedAssessments } from "../../Requests/Assessments/AssessmentsRequest";
 
-export function* handleGetAssessments(action) {
+export function* handleGetRecommendedAssessments({
+  payload: { page, limit, filters },
+}) {
   try {
+    yield put(setUserDataLoading(true));
+
     const accessToken = yield select(selectors.getAccessToken);
 
-    const { data: assessmentsData } = yield call(
-      requestGetAssessments,
-      accessToken
-    );
+    const { data } = yield call(requestGetCandidateRecommendedAssessments, {
+      accessToken,
+      page,
+      limit,
+      filters,
+    });
 
-    yield put(setAssessmentsData(assessmentsData));
-
-    yield put(setIsAssessmentsLoading(false));
+    yield put(setAssessmentsData(data));
   } catch (error) {
     console.log(error);
   } finally {
-    yield put(setAssessmentsData([]));
+    // yield put(setAssessmentsData([]));
     yield put(setIsAssessmentsLoading(false));
+    yield put(setUserDataLoading(false)); //will remove
   }
 }

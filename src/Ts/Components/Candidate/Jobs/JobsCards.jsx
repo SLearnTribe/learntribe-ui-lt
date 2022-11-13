@@ -12,14 +12,14 @@ import {
 import { JobsStatusMap } from "../../../Configs/Dashboards/DashboardsConfig";
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
-import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import { getCandidatesJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
 import { AssessmentTexts, ModalTexts } from "../../../Utils/Text";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const JobsCards = () => {
   const dispatch = useDispatch();
 
-  const jobsData = useSelector(getJobs);
+  const jobsData = useSelector(getCandidatesJobs);
 
   const onClickJobCard = useCallback(
     (currentJob) => {
@@ -49,7 +49,13 @@ export const JobsCards = () => {
       </Grid>
       {jobsData.map(
         (
-          { jobTitle, companyName, city, description, assessmentsRequired },
+          {
+            title,
+            businessName,
+            city = "Bengaluru",
+            description,
+            assessmentsRequired = [],
+          },
           index
         ) => (
           <Grid item xs={12} key={uniqueId()}>
@@ -62,12 +68,12 @@ export const JobsCards = () => {
                     <Grid container spacing={1}>
                       <Grid item xs={12}>
                         <Typography sx={Font20Weight600SxStyles}>
-                          {jobTitle}
+                          {title}
                         </Typography>
                       </Grid>
                       <Grid item xs={12}>
                         <Typography sx={Font18Weight600SxStyles}>
-                          {`${companyName}, ${city}`}
+                          {`${businessName}, ${city}`}
                         </Typography>
                       </Grid>
                       <Grid item xs={12}>
@@ -87,7 +93,7 @@ export const JobsCards = () => {
                           {AssessmentTexts.assessmentsRequired}
                         </Typography>
                       </Grid>
-                      {assessmentsRequired.map(({ name, status }) => (
+                      {assessmentsRequired?.map(({ name, status }) => (
                         <React.Fragment key={uniqueId()}>
                           <Grid item xs={7} sm={6} md={8} lg={8} xl={8}>
                             <Typography sx={Font15Weight500SxStyles}>

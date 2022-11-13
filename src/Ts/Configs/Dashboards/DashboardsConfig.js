@@ -9,29 +9,26 @@ export const accountMenuItems = ["Profile", "Account", "Dashboard", "Logout"];
 export const CandidateStatsConfig = [
   {
     title: CandidateDashboardTexts.assessmentsCompleted,
-    icon: AssignmentTurnedInIcon,
-    total: 25,
+    total: 0,
     color: "success",
   },
   {
     title: CandidateDashboardTexts.jobsApplied,
-    icon: WorkOutlineIcon,
-    total: 12,
+    total: 0,
     color: "info",
   },
   {
     title: CandidateDashboardTexts.interviewCalls,
-    icon: CallIcon,
-    total: 10,
+    total: 0,
     color: "warning",
   },
-  {
-    title: CandidateDashboardTexts.assessmentsCompleted,
-    icon: AssignmentTurnedInIcon,
-    total: 25,
-    color: "success",
-  },
 ];
+
+export const CandidateActivitiesIconMap = {
+  [CandidateDashboardTexts.assessmentsCompleted]: AssignmentTurnedInIcon,
+  [CandidateDashboardTexts.jobsApplied]: WorkOutlineIcon,
+  [CandidateDashboardTexts.interviewCalls]: CallIcon,
+};
 
 export const CandidateTabs = [
   TabLabelTexts.all,

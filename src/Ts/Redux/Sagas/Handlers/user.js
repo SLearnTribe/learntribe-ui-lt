@@ -1,5 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { parseJwt } from "../../../Utils/AppUtils";
+import { getAssessments } from "../../Ducks/Assessments/AssessmentsSlice";
 import { getUserProfile } from "../../Ducks/Profile/ProfileSlice";
 import { setUserData, setUserDataLoading } from "../../Ducks/userSlice";
 import { requestGetUser } from "../Requests/user";
@@ -12,11 +13,13 @@ export function* handleGetUser({ payload }) {
 
     const userDetails = parseJwt(access_token);
 
-    // userDetails.role = "CANDIDATE";
+    userDetails.role = "CANDIDATE";
 
     yield put(setUserData({ userDetails, access_token })); //CANDIDATE HR
 
     yield put(getUserProfile(access_token));
+
+    yield put(getAssessments({ page: 1, limit: 25 }));
   } catch (error) {
     console.log(error);
   } finally {

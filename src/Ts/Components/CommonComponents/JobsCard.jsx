@@ -14,15 +14,24 @@ import {
 } from "@mui/material";
 import { uniqueId } from "lodash";
 import React from "react";
-import { CandidateJobsMockData } from "../../Utils/MockData/DashboardData";
+import { useSelector } from "react-redux";
+import { getCandidatesJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
 import { ButtonTexts } from "../../Utils/Text";
 
 export const JobsCard = () => {
+  const candidateJobs = useSelector(getCandidatesJobs);
+
   const onClickViewDetails = () => {};
   return (
     <>
-      {CandidateJobsMockData.map(
-        ({ location, companyName, companyShortName, jobType, jobTitle }) => (
+      {candidateJobs.map(
+        ({
+          location = "Bengaluru",
+          businessName,
+          companyShortName = businessName[0],
+          employmentType,
+          title,
+        }) => (
           <Grid key={uniqueId()} item xs={12} sm={12} md={6} lg={4} xl={4}>
             <Card
               sx={{
@@ -48,7 +57,7 @@ export const JobsCard = () => {
                 action={null} //For adding button at top corner of card
                 title={
                   <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
-                    {companyName}
+                    {businessName}
                   </Typography>
                 }
                 subheader={
@@ -64,13 +73,13 @@ export const JobsCard = () => {
                 <Box sx={{ display: "flex" }}>
                   <WorkIcon sx={{ mr: 1 }} />
                   <Typography sx={{ fontSize: 20, fontWeight: 400 }}>
-                    {jobTitle}
+                    {title}
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex" }}>
                   <BusinessCenterIcon sx={{ mr: 1 }} />
                   <Typography sx={{ fontSize: 20, fontWeight: 400 }}>
-                    {jobType}
+                    {employmentType}
                   </Typography>
                 </Box>
               </CardContent>
