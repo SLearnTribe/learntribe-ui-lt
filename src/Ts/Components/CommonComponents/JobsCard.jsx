@@ -26,11 +26,11 @@ export const JobsCard = () => {
     <>
       {candidateJobs.map(
         ({
-          location = "Bengaluru",
-          businessName,
-          companyShortName = businessName[0],
-          employmentType,
-          title,
+          location = "N/A",
+          businessName = "",
+          companyShortName = "N/A",
+          employmentType = "",
+          title = "",
         }) => (
           <Grid key={uniqueId()} item xs={12} sm={12} md={6} lg={4} xl={4}>
             <Card

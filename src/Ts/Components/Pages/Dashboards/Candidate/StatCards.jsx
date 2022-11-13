@@ -11,7 +11,7 @@ export const StatCards = () => {
 
   return (
     <>
-      {activities.map(({ title, total, color, icon }) => (
+      {activities.map(({ title, total, color }) => (
         <Grid key={uniqueId()} item xs={12} sm={6} md={4}>
           <DashboardStatsCard
             title={title}

@@ -92,7 +92,7 @@ export const AssessmentCards = ({ selectedTab }) => {
         />
       </Grid>
       {filteredAssessmentsData.map((row) => {
-        const { title, difficulty, description, status, saved } = row;
+        const { title, difficulty, description, status } = row;
         return (
           <Grid item xs={12} key={uniqueId()}>
             <Card
@@ -110,7 +110,7 @@ export const AssessmentCards = ({ selectedTab }) => {
                     <IconButton
                       row-data={JSON.stringify(row)}
                       onClick={onToggleSave}>
-                      {saved ? (
+                      {status === "SAVED" ? (
                         <BookmarkIcon color="primary" />
                       ) : (
                         <BookmarkBorderIcon color="primary" />

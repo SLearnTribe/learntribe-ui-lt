@@ -26,7 +26,6 @@ export function* handleGetRecommendedAssessments({
   } catch (error) {
     console.log(error);
   } finally {
-    // yield put(setAssessmentsData([]));
     yield put(setIsAssessmentsLoading(false));
     yield put(setUserDataLoading(false)); //will remove
   }
