@@ -30,7 +30,7 @@ export const ExperienceSection = () => {
 
   const userInfo = useSelector(getUserProfileInfo);
 
-  const { workExperiences } = userInfo;
+  const { workExperiences = [] } = userInfo;
 
   const onClickAddNewExperience = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
@@ -107,7 +107,7 @@ export const ExperienceSection = () => {
       />
       <CardContent>
         <Grid container spacing={3}>
-          {workExperiences.map(
+          {workExperiences?.map(
             ({ orgName, designation, startDate, endDate }, index) => (
               <React.Fragment key={index}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>

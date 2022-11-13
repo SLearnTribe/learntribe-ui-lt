@@ -20,17 +20,17 @@ export const HrProfileContentSection = () => {
               <Typography
                 color="primary"
                 sx={{ fontSize: 30, fontWeight: 700 }}>
-                {userProfileDetails.name}
+                {userProfileDetails?.name}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ fontSize: 22, fontWeight: 500 }}>
-                {userProfileDetails.currentRole}
+                {userProfileDetails?.currentRole}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={Font18Weight500SxStyles}>
-                {userProfileDetails.country}
+                {userProfileDetails?.country}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -42,7 +42,7 @@ export const HrProfileContentSection = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography sx={Font21Weight500SxStyles}>
-                {userProfileDetails.about}
+                {userProfileDetails?.about}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -54,7 +54,7 @@ export const HrProfileContentSection = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography sx={Font21Weight500SxStyles}>
-                {userProfileDetails.skills}
+                {userProfileDetails?.skills}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -64,7 +64,7 @@ export const HrProfileContentSection = () => {
                 {CommonTexts.experience}
               </Typography>
             </Grid>
-            {userProfileDetails.workExperiences.map(
+            {userProfileDetails?.workExperiences?.map(
               (
                 { orgName, location, endDate, startDate, designation },
                 index
@@ -90,7 +90,7 @@ export const HrProfileContentSection = () => {
                 {CommonTexts.education}
               </Typography>
             </Grid>
-            {userProfileDetails.educationExperiences.map(
+            {userProfileDetails?.educationExperiences?.map(
               (
                 { collegeName, fieldOfStudy, degree, dateOfCompletion },
                 index

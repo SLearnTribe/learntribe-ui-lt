@@ -109,6 +109,6 @@ export const candidateSideNavMenuItems = [
     path: jobsRoute,
     icon: <WorkIcon sx={WhiteColor} />,
   },
-  // hrSideNavMenuItems[3],
+  hrSideNavMenuItems[3],
   hrSideNavMenuItems[4],
 ];

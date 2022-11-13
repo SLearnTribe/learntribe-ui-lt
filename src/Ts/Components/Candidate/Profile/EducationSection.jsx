@@ -31,7 +31,7 @@ export const EducationSection = () => {
 
   const userInfo = useSelector(getUserProfileInfo);
 
-  const { educationExperiences } = userInfo;
+  const { educationExperiences = [] } = userInfo;
 
   const onClickAddNewEducation = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
@@ -106,7 +106,7 @@ export const EducationSection = () => {
       />
       <CardContent>
         <Grid container spacing={3}>
-          {educationExperiences.map(
+          {educationExperiences?.map(
             (
               { fieldOfStudy, startDate, endDate, collegeName, degree },
               index

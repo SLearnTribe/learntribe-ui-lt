@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 import { isEqual } from "lodash";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,9 +46,11 @@ export default function RootRouter() {
 
   if (isLoading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", height: "90vh" }}>
-        <CircularProgress />
-      </Box>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     );
   }
 

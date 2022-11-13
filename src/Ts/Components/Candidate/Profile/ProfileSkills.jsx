@@ -22,7 +22,7 @@ export const ProfileSkills = () => {
   const normalizedSkills = useMemo(() => {
     const copySkills = cloneDeep(userInfo.skills);
 
-    return copySkills.split(", ");
+    return copySkills?.split(", ");
   }, [userInfo.skills]);
 
   const onInputChange = useCallback(

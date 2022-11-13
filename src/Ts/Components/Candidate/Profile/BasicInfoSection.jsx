@@ -15,7 +15,10 @@ import { cloneDeep } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import {
+  getProfileValidations,
+  getUserProfileInfo,
+} from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import {
   CommonTexts,
   ProfileTexts,
@@ -26,6 +29,12 @@ export const BasicInfoSection = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUserProfileInfo);
+
+  const {
+    nameError = false,
+    emailError = false,
+    phoneError = false,
+  } = useSelector(getProfileValidations);
 
   const { name, email, gender, phone, country } = userInfo;
 
@@ -97,6 +106,8 @@ export const BasicInfoSection = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              required
+              error={nameError}
               sx={{ width: "100%" }}
               value={name}
               onChange={onChangeName}
@@ -108,6 +119,8 @@ export const BasicInfoSection = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              required
+              error={emailError}
               sx={{ width: "100%" }}
               value={email}
               onChange={onChangeEmail}
@@ -119,6 +132,8 @@ export const BasicInfoSection = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              required
+              error={phoneError}
               sx={{ width: "100%" }}
               value={phone}
               type="number"

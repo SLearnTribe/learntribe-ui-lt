@@ -1,24 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userProfileMockData } from "../../../Utils/MockData/DashboardData";
 
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
-    userProfileDetails: userProfileMockData,
+    userProfileDetails: {},
     isLoading: true,
+    validations: {},
   },
   reducers: {
     getUserProfile() {},
+    saveUserProfile() {},
     updateUserProfile(state, { payload }) {
       state.userProfileDetails = payload;
     },
     setIsProfileLoading(state, { payload }) {
       state.isLoading = false;
     },
+    setValidationsOnProfile(state, { payload }) {
+      state.validations = payload;
+    },
   },
 });
 
-export const { getUserProfile, updateUserProfile, setIsProfileLoading } =
-  profileSlice.actions;
+export const {
+  getUserProfile,
+  saveUserProfile,
+  setValidationsOnProfile,
+  updateUserProfile,
+  setIsProfileLoading,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;
