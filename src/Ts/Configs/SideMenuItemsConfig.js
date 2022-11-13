@@ -114,5 +114,9 @@ export const candidateSideNavMenuItems = [
     path: profileRoute,
     icon: <AccountCircleIcon sx={WhiteColor} />,
   },
-  hrSideNavMenuItems[4],
+  {
+    title: SideMenuTexts.help,
+    path: helpRoute,
+    icon: <HelpIcon sx={WhiteColor} />,
+  },
 ];
