@@ -1,10 +1,11 @@
 import { Grid } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   HrHiringInLastMonthTableColumns,
   HrHiringInProgressTableColumns,
 } from "../../../../Configs/Dashboards/TableConfigs";
+import { getHrHiringData } from "../../../../Redux/Ducks/Dashboard/HrDashboardSlice";
 import {
   getHrDashboardHiringInLastMonthData,
   getHrDashboardHiringInProgressData,
@@ -14,9 +15,16 @@ import { DataGridTable } from "../../../CommonComponents/DataGridTable";
 import { HeaderLink } from "../../../CommonComponents/HeaderAndLink";
 
 export const HrDashboard = () => {
+  const dispatch = useDispatch();
+
   const hiringInLastMonth = useSelector(getHrDashboardHiringInLastMonthData);
 
   const hiringInProgress = useSelector(getHrDashboardHiringInProgressData);
+
+  useEffect(() => {
+    dispatch(getHrHiringData({ page: 1, limit: 25 }));
+    dispatch(getHrHiringData({ page: 1, limit: 25, category: "IN_PROGRESS" }));
+  }, [dispatch]);
 
   return (
     <Grid container spacing={3}>

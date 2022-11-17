@@ -4,16 +4,17 @@ import { HrHiringInLastMonthTableMockData } from "../../../Utils/MockData/Dashbo
 const hrDashboardSlice = createSlice({
   name: "hrDashboard",
   initialState: {
-    dashboardData: {
-      hiringInLastMonth: HrHiringInLastMonthTableMockData(),
-      hiringInProgress: HrHiringInLastMonthTableMockData(),
-      isLoading: true,
-    },
+    hiringInLastMonth: HrHiringInLastMonthTableMockData(),
+    hiringInProgress: HrHiringInLastMonthTableMockData(),
+    isLoading: true,
   },
   reducers: {
-    getHrDashboardData() {},
-    setHrDashboardData(state, { payload }) {
-      state.dashboardData = payload;
+    getHrHiringData() {},
+    setHrHiringInLastMonthData(state, { payload }) {
+      state.hiringInLastMonth = payload;
+    },
+    setHrHiringData(state, { payload }) {
+      state.hiringInProgress = payload;
     },
     setIsHrDashboardLoading(state, { payload }) {
       state.isLoading = payload;
@@ -22,8 +23,9 @@ const hrDashboardSlice = createSlice({
 });
 
 export const {
-  getHrDashboardData,
-  setHrDashboardData,
+  getHrHiringData,
+  setHrHiringInLastMonthData,
+  setHrHiringData,
   setIsHrDashboardLoading,
 } = hrDashboardSlice.actions;
 

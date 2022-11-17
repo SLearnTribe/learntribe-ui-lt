@@ -2,7 +2,7 @@ import { takeLatest } from "redux-saga/effects";
 import { getApplicantsData } from "../Ducks/Applicants/ApplicantSlice";
 import { getAssessments } from "../Ducks/Assessments/AssessmentsSlice";
 import { getCandidateActivities } from "../Ducks/Dashboard/CandidateDashboardSlice";
-import { getHrDashboardData } from "../Ducks/Dashboard/HrDashboardSlice";
+import { getHrHiringData } from "../Ducks/Dashboard/HrDashboardSlice";
 import { getCandidatesJobsData } from "../Ducks/Jobs/JobsSlice";
 import { getUserProfile, saveUserProfile } from "../Ducks/Profile/ProfileSlice";
 import { getUserData } from "../Ducks/userSlice";
@@ -23,7 +23,7 @@ export function* watcherSaga() {
   yield takeLatest(getUserProfile.type, handleGetUserProfile);
   yield takeLatest(getApplicantsData.type, handleGetApplicants);
   yield takeLatest(getAssessments.type, handleGetRecommendedAssessments);
-  yield takeLatest(getHrDashboardData.type, handleGetHrDashboard);
+  yield takeLatest(getHrHiringData.type, handleGetHrDashboard);
   yield takeLatest(getCandidatesJobsData.type, handleGetCandidatesJobs);
   yield takeLatest(getCandidateActivities.type, handleGetCandidateActivities);
 
