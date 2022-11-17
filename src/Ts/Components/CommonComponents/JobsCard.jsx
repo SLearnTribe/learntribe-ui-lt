@@ -19,11 +19,11 @@ import {
   HrAssessmentCardSxStyles,
   scrollAssessmentSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
-import { getCandidatesJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
+import { getJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
 import { ButtonTexts } from "../../Utils/Text";
 
 export const JobsCard = () => {
-  const candidateJobs = useSelector(getCandidatesJobs);
+  const candidateJobs = useSelector(getJobs);
 
   const onClickViewDetails = () => {};
   return (

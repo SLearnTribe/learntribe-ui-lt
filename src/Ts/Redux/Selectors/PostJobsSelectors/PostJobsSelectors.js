@@ -1,4 +1,4 @@
-export const getPostJobsData = (state) => state.postJobsSlice.postJobsData;
+export const getPostJobsData = (state) => state.postJobsSlice.jobs;
 
 export const getCurrentEditingJob = (state) =>
   state.postJobsSlice.currentEditingJob;

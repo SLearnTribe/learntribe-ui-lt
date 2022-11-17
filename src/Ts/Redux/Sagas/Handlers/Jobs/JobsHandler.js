@@ -1,28 +1,54 @@
 import { call, put, select } from "redux-saga/effects";
-import { JobsMockData } from "../../../../Utils/MockData/DashboardData";
 import {
-  setCandidatesJobsData,
+  getJobsData,
   setIsJobsDataLoading,
+  setJobsData,
 } from "../../../Ducks/Jobs/JobsSlice";
+import { setCurrentModal } from "../../../Ducks/Modal/ModalSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
-import { requestGetCandidateJobs } from "../../Requests/Jobs/JobsRequests";
+import {
+  requestGetJobs,
+  requestPostJobs,
+} from "../../Requests/Jobs/JobsRequests";
 
-export function* handleGetCandidatesJobs(action) {
+export function* handleGetJobs({ payload: { page = 1, limit = 25 } }) {
   try {
     yield put(setUserDataLoading(true));
 
     const accessToken = yield select(selectors.getAccessToken);
 
-    const { data } = yield call(requestGetCandidateJobs, accessToken);
+    const { data } = yield call(requestGetJobs, { accessToken, page, limit });
 
-    yield put(setCandidatesJobsData(data));
+    yield put(setJobsData(data));
+  } catch (error) {
+    console.log(error);
+    yield put(setJobsData([]));
+  } finally {
+    yield put(setIsJobsDataLoading(false));
+    yield put(setUserDataLoading(false));
+  }
+}
+
+export function* handlePostJobs({ payload }) {
+  try {
+    yield put(setCurrentModal(null));
+
+    yield put(setUserDataLoading(true));
+
+    const accessToken = yield select(selectors.getAccessToken);
+
+    yield call(requestPostJobs, {
+      accessToken,
+      postingJobsDetails: payload,
+    });
+
+    yield put(getJobsData({ page: 1, limit: 25 }));
 
     yield put(setIsJobsDataLoading(false));
   } catch (error) {
     console.log(error);
-  } finally {
-    yield put(setCandidatesJobsData(JobsMockData()));
+    yield put(setJobsData([]));
     yield put(setIsJobsDataLoading(false));
     yield put(setUserDataLoading(false));
   }

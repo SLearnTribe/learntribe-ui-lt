@@ -1,12 +1,24 @@
 import axios from "axios";
 
-export function requestGetCandidateJobs(accessToken) {
+export function requestGetJobs({ accessToken, page = 1, limit = 25 }) {
   return axios.request({
     method: "get",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/api/v1/analytics/candidate/jobs",
+    url: `http://www.smilebat.xyz/api/v1/jobs/user?page=${page}&limit=${limit}`,
+  });
+}
+
+export function requestPostJobs({ accessToken, postingJobsDetails }) {
+  return axios.request({
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    data: postingJobsDetails,
+    url: "http://www.smilebat.xyz/api/v1/jobs/user",
   });
 }

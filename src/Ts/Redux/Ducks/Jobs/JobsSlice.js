@@ -8,8 +8,9 @@ const jobSlice = createSlice({
     isLoading: true,
   },
   reducers: {
-    getCandidatesJobsData() {},
-    setCandidatesJobsData(state, { payload }) {
+    getJobsData() {},
+    postJobsData() {},
+    setJobsData(state, { payload }) {
       state.jobs = payload;
     },
     setCurrentEditingJob(state, { payload }) {
@@ -22,8 +23,9 @@ const jobSlice = createSlice({
 });
 
 export const {
-  getCandidatesJobsData,
-  setCandidatesJobsData,
+  postJobsData,
+  getJobsData,
+  setJobsData,
   setCurrentEditingJob,
   setIsJobsDataLoading,
 } = jobSlice.actions;

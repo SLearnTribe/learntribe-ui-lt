@@ -14,6 +14,7 @@ import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createEditPostJobConfig } from "../../../Configs/Jobs/JobsConfig";
+import { postJobsData } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { setCurrentEditingPostJobData } from "../../../Redux/Ducks/PostJobs/PostJobsSlice";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
@@ -24,12 +25,17 @@ export const PostJobsModal = () => {
   const dispatch = useDispatch();
 
   const {
-    jobTitle: title = "",
+    id,
+    title = "",
     description = "",
-    experience = "",
-    qualification = "",
-    skills = [],
+    experienceRequired: experience = "",
+    rolesAndResponsibilities = "",
+    requiredSkills = [],
   } = useSelector(getCurrentEditingJob);
+
+  const skills = useMemo(() => {
+    return isEmpty(requiredSkills) ? [] : requiredSkills?.split(", ");
+  }, [requiredSkills]);
 
   const currentModal = useSelector(getCurrentModal);
 
@@ -39,8 +45,9 @@ export const PostJobsModal = () => {
 
   const [experienceRequired, setExperienceRequired] = useState(experience);
 
-  const [qualificationRequired, setQualificationRequired] =
-    useState(qualification);
+  const [qualificationRequired, setQualificationRequired] = useState(
+    rolesAndResponsibilities
+  );
 
   const [addedSkills, setAddedSkills] = useState(skills);
 
@@ -49,8 +56,28 @@ export const PostJobsModal = () => {
   };
 
   const onClickPost = useCallback(() => {
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+    dispatch(
+      postJobsData({
+        createdBy: "",
+        description: jobDescription,
+        experienceRequired,
+        id,
+        requiredSkills: skills.join(", "),
+        rolesAndResponsibilities: qualificationRequired,
+        id,
+        jobDescription,
+        title: jobTitle,
+      })
+    );
+  }, [
+    dispatch,
+    jobDescription,
+    jobTitle,
+    qualificationRequired,
+    skills,
+    experienceRequired,
+    id,
+  ]);
 
   const onClickCancel = useCallback(() => {
     dispatch(setCurrentEditingPostJobData({}));

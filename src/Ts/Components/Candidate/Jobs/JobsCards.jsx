@@ -12,14 +12,14 @@ import {
 import { JobsStatusMap } from "../../../Configs/Dashboards/DashboardsConfig";
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
-import { getCandidatesJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
 import { AssessmentTexts, ModalTexts } from "../../../Utils/Text";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const JobsCards = () => {
   const dispatch = useDispatch();
 
-  const jobsData = useSelector(getCandidatesJobs);
+  const jobsData = useSelector(getJobs);
 
   const onClickJobCard = useCallback(
     (currentJob) => {

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { assessmentsRoute, jobsRoute } from "../../../../Configs/RoutesConfig";
 import { getCandidateActivities } from "../../../../Redux/Ducks/Dashboard/CandidateDashboardSlice";
-import { getCandidatesJobsData } from "../../../../Redux/Ducks/Jobs/JobsSlice";
+import { getJobsData } from "../../../../Redux/Ducks/Jobs/JobsSlice";
 import { CandidateDashboardTexts, CommonTexts } from "../../../../Utils/Text";
 import { HeaderLink } from "../../../CommonComponents/HeaderAndLink";
 import { JobsCard } from "../../../CommonComponents/JobsCard";
@@ -15,7 +15,7 @@ export const CandidateDashboard = () => {
 
   useEffect(() => {
     dispatch(getCandidateActivities());
-    dispatch(getCandidatesJobsData());
+    dispatch(getJobsData());
   }, [dispatch]);
   return (
     <Grid container spacing={3}>
