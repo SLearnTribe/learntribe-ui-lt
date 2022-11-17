@@ -15,7 +15,7 @@ export const CandidateDashboard = () => {
 
   useEffect(() => {
     dispatch(getCandidateActivities());
-    dispatch(getJobsData());
+    dispatch(getJobsData({ page: 1, limit: 25 }));
   }, [dispatch]);
   return (
     <Grid container spacing={3}>
