@@ -1,13 +1,17 @@
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import {
+  Autocomplete,
   Button,
+  Checkbox,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   Grid,
+  TextField,
 } from "@mui/material";
 import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
@@ -134,12 +138,43 @@ export const GenerateAssessments = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <AutoCompleteMultiSelect
+              <Autocomplete
+                multiple
+                id="tags-filled"
                 options={skillsOptions}
                 value={skillsList}
+                freeSolo
+                disableCloseOnSelect
                 onChange={onChangeSkillsList}
-                label={TextFieldLabelsAndTexts.skillsList}
-                placeholder={"Select multiple skills"}
+                renderOption={(props, option, { selected }) => (
+                  <li {...props}>
+                    <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{ marginRight: 8 }}
+                      checked={selected}
+                    />
+                    {option}
+                  </li>
+                )}
+                renderTags={(value, getTagProps) =>
+                  value.map((option, index) => (
+                    <Chip
+                      color="primary"
+                      variant="outlined"
+                      label={option}
+                      {...getTagProps({ index })}
+                    />
+                  ))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label={TextFieldLabelsAndTexts.skillsList}
+                    placeholder="Select multiple skills"
+                  />
+                )}
               />
             </Grid>
 

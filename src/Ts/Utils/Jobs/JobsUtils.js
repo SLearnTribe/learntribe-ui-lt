@@ -1,4 +1,4 @@
-import { isNull, uniqBy } from "lodash";
+import { isNull, uniq, uniqBy } from "lodash";
 
 export const hanldeJobsResponse = (response) => {
   const jobOptions = [];
@@ -10,12 +10,12 @@ export const hanldeJobsResponse = (response) => {
       jobOptions.push({ title });
     }
     if (!isNull(requiredSkills)) {
-      skillsOptions.push({ title: requiredSkills });
+      skillsOptions.push(requiredSkills);
     }
   });
 
   return {
     jobOptions: uniqBy(jobOptions, "title"),
-    skillsOptions: uniqBy(skillsOptions, "title"),
+    skillsOptions: uniq(skillsOptions),
   };
 };
