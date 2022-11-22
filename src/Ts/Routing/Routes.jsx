@@ -8,7 +8,7 @@ import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
 import { Jobs } from "../Components/Pages/Jobs/Jobs";
 import { PostJobs } from "../Components/Pages/PostJobs/PostJobs";
 import { CandidateProfile } from "../Components/Pages/Profiles/CandidateProfile/Profile";
-import { ApplicantProfile } from "../Components/Pages/Profiles/HRProfile/Profile";
+import { ApplicantProfile } from "../Components/Pages/Profiles/HRProfile/ApplicantProfile";
 import { rolesConfig } from "../Configs/AppConfig";
 import { routes } from "../Configs/RoutesConfig";
 
