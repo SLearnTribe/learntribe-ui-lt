@@ -1,8 +1,10 @@
 import { call, put, select } from "redux-saga/effects";
+import { hanldeAssessmentResponse } from "../../../../Utils/AssessmentUtils/AssessmentsUtils";
 import { getApplicantsData } from "../../../Ducks/Applicants/ApplicantSlice";
 import {
   setAssessmentsData,
   setIsAssessmentsLoading,
+  setPreviouslyGeneratedAssessments,
 } from "../../../Ducks/Assessments/AssessmentsSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
@@ -26,11 +28,17 @@ export function* handleGetRecommendedAssessments({
       filters,
     });
 
+    const previouslyGeneratedAssesseementOptions =
+      hanldeAssessmentResponse(data);
+
     yield put(setAssessmentsData(data));
+
+    yield put(
+      setPreviouslyGeneratedAssessments(previouslyGeneratedAssesseementOptions)
+    );
   } catch (error) {
     console.log(error);
   } finally {
-    yield put(setIsAssessmentsLoading(false));
     yield put(setUserDataLoading(false)); //will remove
   }
 }

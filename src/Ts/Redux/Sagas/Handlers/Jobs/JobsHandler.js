@@ -1,5 +1,11 @@
 import { call, put, select } from "redux-saga/effects";
-import { getJobsData, setJobsData } from "../../../Ducks/Jobs/JobsSlice";
+import { hanldeJobsResponse } from "../../../../Utils/Jobs/JobsUtils";
+import {
+  getJobsData,
+  setJobsAssessedForOptions,
+  setJobsData,
+  setSkillsOptions,
+} from "../../../Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Ducks/Modal/ModalSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
@@ -16,7 +22,13 @@ export function* handleGetJobs({ payload: { page = 1, limit = 25 } }) {
 
     const { data } = yield call(requestGetJobs, { accessToken, page, limit });
 
+    const { jobOptions, skillsOptions } = hanldeJobsResponse(data);
+
     yield put(setJobsData(data));
+
+    yield put(setJobsAssessedForOptions(jobOptions));
+
+    yield put(setSkillsOptions(skillsOptions));
   } catch (error) {
     console.log(error);
     yield put(setJobsData([]));

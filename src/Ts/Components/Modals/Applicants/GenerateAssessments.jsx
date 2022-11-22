@@ -12,9 +12,21 @@ import {
 import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { difficultyOptions } from "../../../Configs/AppConfig";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
-import { getGenerateAssessmentDropdownData } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
-import { ButtonTexts, ModalTexts } from "../../../Utils/Text";
+import {
+  getGenerateAssessmentDropdownData,
+  getPreviouslyGeneratedAssessments,
+} from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import {
+  getJobsAssessedForOptions,
+  getSkillsOptions,
+} from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import {
+  ButtonTexts,
+  ModalTexts,
+  TextFieldLabelsAndTexts,
+} from "../../../Utils/Text";
 import {
   AutoCompleteMultiSelect,
   AutoCompleteSelect,
@@ -28,6 +40,14 @@ export const GenerateAssessments = () => {
 
   const generateAssessmentDropdownData = useSelector(
     getGenerateAssessmentDropdownData
+  );
+
+  const jobsAssessedForOptions = useSelector(getJobsAssessedForOptions);
+
+  const skillsOptions = useSelector(getSkillsOptions);
+
+  const previouslyGeneratedAssessmentsOptions = useSelector(
+    getPreviouslyGeneratedAssessments
   );
 
   const [jobsAssessedFor, setJobsAssessedFor] = useState([]);
@@ -93,40 +113,42 @@ export const GenerateAssessments = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <AutoCompleteMultiSelect
-                options={generateAssessmentDropdownData[0].options}
+                options={jobsAssessedForOptions}
                 value={jobsAssessedFor}
                 onChange={onChangeJobsAssessedFor}
-                label={generateAssessmentDropdownData[0].label}
+                label={TextFieldLabelsAndTexts.jobsAssessedFor}
                 placeholder={"Select multiple jobs"}
               />
             </Grid>
 
             <Grid item xs={12}>
               <AutoCompleteSelect
-                options={generateAssessmentDropdownData[1].options}
+                options={previouslyGeneratedAssessmentsOptions}
                 value={previouslyGeneratedAssessments}
                 onChange={onChangePreviouslyGeneratedAssessments}
-                label={generateAssessmentDropdownData[1].label}
+                label={
+                  TextFieldLabelsAndTexts.defaultOrPreviouslyGeneratedAssessments
+                }
                 placeholder={"Select existing assessment"}
               />
             </Grid>
 
             <Grid item xs={12}>
               <AutoCompleteMultiSelect
-                options={generateAssessmentDropdownData[2].options}
+                options={skillsOptions}
                 value={skillsList}
                 onChange={onChangeSkillsList}
-                label={generateAssessmentDropdownData[2].label}
+                label={TextFieldLabelsAndTexts.skillsList}
                 placeholder={"Select multiple skills"}
               />
             </Grid>
 
             <Grid item xs={12}>
               <AutoCompleteSelect
-                options={generateAssessmentDropdownData[3].options}
+                options={difficultyOptions}
                 value={difficultyLevel}
                 onChange={onChangeDifficultyLevel}
-                label={generateAssessmentDropdownData[3].label}
+                label={TextFieldLabelsAndTexts.difficultyLevel}
                 placeholder="Select multiple jobs"
               />
             </Grid>

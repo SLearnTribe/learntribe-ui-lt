@@ -1,4 +1,4 @@
-import { cloneDeep, isEmpty, isEqual } from "lodash";
+import { cloneDeep, isEmpty, isEqual, uniqBy } from "lodash";
 import {
   AssessmentTabsConfig,
   CandidateTabs,
@@ -65,4 +65,13 @@ export const handleToggleSaveAssessment = (assessmentsData, currentTarget) => {
   copyAssessmentsData[index] = assessmentCard;
 
   return copyAssessmentsData;
+};
+
+export const hanldeAssessmentResponse = (response) => {
+  return uniqBy(
+    response.map(({ title }) => {
+      return { title };
+    }),
+    "title"
+  );
 };

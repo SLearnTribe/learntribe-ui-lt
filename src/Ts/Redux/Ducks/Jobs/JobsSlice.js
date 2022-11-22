@@ -6,6 +6,8 @@ const jobSlice = createSlice({
     currentEditingJob: null,
     jobs: [],
     isLoading: true,
+    jobsAssessedForOptions: [],
+    skillsOptions: [],
   },
   reducers: {
     getJobsData() {},
@@ -19,6 +21,12 @@ const jobSlice = createSlice({
     setIsJobsDataLoading(state, { payload }) {
       state.isLoading = payload;
     },
+    setJobsAssessedForOptions(state, { payload }) {
+      state.jobsAssessedForOptions = payload;
+    },
+    setSkillsOptions(state, { payload }) {
+      state.skillsOptions = payload;
+    },
   },
 });
 
@@ -28,6 +36,8 @@ export const {
   setJobsData,
   setCurrentEditingJob,
   setIsJobsDataLoading,
+  setJobsAssessedForOptions,
+  setSkillsOptions,
 } = jobSlice.actions;
 
 export default jobSlice.reducer;

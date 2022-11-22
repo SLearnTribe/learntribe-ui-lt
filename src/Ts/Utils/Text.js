@@ -136,4 +136,9 @@ export const TextFieldLabelsAndTexts = {
   degree: "Degree",
   selectDegree: "Select degree",
   fieldOfStudy: "Field of study",
+  jobsAssessedFor: "Jobs Assessed For",
+  defaultOrPreviouslyGeneratedAssessments:
+    "Default/Previously Generated Assessments",
+  skillsList: "Skills List",
+  difficultyLevel: "Difficulty Level",
 };

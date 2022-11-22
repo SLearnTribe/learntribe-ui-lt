@@ -12,3 +12,9 @@ export const sideNavMenuItemsConfig = {
   HR: hrSideNavMenuItems,
   CANDIDATE: candidateSideNavMenuItems,
 };
+
+export const difficultyOptions = [
+  { title: "EASY" },
+  { title: "MEDIUM" },
+  { title: "HARD" },
+];

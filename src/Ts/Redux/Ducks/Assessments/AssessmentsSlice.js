@@ -11,6 +11,7 @@ const assessmentsSlice = createSlice({
     generateAssessmentDropdownData: GenerateAssessmentsDropdownMockData,
     assessmentInnerFilter: [],
     isLoading: true,
+    previouslyGeneratedAssessments: [],
   },
   reducers: {
     getAssessments() {},
@@ -27,6 +28,9 @@ const assessmentsSlice = createSlice({
     setIsAssessmentsLoading(state, { payload }) {
       state.isLoading = payload;
     },
+    setPreviouslyGeneratedAssessments(state, { payload }) {
+      state.previouslyGeneratedAssessments = payload;
+    },
   },
 });
 
@@ -37,6 +41,7 @@ export const {
   setGenerateAssessmentsDropdownData,
   setAssessmentInnerFilter,
   setIsAssessmentsLoading,
+  setPreviouslyGeneratedAssessments,
 } = assessmentsSlice.actions;
 
 export default assessmentsSlice.reducer;
