@@ -39,9 +39,15 @@ export const HrProfileAvatarSection = () => {
   const assessmentsData = useSelector(getAssessmentsData);
 
   const assessments = useMemo(() => {
-    return assessmentsData?.filter(({ status }) =>
-      isEqual(status, "COMPLETED")
-    );
+    const completedAssessments = [];
+
+    assessmentsData.forEach(({ status, title }) => {
+      if (isEqual(status, "COMPLETED")) {
+        completedAssessments.push(title);
+      }
+    });
+
+    return completedAssessments;
   }, [assessmentsData]);
 
   const onClickContactInfo = useCallback(() => {
