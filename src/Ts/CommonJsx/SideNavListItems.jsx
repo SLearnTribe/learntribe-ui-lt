@@ -32,7 +32,7 @@ const CollapsedListItem = ({ row: { path, icon, title }, pathname }) => {
 };
 
 const ExpandedListItem = ({ row: { path, icon, title }, pathname }) => {
-  const isSelected = isEqual(path, pathname);
+  const isSelected = isEqual(path, pathname) || pathname.includes(path);
 
   return (
     <StyledListItem selected={isSelected} button>

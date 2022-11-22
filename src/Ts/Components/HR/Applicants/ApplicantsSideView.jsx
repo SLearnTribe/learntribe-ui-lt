@@ -12,7 +12,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import sampleImage from "../../../../Assests/Adil.jpeg";
-import { profileRoute } from "../../../Configs/RoutesConfig";
+import { applicantDetailsRoute } from "../../../Configs/RoutesConfig";
 import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { ButtonTexts, CommonTexts } from "../../../Utils/Text";
 
@@ -22,7 +22,7 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
   const applicantDetails = useSelector(getSelectedApplicantDetails);
 
   const onClickViewDetails = () => {
-    navigate(profileRoute);
+    navigate(applicantDetailsRoute);
   };
 
   return !isSelectMultipleActive ? (

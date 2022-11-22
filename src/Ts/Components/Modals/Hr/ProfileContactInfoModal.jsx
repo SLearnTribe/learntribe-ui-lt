@@ -13,8 +13,8 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentSpaceBetweenAlignCenterSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
+import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { CommonTexts } from "../../../Utils/Text";
 
 export const ProfileContactInfoModal = () => {
@@ -22,7 +22,7 @@ export const ProfileContactInfoModal = () => {
 
   const currentModal = useSelector(getCurrentModal);
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const { phone, email } = useSelector(getSelectedApplicantDetails);
 
   const onClose = useCallback(() => {
     dispatch(setCurrentModal(null));
@@ -45,7 +45,7 @@ export const ProfileContactInfoModal = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography sx={{ fontSize: 14, fontWeight: 500, ml: 5 }}>
-              {userInfo.phone}
+              {phone}
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -58,7 +58,7 @@ export const ProfileContactInfoModal = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography sx={{ fontSize: 14, fontWeight: 500, ml: 5 }}>
-              {userInfo.email}
+              {email}
             </Typography>
           </Grid>
         </Grid>

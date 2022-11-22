@@ -296,6 +296,17 @@ export const ApplicantsListMockData = (len = 5) => {
       phone: random(9900000000, 9999999999),
       about: "Description about the candidate Description about the candidate",
       breifExp: "Brief about Experience",
+      workExperiences: [
+        {
+          designation: "UI Developer",
+          endDate: "2022-10-01",
+          id: 0,
+          location: "Bengaluru",
+          orgName: "Imperva",
+          startDate: "2021-10-01",
+          years: 4,
+        },
+      ],
     });
   }
 

@@ -75,11 +75,11 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
                 isSelectMultipleActive && (
                   <Checkbox
                     sx={{ mt: "50%" }}
-                    checked={selectedApplicantsIds[applicant.userProfileId]}
+                    checked={selectedApplicantsIds[applicant?.email]}
                     onChange={() =>
                       onToggleCheckbox(
-                        applicant.userProfileId,
-                        selectedApplicantsIds[applicant.userProfileId]
+                        applicant?.email,
+                        selectedApplicantsIds[applicant?.email]
                       )
                     }
                     inputProps={{ "aria-label": "controlled" }}
@@ -99,7 +99,7 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
                       />
                     </IconButton>
                     <Typography sx={{ fontSize: 16, fontWeight: 500, pr: 2 }}>
-                      {applicant.currentRole}
+                      {applicant?.currentRole}
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex" }}>
@@ -109,7 +109,7 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
                   </Box>
                   <Box sx={{ display: "flex" }}>
                     <Typography sx={{ fontSize: 14, fontWeight: 500, pr: 2 }}>
-                      {applicant.totalExperience}
+                      {applicant?.totalExperience}
                     </Typography>
                   </Box>
                 </>

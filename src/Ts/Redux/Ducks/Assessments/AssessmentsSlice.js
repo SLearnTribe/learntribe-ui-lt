@@ -14,6 +14,7 @@ const assessmentsSlice = createSlice({
   },
   reducers: {
     getAssessments() {},
+    postAssessments() {},
     setAssessmentsData(state, { payload }) {
       state.assessmentsData = payload;
     },
@@ -31,6 +32,7 @@ const assessmentsSlice = createSlice({
 
 export const {
   getAssessments,
+  postAssessments,
   setAssessmentsData,
   setGenerateAssessmentsDropdownData,
   setAssessmentInnerFilter,

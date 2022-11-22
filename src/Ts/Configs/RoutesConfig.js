@@ -10,6 +10,7 @@ export const routes = {
   assessments: "/assessments",
   postJobs: "/post-jobs",
   applicants: "/applicants",
+  applicantDetails: "/applicants/:email",
   profile: "/profile",
   help: "/help",
 };
@@ -21,6 +22,8 @@ export const dashboardRoute = routes.base + routes.dashboard;
 export const postJobsRoute = routes.base + routes.postJobs;
 
 export const applicantsRoute = routes.base + routes.applicants;
+
+export const applicantDetailsRoute = routes.base + routes.applicantDetails;
 
 export const profileRoute = routes.base + routes.profile;
 

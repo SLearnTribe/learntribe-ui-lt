@@ -10,8 +10,8 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { uniqueId } from "lodash";
-import React, { useCallback } from "react";
+import { isEmpty, isEqual, uniqueId } from "lodash";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../../../Assests/Adil.jpeg";
 import {
@@ -21,7 +21,8 @@ import {
   ResumeDownloadBtnSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
-import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import {
   ButtonTexts,
   CandidateDashboardTexts,
@@ -33,7 +34,15 @@ import themes from "../../../../Utils/Themes/Themes";
 export const HrProfileAvatarSection = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const { resume = "sample.pdf" } = useSelector(getSelectedApplicantDetails);
+
+  const assessmentsData = useSelector(getAssessmentsData);
+
+  const assessments = useMemo(() => {
+    return assessmentsData?.filter(({ status }) =>
+      isEqual(status, "COMPLETED")
+    );
+  }, [assessmentsData]);
 
   const onClickContactInfo = useCallback(() => {
     dispatch(setCurrentModal(ModalTexts.contactInfo));
@@ -78,19 +87,21 @@ export const HrProfileAvatarSection = () => {
                 variant="text"
                 color="primary"
                 endIcon={<FileDownloadOutlinedIcon />}>
-                {userInfo.resume}
+                {resume}
               </Button>
             </Grid>
+            {!isEmpty(assessments) && (
+              <Grid item xs={12}>
+                <Typography
+                  sx={HrResumeAssessmentHeaderSxStyles}
+                  variant="body2"
+                  color="text.secondary">
+                  {CandidateDashboardTexts.assessmentsCompleted}
+                </Typography>
+              </Grid>
+            )}
             <Grid item xs={12}>
-              <Typography
-                sx={HrResumeAssessmentHeaderSxStyles}
-                variant="body2"
-                color="text.secondary">
-                {CandidateDashboardTexts.assessmentsCompleted}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              {userInfo.assessmentsCompleted.map((assessment) => (
+              {assessments.map((assessment) => (
                 <Box sx={HrProfileAssessementsSxStyles} key={uniqueId()}>
                   <CheckCircleOutlineIcon
                     sx={{

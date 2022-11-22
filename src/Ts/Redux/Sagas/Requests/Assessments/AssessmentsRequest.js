@@ -15,3 +15,18 @@ export function requestGetCandidateRecommendedAssessments({
     url: `http://www.smilebat.xyz/api/v1/assessments/user?page=${page}&limit=${limit}&filters=${filters}`,
   });
 }
+
+export function requestPostAssessments({
+  accessToken,
+  assessmentToBeGenerated,
+}) {
+  return axios.request({
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    data: assessmentToBeGenerated,
+    url: "http://www.smilebat.xyz/api/v1/jobs/user",
+  });
+}

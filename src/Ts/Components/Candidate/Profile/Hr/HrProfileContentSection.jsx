@@ -6,11 +6,20 @@ import {
   Font18Weight500SxStyles,
   Font21Weight500SxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
-import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { CommonTexts } from "../../../../Utils/Text";
 
 export const HrProfileContentSection = () => {
-  const userProfileDetails = useSelector(getUserProfileInfo);
+  const {
+    name,
+    country,
+    about,
+    skills,
+    currentRole = "N/A",
+    workExperiences = [],
+    educationExperiences = [],
+  } = useSelector(getSelectedApplicantDetails);
+
   return (
     <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
       <Card sx={{ pl: "1rem", pr: "1rem" }}>
@@ -20,18 +29,16 @@ export const HrProfileContentSection = () => {
               <Typography
                 color="primary"
                 sx={{ fontSize: 30, fontWeight: 700 }}>
-                {userProfileDetails?.name}
+                {name}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ fontSize: 22, fontWeight: 500 }}>
-                {userProfileDetails?.currentRole}
+                {currentRole}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font18Weight500SxStyles}>
-                {userProfileDetails?.country}
-              </Typography>
+              <Typography sx={Font18Weight500SxStyles}>{country}</Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography
@@ -41,9 +48,7 @@ export const HrProfileContentSection = () => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font21Weight500SxStyles}>
-                {userProfileDetails?.about}
-              </Typography>
+              <Typography sx={Font21Weight500SxStyles}>{about}</Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography
@@ -53,9 +58,7 @@ export const HrProfileContentSection = () => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font21Weight500SxStyles}>
-                {userProfileDetails?.skills}
-              </Typography>
+              <Typography sx={Font21Weight500SxStyles}>{skills}</Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography
@@ -64,7 +67,7 @@ export const HrProfileContentSection = () => {
                 {CommonTexts.experience}
               </Typography>
             </Grid>
-            {userProfileDetails?.workExperiences?.map(
+            {workExperiences?.map(
               (
                 { orgName, location, endDate, startDate, designation },
                 index
@@ -90,7 +93,7 @@ export const HrProfileContentSection = () => {
                 {CommonTexts.education}
               </Typography>
             </Grid>
-            {userProfileDetails?.educationExperiences?.map(
+            {educationExperiences?.map(
               (
                 { collegeName, fieldOfStudy, degree, dateOfCompletion },
                 index
