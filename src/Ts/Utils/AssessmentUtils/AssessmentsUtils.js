@@ -123,7 +123,7 @@ export const handleGenerateAssessmentPostData = (
     ?.map(({ title }) => title)
     .join(", ");
 
-  const relatedJobId = jobsAssessedFor?.map(({ title }) => title).join(", ");
+  const relatedJobId = jobsAssessedFor?.map(({ id }) => id).join(",");
 
   postData.title = title || "";
   postData.relatedJobId = relatedJobId || "";

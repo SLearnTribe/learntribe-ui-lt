@@ -12,7 +12,7 @@ export function requestGetCandidateRecommendedAssessments({
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/assessments/user?page=${page}&limit=${limit}&filters=${filters}`,
+    url: `http://www.smilebat.xyz/api/v1/assessments/user?page=${page}&limit=${limit}&filter=${filters}`,
   });
 }
 

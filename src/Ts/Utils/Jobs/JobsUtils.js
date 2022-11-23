@@ -5,9 +5,9 @@ export const hanldeJobsResponse = (response) => {
 
   const skillsOptions = [];
 
-  response.forEach(({ title, requiredSkills }) => {
+  response.forEach(({ title, requiredSkills, id }) => {
     if (!isNull(title)) {
-      jobOptions.push({ title });
+      jobOptions.push({ title, id });
     }
     if (!isNull(requiredSkills)) {
       skillsOptions.push(requiredSkills);
