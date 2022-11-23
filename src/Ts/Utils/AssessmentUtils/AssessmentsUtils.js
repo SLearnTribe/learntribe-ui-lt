@@ -127,7 +127,6 @@ export const handleGenerateAssessmentPostData = (
 
   postData.title = title || "";
   postData.relatedJobId = relatedJobId || "";
-  postData.relatedJobId = relatedJobId || "";
   postData.skill = isSkillsEmpty ? "" : skillsList.join(", ");
   postData.difficulty = isDifficultyEmpty ? "" : difficultyLevel.title;
 
