@@ -27,6 +27,6 @@ export function requestPostAssessments({
       Authorization: `Bearer ${accessToken}`,
     },
     data: assessmentToBeGenerated,
-    url: "http://www.smilebat.xyz/api/v1/jobs/user",
+    url: "http://www.smilebat.xyz/api/v1/assessments/user",
   });
 }

@@ -6,6 +6,7 @@ import {
   setIsAssessmentsLoading,
   setPreviouslyGeneratedAssessments,
 } from "../../../Ducks/Assessments/AssessmentsSlice";
+import { setCurrentModal } from "../../../Ducks/Modal/ModalSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
@@ -45,6 +46,8 @@ export function* handleGetRecommendedAssessments({
 
 export function* handleGenerateAssessments({ payload }) {
   try {
+    yield put(setCurrentModal(null));
+
     yield put(setUserDataLoading(true));
 
     const accessToken = yield select(selectors.getAccessToken);
@@ -60,5 +63,7 @@ export function* handleGenerateAssessments({ payload }) {
   } catch (error) {
     console.log(error);
     yield put(setIsAssessmentsLoading(false));
+  } finally {
+    yield put(setUserDataLoading(false));
   }
 }

@@ -13,10 +13,10 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { difficultyOptions } from "../../../Configs/AppConfig";
+import { postAssessments } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import {
   getGenerateAssessmentDropdownData,
@@ -26,6 +26,10 @@ import {
   getJobsAssessedForOptions,
   getSkillsOptions,
 } from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import {
+  handleGenerateAssessmentPostData,
+  hanldeDisableGenerateBtn,
+} from "../../../Utils/AssessmentUtils/AssessmentsUtils";
 import {
   ButtonTexts,
   ModalTexts,
@@ -78,21 +82,39 @@ export const GenerateAssessments = () => {
   const onChangeDifficultyLevel = (_e, value) => {
     setDifficultyLevel(value);
   };
+  console.log({
+    jobsAssessedFor,
+    previouslyGeneratedAssessments,
+    skillsList,
+    difficultyLevel,
+  });
 
   const onClickGenerate = useCallback(() => {
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+    const postData = handleGenerateAssessmentPostData(
+      jobsAssessedFor,
+      previouslyGeneratedAssessments,
+      skillsList,
+      difficultyLevel
+    );
+    dispatch(postAssessments(postData));
+  }, [
+    dispatch,
+    jobsAssessedFor,
+    previouslyGeneratedAssessments,
+    skillsList,
+    difficultyLevel,
+  ]);
 
   const onClickCancel = useCallback(() => {
     dispatch(setCurrentModal(null));
   }, [dispatch]);
 
   const shouldDisableGenerateButton = useMemo(() => {
-    return (
-      isEmpty(jobsAssessedFor) ||
-      isEmpty(previouslyGeneratedAssessments) ||
-      isEmpty(skillsList) ||
-      isEmpty(difficultyLevel)
+    return hanldeDisableGenerateBtn(
+      jobsAssessedFor,
+      previouslyGeneratedAssessments,
+      skillsList,
+      difficultyLevel
     );
   }, [
     jobsAssessedFor,
@@ -172,7 +194,7 @@ export const GenerateAssessments = () => {
                     {...params}
                     variant="outlined"
                     label={TextFieldLabelsAndTexts.skillsList}
-                    placeholder="Select multiple skills"
+                    placeholder="Select/Add multiple skills"
                   />
                 )}
               />

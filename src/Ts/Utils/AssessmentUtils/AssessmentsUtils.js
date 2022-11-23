@@ -75,3 +75,61 @@ export const hanldeAssessmentResponse = (response) => {
     "title"
   );
 };
+
+export const hanldeDisableGenerateBtn = (
+  respjobsAssessedFor,
+  previouslyGeneratedAssessments,
+  skillsList,
+  difficultyLevel
+) => {
+  let shouldDisableGenerateBtn = true;
+
+  const isRespjobsAssessedForEmpty = isEmpty(respjobsAssessedFor);
+
+  const isPreviouslyGeneratedAssessmentsEmpty = isEmpty(
+    previouslyGeneratedAssessments
+  );
+
+  const isSkillsEmpty = isEmpty(skillsList);
+
+  const isDifficultyEmpty = isEmpty(difficultyLevel);
+
+  if (!isRespjobsAssessedForEmpty && !isPreviouslyGeneratedAssessmentsEmpty) {
+    shouldDisableGenerateBtn = false;
+  } else if (
+    !isRespjobsAssessedForEmpty &&
+    !isSkillsEmpty &&
+    !isDifficultyEmpty
+  ) {
+    shouldDisableGenerateBtn = false;
+  }
+
+  return shouldDisableGenerateBtn;
+};
+
+export const handleGenerateAssessmentPostData = (
+  jobsAssessedFor,
+  previouslyGeneratedAssessments,
+  skillsList,
+  difficultyLevel
+) => {
+  const postData = {};
+
+  const isSkillsEmpty = isEmpty(skillsList);
+
+  const isDifficultyEmpty = isEmpty(difficultyLevel);
+
+  const title = previouslyGeneratedAssessments
+    ?.map(({ title }) => title)
+    .join(", ");
+
+  const relatedJobId = jobsAssessedFor?.map(({ title }) => title).join(", ");
+
+  postData.title = title || "";
+  postData.relatedJobId = relatedJobId || "";
+  postData.relatedJobId = relatedJobId || "";
+  postData.skill = isSkillsEmpty ? "" : skillsList.join(", ");
+  postData.difficulty = isDifficultyEmpty ? "" : difficultyLevel.title;
+
+  return postData;
+};
