@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ApplicantsListMockData } from "../../../Utils/MockData/DashboardData";
 
 const applicantSlice = createSlice({
   name: "applicant",
   initialState: {
-    applicantsData: ApplicantsListMockData(5),
-    selectedApplicantDetails: ApplicantsListMockData(1)[0],
+    applicantsData: [],
+    selectedApplicantDetails: {},
     selectedApplicantsIds: {},
     isLoading: true,
   },

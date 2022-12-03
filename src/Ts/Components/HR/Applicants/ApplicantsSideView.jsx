@@ -39,7 +39,7 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
           <>
             <Box>
               <Typography sx={{ fontSize: 20, fontWeight: 500 }}>
-                {applicantDetails.name}
+                {applicantDetails?.name}
               </Typography>
 
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
@@ -48,12 +48,12 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
             </Box>
             <Box sx={{ display: "flex" }}>
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-                {applicantDetails.email}
+                {applicantDetails?.email}
               </Typography>
             </Box>
             <Box sx={{ display: "flex" }}>
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-                {applicantDetails.phone}
+                {applicantDetails?.phone}
               </Typography>
             </Box>
           </>
@@ -65,14 +65,14 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
           {CommonTexts.description}
         </Typography>
         <Typography sx={{ fontSize: 16, fontWeight: 500, mb: 1 }}>
-          {applicantDetails.about}
+          {applicantDetails?.about}
         </Typography>
         <Typography
           sx={{ fontSize: 16, fontWeight: 500, color: "#737272", mb: 1 }}>
           {CommonTexts.experience}
         </Typography>
         <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-          {applicantDetails.about}
+          {applicantDetails?.about}
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>

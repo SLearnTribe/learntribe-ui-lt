@@ -1,6 +1,8 @@
 import { call, put, select } from "redux-saga/effects";
-import { ApplicantsListMockData } from "../../../../Utils/MockData/DashboardData";
-import { setApplicantsData } from "../../../Ducks/Applicants/ApplicantSlice";
+import {
+  setApplicantsData,
+  setSelectedApplicantDetails,
+} from "../../../Ducks/Applicants/ApplicantSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import { requestGetApplicants } from "../../Requests/Applicants/ApplicantsRequest";
@@ -21,7 +23,9 @@ export function* handleGetApplicants({
       keyword,
     });
 
-    yield put(setApplicantsData(ApplicantsListMockData(5)));
+    yield put(setApplicantsData(data));
+
+    yield put(setSelectedApplicantDetails(data[0]));
   } catch (error) {
     console.log(error);
     yield put(setApplicantsData([]));

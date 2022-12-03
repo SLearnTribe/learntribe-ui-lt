@@ -109,7 +109,7 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
                   </Box>
                   <Box sx={{ display: "flex" }}>
                     <Typography sx={{ fontSize: 14, fontWeight: 500, pr: 2 }}>
-                      {applicant?.totalExperience}
+                      {`${applicant?.totalExperience}+ years`}
                     </Typography>
                   </Box>
                 </>
