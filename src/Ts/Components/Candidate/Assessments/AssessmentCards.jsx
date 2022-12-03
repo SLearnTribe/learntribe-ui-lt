@@ -156,7 +156,7 @@ export const AssessmentCards = ({ selectedTab }) => {
                   sx={{
                     fontSize: 16,
                     fontWeight: 500,
-                    color: AssessmentStatusMap[status.toLowerCase()],
+                    color: AssessmentStatusMap[status?.toLowerCase()],
                   }}>
                   {status}
                 </Typography>
