@@ -115,9 +115,13 @@ export const GenerateAssessments = () => {
     selectedApplicantDetails,
   ]);
 
-  const onClickCancel = useCallback(() => {
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+  const onClickCancel = useCallback(
+    (_event, reason) => {
+      if (reason && reason == "backdropClick") return;
+      dispatch(setCurrentModal(null));
+    },
+    [dispatch]
+  );
 
   const shouldDisableGenerateButton = useMemo(() => {
     return hanldeDisableGenerateBtn(

@@ -108,11 +108,15 @@ export const PostJobsModal = () => {
     currentModal,
   ]);
 
-  const onClickCancel = useCallback(() => {
-    dispatch(setCurrentEditingPostJobData({}));
+  const onClickCancel = useCallback(
+    (_event, reason) => {
+      if (reason && reason == "backdropClick") return;
+      dispatch(setCurrentEditingPostJobData({}));
 
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+      dispatch(setCurrentModal(null));
+    },
+    [dispatch]
+  );
 
   const onChangeJobTitle = ({ target: { value } }) => {
     setJobTitle(value);

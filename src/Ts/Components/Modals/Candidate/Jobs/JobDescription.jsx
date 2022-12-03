@@ -39,9 +39,13 @@ export const JobDescription = () => {
     qualifications,
   } = useSelector(getCurrentEditingJob);
 
-  const onClose = useCallback(() => {
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+  const onClose = useCallback(
+    (_event, reason) => {
+      if (reason && reason == "backdropClick") return;
+      dispatch(setCurrentModal(null));
+    },
+    [dispatch]
+  );
   return (
     <Dialog maxWidth="md" open={true} onClose={onClose}>
       <DialogTitle sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
