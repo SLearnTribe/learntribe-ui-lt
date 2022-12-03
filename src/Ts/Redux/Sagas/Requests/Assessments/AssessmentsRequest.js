@@ -30,3 +30,14 @@ export function requestPostAssessments({
     url: "http://www.smilebat.xyz/api/v1/assessments/user",
   });
 }
+
+export function requestDefaultAssessmentOptions(accessToken) {
+  return axios.request({
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    url: "http://www.smilebat.xyz/api/v1/assessments/preceding",
+  });
+}

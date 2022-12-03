@@ -13,15 +13,17 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
+import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { difficultyOptions } from "../../../Configs/AppConfig";
 import { postAssessments } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import {
-  getGenerateAssessmentDropdownData,
-  getPreviouslyGeneratedAssessments,
-} from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+  getSelectedApplicantDetails,
+  getSelectedApplicantsIds,
+} from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { getDefaultAssessmentsDropdownOptions } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import {
   getJobsAssessedForOptions,
   getSkillsOptions,
@@ -35,10 +37,7 @@ import {
   ModalTexts,
   TextFieldLabelsAndTexts,
 } from "../../../Utils/Text";
-import {
-  AutoCompleteMultiSelect,
-  AutoCompleteSelect,
-} from "../../CommonComponents/Controls/AutoComplete";
+import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -46,19 +45,19 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 export const GenerateAssessments = () => {
   const dispatch = useDispatch();
 
-  const generateAssessmentDropdownData = useSelector(
-    getGenerateAssessmentDropdownData
+  const defaultPreviouslyGeneratedAssessmentOptions = useSelector(
+    getDefaultAssessmentsDropdownOptions
   );
+
+  const selectedApplicantsIds = useSelector(getSelectedApplicantsIds);
+
+  const selectedApplicantDetails = useSelector(getSelectedApplicantDetails);
 
   const jobsAssessedForOptions = useSelector(getJobsAssessedForOptions);
 
   const skillsOptions = useSelector(getSkillsOptions);
 
-  const previouslyGeneratedAssessmentsOptions = useSelector(
-    getPreviouslyGeneratedAssessments
-  );
-
-  const [jobsAssessedFor, setJobsAssessedFor] = useState([]);
+  const [jobsAssessedFor, setJobsAssessedFor] = useState(null);
 
   const [previouslyGeneratedAssessments, setPreviouslyGeneratedAssessments] =
     useState(null);
@@ -89,12 +88,21 @@ export const GenerateAssessments = () => {
     difficultyLevel,
   });
 
+  console.log({
+    jobsAssessedFor,
+    previouslyGeneratedAssessments,
+    skillsList,
+    difficultyLevel,
+  });
+
   const onClickGenerate = useCallback(() => {
     const postData = handleGenerateAssessmentPostData(
       jobsAssessedFor,
       previouslyGeneratedAssessments,
       skillsList,
-      difficultyLevel
+      difficultyLevel,
+      selectedApplicantsIds,
+      selectedApplicantDetails
     );
     dispatch(postAssessments(postData));
   }, [
@@ -103,6 +111,8 @@ export const GenerateAssessments = () => {
     previouslyGeneratedAssessments,
     skillsList,
     difficultyLevel,
+    selectedApplicantsIds,
+    selectedApplicantDetails,
   ]);
 
   const onClickCancel = useCallback(() => {
@@ -138,18 +148,19 @@ export const GenerateAssessments = () => {
         <DialogContentText tabIndex={-1}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <AutoCompleteMultiSelect
+              <AutoCompleteSelect
+                disabled={!isEmpty(previouslyGeneratedAssessments)}
                 options={jobsAssessedForOptions}
                 value={jobsAssessedFor}
                 onChange={onChangeJobsAssessedFor}
                 label={TextFieldLabelsAndTexts.jobsAssessedFor}
-                placeholder={"Select multiple jobs"}
+                placeholder={"Select job"}
               />
             </Grid>
 
             <Grid item xs={12}>
               <AutoCompleteSelect
-                options={previouslyGeneratedAssessmentsOptions}
+                options={defaultPreviouslyGeneratedAssessmentOptions}
                 value={previouslyGeneratedAssessments}
                 onChange={onChangePreviouslyGeneratedAssessments}
                 label={
@@ -161,6 +172,7 @@ export const GenerateAssessments = () => {
 
             <Grid item xs={12}>
               <Autocomplete
+                disabled={!isEmpty(previouslyGeneratedAssessments)}
                 multiple
                 id="tags-filled"
                 options={skillsOptions}
@@ -202,6 +214,7 @@ export const GenerateAssessments = () => {
 
             <Grid item xs={12}>
               <AutoCompleteSelect
+                disabled={!isEmpty(previouslyGeneratedAssessments)}
                 options={difficultyOptions}
                 value={difficultyLevel}
                 onChange={onChangeDifficultyLevel}

@@ -1,4 +1,4 @@
-import { cloneDeep, isEmpty, isEqual, uniqBy } from "lodash";
+import { cloneDeep, isEmpty, isEqual, keys, pickBy, uniqBy } from "lodash";
 import {
   AssessmentTabsConfig,
   CandidateTabs,
@@ -84,22 +84,11 @@ export const hanldeDisableGenerateBtn = (
 ) => {
   let shouldDisableGenerateBtn = true;
 
-  const isRespjobsAssessedForEmpty = isEmpty(respjobsAssessedFor);
-
-  const isPreviouslyGeneratedAssessmentsEmpty = isEmpty(
-    previouslyGeneratedAssessments
-  );
-
-  const isSkillsEmpty = isEmpty(skillsList);
-
-  const isDifficultyEmpty = isEmpty(difficultyLevel);
-
-  if (!isRespjobsAssessedForEmpty && !isPreviouslyGeneratedAssessmentsEmpty) {
-    shouldDisableGenerateBtn = false;
-  } else if (
-    !isRespjobsAssessedForEmpty &&
-    !isSkillsEmpty &&
-    !isDifficultyEmpty
+  if (
+    !isEmpty(previouslyGeneratedAssessments) ||
+    (!isEmpty(skillsList) &&
+      !isEmpty(difficultyLevel) &&
+      !isEmpty(respjobsAssessedFor))
   ) {
     shouldDisableGenerateBtn = false;
   }
@@ -111,24 +100,31 @@ export const handleGenerateAssessmentPostData = (
   jobsAssessedFor,
   previouslyGeneratedAssessments,
   skillsList,
-  difficultyLevel
+  difficultyLevel,
+  selectedApplicantsIds,
+  selectedApplicantDetails
 ) => {
-  const postData = {};
+  let postData = {};
 
-  const isSkillsEmpty = isEmpty(skillsList);
+  const assigneeEmails = isEmpty(selectedApplicantsIds)
+    ? [selectedApplicantDetails.email]
+    : keys(pickBy(selectedApplicantsIds));
 
-  const isDifficultyEmpty = isEmpty(difficultyLevel);
-
-  const title = previouslyGeneratedAssessments
-    ?.map(({ title }) => title)
-    .join(", ");
-
-  const relatedJobId = jobsAssessedFor?.map(({ id }) => id).join(",");
-
-  postData.title = title || "";
-  postData.relatedJobId = relatedJobId || "";
-  postData.skill = isSkillsEmpty ? "" : skillsList.join(", ");
-  postData.difficulty = isDifficultyEmpty ? "" : difficultyLevel.title;
+  if (!isEmpty(previouslyGeneratedAssessments)) {
+    postData = {
+      assigneeEmails,
+      difficulty: previouslyGeneratedAssessments.difficulty,
+      relatedJobId: previouslyGeneratedAssessments.relatedJobId,
+      title: previouslyGeneratedAssessments.title,
+    };
+  } else {
+    postData = {
+      assigneeEmails,
+      difficulty: difficultyLevel.title,
+      relatedJobId: jobsAssessedFor.id,
+      title: skillsList.join(", "),
+    };
+  }
 
   return postData;
 };

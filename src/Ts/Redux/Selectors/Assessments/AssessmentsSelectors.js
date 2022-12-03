@@ -9,3 +9,6 @@ export const getAssessmentInnerFilter = (state) =>
 
 export const getPreviouslyGeneratedAssessments = (state) =>
   state.assessmentsSlice.previouslyGeneratedAssessments;
+
+export const getDefaultAssessmentsDropdownOptions = (state) =>
+  state.assessmentsSlice.defaultAssessmentsOptions;

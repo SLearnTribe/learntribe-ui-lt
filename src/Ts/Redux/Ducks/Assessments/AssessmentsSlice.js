@@ -12,9 +12,11 @@ const assessmentsSlice = createSlice({
     assessmentInnerFilter: [],
     isLoading: true,
     previouslyGeneratedAssessments: [],
+    defaultAssessmentsOptions: [],
   },
   reducers: {
     getAssessments() {},
+    getdefaultAssessmentsOptions() {},
     postAssessments() {},
     setAssessmentsData(state, { payload }) {
       state.assessmentsData = payload;
@@ -31,6 +33,9 @@ const assessmentsSlice = createSlice({
     setPreviouslyGeneratedAssessments(state, { payload }) {
       state.previouslyGeneratedAssessments = payload;
     },
+    setDefaultAssessmentsOptions(state, { payload }) {
+      state.defaultAssessmentsOptions = payload;
+    },
   },
 });
 
@@ -42,6 +47,8 @@ export const {
   setAssessmentInnerFilter,
   setIsAssessmentsLoading,
   setPreviouslyGeneratedAssessments,
+  getdefaultAssessmentsOptions,
+  setDefaultAssessmentsOptions,
 } = assessmentsSlice.actions;
 
 export default assessmentsSlice.reducer;

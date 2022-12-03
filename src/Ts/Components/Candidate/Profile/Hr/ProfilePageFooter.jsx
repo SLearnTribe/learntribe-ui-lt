@@ -1,6 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { getdefaultAssessmentsOptions } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { CommonTexts, ModalTexts } from "../../../../Utils/Text";
 
@@ -10,6 +11,7 @@ export const ProfilePageFooter = () => {
   const onClickScheduleACall = () => {};
 
   const onClickGenerateAssessment = useCallback(() => {
+    dispatch(getdefaultAssessmentsOptions());
     dispatch(setCurrentModal(ModalTexts.generateAssessment));
   }, [dispatch]);
   return (

@@ -2,6 +2,7 @@ import { takeLatest } from "redux-saga/effects";
 import { getApplicantsData } from "../Ducks/Applicants/ApplicantSlice";
 import {
   getAssessments,
+  getdefaultAssessmentsOptions,
   postAssessments,
 } from "../Ducks/Assessments/AssessmentsSlice";
 import { getCandidateActivities } from "../Ducks/Dashboard/CandidateDashboardSlice";
@@ -13,6 +14,7 @@ import { handleGetUser } from "../Sagas/Handlers/user";
 import { handleGetApplicants } from "./Handlers/Applicants/ApplicantsHandler";
 import {
   handleGenerateAssessments,
+  handleGetDefaultPreviouslyGeneratedAssessments,
   handleGetRecommendedAssessments,
 } from "./Handlers/Assessments/AssessmentHandler";
 import { handleGetCandidateActivities } from "./Handlers/Dashboards/CandidateDashboardHandler";
@@ -29,12 +31,16 @@ export function* watcherSaga() {
   yield takeLatest(getUserProfile.type, handleGetUserProfile);
   yield takeLatest(getApplicantsData.type, handleGetApplicants);
   yield takeLatest(getAssessments.type, handleGetRecommendedAssessments);
-  yield takeLatest(postAssessments.type, handleGenerateAssessments);
   yield takeLatest(getHrHiringData.type, handleGetHrDashboard);
   yield takeLatest(getJobsData.type, handleGetJobs);
-  yield takeLatest(postJobsData.type, handlePostJobs);
   yield takeLatest(getCandidateActivities.type, handleGetCandidateActivities);
+  yield takeLatest(
+    getdefaultAssessmentsOptions.type,
+    handleGetDefaultPreviouslyGeneratedAssessments
+  );
 
   //POST
   yield takeLatest(saveUserProfile.type, handleSaveUserProfile);
+  yield takeLatest(postJobsData.type, handlePostJobs);
+  yield takeLatest(postAssessments.type, handleGenerateAssessments);
 }

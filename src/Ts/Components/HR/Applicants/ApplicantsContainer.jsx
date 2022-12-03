@@ -1,6 +1,7 @@
 import { Button, FormControlLabel, Grid, Switch } from "@mui/material";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getdefaultAssessmentsOptions } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getSelectedApplicantsIds } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { ButtonTexts, HrApplicantTexts, ModalTexts } from "../../../Utils/Text";
@@ -27,6 +28,7 @@ export const ApplicantsContainer = () => {
   }, [selectedApplicantsIds, isSelectMultipleActive]);
 
   const onClickGenerateAssessment = useCallback(() => {
+    dispatch(getdefaultAssessmentsOptions());
     dispatch(setCurrentModal(ModalTexts.generateAssessment));
   }, [dispatch]);
 
