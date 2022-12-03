@@ -41,7 +41,7 @@ export const JobDescription = () => {
 
   const onClose = useCallback(
     (_event, reason) => {
-      if (reason && reason == "backdropClick") return;
+      if (reason && reason === "backdropClick") return;
       dispatch(setCurrentModal(null));
     },
     [dispatch]

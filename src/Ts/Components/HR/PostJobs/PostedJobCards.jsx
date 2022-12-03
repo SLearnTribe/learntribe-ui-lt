@@ -20,8 +20,6 @@ import { ModalTexts } from "../../../Utils/Text";
 export const PostedJobCards = ({ postJobsData }) => {
   const dispatch = useDispatch();
 
-  const onClickViewDetails = () => {};
-
   const onClickEditJob = useCallback(
     ({ currentTarget }) => {
       const currentJob = JSON.parse(currentTarget.getAttribute("row-data"));

@@ -48,7 +48,7 @@ export const PreviouslyGeneratedAssessments = () => {
     (assessmentId) => {
       dispatch(putAssignAssessment({ assessmentId, assigneeEmail: email }));
     },
-    [dispatch]
+    [dispatch, email]
   );
 
   const onClickEditAssessment = ({ currentTarget }) => {

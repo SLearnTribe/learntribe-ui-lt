@@ -86,7 +86,6 @@ export const PostJobsModal = () => {
           description: jobDescription,
           employmentType: typeOfEmployment?.title,
           experienceRequired,
-          id,
           requiredSkills: addedSkills.join(", "),
           rolesAndResponsibilities: qualificationRequired,
           id,
