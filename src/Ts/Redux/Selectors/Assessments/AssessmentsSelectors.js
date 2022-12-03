@@ -12,3 +12,6 @@ export const getPreviouslyGeneratedAssessments = (state) =>
 
 export const getDefaultAssessmentsDropdownOptions = (state) =>
   state.assessmentsSlice.defaultAssessmentsOptions;
+
+export const getIsAssignAlertOpen = (state) =>
+  state.assessmentsSlice.isAssignAlertOpen;

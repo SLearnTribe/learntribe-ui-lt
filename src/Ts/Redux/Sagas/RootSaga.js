@@ -4,6 +4,7 @@ import {
   getAssessments,
   getdefaultAssessmentsOptions,
   postAssessments,
+  putAssignAssessment,
 } from "../Ducks/Assessments/AssessmentsSlice";
 import { getCandidateActivities } from "../Ducks/Dashboard/CandidateDashboardSlice";
 import { getHrHiringData } from "../Ducks/Dashboard/HrDashboardSlice";
@@ -13,6 +14,7 @@ import { getUserData } from "../Ducks/userSlice";
 import { handleGetUser } from "../Sagas/Handlers/user";
 import { handleGetApplicants } from "./Handlers/Applicants/ApplicantsHandler";
 import {
+  handleAssignAssessment,
   handleGenerateAssessments,
   handleGetDefaultPreviouslyGeneratedAssessments,
   handleGetRecommendedAssessments,
@@ -43,4 +45,7 @@ export function* watcherSaga() {
   yield takeLatest(saveUserProfile.type, handleSaveUserProfile);
   yield takeLatest(postJobsData.type, handlePostJobs);
   yield takeLatest(postAssessments.type, handleGenerateAssessments);
+
+  //PUT
+  yield takeLatest(putAssignAssessment.type, handleAssignAssessment);
 }

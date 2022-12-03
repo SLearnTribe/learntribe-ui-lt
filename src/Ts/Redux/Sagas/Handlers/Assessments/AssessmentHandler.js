@@ -6,12 +6,14 @@ import {
   setAssessmentsData,
   setDefaultAssessmentsOptions,
   setIsAssessmentsLoading,
+  setIsAssignAlertOpen,
   setPreviouslyGeneratedAssessments,
 } from "../../../Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../Ducks/Modal/ModalSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
+  requestAssignAssessment,
   requestDefaultAssessmentOptions,
   requestGetCandidateRecommendedAssessments,
   requestPostAssessments,
@@ -80,6 +82,28 @@ export function* handleGetDefaultPreviouslyGeneratedAssessments() {
     const { data } = yield call(requestDefaultAssessmentOptions, accessToken);
 
     yield put(setDefaultAssessmentsOptions(data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* handleAssignAssessment({
+  payload: { assessmentId, assigneeEmail },
+}) {
+  try {
+    yield put(setUserDataLoading(true));
+
+    const accessToken = yield select(selectors.getAccessToken);
+
+    yield call(requestAssignAssessment, {
+      accessToken,
+      assessmentId,
+      assigneeEmail,
+    });
+
+    yield put(setUserDataLoading(false));
+
+    yield put(setIsAssignAlertOpen());
   } catch (error) {
     console.log(error);
   }

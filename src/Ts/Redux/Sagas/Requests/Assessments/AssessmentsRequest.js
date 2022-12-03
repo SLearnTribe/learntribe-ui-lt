@@ -41,3 +41,18 @@ export function requestDefaultAssessmentOptions(accessToken) {
     url: "http://www.smilebat.xyz/api/v1/assessments/preceding",
   });
 }
+
+export function requestAssignAssessment({
+  accessToken,
+  assessmentId,
+  assigneeEmail,
+}) {
+  return axios.request({
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    url: `http://www.smilebat.xyz/api/v1/assessments/id/${assessmentId}?assigneeEmail=${assigneeEmail}`,
+  });
+}
