@@ -12,7 +12,7 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { uniqBy, uniqueId } from "lodash";
+import { capitalize, uniqBy, uniqueId } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SxStylesAskWhy } from "../../../CommonStyles/CommonSxStyles";
@@ -158,7 +158,7 @@ export const AssessmentCards = ({ selectedTab }) => {
                     fontWeight: 500,
                     color: AssessmentStatusMap[status?.toLowerCase()],
                   }}>
-                  {status}
+                  {capitalize(status)}
                 </Typography>
               </CardActions>
             </Card>

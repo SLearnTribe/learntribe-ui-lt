@@ -12,12 +12,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { SideNavListItems } from "../../CommonJsx/SideNavListItems";
 import {
   PermanentDrawerStyles,
   SideNavExpandCollapseChevronStyles,
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
+import { profileRoute } from "../../Configs/RoutesConfig";
 import { setIsSideMenuCollapsed } from "../../Redux/Ducks/App/AppSlice";
 import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
@@ -98,6 +100,8 @@ export default function AppContainer(props) {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const open = useSelector(getIsSideMenuCollapsed);
 
   const { name, given_name, family_name } = useSelector(getUserDetails);
@@ -124,6 +128,7 @@ export default function AppContainer(props) {
 
   const onClickProfile = () => {
     setAnchorElUser(null);
+    navigate(profileRoute);
   };
 
   const onClickSettings = () => {

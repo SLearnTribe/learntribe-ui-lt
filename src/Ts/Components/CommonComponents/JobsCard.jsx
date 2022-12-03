@@ -19,6 +19,7 @@ import {
   HrAssessmentCardSxStyles,
   scrollAssessmentSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
+import { employmentTypeBeToUiMap } from "../../Configs/AppConfig";
 import { getJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
 import { ButtonTexts } from "../../Utils/Text";
 
@@ -82,7 +83,7 @@ export const JobsCard = () => {
                   <Box sx={{ display: "flex" }}>
                     <BusinessCenterIcon sx={{ mr: 1 }} />
                     <Typography sx={{ fontSize: 20, fontWeight: 400 }}>
-                      {employmentType}
+                      {employmentTypeBeToUiMap[employmentType]}
                     </Typography>
                   </Box>
                 </CardContent>
