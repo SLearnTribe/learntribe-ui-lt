@@ -55,6 +55,7 @@ export const AutoCompleteSelect = ({
   label,
   placeholder,
   index,
+  getOptionLabelDataField = "title",
 }) => {
   return (
     <Autocomplete
@@ -62,8 +63,10 @@ export const AutoCompleteSelect = ({
       options={options}
       value={value}
       onChange={(_e, value) => onChange(_e, value, index)}
-      getOptionLabel={(option) => option.title}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
+      getOptionLabel={(option) => option[getOptionLabelDataField]}
+      isOptionEqualToValue={(option, value) =>
+        option[getOptionLabelDataField] === value[getOptionLabelDataField]
+      }
       renderInput={(params) => (
         <TextField
           {...params}

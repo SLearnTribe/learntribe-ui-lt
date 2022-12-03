@@ -18,3 +18,13 @@ export const difficultyOptions = [
   { title: "MEDIUM" },
   { title: "HARD" },
 ];
+
+export const employmentTypeOptions = [
+  { label: "Full time", title: "FULL_TIME" },
+  { label: "Part time", title: "PART_TIME" },
+];
+
+export const employmentTypeBeToUiMap = {
+  FULL_TIME: "Full time",
+  PART_TIME: "Part time",
+};

@@ -7,6 +7,7 @@ import {
   setSkillsOptions,
 } from "../../../Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Ducks/Modal/ModalSlice";
+import { setCurrentEditingPostJobData } from "../../../Ducks/PostJobs/PostJobsSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
@@ -47,7 +48,7 @@ export function* handlePostJobs({ payload }) {
 
     yield call(requestPostJobs, {
       accessToken,
-      postingJobsDetails: payload,
+      payload,
     });
 
     yield put(getJobsData({ page: 1, limit: 25 }));
@@ -55,5 +56,7 @@ export function* handlePostJobs({ payload }) {
     console.log(error);
     yield put(setJobsData([]));
     yield put(setUserDataLoading(false));
+  } finally {
+    yield put(setCurrentEditingPostJobData({}));
   }
 }

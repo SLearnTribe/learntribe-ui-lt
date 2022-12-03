@@ -103,8 +103,9 @@ export const PostJobsTexts = {
   previouslyPostedJobs: "Previously posted jobs",
   addSkillsRequired: "Add Skills Required",
   qualificationRequired: "Qualification Required",
-  experienceRequired: "Experience Required",
+  experienceRequired: "Experience in years",
   jobTitle: "Job title",
+  companyName: "Company Name",
 };
 
 export const ModalTexts = {
@@ -141,4 +142,6 @@ export const TextFieldLabelsAndTexts = {
     "Default/Previously Generated Assessments",
   skillsList: "Skills List",
   difficultyLevel: "Difficulty Level",
+  selectEmployementType: "Select employment type",
+  employmentType: "Employment Type",
 };

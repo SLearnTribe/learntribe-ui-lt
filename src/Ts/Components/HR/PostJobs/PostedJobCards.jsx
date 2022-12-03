@@ -12,6 +12,7 @@ import {
 import { uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { employmentTypeBeToUiMap } from "../../../Configs/AppConfig";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { setCurrentEditingPostJobData } from "../../../Redux/Ducks/PostJobs/PostJobsSlice";
 import { ModalTexts } from "../../../Utils/Text";
@@ -108,7 +109,7 @@ export const PostedJobCards = ({ postJobsData }) => {
               <CardActions
                 sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography sx={{ fontSize: 16, fontWeight: 400 }}>
-                  {employmentType}
+                  {employmentTypeBeToUiMap[employmentType]}
                 </Typography>
 
                 <Typography

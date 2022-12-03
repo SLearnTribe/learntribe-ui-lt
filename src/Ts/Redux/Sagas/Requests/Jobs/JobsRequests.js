@@ -11,14 +11,17 @@ export function requestGetJobs({ accessToken, page = 1, limit = 25 }) {
   });
 }
 
-export function requestPostJobs({ accessToken, postingJobsDetails }) {
+export function requestPostJobs({
+  accessToken,
+  payload: { postJobData, method },
+}) {
   return axios.request({
-    method: "post",
+    method: method,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    data: postingJobsDetails,
+    data: postJobData,
     url: "http://www.smilebat.xyz/api/v1/jobs/user",
   });
 }
