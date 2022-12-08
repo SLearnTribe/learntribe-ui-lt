@@ -54,7 +54,7 @@ export const JobsCards = () => {
             businessName,
             city = "Bengaluru",
             description,
-            assessmentsRequired = [],
+            requiredAssessments = [],
           },
           index
         ) => (
@@ -93,11 +93,11 @@ export const JobsCards = () => {
                           {AssessmentTexts.assessmentsRequired}
                         </Typography>
                       </Grid>
-                      {assessmentsRequired?.map(({ name, status }) => (
+                      {requiredAssessments?.map(({ skill, status }) => (
                         <React.Fragment key={uniqueId()}>
                           <Grid item xs={7} sm={6} md={8} lg={8} xl={8}>
                             <Typography sx={Font15Weight500SxStyles}>
-                              {name}
+                              {skill}
                             </Typography>
                           </Grid>
                           <Grid item xs={5} sm={6} md={4} lg={4} xl={4}>
