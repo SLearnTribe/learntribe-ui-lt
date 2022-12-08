@@ -1,5 +1,5 @@
 import { Card, CardContent, Divider, Grid, Typography } from "@mui/material";
-import { uniqueId } from "lodash";
+import { capitalize, uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -107,7 +107,7 @@ export const JobsCards = () => {
                                 ...Font14Weight500SxStyles,
                                 color: JobsStatusMap?.[status.toLowerCase()],
                               }}>
-                              {status}
+                              {capitalize(status)}
                             </Typography>
                           </Grid>
                         </React.Fragment>
