@@ -43,6 +43,7 @@ export const PostJobsModal = () => {
     requiredSkills = [],
     employmentType = null,
     businessName = "",
+    qualificationRequired: qualification,
   } = useSelector(getCurrentEditingJob);
 
   const skills = useMemo(() => {
@@ -68,9 +69,8 @@ export const PostJobsModal = () => {
 
   const [companyName, setCompanyName] = useState(businessName);
 
-  const [qualificationRequired, setQualificationRequired] = useState(
-    rolesAndResponsibilities
-  );
+  const [qualificationRequired, setQualificationRequired] =
+    useState(qualification);
 
   const [addedSkills, setAddedSkills] = useState(skills);
 
@@ -87,7 +87,7 @@ export const PostJobsModal = () => {
           employmentType: typeOfEmployment?.title,
           experienceRequired,
           requiredSkills: addedSkills.join(", "),
-          rolesAndResponsibilities: qualificationRequired,
+          qualificationRequired: qualificationRequired,
           id,
           title: jobTitle,
         },

@@ -34,27 +34,21 @@ export const handleJobSkillIcons = (status) => {
     case "Pending":
       return (
         <Tooltip title={status} placement="top-start" arrow>
-          <PendingOutlinedIcon
-            style={{ color: themes.light.palette.warning.dark }}
-          />
+          <PendingOutlinedIcon />
         </Tooltip>
       );
 
     case "Completed":
       return (
         <Tooltip title={status} placement="top-start" arrow>
-          <CheckCircleOutlineOutlinedIcon
-            style={{ color: themes.light.palette.success.dark }}
-          />
+          <CheckCircleOutlineOutlinedIcon />
         </Tooltip>
       );
 
     case "Blocked":
       return (
         <Tooltip title={status} placement="top-start" arrow>
-          <CancelOutlinedIcon
-            style={{ color: themes.light.palette.error.dark }}
-          />
+          <CancelOutlinedIcon />
         </Tooltip>
       );
 

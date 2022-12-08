@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { uniqueId } from "lodash";
+import { capitalize, uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleJobSkillIcons } from "../../../../CommonJsx/CommonJsxUtils";
@@ -18,6 +18,8 @@ import {
   Font26Weight700SxStyles,
   JustifyContentSpaceBetweenAlignCenterSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
+import { employmentTypeBeToUiMap } from "../../../../Configs/AppConfig";
+import { JobsStatusMap } from "../../../../Configs/Dashboards/DashboardsConfig";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getCurrentEditingJob } from "../../../../Redux/Selectors/Jobs/JobsSelectors";
 import { getCurrentModal } from "../../../../Redux/Selectors/Modal/ModalSelectors";
@@ -29,14 +31,23 @@ export const JobDescription = () => {
   const currentModal = useSelector(getCurrentModal);
 
   const {
-    role,
-    companyName,
-    city,
+    title,
+    businessName,
+    city = "N/A",
     employmentType,
-    jobLevel,
-    assessmentsRequired,
-    responsibilities,
-    qualifications,
+    jobLevel = "N/A",
+    requiredAssessments,
+    rolesAndResponsibilities,
+    qualificationRequired = [
+      `A Bachelors of Computer Science or a related field is required
+5+ years of IT experience in the development of scalable consumer facing digital solutions
+(consumer websites, web applications, mobile sites etc) in HTML, CSS3 and JavaScript framework is required
+Experience in client-side scripting and JavaScript frameworks, like SCSS, HTML5, AngularJS, ReactJS, REST/JSON API is a must.
+Experience with HTML5, Bootstrap, Foundation for mobile/responsive design is desired
+Exposure to cross-browser, multiple device testing and debugging is a required.
+Experience working on an agile team adopting DevOps and CI/CD
+Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plus`,
+    ],
   } = useSelector(getCurrentEditingJob);
 
   const onClose = useCallback(
@@ -55,14 +66,14 @@ export const JobDescription = () => {
       <DialogContent dividers>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography sx={Font26Weight700SxStyles}>{role}</Typography>
+            <Typography sx={Font26Weight700SxStyles}>{title}</Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography
               sx={{
                 ...Font20Weight500SxStyles,
                 whiteSpace: "pre-line",
-              }}>{`${companyName}, ${city}\n${employmentType}, ${jobLevel}`}</Typography>
+              }}>{`${businessName}, ${city}\n${employmentTypeBeToUiMap[employmentType]}, ${jobLevel}`}</Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography sx={Font24Weight600SxStyles}>
@@ -75,15 +86,21 @@ export const JobDescription = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            {assessmentsRequired.map(({ name, status }) => (
+            {requiredAssessments.map(({ skill, status }) => (
               <Chip
-                sx={{ mr: 2 }}
+                sx={{
+                  mr: 2,
+                  color: "#000",
+                  "& .MuiChip-deleteIcon": {
+                    color: JobsStatusMap[status.toLowerCase()],
+                  },
+                }}
                 key={uniqueId()}
-                label={name}
+                label={skill}
                 onDelete={() => {}}
                 variant="outlined"
-                color="default"
-                deleteIcon={handleJobSkillIcons(status)}
+                color="primary"
+                deleteIcon={handleJobSkillIcons(capitalize(status))}
               />
             ))}
           </Grid>
@@ -98,7 +115,7 @@ export const JobDescription = () => {
                 ...Font20Weight500SxStyles,
                 whiteSpace: "pre-line",
               }}>
-              {responsibilities}
+              {rolesAndResponsibilities}
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -107,7 +124,7 @@ export const JobDescription = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            {qualifications.map((qualification) => (
+            {qualificationRequired.map((qualification) => (
               <Typography
                 key={uniqueId()}
                 sx={{

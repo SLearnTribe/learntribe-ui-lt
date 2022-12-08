@@ -168,19 +168,19 @@ export const BasicInfoSection = () => {
                 name="row-radio-buttons-group">
                 <FormControlLabel
                   sx={{ pr: "3rem" }}
-                  value="female"
+                  value="FEMALE"
                   control={<Radio />}
                   label="Female"
                 />
                 <FormControlLabel
                   sx={{ pr: "3rem" }}
-                  value="male"
+                  value="MALE"
                   control={<Radio />}
                   label="Male"
                 />
                 <FormControlLabel
                   sx={{ pr: "3rem" }}
-                  value="others"
+                  value="OTHERS"
                   control={<Radio />}
                   label="Others"
                 />
