@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SideNavListItems } from "../../CommonJsx/SideNavListItems";
@@ -21,6 +21,7 @@ import {
 } from "../../CommonStyles/CommonSxStyles";
 import { profileRoute } from "../../Configs/RoutesConfig";
 import { setIsSideMenuCollapsed } from "../../Redux/Ducks/App/AppSlice";
+import { postLogout } from "../../Redux/Ducks/userSlice";
 import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import RootRouter from "../../Routing/RootRouter";
@@ -135,9 +136,10 @@ export default function AppContainer(props) {
     setAnchorElUser(null);
   };
 
-  const onClickLogout = () => {
+  const onClickLogout = useCallback(() => {
     setAnchorElUser(null);
-  };
+    dispatch(postLogout());
+  }, [dispatch]);
 
   const navTitleMarginLeft = !open ? 0 : "2rem";
 

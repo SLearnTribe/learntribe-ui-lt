@@ -9,6 +9,7 @@ const userSlice = createSlice({
   },
   reducers: {
     getUserData() {},
+    postLogout() {},
     setUserData(state, { payload }) {
       state.userDetails = payload.userDetails;
       state.access_token = payload.access_token;
@@ -19,7 +20,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { getUserData, setUserData, setUserDataLoading } =
+export const { getUserData, setUserData, setUserDataLoading, postLogout } =
   userSlice.actions;
 
 export default userSlice.reducer;

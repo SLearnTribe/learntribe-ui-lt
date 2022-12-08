@@ -6,3 +6,14 @@ export function requestGetUser(hashCode) {
     url: `http://www.smilebat.xyz/auth/token?code=${hashCode}`,
   });
 }
+
+export function requestPostLogout(accessToken) {
+  return axios.request({
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    url: "http://www.smilebat.xyz/auth/logout",
+  });
+}
