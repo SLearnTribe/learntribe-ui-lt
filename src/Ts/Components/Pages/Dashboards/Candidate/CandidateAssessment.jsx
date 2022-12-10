@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControlLabel,
   Grid,
   Pagination,
@@ -7,12 +8,13 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
-import { cloneDeep, uniqueId } from "lodash";
+import { cloneDeep, isEqual, uniqueId } from "lodash";
 import React, { useCallback, useState } from "react";
+import Countdown from "react-countdown";
 import { useSelector } from "react-redux";
 import { JustifyContentFlexEndSxStyles } from "../../../../CommonStyles/CommonSxStyles";
 import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
-import { CommonTexts } from "../../../../Utils/Text";
+import { ButtonTexts, CommonTexts } from "../../../../Utils/Text";
 import themes from "../../../../Utils/Themes/Themes";
 
 export const CandidateAssessment = () => {
@@ -49,6 +51,18 @@ export const CandidateAssessment = () => {
     setPage(value);
   }, []);
 
+  const onClickPrev = useCallback(() => {
+    setPage((value) => value - 1);
+  }, []);
+
+  const onClickNext = useCallback((_event, value) => {
+    setPage((value) => value + 1);
+  }, []);
+
+  const onClickSubmit = useCallback(() => {}, []);
+
+  const onCompleteTimer = useCallback(() => {}, []);
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -63,6 +77,13 @@ export const CandidateAssessment = () => {
       </Grid>
       <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
         {CommonTexts.timeRemaining}
+        <Countdown
+          onComplete={onCompleteTimer}
+          renderer={({ formatted: { minutes, seconds } }) => (
+            <b>{`${minutes}:${seconds}`}</b>
+          )}
+          date={Date.now() + 50000}
+        />
       </Grid>
       <Grid item lg={9} xl={9} md={8} sm={12} xs={12}>
         <Grid container spacing={3}>
@@ -101,11 +122,10 @@ export const CandidateAssessment = () => {
           hideNextButton
           selected
           hidePrevButton
-          //   variant="outlined"
+          variant="outlined"
           siblingCount={assessment?.challengeResponses.length}
           count={assessment?.challengeResponses.length}
           renderItem={(item) => {
-            console.log({ item });
             return (
               <PaginationItem
                 sx={{
@@ -118,11 +138,29 @@ export const CandidateAssessment = () => {
                     : "inherit",
                 }}
                 {...item}
-                variant={pageMap[item.page] ? "text" : "outlined"}
+                // variant={pageMap[item.page] ? "text" : "outlined"}
               />
             );
           }}
         />
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          disabled={isEqual(page, 1)}
+          onClick={onClickPrev}
+          sx={{ mr: 2 }}
+          variant="outlined">
+          {ButtonTexts.prev}
+        </Button>
+        {!isEqual(page, assessment?.challengeResponses.length) ? (
+          <Button onClick={onClickNext} variant="contained">
+            {ButtonTexts.next}
+          </Button>
+        ) : (
+          <Button onClick={onClickSubmit} variant="contained">
+            {ButtonTexts.submit}
+          </Button>
+        )}
       </Grid>
     </Grid>
   );

@@ -89,6 +89,8 @@ export const ButtonTexts = {
   deleteExperience: "Delete Experience",
   contactInfo: "Contact Info",
   continue: "Continue",
+  prev: "Prev",
+  next: "Next",
 };
 
 export const TabLabelTexts = {
