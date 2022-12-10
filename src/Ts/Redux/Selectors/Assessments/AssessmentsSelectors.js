@@ -15,3 +15,6 @@ export const getDefaultAssessmentsDropdownOptions = (state) =>
 
 export const getIsAssignAlertOpen = (state) =>
   state.assessmentsSlice.isAssignAlertOpen;
+
+export const getAssessmentOfCandidate = (state) =>
+  state.assessmentsSlice.assessmentForCandidate;

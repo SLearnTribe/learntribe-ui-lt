@@ -1,7 +1,9 @@
 import { Route } from "react-router-dom";
 import { Applicants } from "../Components/Pages/Applicants/Applicants";
 import { Assessments } from "../Components/Pages/Assessments/Assessments";
+import { CandidateAssessment } from "../Components/Pages/Dashboards/Candidate/CandidateAssessment";
 import { CandidateDashboard } from "../Components/Pages/Dashboards/Candidate/CandidateDashboard";
+import { InstructionsPage } from "../Components/Pages/Dashboards/Candidate/InstructionsPage";
 import { HrDashboard } from "../Components/Pages/Dashboards/HR/HrDashboard";
 import { CandidateHelp } from "../Components/Pages/Help/CandidateHelp/Help";
 import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
@@ -61,6 +63,16 @@ const RouterMap = [
   {
     path: routes.assessments,
     component: Assessments,
+    permission: rolesConfig.CANDIDATE,
+  },
+  {
+    path: routes.assessmentInstruction,
+    component: InstructionsPage,
+    permission: rolesConfig.CANDIDATE,
+  },
+  {
+    path: routes.candidateAssessment,
+    component: CandidateAssessment,
     permission: rolesConfig.CANDIDATE,
   },
   {

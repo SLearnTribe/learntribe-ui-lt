@@ -14,9 +14,11 @@ const assessmentsSlice = createSlice({
     previouslyGeneratedAssessments: [],
     defaultAssessmentsOptions: [],
     isAssignAlertOpen: false,
+    assessmentForCandidate: {},
   },
   reducers: {
     getAssessments() {},
+    getAssessmentForCandidate() {},
     putAssignAssessment() {},
     getdefaultAssessmentsOptions() {},
     postAssessments() {},
@@ -41,10 +43,15 @@ const assessmentsSlice = createSlice({
     setIsAssignAlertOpen(state) {
       state.isAssignAlertOpen = !state.isAssignAlertOpen;
     },
+    setAssessmentForCandidate(state, { payload }) {
+      state.assessmentForCandidate = payload;
+    },
   },
 });
 
 export const {
+  setAssessmentForCandidate,
+  getAssessmentForCandidate,
   getAssessments,
   putAssignAssessment,
   postAssessments,

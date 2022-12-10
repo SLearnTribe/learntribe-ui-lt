@@ -1,6 +1,7 @@
 import { takeLatest } from "redux-saga/effects";
 import { getApplicantsData } from "../Ducks/Applicants/ApplicantSlice";
 import {
+  getAssessmentForCandidate,
   getAssessments,
   getdefaultAssessmentsOptions,
   postAssessments,
@@ -16,6 +17,7 @@ import { handleGetApplicants } from "./Handlers/Applicants/ApplicantsHandler";
 import {
   handleAssignAssessment,
   handleGenerateAssessments,
+  handleGetAssessmentForCandidate,
   handleGetDefaultPreviouslyGeneratedAssessments,
   handleGetRecommendedAssessments,
 } from "./Handlers/Assessments/AssessmentHandler";
@@ -39,6 +41,10 @@ export function* watcherSaga() {
   yield takeLatest(
     getdefaultAssessmentsOptions.type,
     handleGetDefaultPreviouslyGeneratedAssessments
+  );
+  yield takeLatest(
+    getAssessmentForCandidate.type,
+    handleGetAssessmentForCandidate
   );
 
   //POST

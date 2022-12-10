@@ -11,22 +11,40 @@ import {
   Typography,
 } from "@mui/material";
 import { uniqueId } from "lodash";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   HrAssessmentCardSxStyles,
   scrollAssessmentSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
+import { assessmentsInstructionsRoute } from "../../../../Configs/RoutesConfig";
+import { getAssessmentForCandidate } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts } from "../../../../Utils/Text";
 
 export const RecommendedAssessments = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const assessmentsData = useSelector(getAssessmentsData);
+
+  const onStartAssessment = useCallback(
+    ({ currentTarget }) => {
+      const id = currentTarget.getAttribute("data-id");
+
+      dispatch(getAssessmentForCandidate(id));
+
+      navigate(assessmentsInstructionsRoute);
+    },
+    [dispatch, navigate]
+  );
 
   return (
     <Grid key={uniqueId()} item xs={12}>
       <Box sx={scrollAssessmentSxStyles}>
-        {assessmentsData.map(({ title, description, time = "45 mins" }) => (
+        {assessmentsData.map(({ id, title, description, time = "45 mins" }) => (
           <Card
             sx={HrAssessmentCardSxStyles}
             row
@@ -65,9 +83,8 @@ export const RecommendedAssessments = () => {
                 component="button"
                 underline="none"
                 variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}>
+                data-id={id}
+                onClick={onStartAssessment}>
                 {ButtonTexts.startNow}
               </Link>
             </CardActions>

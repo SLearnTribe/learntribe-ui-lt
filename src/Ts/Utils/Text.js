@@ -60,6 +60,12 @@ export const CommonTexts = {
   requiredSkills: "Required Skills",
   responsibilities: "Responsibilities",
   qualificationsOrExperienceRequired: "Qualifications/ Experience Required",
+  startAssessment: "Start Assessment",
+  instructions: "Instructions",
+  aGeneralInformation: "A. General Information",
+  bRelatedInformation: "B. Related Information",
+  instructionNote:
+    "Note: The following Assessment will be a Proctored exam and duration is 30min",
 };
 
 export const ButtonTexts = {
@@ -80,6 +86,7 @@ export const ButtonTexts = {
   deleteEducation: "Delete Education",
   deleteExperience: "Delete Experience",
   contactInfo: "Contact Info",
+  continue: "Continue",
 };
 
 export const TabLabelTexts = {

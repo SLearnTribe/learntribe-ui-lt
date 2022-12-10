@@ -56,3 +56,17 @@ export function requestAssignAssessment({
     url: `http://www.smilebat.xyz/api/v1/assessments/id/${assessmentId}?assigneeEmail=${assigneeEmail}`,
   });
 }
+
+export function requestGetAssessmentForCandidate({
+  accessToken,
+  assessmentId,
+}) {
+  return axios.request({
+    method: "get",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    url: `http://www.smilebat.xyz/api/v1/assessments/id/${assessmentId}`,
+  });
+}

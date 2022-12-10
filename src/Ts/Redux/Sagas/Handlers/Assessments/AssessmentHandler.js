@@ -3,6 +3,7 @@ import { hanldeAssessmentResponse } from "../../../../Utils/AssessmentUtils/Asse
 import { getApplicantsData } from "../../../Ducks/Applicants/ApplicantSlice";
 import {
   getAssessments,
+  setAssessmentForCandidate,
   setAssessmentsData,
   setDefaultAssessmentsOptions,
   setIsAssessmentsLoading,
@@ -15,6 +16,7 @@ import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
   requestAssignAssessment,
   requestDefaultAssessmentOptions,
+  requestGetAssessmentForCandidate,
   requestGetCandidateRecommendedAssessments,
   requestPostAssessments,
 } from "../../Requests/Assessments/AssessmentsRequest";
@@ -106,5 +108,24 @@ export function* handleAssignAssessment({
     yield put(setIsAssignAlertOpen());
   } catch (error) {
     console.log(error);
+  }
+}
+
+export function* handleGetAssessmentForCandidate({ payload }) {
+  try {
+    yield put(setUserDataLoading(true));
+
+    const accessToken = yield select(selectors.getAccessToken);
+
+    const { data } = yield call(requestGetAssessmentForCandidate, {
+      accessToken,
+      assessmentId: payload,
+    });
+
+    yield put(setAssessmentForCandidate(data));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    yield put(setUserDataLoading(false)); //will remove
   }
 }

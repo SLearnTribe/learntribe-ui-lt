@@ -68,3 +68,20 @@ export const AssessmentDifficultyLevelColorMap = {
   EASY: { color: "#2F80ED", bgColor: "rgba(47, 128, 237, 0.1)" },
   MEDIUM: { color: "#9747FF", bgColor: "rgba(151, 71, 255, 0.1)" },
 };
+
+export const GroupInstructions = [
+  "1. You must use a functioning webcam and microphone.",
+  "2. No cell phones or other secondary devices in the room or test area.",
+  "3. Your desk/table must be clear or any materials except your test-taking device.",
+  "4. No one else can be in the room with you.",
+  "5. No talking.",
+  "6. Do not leave the camera.",
+  "7. No dual screens/monitors.",
+  "8. The testing room must be well-lit and you must be clearly visible.",
+];
+
+export const RelatedInformation = [
+  "1. The examination does not require using any paper, pen, pencil and calculator.",
+  "2. On computer screen every student will be given objective type type Multiple Choice Questions (MCQs).",
+  "3. The students just need to click on the Right Choice / Correct option from the multiple choices /options given with each question. For Multiple Choice Questions, each question has four options, and the candidate has to click the appropriate option.",
+];
