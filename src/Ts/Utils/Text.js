@@ -66,6 +66,8 @@ export const CommonTexts = {
   bRelatedInformation: "B. Related Information",
   instructionNote:
     "Note: The following Assessment will be a Proctored exam and duration is 30min",
+  assessment: "Assessment",
+  timeRemaining: "Time Remaining :",
 };
 
 export const ButtonTexts = {

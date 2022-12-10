@@ -1,4 +1,5 @@
 import { Button, Grid, Typography } from "@mui/material";
+import { uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +54,7 @@ export const InstructionsPage = () => {
       </Grid>
       <Grid item xs={12}>
         {GroupInstructions.map((instruction) => (
-          <Typography sx={{ fontWeight: 500, fontSize: 18 }}>
+          <Typography key={uniqueId()} sx={{ fontWeight: 500, fontSize: 18 }}>
             {instruction}
           </Typography>
         ))}
@@ -70,7 +71,7 @@ export const InstructionsPage = () => {
       </Grid>
       <Grid item xs={12}>
         {RelatedInformation.map((instruction) => (
-          <Typography sx={{ fontWeight: 500, fontSize: 18 }}>
+          <Typography key={uniqueId()} sx={{ fontWeight: 500, fontSize: 18 }}>
             {instruction}
           </Typography>
         ))}
