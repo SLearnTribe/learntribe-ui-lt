@@ -20,7 +20,7 @@ import {
 import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts } from "../../../../Utils/Text";
 
-export const RecommendedJobs = () => {
+export const RecommendedAssessments = () => {
   const assessmentsData = useSelector(getAssessmentsData);
 
   return (

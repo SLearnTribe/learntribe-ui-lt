@@ -7,7 +7,7 @@ import { getJobsData } from "../../../../Redux/Ducks/Jobs/JobsSlice";
 import { CandidateDashboardTexts, CommonTexts } from "../../../../Utils/Text";
 import { HeaderLink } from "../../../CommonComponents/HeaderAndLink";
 import { JobsCard } from "../../../CommonComponents/JobsCard";
-import { RecommendedJobs } from "./RecommendedJobs";
+import { RecommendedAssessments } from "./RecommendedAssessments";
 import { StatCards } from "./StatCards";
 
 export const CandidateDashboard = () => {
@@ -37,7 +37,7 @@ export const CandidateDashboard = () => {
         linkText={CommonTexts.viewAll}
         route={assessmentsRoute}
       />
-      <RecommendedJobs />
+      <RecommendedAssessments />
     </Grid>
   );
 };
