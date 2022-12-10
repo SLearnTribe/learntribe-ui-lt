@@ -38,5 +38,7 @@ export function* handlePostLogout() {
     yield call(requestPostLogout, accessToken);
   } catch (error) {
     console.log(error);
+  } finally {
+    window.location.href = "http://www.smilebat.xyz";
   }
 }
