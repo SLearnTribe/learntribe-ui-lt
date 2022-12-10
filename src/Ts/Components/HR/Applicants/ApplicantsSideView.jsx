@@ -43,7 +43,7 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
               </Typography>
 
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-                {applicantDetails.currentRole}
+                {applicantDetails?.currentRole}
               </Typography>
             </Box>
             <Box sx={{ display: "flex" }}>
