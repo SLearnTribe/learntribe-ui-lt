@@ -8,7 +8,7 @@ import React from "react";
 
 export const SubmittingsAssessmentModal = () => {
   return (
-    <Dialog fullWidth maxWidth="md" open={true} scroll={"paper"}>
+    <Dialog maxWidth="md" open={true}>
       <DialogTitle id="scroll-dialog-title">{"currentModal"}</DialogTitle>
       <DialogContent dividers>
         <DialogContentText tabIndex={-1}>DialogContentText</DialogContentText>
