@@ -2,6 +2,7 @@ import { call, put, select } from "redux-saga/effects";
 import {
   getUserProfile,
   setIsProfileLoading,
+  setUserProfile,
   updateUserProfile,
 } from "../../../Ducks/Profile/ProfileSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
@@ -16,6 +17,8 @@ export function* handleGetUserProfile(action) {
     const accessToken = yield select(selectors.getAccessToken);
 
     const { data } = yield call(requestGetUserProfile, accessToken);
+
+    yield put(setUserProfile(data));
 
     yield put(updateUserProfile(data));
   } catch (error) {

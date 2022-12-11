@@ -14,12 +14,12 @@ import { isEmpty } from "lodash";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import sampleImage from "../../../../Assests/Adil.jpeg";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { ButtonTexts } from "../../../Utils/Text";
 import themes from "../../../Utils/Themes/Themes";
 
 export const ProfileAvatarSection = () => {
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
 
   const [file, setFile] = useState(sampleImage);
 

@@ -4,6 +4,7 @@ const profileSlice = createSlice({
   name: "profile",
   initialState: {
     userProfileDetails: {},
+    updatedUserProfile: {},
     isLoading: true,
     validations: {},
   },
@@ -11,13 +12,16 @@ const profileSlice = createSlice({
     getUserProfile() {},
     saveUserProfile() {},
     updateUserProfile(state, { payload }) {
-      state.userProfileDetails = payload;
+      state.updatedUserProfile = payload;
     },
     setIsProfileLoading(state, { payload }) {
       state.isLoading = false;
     },
     setValidationsOnProfile(state, { payload }) {
       state.validations = payload;
+    },
+    setUserProfile(state, { payload }) {
+      state.userProfileDetails = payload;
     },
   },
 });
@@ -27,6 +31,7 @@ export const {
   saveUserProfile,
   setValidationsOnProfile,
   updateUserProfile,
+  setUserProfile,
   setIsProfileLoading,
 } = profileSlice.actions;
 

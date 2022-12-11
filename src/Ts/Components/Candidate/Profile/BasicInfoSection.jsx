@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
 import {
   getProfileValidations,
-  getUserProfileInfo,
+  getUpdatedUserProfileInfo,
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import {
   CommonTexts,
@@ -28,7 +28,7 @@ import {
 export const BasicInfoSection = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
 
   const {
     nameError = false,

@@ -1,12 +1,15 @@
 import { Button, Grid } from "@mui/material";
-import { isEmpty } from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   saveUserProfile,
   setValidationsOnProfile,
 } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import {
+  getUpdatedUserProfileInfo,
+  getUserProfileInfo,
+} from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { handleValidateUserInfo } from "../../../Utils/Profile/CandidateProfileUtils";
 import { ButtonTexts } from "../../../Utils/Text";
 import { BasicInfoSection } from "./BasicInfoSection";
@@ -18,7 +21,9 @@ import { ResumeUploadSection } from "./ResumeUploadSection";
 export const ProfileContentSection = () => {
   const dispatch = useDispatch();
 
-  const userProfileDetails = useSelector(getUserProfileInfo);
+  const userProfileDetails = useSelector(getUpdatedUserProfileInfo);
+
+  const userDetails = useSelector(getUserProfileInfo);
 
   const onSaveUserDetails = useCallback(() => {
     const errorObj = handleValidateUserInfo(userProfileDetails);
@@ -47,7 +52,10 @@ export const ProfileContentSection = () => {
           <ResumeUploadSection />
         </Grid>
         <Grid item xs={12}>
-          <Button onClick={onSaveUserDetails} variant="contained">
+          <Button
+            disabled={isEqual(userDetails, userProfileDetails)}
+            onClick={onSaveUserDetails}
+            variant="contained">
             {ButtonTexts.submit}
           </Button>
         </Grid>

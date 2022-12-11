@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { NewEducationObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { AvailableDegreeOptions } from "../../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
@@ -29,7 +29,7 @@ import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete
 export const EducationSection = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
 
   const { educationalExperiences = [] } = userInfo;
 
