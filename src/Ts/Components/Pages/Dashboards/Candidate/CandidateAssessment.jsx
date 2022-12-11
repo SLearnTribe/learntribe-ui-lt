@@ -11,13 +11,16 @@ import {
 import { cloneDeep, isEqual, uniqueId } from "lodash";
 import React, { useCallback, useState } from "react";
 import Countdown from "react-countdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentFlexEndSxStyles } from "../../../../CommonStyles/CommonSxStyles";
+import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
-import { ButtonTexts, CommonTexts } from "../../../../Utils/Text";
+import { ButtonTexts, CommonTexts, ModalTexts } from "../../../../Utils/Text";
 import themes from "../../../../Utils/Themes/Themes";
 
 export const CandidateAssessment = () => {
+  const dispatch = useDispatch();
+
   const assessment = useSelector(getAssessmentOfCandidate);
 
   const [page, setPage] = useState(1);
@@ -61,7 +64,9 @@ export const CandidateAssessment = () => {
 
   const onClickSubmit = useCallback(() => {}, []);
 
-  const onCompleteTimer = useCallback(() => {}, []);
+  const onCompleteTimer = useCallback(() => {
+    dispatch(setCurrentModal(ModalTexts.submittingAssessment));
+  }, [dispatch]);
 
   return (
     <Grid container spacing={3}>

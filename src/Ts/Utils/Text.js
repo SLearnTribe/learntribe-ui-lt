@@ -125,6 +125,7 @@ export const ModalTexts = {
   editJob: "Edit the job",
   contactInfo: "Contact Info",
   jobDescription: "Job Description",
+  submittingAssessment: "Submitting Assessment...",
 };
 
 export const ProfileTexts = {
