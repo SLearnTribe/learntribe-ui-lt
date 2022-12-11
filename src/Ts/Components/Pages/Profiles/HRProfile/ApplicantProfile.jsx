@@ -17,6 +17,7 @@ export const ApplicantProfile = () => {
         mainText={CommonTexts.previouslyGeneratedAssessments}
         linkText={CommonTexts.viewAll}
         route={assessmentsRoute}
+        hideLink={true}
       />
       <PreviouslyGeneratedAssessments />
       <ProfilePageFooter />
