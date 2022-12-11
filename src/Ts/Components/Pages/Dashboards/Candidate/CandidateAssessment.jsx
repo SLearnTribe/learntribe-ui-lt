@@ -82,7 +82,7 @@ export const CandidateAssessment = () => {
           renderer={({ formatted: { minutes, seconds } }) => (
             <b>{`${minutes}:${seconds}`}</b>
           )}
-          date={Date.now() + 50000}
+          date={assessment?.timer}
         />
       </Grid>
       <Grid item lg={9} xl={9} md={8} sm={12} xs={12}>
