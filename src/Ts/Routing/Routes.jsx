@@ -35,11 +35,11 @@ const RouterMap = [
     component: ApplicantProfile,
     permission: rolesConfig.HR,
   },
-  {
-    path: routes.profile,
-    component: ApplicantProfile,
-    permission: rolesConfig.HR,
-  },
+  // {
+  //   path: routes.profile,
+  //   component: ApplicantProfile,
+  //   permission: rolesConfig.HR,
+  // },
   // {
   //   path: routes.help,
   //   component: HrHelp,
