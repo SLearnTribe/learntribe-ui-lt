@@ -2,7 +2,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import HelpIcon from "@mui/icons-material/Help";
+// import HelpIcon from "@mui/icons-material/Help";
 import PeopleIcon from "@mui/icons-material/People";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import WorkIcon from "@mui/icons-material/Work";
@@ -18,7 +18,6 @@ import {
   createNewExamRoute,
   dashboardRoute,
   examsRoute,
-  helpRoute,
   jobsRoute,
   postJobsRoute,
   profileRoute,
@@ -90,11 +89,11 @@ export const hrSideNavMenuItems = [
   //   path: profileRoute,
   //   icon: <AccountCircleIcon sx={WhiteColor} />,
   // },
-  {
-    title: SideMenuTexts.help,
-    path: helpRoute,
-    icon: <HelpIcon sx={WhiteColor} />,
-  },
+  // {
+  //   title: SideMenuTexts.help,
+  //   path: helpRoute,
+  //   icon: <HelpIcon sx={WhiteColor} />,
+  // },
 ];
 
 export const candidateSideNavMenuItems = [
@@ -114,9 +113,9 @@ export const candidateSideNavMenuItems = [
     path: profileRoute,
     icon: <AccountCircleIcon sx={WhiteColor} />,
   },
-  {
-    title: SideMenuTexts.help,
-    path: helpRoute,
-    icon: <HelpIcon sx={WhiteColor} />,
-  },
+  // {
+  //   title: SideMenuTexts.help,
+  //   path: helpRoute,
+  //   icon: <HelpIcon sx={WhiteColor} />,
+  // },
 ];
