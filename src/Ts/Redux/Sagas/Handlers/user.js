@@ -33,11 +33,14 @@ export function* handleGetUser({ payload }) {
 
 export function* handlePostLogout() {
   try {
+    yield put(setUserDataLoading(true));
+
     const accessToken = yield select(selectors.getAccessToken);
 
     yield call(requestPostLogout, accessToken);
   } catch (error) {
     console.log(error);
+    yield put(setUserDataLoading(false));
   } finally {
     window.location.href = "http://www.smilebat.xyz";
   }
