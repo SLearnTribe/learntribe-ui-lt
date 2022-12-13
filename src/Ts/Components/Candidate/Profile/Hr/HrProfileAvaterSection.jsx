@@ -38,17 +38,21 @@ export const HrProfileAvatarSection = () => {
 
   const assessmentsData = useSelector(getAssessmentsData);
 
-  const assessments = useMemo(() => {
-    const completedAssessments = [];
+  const { completedAssessments = [] } = useSelector(
+    getSelectedApplicantDetails
+  );
 
-    assessmentsData.forEach(({ status, title }) => {
+  const assessments = useMemo(() => {
+    const assessments = [];
+
+    completedAssessments.forEach(({ status, skill }) => {
       if (isEqual(status, "COMPLETED")) {
-        completedAssessments.push(title);
+        assessments.push(skill);
       }
     });
 
-    return completedAssessments;
-  }, [assessmentsData]);
+    return assessments;
+  }, [completedAssessments]);
 
   const onClickContactInfo = useCallback(() => {
     dispatch(setCurrentModal(ModalTexts.contactInfo));
