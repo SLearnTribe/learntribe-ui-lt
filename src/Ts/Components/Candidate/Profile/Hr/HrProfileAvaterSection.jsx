@@ -1,25 +1,28 @@
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import {
   Avatar,
   Box,
+  Button,
   Card,
   CardContent,
   Grid,
   Link,
   Typography,
 } from "@mui/material";
-import { uniqueId } from "lodash";
-import React, { useCallback } from "react";
+import { isEmpty, isEqual, uniqueId } from "lodash";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../../../Assests/Adil.jpeg";
 import {
   ContactInfoLinkSxStyles,
-  DisplayFlexCenter,
   HrProfileAssessementsSxStyles,
   HrResumeAssessmentHeaderSxStyles,
+  ResumeDownloadBtnSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
-import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import {
   ButtonTexts,
   CandidateDashboardTexts,
@@ -31,7 +34,21 @@ import themes from "../../../../Utils/Themes/Themes";
 export const HrProfileAvatarSection = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const { resume = "sample.pdf" } = useSelector(getSelectedApplicantDetails);
+
+  const assessmentsData = useSelector(getAssessmentsData);
+
+  const assessments = useMemo(() => {
+    const completedAssessments = [];
+
+    assessmentsData.forEach(({ status, title }) => {
+      if (isEqual(status, "COMPLETED")) {
+        completedAssessments.push(title);
+      }
+    });
+
+    return completedAssessments;
+  }, [assessmentsData]);
 
   const onClickContactInfo = useCallback(() => {
     dispatch(setCurrentModal(ModalTexts.contactInfo));
@@ -46,7 +63,6 @@ export const HrProfileAvatarSection = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "center",
-                  marginBottom: 3,
                 }}>
                 <Avatar
                   alt="Remy Sharp"
@@ -71,27 +87,27 @@ export const HrProfileAvatarSection = () => {
                 {ProfileTexts.resume}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <Typography
-                sx={{
-                  fontSize: 18,
-                  fontWeight: 500,
-                  ...DisplayFlexCenter,
-                  marginBottom: 2,
-                }}>
-                {userInfo.resume}
-              </Typography>
+            <Grid item xs={12} sx={{ pt: "0 !important", display: "flex" }}>
+              <Button
+                sx={ResumeDownloadBtnSxStyles}
+                variant="text"
+                color="primary"
+                endIcon={<FileDownloadOutlinedIcon />}>
+                {resume}
+              </Button>
             </Grid>
+            {!isEmpty(assessments) && (
+              <Grid item xs={12}>
+                <Typography
+                  sx={HrResumeAssessmentHeaderSxStyles}
+                  variant="body2"
+                  color="text.secondary">
+                  {CandidateDashboardTexts.assessmentsCompleted}
+                </Typography>
+              </Grid>
+            )}
             <Grid item xs={12}>
-              <Typography
-                sx={HrResumeAssessmentHeaderSxStyles}
-                variant="body2"
-                color="text.secondary">
-                {CandidateDashboardTexts.assessmentsCompleted}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              {userInfo.assessmentsCompleted.map((assessment) => (
+              {assessments.map((assessment) => (
                 <Box sx={HrProfileAssessementsSxStyles} key={uniqueId()}>
                   <CheckCircleOutlineIcon
                     sx={{

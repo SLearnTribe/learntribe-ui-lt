@@ -1,5 +1,5 @@
 export const getHrDashboardHiringInLastMonthData = (state) =>
-  state.hrDashboardSlice.dashboardData.hiringInLastMonth;
+  state.hrDashboardSlice.hiringInLastMonth;
 
 export const getHrDashboardHiringInProgressData = (state) =>
-  state.hrDashboardSlice.dashboardData.hiringInProgress;
+  state.hrDashboardSlice.hiringInProgress;

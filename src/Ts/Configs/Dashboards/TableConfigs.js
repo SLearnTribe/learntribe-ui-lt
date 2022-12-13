@@ -1,3 +1,5 @@
+import { EnumMap } from "./DashboardsConfig";
+
 export const HrHiringInLastMonthTableColumns = [
   { field: "id", headerName: "ID", hide: true },
   { field: "role", headerName: "Role", sortable: true, minWidth: 300, flex: 1 },
@@ -30,7 +32,13 @@ export const HrHiringInLastMonthTableColumns = [
 
 export const HrHiringInProgressTableColumns = [
   { field: "id", headerName: "ID", hide: true },
-  { field: "role", headerName: "Role", sortable: true, flex: 1, minWidth: 300 },
+  {
+    field: "jobTitle",
+    headerName: "Role",
+    sortable: true,
+    flex: 1,
+    minWidth: 300,
+  },
   {
     field: "skills",
     headerName: "Skills",
@@ -39,7 +47,7 @@ export const HrHiringInProgressTableColumns = [
     minWidth: 300,
   },
   {
-    field: "interviewsInProgress",
+    field: "jobCount",
     headerName: "No of Interviews in Progress(TBD)",
     sortable: true,
     minWidth: 200,
@@ -55,5 +63,8 @@ export const HrHiringInProgressTableColumns = [
     headerName: "Job Status",
     sortable: true,
     minWidth: 150,
+    renderCell: ({ value }) => {
+      return EnumMap[value];
+    },
   },
 ];

@@ -1,14 +1,16 @@
 import { Route } from "react-router-dom";
 import { Applicants } from "../Components/Pages/Applicants/Applicants";
 import { Assessments } from "../Components/Pages/Assessments/Assessments";
+import { CandidateAssessment } from "../Components/Pages/Dashboards/Candidate/CandidateAssessment";
 import { CandidateDashboard } from "../Components/Pages/Dashboards/Candidate/CandidateDashboard";
+import { InstructionsPage } from "../Components/Pages/Dashboards/Candidate/InstructionsPage";
 import { HrDashboard } from "../Components/Pages/Dashboards/HR/HrDashboard";
-import { CandidateHelp } from "../Components/Pages/Help/CandidateHelp/Help";
-import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
+// import { CandidateHelp } from "../Components/Pages/Help/CandidateHelp/Help";
+// import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
 import { Jobs } from "../Components/Pages/Jobs/Jobs";
 import { PostJobs } from "../Components/Pages/PostJobs/PostJobs";
 import { CandidateProfile } from "../Components/Pages/Profiles/CandidateProfile/Profile";
-import { HrProfile } from "../Components/Pages/Profiles/HRProfile/Profile";
+import { ApplicantProfile } from "../Components/Pages/Profiles/HRProfile/ApplicantProfile";
 import { rolesConfig } from "../Configs/AppConfig";
 import { routes } from "../Configs/RoutesConfig";
 
@@ -29,15 +31,20 @@ const RouterMap = [
     permission: rolesConfig.HR,
   },
   {
-    path: routes.profile,
-    component: HrProfile,
+    path: routes.applicantDetails,
+    component: ApplicantProfile,
     permission: rolesConfig.HR,
   },
-  {
-    path: routes.help,
-    component: HrHelp,
-    permission: rolesConfig.HR,
-  },
+  // {
+  //   path: routes.profile,
+  //   component: ApplicantProfile,
+  //   permission: rolesConfig.HR,
+  // },
+  // {
+  //   path: routes.help,
+  //   component: HrHelp,
+  //   permission: rolesConfig.HR,
+  // },
   {
     path: routes.dashboard,
     component: CandidateDashboard,
@@ -48,15 +55,24 @@ const RouterMap = [
     component: Jobs,
     permission: rolesConfig.CANDIDATE,
   },
+  // {
+  //   path: routes.assessments,
+  //   component: Assessments,
+  //   permission: rolesConfig.HR,
+  // },
   {
     path: routes.assessments,
     component: Assessments,
-    permission: rolesConfig.HR,
+    permission: rolesConfig.CANDIDATE,
   },
-
   {
-    path: routes.assessments,
-    component: Assessments,
+    path: routes.assessmentInstruction,
+    component: InstructionsPage,
+    permission: rolesConfig.CANDIDATE,
+  },
+  {
+    path: routes.candidateAssessment,
+    component: CandidateAssessment,
     permission: rolesConfig.CANDIDATE,
   },
   {
@@ -64,11 +80,11 @@ const RouterMap = [
     component: CandidateProfile,
     permission: rolesConfig.CANDIDATE,
   },
-  {
-    path: routes.help,
-    component: CandidateHelp,
-    permission: rolesConfig.CANDIDATE,
-  },
+  // {
+  //   path: routes.help,
+  //   component: CandidateHelp,
+  //   permission: rolesConfig.CANDIDATE,
+  // },
 ];
 
 export const RenderRoute = (route, idx) => {

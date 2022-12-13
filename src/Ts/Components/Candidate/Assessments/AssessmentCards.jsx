@@ -12,15 +12,18 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { uniqBy, uniqueId } from "lodash";
+import { capitalize, uniqBy, uniqueId } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { SxStylesAskWhy } from "../../../CommonStyles/CommonSxStyles";
 import {
   AssessmentDifficultyLevelColorMap,
   AssessmentStatusMap,
 } from "../../../Configs/Dashboards/DashboardsConfig";
+import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
 import {
+  getAssessmentForCandidate,
   setAssessmentInnerFilter,
   setAssessmentsData,
 } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
@@ -32,11 +35,13 @@ import {
   handleFilteredAssessmentsData,
   handleToggleSaveAssessment,
 } from "../../../Utils/AssessmentUtils/AssessmentsUtils";
-import { AssessmentTexts } from "../../../Utils/Text";
+import { AssessmentTexts, ButtonTexts } from "../../../Utils/Text";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const AssessmentCards = ({ selectedTab }) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const assessmentsData = useSelector(getAssessmentsData);
 
@@ -71,6 +76,17 @@ export const AssessmentCards = ({ selectedTab }) => {
     [dispatch]
   );
 
+  const onStartAssessment = useCallback(
+    ({ currentTarget }) => {
+      const id = currentTarget.getAttribute("data-id");
+
+      dispatch(getAssessmentForCandidate(id));
+
+      navigate(assessmentsInstructionsRoute);
+    },
+    [dispatch, navigate]
+  );
+
   const filteredAssessmentsData = useMemo(() => {
     return handleFilteredAssessmentsData(
       assessmentsData,
@@ -92,7 +108,7 @@ export const AssessmentCards = ({ selectedTab }) => {
         />
       </Grid>
       {filteredAssessmentsData.map((row) => {
-        const { title, difficulty, description, status, saved } = row;
+        const { title, difficulty, description, status, id } = row;
         return (
           <Grid item xs={12} key={uniqueId()}>
             <Card
@@ -110,7 +126,7 @@ export const AssessmentCards = ({ selectedTab }) => {
                     <IconButton
                       row-data={JSON.stringify(row)}
                       onClick={onToggleSave}>
-                      {saved ? (
+                      {status === "SAVED" ? (
                         <BookmarkIcon color="primary" />
                       ) : (
                         <BookmarkBorderIcon color="primary" />
@@ -152,13 +168,22 @@ export const AssessmentCards = ({ selectedTab }) => {
                   mt: "auto",
                   pr: 3,
                 }}>
+                <Link
+                  sx={{ fontSize: 16, fontWeight: 700, mr: 2 }}
+                  component="button"
+                  underline="none"
+                  variant="body2"
+                  data-id={id}
+                  onClick={onStartAssessment}>
+                  {ButtonTexts.startNow}
+                </Link>
                 <Typography
                   sx={{
                     fontSize: 16,
                     fontWeight: 500,
-                    color: AssessmentStatusMap[status.toLowerCase()],
+                    color: AssessmentStatusMap[status?.toLowerCase()],
                   }}>
-                  {status}
+                  {capitalize(status)}
                 </Typography>
               </CardActions>
             </Card>

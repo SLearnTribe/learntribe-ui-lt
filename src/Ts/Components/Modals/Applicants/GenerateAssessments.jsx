@@ -1,24 +1,46 @@
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import {
+  Autocomplete,
   Button,
+  Checkbox,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   Grid,
+  TextField,
 } from "@mui/material";
 import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
-import { getGenerateAssessmentDropdownData } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
-import { ButtonTexts, ModalTexts } from "../../../Utils/Text";
+import { difficultyOptions } from "../../../Configs/AppConfig";
 import {
-  AutoCompleteMultiSelect,
-  AutoCompleteSelect,
-} from "../../CommonComponents/Controls/AutoComplete";
+  postAssessments,
+  setCurrentEditingAssessment,
+} from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
+import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
+import {
+  getSelectedApplicantDetails,
+  getSelectedApplicantsIds,
+} from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import {
+  getCurrentEditingAssessment,
+  getDefaultAssessmentsDropdownOptions,
+} from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import {
+  getJobsAssessedForOptions,
+  getSkillsOptions,
+} from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
+import {
+  handleGenerateAssessmentPostData,
+  hanldeDisableGenerateBtn,
+} from "../../../Utils/AssessmentUtils/AssessmentsUtils";
+import { ButtonTexts, TextFieldLabelsAndTexts } from "../../../Utils/Text";
+import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -26,18 +48,44 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 export const GenerateAssessments = () => {
   const dispatch = useDispatch();
 
-  const generateAssessmentDropdownData = useSelector(
-    getGenerateAssessmentDropdownData
+  const currentEditingAssessment = useSelector(getCurrentEditingAssessment);
+
+  const currentModal = useSelector(getCurrentModal);
+
+  const defaultPreviouslyGeneratedAssessmentOptions = useSelector(
+    getDefaultAssessmentsDropdownOptions
   );
 
-  const [jobsAssessedFor, setJobsAssessedFor] = useState([]);
+  const selectedApplicantsIds = useSelector(getSelectedApplicantsIds);
+
+  const selectedApplicantDetails = useSelector(getSelectedApplicantDetails);
+
+  const jobsAssessedForOptions = useSelector(getJobsAssessedForOptions);
+
+  const skillsOptions = useSelector(getSkillsOptions);
+
+  const [jobsAssessedFor, setJobsAssessedFor] = useState(null);
 
   const [previouslyGeneratedAssessments, setPreviouslyGeneratedAssessments] =
     useState(null);
 
-  const [skillsList, setSkillsList] = useState([]);
+  const [skillsList, setSkillsList] = useState(
+    currentEditingAssessment?.title?.split(", ")
+  );
 
-  const [difficultyLevel, setDifficultyLevel] = useState(null);
+  const [difficultyLevel, setDifficultyLevel] = useState(
+    isEmpty(currentEditingAssessment)
+      ? null
+      : {
+          title: currentEditingAssessment?.difficulty,
+        }
+  );
+
+  const filterdSkillOptions = useMemo(() => {
+    return isEmpty(jobsAssessedFor)
+      ? skillsOptions
+      : jobsAssessedFor?.requiredSkills.split(", ");
+  }, [skillsOptions, jobsAssessedFor]);
 
   const onChangeJobsAssessedFor = (_e, value) => {
     setJobsAssessedFor(value);
@@ -56,19 +104,42 @@ export const GenerateAssessments = () => {
   };
 
   const onClickGenerate = useCallback(() => {
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+    const postData = handleGenerateAssessmentPostData(
+      jobsAssessedFor,
+      previouslyGeneratedAssessments,
+      skillsList,
+      difficultyLevel,
+      selectedApplicantsIds,
+      selectedApplicantDetails
+    );
+    dispatch(postAssessments(postData));
+  }, [
+    dispatch,
+    jobsAssessedFor,
+    previouslyGeneratedAssessments,
+    skillsList,
+    difficultyLevel,
+    selectedApplicantsIds,
+    selectedApplicantDetails,
+  ]);
 
-  const onClickCancel = useCallback(() => {
-    dispatch(setCurrentModal(null));
-  }, [dispatch]);
+  const onClickCancel = useCallback(
+    (_event, reason) => {
+      if (reason && reason === "backdropClick") return;
+
+      dispatch(setCurrentEditingAssessment({}));
+
+      dispatch(setCurrentModal(null));
+    },
+    [dispatch]
+  );
 
   const shouldDisableGenerateButton = useMemo(() => {
-    return (
-      isEmpty(jobsAssessedFor) ||
-      isEmpty(previouslyGeneratedAssessments) ||
-      isEmpty(skillsList) ||
-      isEmpty(difficultyLevel)
+    return hanldeDisableGenerateBtn(
+      jobsAssessedFor,
+      previouslyGeneratedAssessments,
+      skillsList,
+      difficultyLevel
     );
   }, [
     jobsAssessedFor,
@@ -85,48 +156,83 @@ export const GenerateAssessments = () => {
       open={true}
       onClose={onClickCancel}
       scroll={"paper"}>
-      <DialogTitle id="scroll-dialog-title">
-        {ModalTexts.generateAssessment}
-      </DialogTitle>
+      <DialogTitle id="scroll-dialog-title">{currentModal}</DialogTitle>
       <DialogContent dividers>
         <DialogContentText tabIndex={-1}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <AutoCompleteMultiSelect
-                options={generateAssessmentDropdownData[0].options}
+              <AutoCompleteSelect
+                disabled={!isEmpty(previouslyGeneratedAssessments)}
+                options={jobsAssessedForOptions}
                 value={jobsAssessedFor}
                 onChange={onChangeJobsAssessedFor}
-                label={generateAssessmentDropdownData[0].label}
-                placeholder={"Select multiple jobs"}
+                label={TextFieldLabelsAndTexts.jobsAssessedFor}
+                placeholder={"Select job"}
               />
             </Grid>
 
             <Grid item xs={12}>
               <AutoCompleteSelect
-                options={generateAssessmentDropdownData[1].options}
+                options={defaultPreviouslyGeneratedAssessmentOptions}
                 value={previouslyGeneratedAssessments}
                 onChange={onChangePreviouslyGeneratedAssessments}
-                label={generateAssessmentDropdownData[1].label}
+                label={
+                  TextFieldLabelsAndTexts.defaultOrPreviouslyGeneratedAssessments
+                }
                 placeholder={"Select existing assessment"}
+                disabled={true} //Disabling it for now
               />
             </Grid>
 
             <Grid item xs={12}>
-              <AutoCompleteMultiSelect
-                options={generateAssessmentDropdownData[2].options}
+              <Autocomplete
+                disabled={!isEmpty(previouslyGeneratedAssessments)}
+                multiple
+                id="tags-filled"
+                options={filterdSkillOptions}
                 value={skillsList}
+                freeSolo
+                disableCloseOnSelect
                 onChange={onChangeSkillsList}
-                label={generateAssessmentDropdownData[2].label}
-                placeholder={"Select multiple skills"}
+                renderOption={(props, option, { selected }) => (
+                  <li {...props}>
+                    <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{ marginRight: 8 }}
+                      checked={selected}
+                    />
+                    {option}
+                  </li>
+                )}
+                renderTags={(value, getTagProps) =>
+                  value.map((option, index) => (
+                    <Chip
+                      color="primary"
+                      variant="outlined"
+                      label={option}
+                      {...getTagProps({ index })}
+                    />
+                  ))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label={TextFieldLabelsAndTexts.skillsList}
+                    placeholder="Select/Add multiple skills"
+                  />
+                )}
               />
             </Grid>
 
             <Grid item xs={12}>
               <AutoCompleteSelect
-                options={generateAssessmentDropdownData[3].options}
+                disabled={!isEmpty(previouslyGeneratedAssessments)}
+                options={difficultyOptions}
                 value={difficultyLevel}
                 onChange={onChangeDifficultyLevel}
-                label={generateAssessmentDropdownData[3].label}
+                label={TextFieldLabelsAndTexts.difficultyLevel}
                 placeholder="Select multiple jobs"
               />
             </Grid>

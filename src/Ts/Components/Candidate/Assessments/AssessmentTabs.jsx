@@ -44,7 +44,7 @@ export const AssessmentTabs = () => {
             aria-label="basic tabs example">
             {CandidateTabs.map((label) => (
               <Tab
-                sx={{ textTransform: "none", fontSize: 22, fontWeight: 600 }}
+                sx={{ fontSize: 22, fontWeight: 600 }}
                 key={label}
                 label={label}
                 tab-data={label}

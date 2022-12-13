@@ -9,16 +9,16 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { employmentTypeBeToUiMap } from "../../../Configs/AppConfig";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { setCurrentEditingPostJobData } from "../../../Redux/Ducks/PostJobs/PostJobsSlice";
 import { ModalTexts } from "../../../Utils/Text";
 
 export const PostedJobCards = ({ postJobsData }) => {
   const dispatch = useDispatch();
-
-  const onClickViewDetails = () => {};
 
   const onClickEditJob = useCallback(
     ({ currentTarget }) => {
@@ -33,21 +33,20 @@ export const PostedJobCards = ({ postJobsData }) => {
 
   return (
     <>
-      {postJobsData.map(
+      {postJobsData?.map(
         (
           {
-            jobId,
-            jobTitle,
-            companyName,
-            employmentType,
-            companyShortName,
-            jobLevel,
-            jobLocation,
-            postedOn,
+            title = "N/A",
+            businessName = "N/A",
+            employmentType = "N/A",
+            companyShortName = "N/A",
+            jobLevel = "N/A",
+            jobLocation = "N/A",
+            postedOn = "N/A",
           },
           index
         ) => (
-          <Grid key={jobId} item xs={12} sm={12} md={6} lg={4} xl={4}>
+          <Grid key={uniqueId()} item xs={12} sm={12} md={6} lg={4} xl={4}>
             <Card
               sx={{
                 height: "100%",
@@ -80,12 +79,12 @@ export const PostedJobCards = ({ postJobsData }) => {
                   <>
                     <Box sx={{ display: "flex" }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
-                        {jobTitle}
+                        {title}
                       </Typography>
                     </Box>
                     <Box sx={{ display: "flex" }}>
                       <Typography sx={{ fontSize: 16, fontWeight: 400 }}>
-                        {companyName}
+                        {businessName}
                       </Typography>
                     </Box>
                     <Box sx={{ display: "flex" }}>
@@ -108,7 +107,7 @@ export const PostedJobCards = ({ postJobsData }) => {
               <CardActions
                 sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography sx={{ fontSize: 16, fontWeight: 400 }}>
-                  {employmentType}
+                  {employmentTypeBeToUiMap[employmentType]}
                 </Typography>
 
                 <Typography

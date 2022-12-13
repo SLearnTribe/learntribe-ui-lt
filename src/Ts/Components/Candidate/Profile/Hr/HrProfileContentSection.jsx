@@ -4,13 +4,22 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   Font18Weight500SxStyles,
-  Font20Weight500SxStyles,
+  Font21Weight500SxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
-import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { CommonTexts } from "../../../../Utils/Text";
 
 export const HrProfileContentSection = () => {
-  const userInfo = useSelector(getUserProfileInfo);
+  const {
+    name,
+    country,
+    about,
+    skills,
+    currentRole = "N/A",
+    workExperiences = [],
+    educationExperiences = [],
+  } = useSelector(getSelectedApplicantDetails);
+
   return (
     <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
       <Card sx={{ pl: "1rem", pr: "1rem" }}>
@@ -20,45 +29,45 @@ export const HrProfileContentSection = () => {
               <Typography
                 color="primary"
                 sx={{ fontSize: 30, fontWeight: 700 }}>
-                {userInfo.name}
+                {name}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ fontSize: 22, fontWeight: 500 }}>
-                {userInfo.currentRole}
+                {currentRole}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font18Weight500SxStyles}>
-                {userInfo.city}
-              </Typography>
+              <Typography sx={Font18Weight500SxStyles}>{country}</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.description}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font18Weight500SxStyles}>
-                {userInfo.about}
-              </Typography>
+              <Typography sx={Font21Weight500SxStyles}>{about}</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.skills}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography sx={Font18Weight500SxStyles}>
-                {userInfo.skills}
-              </Typography>
+              <Typography sx={Font21Weight500SxStyles}>{skills}</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.experience}
               </Typography>
             </Grid>
-            {userInfo.workExperiences.map(
+            {workExperiences?.map(
               (
                 { orgName, location, endDate, startDate, designation },
                 index
@@ -66,36 +75,37 @@ export const HrProfileContentSection = () => {
                 <Grid item xs={12} key={uniqueId()}>
                   <Typography
                     sx={
-                      Font18Weight500SxStyles
+                      Font21Weight500SxStyles
                     }>{`${orgName}, ${location} - ${startDate.slice(
                     0,
                     4
                   )} to ${endDate.slice(0, 4)}`}</Typography>
-                  <Typography sx={Font18Weight500SxStyles}>
+                  <Typography sx={Font21Weight500SxStyles}>
                     {designation}
                   </Typography>
                 </Grid>
               )
             )}
             <Grid item xs={12}>
-              <Typography color="text.secondary" sx={Font20Weight500SxStyles}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
                 {CommonTexts.education}
               </Typography>
             </Grid>
-            {userInfo.education.map(
+            {educationExperiences?.map(
               (
                 { collegeName, fieldOfStudy, degree, dateOfCompletion },
                 index
               ) => (
                 <Grid item xs={12} key={uniqueId()}>
-                  <Typography sx={Font18Weight500SxStyles}>
+                  <Typography sx={Font21Weight500SxStyles}>
                     {collegeName}
                   </Typography>
-                  <Typography sx={Font18Weight500SxStyles}>{degree}</Typography>
-                  <Typography sx={Font18Weight500SxStyles}>
-                    {fieldOfStudy}
+                  <Typography sx={Font21Weight500SxStyles}>
+                    {`${degree}- ${fieldOfStudy}`}
                   </Typography>
-                  <Typography sx={Font18Weight500SxStyles}>
+                  <Typography sx={Font21Weight500SxStyles}>
                     {dateOfCompletion}
                   </Typography>
                 </Grid>

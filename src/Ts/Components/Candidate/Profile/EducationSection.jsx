@@ -10,14 +10,14 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { cloneDeep, isEmpty } from "lodash";
+import { cloneDeep, isEmpty, isNull } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { NewEducationObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { AvailableDegreeOptions } from "../../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
@@ -29,14 +29,14 @@ import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete
 export const EducationSection = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
 
-  const { education } = userInfo;
+  const { educationalExperiences = [] } = userInfo;
 
   const onClickAddNewEducation = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
 
-    copyUserInfo.education.push(NewEducationObject);
+    copyUserInfo.educationalExperiences.push(NewEducationObject);
 
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
@@ -44,7 +44,7 @@ export const EducationSection = () => {
   const onClickDeleteEducation = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
 
-    copyUserInfo.education.splice(-1);
+    copyUserInfo.educationalExperiences.splice(-1);
 
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
@@ -55,7 +55,7 @@ export const EducationSection = () => {
 
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].startDate = formattedDate;
+      copyUserInfo.educationalExperiences[index].startDate = formattedDate;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -66,7 +66,7 @@ export const EducationSection = () => {
     ({ target: { value } }, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].fieldOfStudy = value;
+      copyUserInfo.educationalExperiences[index].fieldOfStudy = value;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -77,7 +77,7 @@ export const EducationSection = () => {
     (value, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].collegeName = value;
+      copyUserInfo.educationalExperiences[index].collegeName = value;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -88,7 +88,7 @@ export const EducationSection = () => {
     (_e, { title }, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.education[index].degree = title;
+      copyUserInfo.educationalExperiences[index].degree = title;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -106,7 +106,7 @@ export const EducationSection = () => {
       />
       <CardContent>
         <Grid container spacing={3}>
-          {education.map(
+          {educationalExperiences?.map(
             (
               { fieldOfStudy, startDate, endDate, collegeName, degree },
               index
@@ -131,9 +131,13 @@ export const EducationSection = () => {
                   <AutoCompleteSelect
                     index={index}
                     options={AvailableDegreeOptions}
-                    value={{
-                      title: degree,
-                    }}
+                    value={
+                      isNull(degree)
+                        ? null
+                        : {
+                            title: degree,
+                          }
+                    }
                     onChange={onChangeDegree}
                     label={TextFieldLabelsAndTexts.degree}
                     placeholder={TextFieldLabelsAndTexts.selectDegree}
@@ -171,16 +175,14 @@ export const EducationSection = () => {
           )}
           <Grid item xs={12} sx={JustifyContentSpaceBetweenSxStyles}>
             <Button
-              disabled={isEmpty(education)}
+              disabled={isEmpty(educationalExperiences)}
               onClick={onClickDeleteEducation}
-              sx={{ textTransform: "none" }}
               color="secondary"
               variant="outlined">
               {ButtonTexts.deleteEducation}
             </Button>
             <Button
               onClick={onClickAddNewEducation}
-              sx={{ textTransform: "none" }}
               color="primary"
               variant="outlined">
               {ButtonTexts.addNewEducation}

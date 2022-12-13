@@ -10,19 +10,19 @@ import { cloneDeep } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { CommonTexts, ProfileTexts } from "../../../Utils/Text";
 import { AutoCompleteAddTags } from "../../CommonComponents/Controls/AutoComplete";
 
 export const ProfileSkills = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
 
   const normalizedSkills = useMemo(() => {
     const copySkills = cloneDeep(userInfo.skills);
 
-    return copySkills.split(", ");
+    return copySkills?.split(", ");
   }, [userInfo.skills]);
 
   const onInputChange = useCallback(

@@ -12,9 +12,11 @@ export const AutoCompleteMultiSelect = ({
   onChange,
   label,
   placeholder,
+  disabled = false,
 }) => {
   return (
     <Autocomplete
+      disabled={disabled}
       multiple
       limitTags={2}
       id={label}
@@ -55,15 +57,20 @@ export const AutoCompleteSelect = ({
   label,
   placeholder,
   index,
+  getOptionLabelDataField = "title",
+  disabled = false,
 }) => {
   return (
     <Autocomplete
+      disabled={disabled}
       id={label}
       options={options}
       value={value}
       onChange={(_e, value) => onChange(_e, value, index)}
-      getOptionLabel={(option) => option.title}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
+      getOptionLabel={(option) => option[getOptionLabelDataField]}
+      isOptionEqualToValue={(option, value) =>
+        option[getOptionLabelDataField] === value[getOptionLabelDataField]
+      }
       renderInput={(params) => (
         <TextField
           {...params}
@@ -84,9 +91,11 @@ export const AutoCompleteAddTags = ({
   label,
   placeholder,
   sx = {},
+  disabled = false,
 }) => {
   return (
     <Autocomplete
+      disabled={disabled}
       multiple
       id="tags-filled"
       options={options}

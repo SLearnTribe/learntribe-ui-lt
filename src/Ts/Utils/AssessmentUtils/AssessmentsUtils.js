@@ -1,4 +1,4 @@
-import { cloneDeep, isEmpty, isEqual } from "lodash";
+import { cloneDeep, isEmpty, isEqual, keys, pickBy, uniqBy } from "lodash";
 import {
   AssessmentTabsConfig,
   CandidateTabs,
@@ -65,4 +65,66 @@ export const handleToggleSaveAssessment = (assessmentsData, currentTarget) => {
   copyAssessmentsData[index] = assessmentCard;
 
   return copyAssessmentsData;
+};
+
+export const hanldeAssessmentResponse = (response) => {
+  return uniqBy(
+    response.map(({ title }) => {
+      return { title };
+    }),
+    "title"
+  );
+};
+
+export const hanldeDisableGenerateBtn = (
+  respjobsAssessedFor,
+  previouslyGeneratedAssessments,
+  skillsList,
+  difficultyLevel
+) => {
+  let shouldDisableGenerateBtn = true;
+
+  if (
+    !isEmpty(previouslyGeneratedAssessments) ||
+    (!isEmpty(skillsList) &&
+      !isEmpty(difficultyLevel) &&
+      !isEmpty(respjobsAssessedFor))
+  ) {
+    shouldDisableGenerateBtn = false;
+  }
+
+  return shouldDisableGenerateBtn;
+};
+
+export const handleGenerateAssessmentPostData = (
+  jobsAssessedFor,
+  previouslyGeneratedAssessments,
+  skillsList,
+  difficultyLevel,
+  selectedApplicantsIds,
+  selectedApplicantDetails
+) => {
+  let postData = {};
+
+  const assigneeEmails = isEmpty(selectedApplicantsIds)
+    ? [selectedApplicantDetails.email]
+    : keys(pickBy(selectedApplicantsIds));
+
+  if (!isEmpty(previouslyGeneratedAssessments)) {
+    postData = {
+      assigneeEmails,
+      difficulty: previouslyGeneratedAssessments.difficulty,
+      relatedJobId: previouslyGeneratedAssessments.relatedJobId,
+      title: previouslyGeneratedAssessments.title,
+    };
+  } else {
+    postData = {
+      assigneeEmails,
+      difficulty: difficultyLevel.title,
+      relatedJobId: jobsAssessedFor.id,
+      title: skillsList.join(", "),
+    };
+  }
+
+  return postData;
 };

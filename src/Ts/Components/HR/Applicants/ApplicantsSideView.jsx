@@ -10,12 +10,20 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import sampleImage from "../../../../Assests/Adil.jpeg";
+import { applicantDetailsRoute } from "../../../Configs/RoutesConfig";
 import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { ButtonTexts, CommonTexts } from "../../../Utils/Text";
 
 export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
+  const navigate = useNavigate();
+
   const applicantDetails = useSelector(getSelectedApplicantDetails);
+
+  const onClickViewDetails = () => {
+    navigate(applicantDetailsRoute);
+  };
 
   return !isSelectMultipleActive ? (
     <Card sx={{ boxShadow: 0 }}>
@@ -31,21 +39,21 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
           <>
             <Box>
               <Typography sx={{ fontSize: 20, fontWeight: 500 }}>
-                {applicantDetails.name}
+                {applicantDetails?.name}
               </Typography>
 
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-                {applicantDetails.currentRole}
+                {applicantDetails?.currentRole}
               </Typography>
             </Box>
             <Box sx={{ display: "flex" }}>
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-                {applicantDetails.email}
+                {applicantDetails?.email}
               </Typography>
             </Box>
             <Box sx={{ display: "flex" }}>
               <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-                {applicantDetails.phone}
+                {applicantDetails?.phone}
               </Typography>
             </Box>
           </>
@@ -57,18 +65,21 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
           {CommonTexts.description}
         </Typography>
         <Typography sx={{ fontSize: 16, fontWeight: 500, mb: 1 }}>
-          {applicantDetails.about}
+          {applicantDetails?.about}
         </Typography>
         <Typography
           sx={{ fontSize: 16, fontWeight: 500, color: "#737272", mb: 1 }}>
           {CommonTexts.experience}
         </Typography>
         <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
-          {applicantDetails.about}
+          {applicantDetails?.about}
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Button sx={{ width: "16rem" }} variant="contained">
+        <Button
+          onClick={onClickViewDetails}
+          sx={{ width: "16rem" }}
+          variant="contained">
           {ButtonTexts.viewDetails}
         </Button>
       </CardActions>

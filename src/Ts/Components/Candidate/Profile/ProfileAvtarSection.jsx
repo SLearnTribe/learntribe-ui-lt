@@ -10,15 +10,24 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { isEmpty } from "lodash";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import sampleImage from "../../../../Assests/Adil.jpeg";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { ButtonTexts } from "../../../Utils/Text";
 import themes from "../../../Utils/Themes/Themes";
 
 export const ProfileAvatarSection = () => {
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const [file, setFile] = useState(sampleImage);
+
+  const onChangePhoto = (e) => {
+    if (!isEmpty(e.target.files)) {
+      setFile(URL.createObjectURL(e.target.files[0]));
+    }
+  };
   return (
     <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
       <Card>
@@ -31,7 +40,7 @@ export const ProfileAvatarSection = () => {
             }}>
             <Avatar
               alt="Remy Sharp"
-              src={sampleImage}
+              src={file}
               sx={{
                 width: 100,
                 height: 100,
@@ -72,15 +81,21 @@ export const ProfileAvatarSection = () => {
         </CardContent>
         <CardActions>
           <Button
+            component="label"
             variant="contained"
             color="primary"
             sx={{
               width: "100%",
               borderRadius: 16,
               marginBottom: 2,
-              textTransform: "none",
             }}>
-            {ButtonTexts.addPhoto}
+            {ButtonTexts.uploadPhoto}
+            <input
+              hidden
+              onChange={onChangePhoto}
+              accept="image/*"
+              type="file"
+            />
           </Button>
         </CardActions>
         <Divider light />

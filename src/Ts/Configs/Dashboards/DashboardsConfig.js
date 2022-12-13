@@ -9,29 +9,26 @@ export const accountMenuItems = ["Profile", "Account", "Dashboard", "Logout"];
 export const CandidateStatsConfig = [
   {
     title: CandidateDashboardTexts.assessmentsCompleted,
-    icon: AssignmentTurnedInIcon,
-    total: 25,
+    total: 0,
     color: "success",
   },
   {
     title: CandidateDashboardTexts.jobsApplied,
-    icon: WorkOutlineIcon,
-    total: 12,
+    total: 0,
     color: "info",
   },
   {
     title: CandidateDashboardTexts.interviewCalls,
-    icon: CallIcon,
-    total: 10,
+    total: 0,
     color: "warning",
   },
-  {
-    title: CandidateDashboardTexts.assessmentsCompleted,
-    icon: AssignmentTurnedInIcon,
-    total: 25,
-    color: "success",
-  },
 ];
+
+export const CandidateActivitiesIconMap = {
+  [CandidateDashboardTexts.assessmentsCompleted]: AssignmentTurnedInIcon,
+  [CandidateDashboardTexts.jobsApplied]: WorkOutlineIcon,
+  [CandidateDashboardTexts.interviewCalls]: CallIcon,
+};
 
 export const CandidateTabs = [
   TabLabelTexts.all,
@@ -54,11 +51,43 @@ export const AssessmentStatusMap = {
   blocked: themes.light.palette.error.dark,
   pending: themes.light.palette.warning.dark,
   saved: themes.light.palette.info.dark,
+  primary: themes.light.palette.primary.main,
+};
+
+export const JobsStatusMap = {
+  completed: themes.light.palette.success.dark,
+  blocked: themes.light.palette.error.contrastText,
+  pending: themes.light.palette.warning.dark,
+  saved: themes.light.palette.info.dark,
+  start: themes.light.palette.primary.main,
 };
 
 export const AssessmentDifficultyLevelColorMap = {
-  Recommended: { color: "#000000", bgColor: "#F6F6F6" },
-  Difficult: { color: "#EB5757", bgColor: "rgba(235, 87, 87, 0.1)" },
-  Easy: { color: "#2F80ED", bgColor: "rgba(47, 128, 237, 0.1)" },
-  Medium: { color: "#9747FF", bgColor: "rgba(151, 71, 255, 0.1)" },
+  RECOMMENDED: { color: "#000000", bgColor: "#F6F6F6" },
+  HARD: { color: "#EB5757", bgColor: "rgba(235, 87, 87, 0.1)" },
+  EASY: { color: "#2F80ED", bgColor: "rgba(47, 128, 237, 0.1)" },
+  MEDIUM: { color: "#9747FF", bgColor: "rgba(151, 71, 255, 0.1)" },
+};
+
+export const GroupInstructions = [
+  "1. You must use a functioning webcam and microphone.",
+  "2. No cell phones or other secondary devices in the room or test area.",
+  "3. Your desk/table must be clear or any materials except your test-taking device.",
+  "4. No one else can be in the room with you.",
+  "5. No talking.",
+  "6. Do not leave the camera.",
+  "7. No dual screens/monitors.",
+  "8. The testing room must be well-lit and you must be clearly visible.",
+];
+
+export const RelatedInformation = [
+  "1. The examination does not require using any paper, pen, pencil and calculator.",
+  "2. On computer screen every student will be given objective type type Multiple Choice Questions (MCQs).",
+  "3. The students just need to click on the Right Choice / Correct option from the multiple choices /options given with each question. For Multiple Choice Questions, each question has four options, and the candidate has to click the appropriate option.",
+];
+
+export const EnumMap = {
+  IN_PROGRESS: "In Progress",
+  HIRED: "Hired",
+  NOT_HIRED: "Not Hired",
 };

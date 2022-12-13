@@ -159,14 +159,45 @@ export const JustifyContentSpaceBetweenSxStyles = {
 };
 
 export const HrResumeAssessmentHeaderSxStyles = {
-  ...DisplayFlexCenter,
+  // ...DisplayFlexCenter,
   fontSize: 20,
   fontWeight: 500,
+  pb: 0,
 };
 
 export const HrProfileAssessementsSxStyles = {
   display: "flex",
-  ml: "5rem",
+  // ml: "5rem",
+};
+
+export const ResumeDownloadBtnSxStyles = {
+  fontSize: 18,
+  fontWeight: 500,
+  pl: 0,
+};
+
+export const SuccessAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#2e7d32",
+};
+
+export const InfoAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#0288d1",
+};
+
+export const WarningAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#ed6c02",
+};
+
+export const ErrorAlertSxStyles = {
+  fontWeight: 700,
+  color: "#fff",
+  bgcolor: "#d32f2f",
 };
 
 export const ContactInfoLinkSxStyles = {
@@ -181,9 +212,54 @@ export const Font20Weight500SxStyles = {
   fontWeight: 500,
 };
 
+export const Font20Weight600SxStyles = {
+  fontSize: 20,
+  fontWeight: 600,
+};
+
+export const Font22Weight600SxStyles = {
+  fontSize: 22,
+  fontWeight: 600,
+};
+
+export const Font24Weight600SxStyles = {
+  fontSize: 24,
+  fontWeight: 600,
+};
+
+export const Font21Weight500SxStyles = {
+  fontSize: 21,
+  fontWeight: 500,
+};
+
 export const Font18Weight500SxStyles = {
   fontSize: 18,
   fontWeight: 500,
+};
+
+export const Font18Weight600SxStyles = {
+  fontSize: 18,
+  fontWeight: 600,
+};
+
+export const Font15Weight500SxStyles = {
+  fontSize: 15,
+  fontWeight: 500,
+};
+
+export const Font14Weight500SxStyles = {
+  fontSize: 14,
+  fontWeight: 500,
+};
+
+export const Font18Weight400SxStyles = {
+  fontSize: 18,
+  fontWeight: 400,
+};
+
+export const Font26Weight700SxStyles = {
+  fontSize: 26,
+  fontWeight: 700,
 };
 
 export const scrollAssessmentSxStyles = {
@@ -192,7 +268,7 @@ export const scrollAssessmentSxStyles = {
   py: 1,
   overflowX: "auto",
   width: "100%",
-  whiteSpace: "nowrap",
+  // whiteSpace: "nowrap",
   // scrollSnapType: "x mandatory",
   // "& > *": {
   //   scrollSnapAlign: "center",

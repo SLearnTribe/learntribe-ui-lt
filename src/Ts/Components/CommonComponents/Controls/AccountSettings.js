@@ -13,7 +13,10 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { AccountSettingsPaperProps } from "../../../CommonStyles/CommonSxStyles";
+import { rolesConfig } from "../../../Configs/AppConfig";
+import { getUserDetails } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 
 export const ProfileCompletionBar = ({ percentage }) => {
   return (
@@ -45,6 +48,8 @@ export const AccountSettingsMenu = ({
   onClickSettings,
   onClickProfile,
 }) => {
+  const { role } = useSelector(getUserDetails);
+
   return (
     <Menu
       sx={{ mt: "45px" }}
@@ -62,17 +67,19 @@ export const AccountSettingsMenu = ({
       }}
       open={Boolean(anchorElUser)}
       onClose={onClose}>
-      <MenuItem onClick={onClickProfile}>
-        <ListItem component="div">
-          <ListItemIcon>
-            <AccountBoxOutlinedIcon color="primary" />
-          </ListItemIcon>
-          <ListItemText sx={{ mr: "2rem" }} primary="Profile" />
-          <IconButton edge="end" aria-label="delete">
-            <ProfileCompletionBar percentage={80} />
-          </IconButton>
-        </ListItem>
-      </MenuItem>
+      {rolesConfig[role] === "CANDIDATE" && (
+        <MenuItem onClick={onClickProfile}>
+          <ListItem component="div">
+            <ListItemIcon>
+              <AccountBoxOutlinedIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText sx={{ mr: "2rem" }} primary="Profile" />
+            <IconButton edge="end" aria-label="delete">
+              <ProfileCompletionBar percentage={80} />
+            </IconButton>
+          </ListItem>
+        </MenuItem>
+      )}
       <MenuItem onClick={onClickSettings}>
         <ListItem component="div">
           <ListItemIcon>

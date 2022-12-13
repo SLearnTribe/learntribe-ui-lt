@@ -27,6 +27,7 @@ export const ApplicantsContainer = () => {
   }, [selectedApplicantsIds, isSelectMultipleActive]);
 
   const onClickGenerateAssessment = useCallback(() => {
+    // dispatch(getdefaultAssessmentsOptions()); we may need it later
     dispatch(setCurrentModal(ModalTexts.generateAssessment));
   }, [dispatch]);
 

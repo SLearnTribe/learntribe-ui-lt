@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { NewExperienceObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import {
   ButtonTexts,
   CommonTexts,
@@ -28,9 +28,9 @@ import {
 export const ExperienceSection = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector(getUserProfileInfo);
+  const userInfo = useSelector(getUpdatedUserProfileInfo);
 
-  const { workExperiences } = userInfo;
+  const { workExperiences = [] } = userInfo;
 
   const onClickAddNewExperience = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
@@ -107,7 +107,7 @@ export const ExperienceSection = () => {
       />
       <CardContent>
         <Grid container spacing={3}>
-          {workExperiences.map(
+          {workExperiences?.map(
             ({ orgName, designation, startDate, endDate }, index) => (
               <React.Fragment key={index}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -175,14 +175,12 @@ export const ExperienceSection = () => {
             <Button
               disabled={isEmpty(workExperiences)}
               onClick={onClickDeleteEducation}
-              sx={{ textTransform: "none" }}
               color="secondary"
               variant="outlined">
               {ButtonTexts.deleteExperience}
             </Button>
             <Button
               onClick={onClickAddNewExperience}
-              sx={{ textTransform: "none" }}
               color="primary"
               variant="outlined">
               {ButtonTexts.addNewExperience}

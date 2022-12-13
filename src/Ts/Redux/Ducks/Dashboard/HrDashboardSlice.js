@@ -1,23 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { HrHiringInLastMonthTableMockData } from "../../../Utils/MockData/DashboardData";
 
 const hrDashboardSlice = createSlice({
   name: "hrDashboard",
   initialState: {
-    dashboardData: {
-      hiringInLastMonth: HrHiringInLastMonthTableMockData(),
-      hiringInProgress: HrHiringInLastMonthTableMockData(),
-    },
+    hiringInLastMonth: [],
+    hiringInProgress: [],
+    isLoading: true,
   },
   reducers: {
-    getHrDashboardData() {},
-    setHrDashboardData(state, { payload }) {
-      state.dashboardData = payload;
+    getHrHiringData() {},
+    setHrHiringInLastMonthData(state, { payload }) {
+      state.hiringInLastMonth = payload;
+    },
+    setHrHiringData(state, { payload }) {
+      state.hiringInProgress = payload;
+    },
+    setIsHrDashboardLoading(state, { payload }) {
+      state.isLoading = payload;
     },
   },
 });
 
-export const { getHrDashboardData, setHrDashboardData } =
-  hrDashboardSlice.actions;
+export const {
+  getHrHiringData,
+  setHrHiringInLastMonthData,
+  setHrHiringData,
+  setIsHrDashboardLoading,
+} = hrDashboardSlice.actions;
 
 export default hrDashboardSlice.reducer;

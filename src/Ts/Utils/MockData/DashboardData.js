@@ -7,6 +7,8 @@ const roles = [
   "Java Developer",
 ];
 
+const jobTitles = ["SDE-1", "SDE-2", "SDE-3", "SDE-4"];
+
 export const skills = [
   "SpringBoot",
   "Phython",
@@ -55,6 +57,8 @@ const emails = [
 ];
 
 const jobStatus = ["Completed", "On Hold"];
+
+const companyNames = ["Imperva", "Oracle Cerner", "Thomson Reuters"];
 
 const companies = [
   { companyName: "Imperva", companyShortName: "IM" },
@@ -160,7 +164,7 @@ export const AssessmentsMockData = (len = 5) => {
         "Description We put you in touch with your preferred coworking space locations and help you get settled with no hassle.",
       title: sample(skills),
       subTitle: "Test",
-      saved: i == 0 ? true : false,
+      saved: i === 0 ? true : false,
     });
   }
 
@@ -292,6 +296,17 @@ export const ApplicantsListMockData = (len = 5) => {
       phone: random(9900000000, 9999999999),
       about: "Description about the candidate Description about the candidate",
       breifExp: "Brief about Experience",
+      workExperiences: [
+        {
+          designation: "UI Developer",
+          endDate: "2022-10-01",
+          id: 0,
+          location: "Bengaluru",
+          orgName: "Imperva",
+          startDate: "2021-10-01",
+          years: 4,
+        },
+      ],
     });
   }
 
@@ -369,7 +384,7 @@ export const userProfileMockData = {
   city: "Bengaluru",
   gender: "male",
 
-  education: [
+  educationExperiences: [
     {
       collegeName: "NCET",
       degree: "BE",
@@ -393,3 +408,71 @@ export const AvailableDegreeOptions = [
   { title: "MBA" },
   { title: "MS" },
 ];
+
+export const JobsMockData = (len = 5) => {
+  const data = [];
+  for (let i = 0; i < len; i++) {
+    data.push({
+      title: sample(jobTitles),
+      location: "India",
+      businessName: sample(companyNames),
+      city: sample(locations),
+      jobLevel: sample(jobLevels),
+      role: sample(roles),
+      employmentType: sample(employmentTypes),
+      description:
+        "Description We put you in touch with your preferred coworking space locations and help you get settled with no hassle.",
+      assessmentsRequired: [
+        { name: "Advance Java", status: sample(AssessmentStatus) },
+        { name: "JavaScript", status: sample(AssessmentStatus) },
+        { name: "Spring Boot", status: sample(AssessmentStatus) },
+        { name: "ReactJs", status: "start" },
+      ],
+      rolesAndResponsibilities:
+        "Designing, developing, and testing UI for mobile and web applications \nBuild reusable code and libraries for future use \nAccurately translate user and business needs into functional frontend code",
+      qualifications: [
+        "A Bachelors of Computer Science or a related field is required ",
+        "5+ years of IT experience in the development of scalable consumer facing digital solutions",
+        "(consumer websites, web applications, mobile sites etc) in HTML, CSS3 and JavaScript framework is required ",
+        "A Bachelors of Computer Science or a related field is required",
+        "Experience in client-side scripting and JavaScript frameworks, like SCSS, HTML5, AngularJS, ReactJS, REST/JSON API is a must.",
+        "Experience with HTML5, Bootstrap, Foundation for mobile/responsive design is desired",
+        "Exposure to cross-browser, multiple device testing and debugging is a required.",
+        "Experience working on an agile team adopting DevOps and CI/CD",
+        "Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plus",
+      ],
+    });
+  }
+  return data;
+};
+
+export const loggedInUserDetailsMockData = {
+  exp: 1668273472,
+  iat: 1668237473,
+  auth_time: 1668237472,
+  jti: "1131bcce-8d83-43b7-ada7-923d3758adf1",
+  iss: "http://www.smilebat.xyz/auth/realms/master",
+  aud: "account",
+  sub: "953dbd82-f34c-4ae6-b7a8-159f4d98bdc3",
+  typ: "Bearer",
+  azp: "cloud-gateway-client",
+  session_state: "c88d030b-870a-4a64-ae8b-b7a5a1ad7c4b",
+  acr: "1",
+  realm_access: {
+    roles: ["default-roles-master", "offline_access", "uma_authorization"],
+  },
+  resource_access: {
+    account: {
+      roles: ["manage-account", "manage-account-links", "view-profile"],
+    },
+  },
+  scope: "openid profile email",
+  sid: "c88d030b-870a-4a64-ae8b-b7a5a1ad7c4b",
+  role: "HR",
+  email_verified: true,
+  name: "Adil C",
+  preferred_username: "smilebathr",
+  given_name: "Adil",
+  family_name: "C",
+  email: "adil.shezin94@gmail.com",
+};

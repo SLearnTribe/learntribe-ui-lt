@@ -1,17 +1,17 @@
 import { Grid, Link } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { getPostJobsData } from "../../../Redux/Selectors/PostJobsSelectors/PostJobsSelectors";
+import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
 import { CommonTexts } from "../../../Utils/Text";
 import { PostedJobCards } from "./PostedJobCards";
 
 export const PreviouslyPostedJobs = () => {
-  const postJobsData = useSelector(getPostJobsData);
+  const postJobsData = useSelector(getJobs);
 
   const [viewAll, setViewAll] = useState(true);
 
   const filteredPostJobsData = useMemo(() => {
-    return viewAll ? postJobsData.slice(0, 3) : postJobsData;
+    return viewAll ? postJobsData?.slice(0, 3) : postJobsData;
   }, [viewAll, postJobsData]);
 
   const onClickViewAll = () => {

@@ -1,1 +1,9 @@
-export const getUserProfileInfo = (state) => state.profileSlice.userInfo;
+export const getUpdatedUserProfileInfo = (state) =>
+  state.profileSlice.updatedUserProfile;
+
+export const getUserProfileInfo = (state) =>
+  state.profileSlice.userProfileDetails;
+
+export const getProfileValidations = (state) => state.profileSlice.validations;
+
+export const getIsProfileLoading = (state) => state.profileSlice.isLoading;

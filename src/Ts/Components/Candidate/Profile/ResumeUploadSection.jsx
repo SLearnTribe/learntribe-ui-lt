@@ -29,10 +29,7 @@ export const ResumeUploadSection = () => {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Stack direction="row" alignItems="center" spacing={2}>
-              <Button
-                sx={{ textTransform: "none" }}
-                variant="outlined"
-                component="label">
+              <Button variant="outlined" component="label">
                 {ButtonTexts.addNewResume}
                 <input
                   hidden

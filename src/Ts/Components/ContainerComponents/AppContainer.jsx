@@ -10,16 +10,20 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { SideNavListItems } from "../../CommonJsx/SideNavListItems";
 import {
   PermanentDrawerStyles,
   SideNavExpandCollapseChevronStyles,
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
+import { profileRoute } from "../../Configs/RoutesConfig";
 import { setIsSideMenuCollapsed } from "../../Redux/Ducks/App/AppSlice";
+import { postLogout } from "../../Redux/Ducks/userSlice";
 import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
+import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import RootRouter from "../../Routing/RootRouter";
 import { SideMenuTexts } from "../../Utils/Text";
 import themes from "../../Utils/Themes/Themes";
@@ -97,7 +101,11 @@ export default function AppContainer(props) {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const open = useSelector(getIsSideMenuCollapsed);
+
+  const { name, given_name, family_name } = useSelector(getUserDetails);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -121,15 +129,17 @@ export default function AppContainer(props) {
 
   const onClickProfile = () => {
     setAnchorElUser(null);
+    navigate(profileRoute);
   };
 
   const onClickSettings = () => {
     setAnchorElUser(null);
   };
 
-  const onClickLogout = () => {
+  const onClickLogout = useCallback(() => {
     setAnchorElUser(null);
-  };
+    dispatch(postLogout());
+  }, [dispatch]);
 
   const navTitleMarginLeft = !open ? 0 : "2rem";
 
@@ -162,7 +172,7 @@ export default function AppContainer(props) {
               },
             }}>
             <Typography sx={{ pr: 2 }} variant="h5" component="h5">
-              Welcome Mahesh Babu !
+              {name}
             </Typography>
             <Tooltip title="Account settings">
               <IconButton
@@ -172,7 +182,7 @@ export default function AppContainer(props) {
                 aria-haspopup="true"
                 aria-expanded={anchorElUser ? "true" : undefined}>
                 <Avatar sx={{ bgcolor: themes.light.palette.primary.main }}>
-                  M
+                  {given_name?.[0] + family_name?.[0]}
                 </Avatar>
               </IconButton>
             </Tooltip>

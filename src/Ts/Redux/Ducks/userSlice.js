@@ -3,16 +3,24 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userDetails: { firstName: "", lastName: "", id: null, role: "CANDIDATE" },
+    userDetails: {},
+    access_token: "",
+    isLoading: false,
   },
   reducers: {
     getUserData() {},
+    postLogout() {},
     setUserData(state, { payload }) {
-      state.userDetails = payload;
+      state.userDetails = payload.userDetails;
+      state.access_token = payload.access_token;
+    },
+    setUserDataLoading(state, { payload }) {
+      state.isLoading = payload;
     },
   },
 });
 
-export const { getUserData, setUserData } = userSlice.actions;
+export const { getUserData, setUserData, setUserDataLoading, postLogout } =
+  userSlice.actions;
 
 export default userSlice.reducer;

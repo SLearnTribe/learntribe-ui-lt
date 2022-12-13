@@ -32,6 +32,7 @@ export const CandidateDashboardTexts = {
 
 export const AssessmentTexts = {
   askWhy: "Ask why?",
+  assessmentsRequired: "Assessments Required",
 };
 
 export const CommonTexts = {
@@ -53,6 +54,20 @@ export const CommonTexts = {
   education: "Education",
   previouslyGeneratedAssessments: "Previously Generated Assessments",
   phone: "Phone",
+  assign: "Assign",
+  generateAssessment: "Generate Assessment",
+  scheduleACall: "Schedule a Call",
+  requiredSkills: "Required Skills",
+  responsibilities: "Responsibilities",
+  qualificationsOrExperienceRequired: "Qualifications/ Experience Required",
+  startAssessment: "Start Assessment",
+  instructions: "Instructions",
+  aGeneralInformation: "A. General Information",
+  bRelatedInformation: "B. Related Information",
+  instructionNote:
+    "Note: The following Assessment will be a Proctored exam and duration is 30min",
+  assessment: "Assessment",
+  timeRemaining: "Time Remaining :",
 };
 
 export const ButtonTexts = {
@@ -65,7 +80,7 @@ export const ButtonTexts = {
   generate: "Generate",
   saveJob: "Save Job",
   logout: "Logout",
-  addPhoto: "Add Photo",
+  uploadPhoto: "Upload Photo",
   addNewExperience: "Add New Experience",
   addNewResume: "Add New Resume",
   submit: "Submit",
@@ -73,6 +88,9 @@ export const ButtonTexts = {
   deleteEducation: "Delete Education",
   deleteExperience: "Delete Experience",
   contactInfo: "Contact Info",
+  continue: "Continue",
+  prev: "Prev",
+  next: "Next",
 };
 
 export const TabLabelTexts = {
@@ -96,15 +114,19 @@ export const PostJobsTexts = {
   previouslyPostedJobs: "Previously posted jobs",
   addSkillsRequired: "Add Skills Required",
   qualificationRequired: "Qualification Required",
-  experienceRequired: "Experience Required",
+  experienceRequired: "Experience in years",
   jobTitle: "Job title",
+  companyName: "Company Name",
 };
 
 export const ModalTexts = {
   postANewJobs: "Post a new Jobs",
   generateAssessment: "Generate Assessment",
+  assignAssessment: "Assign Assessment",
   editJob: "Edit the job",
   contactInfo: "Contact Info",
+  jobDescription: "Job Description",
+  submittingAssessment: "Submitting Assessment...",
 };
 
 export const ProfileTexts = {
@@ -128,4 +150,11 @@ export const TextFieldLabelsAndTexts = {
   degree: "Degree",
   selectDegree: "Select degree",
   fieldOfStudy: "Field of study",
+  jobsAssessedFor: "Jobs Assessed For",
+  defaultOrPreviouslyGeneratedAssessments:
+    "Default/Previously Generated Assessments",
+  skillsList: "Skills List",
+  difficultyLevel: "Difficulty Level",
+  selectEmployementType: "Select employment type",
+  employmentType: "Employment Type",
 };

@@ -29,7 +29,7 @@ const SUCCESS = {
   main: "#54D62C",
   dark: "#229A16",
   darker: "#08660D",
-  contrastText: GREY[800],
+  contrastText: GREY[500],
 };
 
 const WARNING = {
@@ -38,7 +38,7 @@ const WARNING = {
   main: "#FFC107",
   dark: "#B78103",
   darker: "#7A4F01",
-  contrastText: GREY[800],
+  contrastText: GREY[500],
 };
 
 
@@ -48,7 +48,7 @@ const ERROR = {
   main: "#FF4842",
   dark: "#B72136",
   darker: "#7A0C2E",
-  contrastText: "#fff",
+  contrastText: GREY[500],
 };
 
 // A custom theme for this app
@@ -75,6 +75,9 @@ const darkTheme = createTheme({
 
 const lightTheme = createTheme({
   typography: {
+    button: {
+      textTransform: "none"
+    },
     fontFamily: [
       'Mulish',
       'sans-serif',
