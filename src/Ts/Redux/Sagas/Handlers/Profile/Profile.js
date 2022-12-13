@@ -16,11 +16,17 @@ export function* handleGetUserProfile(action) {
   try {
     const accessToken = yield select(selectors.getAccessToken);
 
+    const initialUserInfo = yield select(selectors.getUserDetails);
+
     const { data } = yield call(requestGetUserProfile, accessToken);
 
-    yield put(setUserProfile(data));
+    const name = data?.name ? data.name : initialUserInfo?.name;
 
-    yield put(updateUserProfile(data));
+    const email = data?.email ? data.email : initialUserInfo?.email;
+
+    yield put(setUserProfile({ ...data, name, email }));
+
+    yield put(updateUserProfile({ ...data, name, email }));
   } catch (error) {
     console.log(error);
   } finally {
