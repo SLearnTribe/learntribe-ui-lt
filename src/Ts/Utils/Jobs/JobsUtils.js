@@ -7,7 +7,7 @@ export const hanldeJobsResponse = (response) => {
 
   response.forEach(({ title, requiredSkills, id }) => {
     if (!isNull(title)) {
-      jobOptions.push({ title, id });
+      jobOptions.push({ title, id, requiredSkills });
     }
     if (!isNull(requiredSkills)) {
       skillsOptions.push(requiredSkills);

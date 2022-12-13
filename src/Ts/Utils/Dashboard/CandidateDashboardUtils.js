@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep, uniqueId } from "lodash";
 import { CandidateStatsConfig } from "../../Configs/Dashboards/DashboardsConfig";
 
 export const handleCandidateActivitiesResponse = ({
@@ -15,4 +15,12 @@ export const handleCandidateActivitiesResponse = ({
   copyCandidateStatsConfig[2].total = interviewCalls;
 
   return copyCandidateStatsConfig;
+};
+
+export const handleHiringDashboardData = (data) => {
+  data.forEach((element) => {
+    element.id = uniqueId();
+  });
+
+  return data;
 };

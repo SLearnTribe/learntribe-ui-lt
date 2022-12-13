@@ -85,3 +85,9 @@ export const RelatedInformation = [
   "2. On computer screen every student will be given objective type type Multiple Choice Questions (MCQs).",
   "3. The students just need to click on the Right Choice / Correct option from the multiple choices /options given with each question. For Multiple Choice Questions, each question has four options, and the candidate has to click the appropriate option.",
 ];
+
+export const EnumMap = {
+  IN_PROGRESS: "In Progress",
+  HIRED: "Hired",
+  NOT_HIRED: "Not Hired",
+};

@@ -20,16 +20,16 @@ import {
   SuccessAlertSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import {
-  putAssignAssessment,
+  setCurrentEditingAssessment,
   setIsAssignAlertOpen,
 } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
-import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import {
   getAssessmentsData,
   getIsAssignAlertOpen,
 } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { RecommendedJobsMockData } from "../../../../Utils/MockData/DashboardData";
-import { CommonTexts } from "../../../../Utils/Text";
+import { CommonTexts, ModalTexts } from "../../../../Utils/Text";
 
 export const PreviouslyGeneratedAssessments = () => {
   const dispatch = useDispatch();
@@ -38,17 +38,22 @@ export const PreviouslyGeneratedAssessments = () => {
 
   const isAssignAlertOpen = useSelector(getIsAssignAlertOpen);
 
-  const { email } = useSelector(getSelectedApplicantDetails);
+  // const { email } = useSelector(getSelectedApplicantDetails);
 
   const onToggleAssignAlert = useCallback(() => {
     dispatch(setIsAssignAlertOpen());
   }, [dispatch]);
 
   const onClickAssign = useCallback(
-    (assessmentId) => {
-      dispatch(putAssignAssessment({ assessmentId, assigneeEmail: email }));
+    (currentAssessment) => {
+      // dispatch(getdefaultAssessmentsOptions()); we may need it later
+      dispatch(setCurrentEditingAssessment(currentAssessment));
+
+      dispatch(setCurrentModal(ModalTexts.assignAssessment));
+
+      // dispatch(putAssignAssessment({ assessmentId, assigneeEmail: email }));
     },
-    [dispatch, email]
+    [dispatch]
   );
 
   const onClickEditAssessment = ({ currentTarget }) => {
@@ -57,8 +62,9 @@ export const PreviouslyGeneratedAssessments = () => {
   return (
     <Grid item xs={12}>
       <Box sx={scrollAssessmentSxStyles}>
-        {assessmentsData.map(
-          ({ title, subTitle, time = "45 mins", id }, index) => (
+        {assessmentsData.map((row, index) => {
+          const { title, subTitle, time = "45 mins" } = row;
+          return (
             <Card
               sx={HrAssessmentCardSxStyles}
               row
@@ -94,7 +100,7 @@ export const PreviouslyGeneratedAssessments = () => {
               </CardContent>
               <CardActions
                 sx={{ display: "flex", justifyContent: "center", mt: "auto" }}>
-                <Button onClick={() => onClickAssign(id)} variant="contained">
+                <Button onClick={() => onClickAssign(row)} variant="contained">
                   {CommonTexts.assign}
                 </Button>
                 <Snackbar
@@ -112,8 +118,8 @@ export const PreviouslyGeneratedAssessments = () => {
                 </Snackbar>
               </CardActions>
             </Card>
-          )
-        )}
+          );
+        })}
       </Box>
     </Grid>
   );

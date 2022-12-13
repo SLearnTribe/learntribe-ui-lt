@@ -18,3 +18,6 @@ export const getIsAssignAlertOpen = (state) =>
 
 export const getAssessmentOfCandidate = (state) =>
   state.assessmentsSlice.assessmentForCandidate;
+
+export const getCurrentEditingAssessment = (state) =>
+  state.assessmentsSlice.currentEditingAssessment;

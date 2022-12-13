@@ -1,5 +1,6 @@
 import { isEmpty } from "lodash";
 import { call, put, select } from "redux-saga/effects";
+import { handleHiringDashboardData } from "../../../../Utils/Dashboard/CandidateDashboardUtils";
 import {
   setHrHiringData,
   setHrHiringInLastMonthData,
@@ -24,18 +25,19 @@ export function* handleGetHrDashboard({
       category,
     });
 
+    const normalizedData = handleHiringDashboardData(data);
+
     if (isEmpty(category)) {
-      yield put(setHrHiringInLastMonthData(data));
+      yield put(setHrHiringInLastMonthData(normalizedData));
     } else {
-      yield put(setHrHiringData(data));
+      yield put(setHrHiringData(normalizedData));
     }
   } catch (error) {
     console.log(error);
-  } finally {
     yield put(setHrHiringInLastMonthData([]));
 
     yield put(setHrHiringData([]));
-
+  } finally {
     yield put(setIsHrDashboardLoading(false));
 
     yield put(setUserDataLoading(false));

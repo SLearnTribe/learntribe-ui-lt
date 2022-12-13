@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { HrHiringInLastMonthTableMockData } from "../../../Utils/MockData/DashboardData";
 
 const hrDashboardSlice = createSlice({
   name: "hrDashboard",
   initialState: {
-    hiringInLastMonth: HrHiringInLastMonthTableMockData(),
-    hiringInProgress: HrHiringInLastMonthTableMockData(),
+    hiringInLastMonth: [],
+    hiringInProgress: [],
     isLoading: true,
   },
   reducers: {

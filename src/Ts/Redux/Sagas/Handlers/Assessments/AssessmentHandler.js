@@ -5,6 +5,7 @@ import {
   getAssessments,
   setAssessmentForCandidate,
   setAssessmentsData,
+  setCurrentEditingAssessment,
   setDefaultAssessmentsOptions,
   setIsAssessmentsLoading,
   setIsAssignAlertOpen,
@@ -69,6 +70,8 @@ export function* handleGenerateAssessments({ payload }) {
     );
 
     yield put(getAssessments({ page: 1, limit: 25 }));
+
+    yield put(setCurrentEditingAssessment({}));
   } catch (error) {
     console.log(error);
     yield put(setIsAssessmentsLoading(false));

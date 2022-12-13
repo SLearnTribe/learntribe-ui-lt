@@ -16,6 +16,7 @@ export default () => {
     case ModalTexts.editJob:
       return <PostJobsModal />;
     case ModalTexts.generateAssessment:
+    case ModalTexts.assignAssessment:
       return <GenerateAssessments />;
     case ModalTexts.contactInfo:
       return <ProfileContactInfoModal />;

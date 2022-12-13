@@ -17,26 +17,29 @@ import { isEmpty } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { difficultyOptions } from "../../../Configs/AppConfig";
-import { postAssessments } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
+import {
+  postAssessments,
+  setCurrentEditingAssessment,
+} from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import {
   getSelectedApplicantDetails,
   getSelectedApplicantsIds,
 } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
-import { getDefaultAssessmentsDropdownOptions } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import {
+  getCurrentEditingAssessment,
+  getDefaultAssessmentsDropdownOptions,
+} from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import {
   getJobsAssessedForOptions,
   getSkillsOptions,
 } from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
 import {
   handleGenerateAssessmentPostData,
   hanldeDisableGenerateBtn,
 } from "../../../Utils/AssessmentUtils/AssessmentsUtils";
-import {
-  ButtonTexts,
-  ModalTexts,
-  TextFieldLabelsAndTexts,
-} from "../../../Utils/Text";
+import { ButtonTexts, TextFieldLabelsAndTexts } from "../../../Utils/Text";
 import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -44,6 +47,10 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export const GenerateAssessments = () => {
   const dispatch = useDispatch();
+
+  const currentEditingAssessment = useSelector(getCurrentEditingAssessment);
+
+  const currentModal = useSelector(getCurrentModal);
 
   const defaultPreviouslyGeneratedAssessmentOptions = useSelector(
     getDefaultAssessmentsDropdownOptions
@@ -62,9 +69,23 @@ export const GenerateAssessments = () => {
   const [previouslyGeneratedAssessments, setPreviouslyGeneratedAssessments] =
     useState(null);
 
-  const [skillsList, setSkillsList] = useState([]);
+  const [skillsList, setSkillsList] = useState(
+    currentEditingAssessment?.title?.split(", ")
+  );
 
-  const [difficultyLevel, setDifficultyLevel] = useState(null);
+  const [difficultyLevel, setDifficultyLevel] = useState(
+    isEmpty(currentEditingAssessment)
+      ? null
+      : {
+          title: currentEditingAssessment?.difficulty,
+        }
+  );
+
+  const filterdSkillOptions = useMemo(() => {
+    return isEmpty(jobsAssessedFor)
+      ? skillsOptions
+      : jobsAssessedFor?.requiredSkills.split(", ");
+  }, [skillsOptions, jobsAssessedFor]);
 
   const onChangeJobsAssessedFor = (_e, value) => {
     setJobsAssessedFor(value);
@@ -81,19 +102,6 @@ export const GenerateAssessments = () => {
   const onChangeDifficultyLevel = (_e, value) => {
     setDifficultyLevel(value);
   };
-  console.log({
-    jobsAssessedFor,
-    previouslyGeneratedAssessments,
-    skillsList,
-    difficultyLevel,
-  });
-
-  console.log({
-    jobsAssessedFor,
-    previouslyGeneratedAssessments,
-    skillsList,
-    difficultyLevel,
-  });
 
   const onClickGenerate = useCallback(() => {
     const postData = handleGenerateAssessmentPostData(
@@ -118,6 +126,9 @@ export const GenerateAssessments = () => {
   const onClickCancel = useCallback(
     (_event, reason) => {
       if (reason && reason === "backdropClick") return;
+
+      dispatch(setCurrentEditingAssessment({}));
+
       dispatch(setCurrentModal(null));
     },
     [dispatch]
@@ -145,9 +156,7 @@ export const GenerateAssessments = () => {
       open={true}
       onClose={onClickCancel}
       scroll={"paper"}>
-      <DialogTitle id="scroll-dialog-title">
-        {ModalTexts.generateAssessment}
-      </DialogTitle>
+      <DialogTitle id="scroll-dialog-title">{currentModal}</DialogTitle>
       <DialogContent dividers>
         <DialogContentText tabIndex={-1}>
           <Grid container spacing={3}>
@@ -171,6 +180,7 @@ export const GenerateAssessments = () => {
                   TextFieldLabelsAndTexts.defaultOrPreviouslyGeneratedAssessments
                 }
                 placeholder={"Select existing assessment"}
+                disabled={true} //Disabling it for now
               />
             </Grid>
 
@@ -179,7 +189,7 @@ export const GenerateAssessments = () => {
                 disabled={!isEmpty(previouslyGeneratedAssessments)}
                 multiple
                 id="tags-filled"
-                options={skillsOptions}
+                options={filterdSkillOptions}
                 value={skillsList}
                 freeSolo
                 disableCloseOnSelect

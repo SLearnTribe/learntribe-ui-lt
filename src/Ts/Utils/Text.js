@@ -122,6 +122,7 @@ export const PostJobsTexts = {
 export const ModalTexts = {
   postANewJobs: "Post a new Jobs",
   generateAssessment: "Generate Assessment",
+  assignAssessment: "Assign Assessment",
   editJob: "Edit the job",
   contactInfo: "Contact Info",
   jobDescription: "Job Description",

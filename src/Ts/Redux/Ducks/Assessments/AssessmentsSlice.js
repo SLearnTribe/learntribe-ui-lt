@@ -15,6 +15,7 @@ const assessmentsSlice = createSlice({
     defaultAssessmentsOptions: [],
     isAssignAlertOpen: false,
     assessmentForCandidate: {},
+    currentEditingAssessment: {},
   },
   reducers: {
     getAssessments() {},
@@ -46,6 +47,9 @@ const assessmentsSlice = createSlice({
     setAssessmentForCandidate(state, { payload }) {
       state.assessmentForCandidate = payload;
     },
+    setCurrentEditingAssessment(state, { payload }) {
+      state.currentEditingAssessment = payload;
+    },
   },
 });
 
@@ -63,6 +67,7 @@ export const {
   getdefaultAssessmentsOptions,
   setDefaultAssessmentsOptions,
   setIsAssignAlertOpen,
+  setCurrentEditingAssessment,
 } = assessmentsSlice.actions;
 
 export default assessmentsSlice.reducer;
