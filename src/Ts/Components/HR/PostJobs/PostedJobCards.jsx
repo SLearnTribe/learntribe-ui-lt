@@ -40,8 +40,8 @@ export const PostedJobCards = ({ postJobsData }) => {
             businessName = "N/A",
             employmentType = "N/A",
             companyShortName = "N/A",
-            jobLevel = "N/A",
-            jobLocation = "N/A",
+            location = "N/A",
+            jobLocation = location,
             postedOn = "N/A",
           },
           index
@@ -85,11 +85,6 @@ export const PostedJobCards = ({ postJobsData }) => {
                     <Box sx={{ display: "flex" }}>
                       <Typography sx={{ fontSize: 16, fontWeight: 400 }}>
                         {businessName}
-                      </Typography>
-                    </Box>
-                    <Box sx={{ display: "flex" }}>
-                      <Typography sx={{ fontSize: 16, fontWeight: 400 }}>
-                        {jobLevel}
                       </Typography>
                     </Box>
                   </>
