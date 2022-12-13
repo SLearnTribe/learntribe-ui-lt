@@ -23,7 +23,7 @@ import {
 } from "../../Requests/Assessments/AssessmentsRequest";
 
 export function* handleGetRecommendedAssessments({
-  payload: { page, limit, filters },
+  payload: { page, limit, filters, keyword = "" },
 }) {
   try {
     yield put(setUserDataLoading(true));
@@ -35,6 +35,7 @@ export function* handleGetRecommendedAssessments({
       page,
       limit,
       filters,
+      keyword
     });
 
     const previouslyGeneratedAssesseementOptions =

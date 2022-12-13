@@ -59,7 +59,7 @@ export const CommonTexts = {
   scheduleACall: "Schedule a Call",
   requiredSkills: "Required Skills",
   responsibilities: "Responsibilities",
-  qualificationsOrExperienceRequired: "Qualifications/ Experience Required",
+  qualificationsOrExperienceRequired: "Experience Required",
   startAssessment: "Start Assessment",
   instructions: "Instructions",
   aGeneralInformation: "A. General Information",

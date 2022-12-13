@@ -38,16 +38,19 @@ export const JobDescription = () => {
     jobLevel = "N/A",
     requiredAssessments,
     rolesAndResponsibilities,
-    qualificationRequired = [
-      `A Bachelors of Computer Science or a related field is required
-5+ years of IT experience in the development of scalable consumer facing digital solutions
-(consumer websites, web applications, mobile sites etc) in HTML, CSS3 and JavaScript framework is required
-Experience in client-side scripting and JavaScript frameworks, like SCSS, HTML5, AngularJS, ReactJS, REST/JSON API is a must.
-Experience with HTML5, Bootstrap, Foundation for mobile/responsive design is desired
-Exposure to cross-browser, multiple device testing and debugging is a required.
-Experience working on an agile team adopting DevOps and CI/CD
-Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plus`,
-    ],
+    description,
+    qualificationRequired,
+    experienceRequired
+    //     qualificationRequired = [
+    //       `A Bachelors of Computer Science or a related field is required
+    // 5+ years of IT experience in the development of scalable consumer facing digital solutions
+    // (consumer websites, web applications, mobile sites etc) in HTML, CSS3 and JavaScript framework is required
+    // Experience in client-side scripting and JavaScript frameworks, like SCSS, HTML5, AngularJS, ReactJS, REST/JSON API is a must.
+    // Experience with HTML5, Bootstrap, Foundation for mobile/responsive design is desired
+    // Exposure to cross-browser, multiple device testing and debugging is a required.
+    // Experience working on an agile team adopting DevOps and CI/CD
+    // Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plus`,
+    //     ],
   } = useSelector(getCurrentEditingJob);
 
   const onClose = useCallback(
@@ -81,6 +84,9 @@ Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plu
             </Typography>
           </Grid>
           <Grid item xs={12}>
+            {description}
+          </Grid>
+          <Grid item xs={12}>
             <Typography sx={Font22Weight600SxStyles}>
               {CommonTexts.requiredSkills}
             </Typography>
@@ -97,7 +103,7 @@ Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plu
                 }}
                 key={uniqueId()}
                 label={skill}
-                onDelete={() => {}}
+                onDelete={() => { }}
                 variant="outlined"
                 color="primary"
                 deleteIcon={handleJobSkillIcons(capitalize(status))}
@@ -115,7 +121,7 @@ Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plu
                 ...Font20Weight500SxStyles,
                 whiteSpace: "pre-line",
               }}>
-              {rolesAndResponsibilities}
+              {qualificationRequired}
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -124,7 +130,14 @@ Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plu
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            {qualificationRequired.map((qualification) => (
+            <Typography
+              sx={{
+                ...Font20Weight500SxStyles,
+                whiteSpace: "pre-line",
+              }}>
+              {experienceRequired}+ years
+            </Typography>
+            {/* {qualificationRequired.map((qualification) => (
               <Typography
                 key={uniqueId()}
                 sx={{
@@ -135,7 +148,7 @@ Experience with Cloud ecosystems including Azure, Sitecore Cloud or AWS is a plu
                 }}>
                 {qualification}
               </Typography>
-            ))}
+            ))} */}
           </Grid>
         </Grid>
       </DialogContent>

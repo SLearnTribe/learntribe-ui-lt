@@ -71,7 +71,7 @@ export const ProfileSkills = () => {
             <TextField
               sx={{ width: "100%" }}
               id="filled-multiline-flexible"
-              label="Job Description"
+              label="About"
               multiline
               rows={4}
               value={userInfo.about}

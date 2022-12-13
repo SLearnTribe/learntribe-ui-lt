@@ -1,12 +1,40 @@
 import { Grid, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { debounce } from "lodash";
+import React, { useCallback, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getAssessments } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 
 export const AssessmentSearch = () => {
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
 
-  const onChangeSearchValue = ({ target: { value } }) => {
-    setSearchValue(value);
-  };
+  const getData = useCallback(
+    (searchedText) => {
+      dispatch(getAssessments({
+        page: 1,
+        limit: 25,
+        keyword: searchedText
+      }));
+    },
+    [dispatch]
+  );
+
+  const debounceSave = useMemo(
+    () =>
+      debounce((val) => {
+        getData(val);
+      }, 500),
+    [getData]
+  );
+
+  const onChangeSearchValue = useCallback(
+    ({ target: { value } }) => {
+      setSearchValue(value);
+      debounceSave(value);
+    },
+    [debounceSave]
+  );
+
   return (
     <Grid item xs={12}>
       <TextField

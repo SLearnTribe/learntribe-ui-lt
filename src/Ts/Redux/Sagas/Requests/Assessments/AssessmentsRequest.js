@@ -5,6 +5,7 @@ export function requestGetCandidateRecommendedAssessments({
   page = 1,
   limit = 25,
   filters = ["COMPLETED", "PENDING", "BLOCKED", "FAILED", "PASSED"],
+  keyword
 }) {
   return axios.request({
     method: "get",
@@ -12,7 +13,7 @@ export function requestGetCandidateRecommendedAssessments({
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/assessments/user?page=${page}&limit=${limit}&filter=${filters}`,
+    url: `http://www.smilebat.xyz/api/v1/assessments/user?page=${page}&limit=${limit}&filter=${filters}&keyword=${keyword}`,
   });
 }
 
