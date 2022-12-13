@@ -13,32 +13,44 @@ import {
   Typography,
 } from "@mui/material";
 import { uniqueId } from "lodash";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   HrAssessmentCardSxStyles,
   scrollAssessmentSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { employmentTypeBeToUiMap } from "../../Configs/AppConfig";
+import { setCurrentEditingJob } from "../../Redux/Ducks/Jobs/JobsSlice";
+import { setCurrentModal } from "../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
-import { ButtonTexts } from "../../Utils/Text";
+import { ButtonTexts, ModalTexts } from "../../Utils/Text";
 
 export const JobsCard = () => {
+  const dispatch = useDispatch();
+
   const candidateJobs = useSelector(getJobs);
 
-  const onClickViewDetails = () => {};
+  const onClickViewDetails = useCallback(
+    (currentJob) => {
+      dispatch(setCurrentEditingJob(currentJob));
+
+      dispatch(setCurrentModal(ModalTexts.jobDescription));
+    },
+    [dispatch]
+  );
   return (
     <>
       <Grid item xs={12}>
         <Box sx={scrollAssessmentSxStyles}>
-          {candidateJobs.map(
-            ({
+          {candidateJobs.map((row) => {
+            const {
               location = "N/A",
               businessName = "",
               companyShortName = "N/A",
               employmentType = "",
               title = "",
-            }) => (
+            } = row;
+            return (
               <Card
                 sx={{ ...HrAssessmentCardSxStyles, width: "25rem" }}
                 row
@@ -93,13 +105,15 @@ export const JobsCard = () => {
                     justifyContent: "center",
                     mt: "auto",
                   }}>
-                  <Button variant="contained" onClick={onClickViewDetails}>
+                  <Button
+                    variant="contained"
+                    onClick={() => onClickViewDetails(row)}>
                     {ButtonTexts.viewDetails}
                   </Button>
                 </CardActions>
               </Card>
-            )
-          )}
+            );
+          })}
         </Box>
       </Grid>
       <Grid
