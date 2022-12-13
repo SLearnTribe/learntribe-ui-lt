@@ -57,7 +57,7 @@ export const AssessmentStatusMap = {
 export const JobsStatusMap = {
   completed: themes.light.palette.success.dark,
   blocked: themes.light.palette.error.contrastText,
-  pending: themes.light.palette.warning.dark,
+  pending: themes.light.palette.primary.main,
   saved: themes.light.palette.info.dark,
   start: themes.light.palette.primary.main,
 };

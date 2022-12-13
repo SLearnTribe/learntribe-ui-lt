@@ -1,7 +1,8 @@
 import { Card, CardContent, Divider, Grid, Typography } from "@mui/material";
-import { capitalize, uniqueId } from "lodash";
+import { capitalize, isEqual, uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Font14Weight500SxStyles,
   Font15Weight500SxStyles,
@@ -10,6 +11,8 @@ import {
   Font20Weight600SxStyles,
 } from "../../../CommonStyles/CommonSxStyles";
 import { JobsStatusMap } from "../../../Configs/Dashboards/DashboardsConfig";
+import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
+import { getAssessmentForCandidate } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
@@ -18,6 +21,8 @@ import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoCom
 
 export const JobsCards = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const jobsData = useSelector(getJobs);
 
@@ -30,12 +35,17 @@ export const JobsCards = () => {
     [dispatch]
   );
 
-  const onClickStartNow = (e, status) => {
-    e.stopPropagation();
-    if (status === "start") {
-      console.log("clicked");
-    }
-  };
+  const onClickStartNow = useCallback(
+    (e, status, id) => {
+      e.stopPropagation();
+      if (status === "PENDING") {
+        dispatch(getAssessmentForCandidate(id));
+
+        navigate(assessmentsInstructionsRoute);
+      }
+    },
+    [dispatch, navigate]
+  );
   return (
     <>
       <Grid item xs={12}>
@@ -55,6 +65,7 @@ export const JobsCards = () => {
             city = "Bengaluru",
             description,
             requiredAssessments = [],
+            id,
           },
           index
         ) => (
@@ -102,12 +113,14 @@ export const JobsCards = () => {
                           </Grid>
                           <Grid item xs={5} sm={6} md={4} lg={4} xl={4}>
                             <Typography
-                              onClick={(e) => onClickStartNow(e, status)}
+                              onClick={(e) => onClickStartNow(e, status, id)}
                               sx={{
                                 ...Font14Weight500SxStyles,
                                 color: JobsStatusMap?.[status.toLowerCase()],
                               }}>
-                              {capitalize(status)}
+                              {isEqual(status, "PENDING")
+                                ? "Start Now"
+                                : capitalize(status)}
                             </Typography>
                           </Grid>
                         </React.Fragment>
