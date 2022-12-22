@@ -278,7 +278,7 @@ export const PostJobsModal = () => {
                 value={location}
                 onChange={onChangeJobLocation}
                 renderInput={(params) => (
-                  <TextField {...params} label="Job location" />
+                  <TextField {...params} label="Job Location" />
                 )}
               />
             </Grid>
