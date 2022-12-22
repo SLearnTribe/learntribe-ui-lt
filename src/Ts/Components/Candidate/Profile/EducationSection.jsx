@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   CardContent,
   CardHeader,
   Grid,
@@ -14,10 +13,14 @@ import { cloneDeep, isEmpty, isNull } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
 import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { NewEducationObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import {
+  getProfileValidations,
+  getUpdatedUserProfileInfo,
+} from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { AvailableDegreeOptions } from "../../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
@@ -30,6 +33,10 @@ export const EducationSection = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const formErrors = useSelector(getProfileValidations);
+
+  const { educationExperienceErrors = false } = formErrors;
 
   const { educationExperiences = [] } = userInfo;
 
@@ -96,7 +103,9 @@ export const EducationSection = () => {
   );
 
   return (
-    <Card sx={{ pl: "1rem", pr: "1rem" }}>
+    <CardWithError
+      isError={educationExperienceErrors}
+      sx={{ pl: "1rem", pr: "1rem" }}>
       <CardHeader
         title={
           <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
@@ -114,6 +123,8 @@ export const EducationSection = () => {
               <React.Fragment key={index}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <TextField
+                    required
+                    error={formErrors?.[collegeName + index]}
                     sx={{ width: "100%" }}
                     value={collegeName}
                     onChange={({ target: { value } }) =>
@@ -129,14 +140,16 @@ export const EducationSection = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <AutoCompleteSelect
+                    error={formErrors?.[degree + index]}
+                    required={true}
                     index={index}
                     options={AvailableDegreeOptions}
                     value={
                       isNull(degree)
                         ? null
                         : {
-                          title: degree,
-                        }
+                            title: degree,
+                          }
                     }
                     onChange={onChangeDegree}
                     label={TextFieldLabelsAndTexts.degree}
@@ -161,6 +174,8 @@ export const EducationSection = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <TextField
+                    required
+                    error={formErrors?.[fieldOfStudy + index]}
                     sx={{ width: "100%" }}
                     value={fieldOfStudy}
                     onChange={(e) => onChangeFieldOfStudy(e, index)}
@@ -190,6 +205,6 @@ export const EducationSection = () => {
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </CardWithError>
   );
 };

@@ -34,6 +34,8 @@ export const BasicInfoSection = () => {
     nameError = false,
     emailError = false,
     phoneError = false,
+    cityError = false,
+    genderError = false,
   } = useSelector(getProfileValidations);
 
   const { name, email, gender, phone, country } = userInfo;
@@ -146,6 +148,8 @@ export const BasicInfoSection = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              error={cityError}
+              required
               sx={{ width: "100%" }}
               value={country}
               onChange={onChangeCountry}
@@ -156,7 +160,7 @@ export const BasicInfoSection = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <FormControl>
+            <FormControl required error={genderError}>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 Gender
               </FormLabel>

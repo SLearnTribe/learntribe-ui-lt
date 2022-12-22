@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   CardContent,
   CardHeader,
   Grid,
@@ -14,10 +13,14 @@ import { cloneDeep, isEmpty } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
 import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { NewExperienceObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import {
+  getProfileValidations,
+  getUpdatedUserProfileInfo,
+} from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import {
   ButtonTexts,
   CommonTexts,
@@ -30,7 +33,11 @@ export const ExperienceSection = () => {
 
   const userInfo = useSelector(getUpdatedUserProfileInfo);
 
+  const formErrors = useSelector(getProfileValidations);
+
   const { workExperiences = [] } = userInfo;
+
+  const { workExperienceError = false } = formErrors;
 
   const onClickAddNewExperience = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);
@@ -52,7 +59,7 @@ export const ExperienceSection = () => {
     (value, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      const formattedDate = moment(new Date(value.$d)).format("YYYY-MM-DD");
+      const formattedDate = moment(new Date(value?.$d)).format("YYYY-MM-DD");
 
       copyUserInfo.workExperiences[index].startDate = formattedDate;
 
@@ -63,7 +70,7 @@ export const ExperienceSection = () => {
 
   const onChangeEndDate = useCallback(
     (value, index) => {
-      const formattedDate = moment(new Date(value.$d)).format("YYYY-MM-DD");
+      const formattedDate = moment(new Date(value?.$d)).format("YYYY-MM-DD");
 
       const copyUserInfo = cloneDeep(userInfo);
 
@@ -97,7 +104,9 @@ export const ExperienceSection = () => {
   );
 
   return (
-    <Card sx={{ pl: "1rem", pr: "1rem" }}>
+    <CardWithError
+      isError={workExperienceError}
+      sx={{ pl: "1rem", pr: "1rem" }}>
       <CardHeader
         title={
           <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
@@ -112,6 +121,8 @@ export const ExperienceSection = () => {
               <React.Fragment key={index}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <TextField
+                    required
+                    error={formErrors?.[orgName + index]}
                     sx={{ width: "100%" }}
                     value={orgName}
                     onChange={({ target: { value } }) =>
@@ -125,6 +136,8 @@ export const ExperienceSection = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <TextField
+                    required
+                    error={formErrors?.[designation + index]}
                     sx={{ width: "100%" }}
                     value={designation}
                     onChange={({ target: { value } }) =>
@@ -188,6 +201,6 @@ export const ExperienceSection = () => {
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </CardWithError>
   );
 };

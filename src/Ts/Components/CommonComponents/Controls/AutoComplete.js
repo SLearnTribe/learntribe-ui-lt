@@ -59,6 +59,8 @@ export const AutoCompleteSelect = ({
   index,
   getOptionLabelDataField = "title",
   disabled = false,
+  error = false,
+  required = false,
 }) => {
   return (
     <Autocomplete
@@ -73,6 +75,8 @@ export const AutoCompleteSelect = ({
       }
       renderInput={(params) => (
         <TextField
+          error={error}
+          required={required}
           {...params}
           variant="outlined"
           label={label}
@@ -92,6 +96,8 @@ export const AutoCompleteAddTags = ({
   placeholder,
   sx = {},
   disabled = false,
+  error = false,
+  required = false,
 }) => {
   return (
     <Autocomplete
@@ -115,6 +121,8 @@ export const AutoCompleteAddTags = ({
       }
       renderInput={(params) => (
         <TextField
+          error={error}
+          required={required}
           sx={sx}
           {...params}
           variant="outlined"
