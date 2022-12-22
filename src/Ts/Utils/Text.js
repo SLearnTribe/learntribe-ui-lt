@@ -116,11 +116,12 @@ export const PostJobsTexts = {
   qualificationRequired: "Qualification Required",
   experienceRequired: "Experience in years",
   jobTitle: "Job title",
+  jobLocation: "Job Location",
   companyName: "Company Name",
 };
 
 export const ModalTexts = {
-  postANewJobs: "Post a new Jobs",
+  postANewJobs: "Post a new Job",
   generateAssessment: "Generate Assessment",
   assignAssessment: "Assign Assessment",
   editJob: "Edit the job",

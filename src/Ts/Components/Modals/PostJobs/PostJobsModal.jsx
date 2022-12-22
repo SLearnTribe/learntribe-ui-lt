@@ -45,7 +45,7 @@ export const PostJobsModal = () => {
     employmentType = null,
     businessName = "",
     qualificationRequired: qualification,
-    location = "",
+    location = ""
   } = useSelector(getCurrentEditingJob);
 
   const cities = useSelector(getAllCityList);
@@ -96,7 +96,7 @@ export const PostJobsModal = () => {
           qualificationRequired: qualificationRequired,
           id,
           title: jobTitle,
-          location: jobLocation,
+          location: jobLocation
         },
         method: isEqual(currentModal, ModalTexts.editJob) ? "PUT" : "POST",
       })
@@ -105,6 +105,7 @@ export const PostJobsModal = () => {
     dispatch,
     jobDescription,
     jobTitle,
+    jobLocation,
     qualificationRequired,
     addedSkills,
     experienceRequired,
@@ -149,7 +150,7 @@ export const PostJobsModal = () => {
     setTypeOfEmployment(value);
   };
 
-  const onChangeJobLocation = (_e, value) => {
+  const onChangeJobLocation = ({ target: { value } }) => {
     setJobLocation(value);
   };
 
@@ -172,7 +173,7 @@ export const PostJobsModal = () => {
     qualificationRequired,
     companyName,
     typeOfEmployment,
-    jobLocation,
+    jobLocation
   ]);
 
   return (

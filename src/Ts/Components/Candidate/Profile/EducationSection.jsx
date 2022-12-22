@@ -55,7 +55,7 @@ export const EducationSection = () => {
 
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.educationExperiences[index].startDate = formattedDate;
+      copyUserInfo.educationExperiences[index].dateOfCompletion = formattedDate;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -108,7 +108,7 @@ export const EducationSection = () => {
         <Grid container spacing={3}>
           {educationExperiences?.map(
             (
-              { fieldOfStudy, startDate, endDate, collegeName, degree },
+              { fieldOfStudy, dateOfCompletion, endDate, collegeName, degree },
               index
             ) => (
               <React.Fragment key={index}>
@@ -149,7 +149,7 @@ export const EducationSection = () => {
                       mask="____-__-__"
                       inputFormat="YYYY-MM-DD"
                       label="Date of completion"
-                      value={startDate}
+                      value={dateOfCompletion}
                       onChange={(newValue) => {
                         onChangeStartDate(newValue, index);
                       }}

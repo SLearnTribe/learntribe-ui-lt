@@ -42,7 +42,7 @@ export const PostedJobCards = ({ postJobsData }) => {
             companyShortName = "N/A",
             location = "N/A",
             jobLocation = location,
-            postedOn = "N/A",
+            daysBetween = "N/A",
           },
           index
         ) => (
@@ -107,7 +107,7 @@ export const PostedJobCards = ({ postJobsData }) => {
 
                 <Typography
                   sx={{ color: "#9D9D9F", fontSize: 16, fontWeight: 400 }}>
-                  {postedOn}
+                  {daysBetween} days ago
                 </Typography>
               </CardActions>
             </Card>

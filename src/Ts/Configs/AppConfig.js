@@ -14,9 +14,9 @@ export const sideNavMenuItemsConfig = {
 };
 
 export const difficultyOptions = [
-  { title: "EASY" },
-  { title: "MEDIUM" },
-  { title: "HARD" },
+  { title: "BEGINNER" },
+  { title: "INTERMEDIATE" },
+  { title: "ADVANCED" },
 ];
 
 export const employmentTypeOptions = [

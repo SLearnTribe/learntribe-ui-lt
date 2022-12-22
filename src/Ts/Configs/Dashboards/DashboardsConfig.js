@@ -64,9 +64,9 @@ export const JobsStatusMap = {
 
 export const AssessmentDifficultyLevelColorMap = {
   RECOMMENDED: { color: "#000000", bgColor: "#F6F6F6" },
-  HARD: { color: "#EB5757", bgColor: "rgba(235, 87, 87, 0.1)" },
-  EASY: { color: "#2F80ED", bgColor: "rgba(47, 128, 237, 0.1)" },
-  MEDIUM: { color: "#9747FF", bgColor: "rgba(151, 71, 255, 0.1)" },
+  ADVANCED: { color: "#EB5757", bgColor: "rgba(235, 87, 87, 0.1)" },
+  BEGINNER: { color: "#2F80ED", bgColor: "rgba(47, 128, 237, 0.1)" },
+  INTERMEDIATE: { color: "#9747FF", bgColor: "rgba(151, 71, 255, 0.1)" },
 };
 
 export const GroupInstructions = [
