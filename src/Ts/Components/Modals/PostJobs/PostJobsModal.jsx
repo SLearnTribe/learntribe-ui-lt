@@ -149,7 +149,7 @@ export const PostJobsModal = () => {
     setTypeOfEmployment(value);
   };
 
-  const onChangeJobLocation = ({ target: { value } }) => {
+  const onChangeJobLocation = (_e, value) => {
     setJobLocation(value);
   };
 

@@ -1,4 +1,5 @@
 import {
+  Autocomplete,
   Card,
   CardContent,
   CardHeader,
@@ -15,6 +16,7 @@ import { cloneDeep } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
+import { getAllCityList } from "../../../Redux/Selectors/AppSelectors";
 import {
   getProfileValidations,
   getUpdatedUserProfileInfo,
@@ -37,6 +39,8 @@ export const BasicInfoSection = () => {
     cityError = false,
     genderError = false,
   } = useSelector(getProfileValidations);
+
+  const cities = useSelector(getAllCityList);
 
   const { name, email, gender, phone, country } = userInfo;
 
@@ -85,7 +89,7 @@ export const BasicInfoSection = () => {
   );
 
   const onChangeCountry = useCallback(
-    ({ target: { value } }) => {
+    (_e, value) => {
       const copyUserInfo = cloneDeep(userInfo);
 
       copyUserInfo.country = value;
@@ -147,17 +151,31 @@ export const BasicInfoSection = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <TextField
-              error={cityError}
-              required
+            <Autocomplete
               sx={{ width: "100%" }}
+              id="free-solo-demo"
+              freeSolo
+              options={cities}
+              value={country}
+              onChange={onChangeCountry}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  error={cityError}
+                  required
+                  label={CommonTexts.city}
+                  placeholder={TextFieldLabelsAndTexts.enterCityOrCountry}
+                />
+              )}
+            />
+            {/* <TextField
               value={country}
               onChange={onChangeCountry}
               id="outlined-basic"
               label={CommonTexts.city}
               placeholder={TextFieldLabelsAndTexts.enterCityOrCountry}
               variant="outlined"
-            />
+            /> */}
           </Grid>
           <Grid item xs={12}>
             <FormControl required error={genderError}>
