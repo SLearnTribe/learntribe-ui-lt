@@ -1,4 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
+import { getAllCities } from "../Ducks/App/AppSlice";
 import { getApplicantsData } from "../Ducks/Applicants/ApplicantSlice";
 import {
   getAssessmentForCandidate,
@@ -12,7 +13,11 @@ import { getHrHiringData } from "../Ducks/Dashboard/HrDashboardSlice";
 import { getJobsData, postJobsData } from "../Ducks/Jobs/JobsSlice";
 import { getUserProfile, saveUserProfile } from "../Ducks/Profile/ProfileSlice";
 import { getUserData, postLogout } from "../Ducks/userSlice";
-import { handleGetUser, handlePostLogout } from "../Sagas/Handlers/user";
+import {
+  handleGetAllCities,
+  handleGetUser,
+  handlePostLogout,
+} from "../Sagas/Handlers/user";
 import { handleGetApplicants } from "./Handlers/Applicants/ApplicantsHandler";
 import {
   handleAssignAssessment,
@@ -46,6 +51,7 @@ export function* watcherSaga() {
     getAssessmentForCandidate.type,
     handleGetAssessmentForCandidate
   );
+  yield takeLatest(getAllCities.type, handleGetAllCities);
 
   //POST
   yield takeLatest(saveUserProfile.type, handleSaveUserProfile);

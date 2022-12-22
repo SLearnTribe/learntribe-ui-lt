@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SideNavListItems } from "../../CommonJsx/SideNavListItems";
@@ -20,7 +20,10 @@ import {
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { profileRoute } from "../../Configs/RoutesConfig";
-import { setIsSideMenuCollapsed } from "../../Redux/Ducks/App/AppSlice";
+import {
+  getAllCities,
+  setIsSideMenuCollapsed,
+} from "../../Redux/Ducks/App/AppSlice";
 import { postLogout } from "../../Redux/Ducks/userSlice";
 import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
@@ -110,6 +113,10 @@ export default function AppContainer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  useEffect(() => {
+    dispatch(getAllCities());
+  }, [dispatch]);
 
   const handleDrawerOpen = React.useCallback(() => {
     dispatch(setIsSideMenuCollapsed(!open));

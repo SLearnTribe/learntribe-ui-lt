@@ -21,6 +21,7 @@ import { createEditPostJobConfig } from "../../../Configs/Jobs/JobsConfig";
 import { postJobsData } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { setCurrentEditingPostJobData } from "../../../Redux/Ducks/PostJobs/PostJobsSlice";
+import { getAllCityList } from "../../../Redux/Selectors/AppSelectors";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
 import { getCurrentEditingJob } from "../../../Redux/Selectors/PostJobsSelectors/PostJobsSelectors";
 import {
@@ -44,7 +45,10 @@ export const PostJobsModal = () => {
     employmentType = null,
     businessName = "",
     qualificationRequired: qualification,
+    location = "",
   } = useSelector(getCurrentEditingJob);
+
+  const cities = useSelector(getAllCityList);
 
   const skills = useMemo(() => {
     return isEmpty(requiredSkills) ? [] : requiredSkills?.split(", ");
@@ -66,6 +70,8 @@ export const PostJobsModal = () => {
         }
       : null
   );
+
+  const [jobLocation, setJobLocation] = useState(location);
 
   const [companyName, setCompanyName] = useState(businessName);
 
@@ -90,6 +96,7 @@ export const PostJobsModal = () => {
           qualificationRequired: qualificationRequired,
           id,
           title: jobTitle,
+          location: jobLocation,
         },
         method: isEqual(currentModal, ModalTexts.editJob) ? "PUT" : "POST",
       })
@@ -105,11 +112,12 @@ export const PostJobsModal = () => {
     typeOfEmployment,
     companyName,
     currentModal,
+    jobLocation,
   ]);
 
   const onClickCancel = useCallback(
     (_event, reason) => {
-      if (reason && reason == "backdropClick") return;
+      if (reason && reason === "backdropClick") return;
       dispatch(setCurrentEditingPostJobData({}));
 
       dispatch(setCurrentModal(null));
@@ -141,6 +149,10 @@ export const PostJobsModal = () => {
     setTypeOfEmployment(value);
   };
 
+  const onChangeJobLocation = (_e, value) => {
+    setJobLocation(value);
+  };
+
   const shouldDisablePostSaveJobBtn = useMemo(() => {
     return (
       isEmpty(jobTitle) ||
@@ -149,7 +161,8 @@ export const PostJobsModal = () => {
       isEmpty(qualificationRequired) ||
       isEmpty(companyName) ||
       isEmpty(typeOfEmployment) ||
-      isEmpty(addedSkills)
+      isEmpty(addedSkills) ||
+      isEmpty(jobLocation)
     );
   }, [
     addedSkills,
@@ -159,6 +172,7 @@ export const PostJobsModal = () => {
     qualificationRequired,
     companyName,
     typeOfEmployment,
+    jobLocation,
   ]);
 
   return (
@@ -174,7 +188,7 @@ export const PostJobsModal = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
-                sx={{ width: "29rem" }}
+                sx={{ width: "100%" }}
                 value={jobTitle}
                 onChange={onChangeJobTitle}
                 id="outlined-basic"
@@ -235,10 +249,10 @@ export const PostJobsModal = () => {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 type="number"
-                sx={{ width: "29rem" }}
+                sx={{ width: "100%" }}
                 value={experienceRequired}
                 onChange={onChangeExperience}
                 id="outlined-basic"
@@ -246,14 +260,26 @@ export const PostJobsModal = () => {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
-                sx={{ width: "29rem" }}
+                sx={{ width: "100%" }}
                 value={companyName}
                 onChange={onChangeCompanyName}
                 id="outlined-basic"
                 label={PostJobsTexts.companyName}
                 variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Autocomplete
+                id="free-solo-demo"
+                freeSolo
+                options={cities}
+                value={location}
+                onChange={onChangeJobLocation}
+                renderInput={(params) => (
+                  <TextField {...params} label="Job location" />
+                )}
               />
             </Grid>
             <Grid item xs={12}>

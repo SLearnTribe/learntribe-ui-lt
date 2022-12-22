@@ -1,11 +1,16 @@
 import { call, put, select } from "redux-saga/effects";
 import { parseJwt } from "../../../Utils/AppUtils";
+import { setCityList } from "../../Ducks/App/AppSlice";
 import { getAssessments } from "../../Ducks/Assessments/AssessmentsSlice";
 import { getJobsData } from "../../Ducks/Jobs/JobsSlice";
 import { getUserProfile } from "../../Ducks/Profile/ProfileSlice";
 import { setUserData, setUserDataLoading } from "../../Ducks/userSlice";
 import * as selectors from "../../Selectors/UserSelectors/UserSelectors";
-import { requestGetUser, requestPostLogout } from "../Requests/user";
+import {
+  requestGetAllCities,
+  requestGetUser,
+  requestPostLogout,
+} from "../Requests/user";
 
 export function* handleGetUser({ payload }) {
   try {
@@ -43,5 +48,17 @@ export function* handlePostLogout() {
     yield put(setUserDataLoading(false));
   } finally {
     window.location.href = "http://www.smilebat.xyz";
+  }
+}
+
+export function* handleGetAllCities() {
+  try {
+    const {
+      data: { data },
+    } = yield call(requestGetAllCities);
+
+    yield put(setCityList(data));
+  } catch (error) {
+    console.log(error);
   }
 }

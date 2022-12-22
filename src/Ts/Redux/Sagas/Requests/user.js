@@ -17,3 +17,16 @@ export function requestPostLogout(accessToken) {
     url: "http://www.smilebat.xyz/auth/logout",
   });
 }
+
+export function requestGetAllCities() {
+  return axios.request({
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: {
+      country: "india",
+    },
+    url: "https://countriesnow.space/api/v0.1/countries/cities",
+  });
+}
