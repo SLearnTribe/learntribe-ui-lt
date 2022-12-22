@@ -45,7 +45,7 @@ export const PostJobsModal = () => {
     employmentType = null,
     businessName = "",
     qualificationRequired: qualification,
-    location = ""
+    location = "",
   } = useSelector(getCurrentEditingJob);
 
   const cities = useSelector(getAllCityList);
@@ -96,7 +96,7 @@ export const PostJobsModal = () => {
           qualificationRequired: qualificationRequired,
           id,
           title: jobTitle,
-          location: jobLocation
+          location: jobLocation,
         },
         method: isEqual(currentModal, ModalTexts.editJob) ? "PUT" : "POST",
       })
@@ -113,7 +113,6 @@ export const PostJobsModal = () => {
     typeOfEmployment,
     companyName,
     currentModal,
-    jobLocation,
   ]);
 
   const onClickCancel = useCallback(
@@ -173,7 +172,7 @@ export const PostJobsModal = () => {
     qualificationRequired,
     companyName,
     typeOfEmployment,
-    jobLocation
+    jobLocation,
   ]);
 
   return (

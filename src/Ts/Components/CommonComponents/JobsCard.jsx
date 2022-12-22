@@ -15,6 +15,7 @@ import {
 import { uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CardWithNoData } from "../../CommonJsx/CommonJsxUtils";
 import {
   HrAssessmentCardSxStyles,
   scrollAssessmentSxStyles,
@@ -23,7 +24,7 @@ import { employmentTypeBeToUiMap } from "../../Configs/AppConfig";
 import { setCurrentEditingJob } from "../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
-import { ButtonTexts, ModalTexts } from "../../Utils/Text";
+import { ButtonTexts, CommonTexts, ModalTexts } from "../../Utils/Text";
 
 export const JobsCard = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ export const JobsCard = () => {
   return (
     <>
       <Grid item xs={12}>
+        {candidateJobs.length === 0 && (
+          <CardWithNoData text={CommonTexts.noJobsAvailable} />
+        )}
         <Box sx={scrollAssessmentSxStyles}>
           {candidateJobs.map((row) => {
             const {

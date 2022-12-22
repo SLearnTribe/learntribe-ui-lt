@@ -2,7 +2,8 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
-import { Divider, Tooltip, Typography } from "@mui/material";
+import { Card, CardContent, Divider, Tooltip, Typography } from "@mui/material";
+import { HrAssessmentCardSxStyles } from "../CommonStyles/CommonSxStyles";
 import themes from "../Utils/Themes/Themes";
 
 export const VerticleDivider = ({ isVisible }) => {
@@ -67,4 +68,28 @@ export const handleJobSkillIcons = (status) => {
     default:
       break;
   }
+};
+
+export const CardWithNoData = ({
+  width = "100%",
+  text = "No Data Available",
+  height = "10rem",
+}) => {
+  return (
+    <Card
+      sx={{
+        ...HrAssessmentCardSxStyles,
+        width,
+        height,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+      <CardContent>
+        <Typography variant="h5" component="div">
+          {text}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 };

@@ -68,6 +68,8 @@ export const CommonTexts = {
     "Note: The following Assessment will be a Proctored exam and duration is 30min",
   assessment: "Assessment",
   timeRemaining: "Time Remaining :",
+  noJobsAvailable: "No Jobs Available",
+  noAssessmentsAvailable: "No Assessments Available",
 };
 
 export const ButtonTexts = {
