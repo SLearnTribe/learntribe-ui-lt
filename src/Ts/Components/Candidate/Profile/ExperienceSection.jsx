@@ -21,6 +21,8 @@ import {
   getProfileValidations,
   getUpdatedUserProfileInfo,
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionSkeleton";
 import {
   ButtonTexts,
   CommonTexts,
@@ -32,6 +34,8 @@ export const ExperienceSection = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const formErrors = useSelector(getProfileValidations);
 
@@ -103,7 +107,9 @@ export const ExperienceSection = () => {
     [dispatch, userInfo]
   );
 
-  return (
+  return isLoading ? (
+    <ExperienceSectionSkeleton />
+  ) : (
     <CardWithError
       isError={workExperienceError}
       sx={{ pl: "1rem", pr: "1rem" }}>

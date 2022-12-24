@@ -14,6 +14,8 @@ import {
   getProfileValidations,
   getUpdatedUserProfileInfo,
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ProfileSkillsSkeleton } from "../../../Skeletons/ProfileSkillsSkeleton";
 import { CommonTexts, ProfileTexts } from "../../../Utils/Text";
 import { AutoCompleteAddTags } from "../../CommonComponents/Controls/AutoComplete";
 
@@ -21,6 +23,8 @@ export const ProfileSkills = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const { skillsError = false } = useSelector(getProfileValidations);
 
@@ -55,7 +59,9 @@ export const ProfileSkills = () => {
     [dispatch, userInfo]
   );
 
-  return (
+  return isLoading ? (
+    <ProfileSkillsSkeleton />
+  ) : (
     <CardWithError isError={skillsError} sx={{ pl: "1rem", pr: "1rem" }}>
       <CardHeader
         title={

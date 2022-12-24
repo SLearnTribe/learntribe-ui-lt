@@ -15,11 +15,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import sampleImage from "../../../../Assests/Adil.jpeg";
 import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { CandidateProfileSkeleton } from "../../../Skeletons/CandidateProfileSkeleton";
 import { ButtonTexts } from "../../../Utils/Text";
 import themes from "../../../Utils/Themes/Themes";
 
 export const ProfileAvatarSection = () => {
   const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const [file, setFile] = useState(sampleImage);
 
@@ -28,7 +32,9 @@ export const ProfileAvatarSection = () => {
       setFile(URL.createObjectURL(e.target.files[0]));
     }
   };
-  return (
+  return isLoading ? (
+    <CandidateProfileSkeleton />
+  ) : (
     <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
       <Card>
         <CardContent>

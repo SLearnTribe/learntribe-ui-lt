@@ -8,15 +8,23 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ResumeUploadSkeleton } from "../../../Skeletons/ResumeUploadSkeleton";
 import { ButtonTexts, ProfileTexts } from "../../../Utils/Text";
 
 export const ResumeUploadSection = () => {
+  const isLoading = useSelector(getIsUserDataLoading);
+
   const [fileName, setFileName] = useState("");
 
   const onUploadResume = ({ target: { files } }) => {
     setFileName(files[0].name);
   };
-  return (
+
+  return isLoading ? (
+    <ResumeUploadSkeleton />
+  ) : (
     <Card sx={{ pl: "1rem", pr: "1rem" }}>
       <CardHeader
         title={

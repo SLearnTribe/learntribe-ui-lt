@@ -21,6 +21,8 @@ import {
   getProfileValidations,
   getUpdatedUserProfileInfo,
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionSkeleton";
 import { AvailableDegreeOptions } from "../../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
@@ -33,6 +35,8 @@ export const EducationSection = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const formErrors = useSelector(getProfileValidations);
 
@@ -102,7 +106,9 @@ export const EducationSection = () => {
     [dispatch, userInfo]
   );
 
-  return (
+  return isLoading ? (
+    <ExperienceSectionSkeleton />
+  ) : (
     <CardWithError
       isError={educationExperienceErrors}
       sx={{ pl: "1rem", pr: "1rem" }}>

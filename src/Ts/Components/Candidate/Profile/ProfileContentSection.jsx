@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import { isEmpty, isEqual } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import {
   getUpdatedUserProfileInfo,
   getUserProfileInfo,
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { handleValidateUserInfo } from "../../../Utils/Profile/CandidateProfileUtils";
 import { ButtonTexts } from "../../../Utils/Text";
 import { BasicInfoSection } from "./BasicInfoSection";
@@ -20,6 +21,8 @@ import { ResumeUploadSection } from "./ResumeUploadSection";
 
 export const ProfileContentSection = () => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const userProfileDetails = useSelector(getUpdatedUserProfileInfo);
 
@@ -52,12 +55,16 @@ export const ProfileContentSection = () => {
           <ResumeUploadSection />
         </Grid>
         <Grid item xs={12}>
-          <Button
-            disabled={isEqual(userDetails, userProfileDetails)}
-            onClick={onSaveUserDetails}
-            variant="contained">
-            {ButtonTexts.submit}
-          </Button>
+          {isLoading ? (
+            <Skeleton width={"100%"} height={50} />
+          ) : (
+            <Button
+              disabled={isEqual(userDetails, userProfileDetails)}
+              onClick={onSaveUserDetails}
+              variant="contained">
+              {ButtonTexts.submit}
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Grid>

@@ -21,6 +21,8 @@ import {
   getProfileValidations,
   getUpdatedUserProfileInfo,
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { BasicInfoSkeleton } from "../../../Skeletons/BasicInfoSkeleton";
 import {
   CommonTexts,
   ProfileTexts,
@@ -31,6 +33,8 @@ export const BasicInfoSection = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUpdatedUserProfileInfo);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const {
     nameError = false,
@@ -99,7 +103,9 @@ export const BasicInfoSection = () => {
     [dispatch, userInfo]
   );
 
-  return (
+  return isLoading ? (
+    <BasicInfoSkeleton />
+  ) : (
     <Card sx={{ pl: "1rem", pr: "1rem" }}>
       <CardHeader
         title={
