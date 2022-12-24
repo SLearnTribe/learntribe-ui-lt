@@ -22,6 +22,8 @@ import {
 import { assessmentsInstructionsRoute } from "../../../../Configs/RoutesConfig";
 import { getAssessmentForCandidate } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import { getIsUserDataLoading } from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { RecommendedAssessmentSkeleton } from "../../../../Skeletons/RecomendedAssessmentSkeleton";
 import { ButtonTexts, CommonTexts } from "../../../../Utils/Text";
 
 export const RecommendedAssessments = () => {
@@ -30,6 +32,8 @@ export const RecommendedAssessments = () => {
   const navigate = useNavigate();
 
   const assessmentsData = useSelector(getAssessmentsData);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const onStartAssessment = useCallback(
     ({ currentTarget }) => {
@@ -42,7 +46,9 @@ export const RecommendedAssessments = () => {
     [dispatch, navigate]
   );
 
-  return (
+  return isLoading ? (
+    <RecommendedAssessmentSkeleton />
+  ) : (
     <Grid key={uniqueId()} item xs={12}>
       <Box sx={scrollAssessmentSxStyles}>
         {assessmentsData.length === 0 && (
