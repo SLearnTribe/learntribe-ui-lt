@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 // ----------------------------------------------------------------------
 
-const IconWrapperStyle = styled("div")(({ theme }) => ({
+export const IconWrapperStyle = styled("div")(({ theme }) => ({
   margin: "auto",
   display: "flex",
   borderRadius: "50%",

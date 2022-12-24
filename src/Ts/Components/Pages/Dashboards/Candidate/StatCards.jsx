@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { CandidateActivitiesIconMap } from "../../../../Configs/Dashboards/DashboardsConfig";
 import { getCandidateActivitiesData } from "../../../../Redux/Selectors/Dashboard/CandidateDashboardSelectors";
 import { getIsUserDataLoading } from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
-import { CandidateActivitiesSkeleton } from "../../../../Skeletons/CardSkeletons";
+import { CandidateActivitiesSkeleton } from "../../../../Skeletons/CandidateActivitiesSkeleton";
 import DashboardStatsCard from "../../../CommonComponents/StatsCard";
 
 export const StatCards = () => {
@@ -15,7 +15,7 @@ export const StatCards = () => {
 
   return (
     <>
-      {isLoading && 0 ? (
+      {isLoading ? (
         <CandidateActivitiesSkeleton />
       ) : (
         <>

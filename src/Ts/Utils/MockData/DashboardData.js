@@ -476,3 +476,21 @@ export const loggedInUserDetailsMockData = {
   family_name: "C",
   email: "adil.shezin94@gmail.com",
 };
+
+export const CandidateActivitiesData = [
+  {
+    title: "Assessments Completed",
+    total: 0,
+    color: "success",
+  },
+  {
+    title: "Jobs Applied",
+    total: 0,
+    color: "info",
+  },
+  {
+    title: "Interview Calls",
+    total: 0,
+    color: "warning",
+  },
+];
