@@ -17,6 +17,8 @@ import { getAssessmentForCandidate } from "../../../Redux/Ducks/Assessments/Asse
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { JobsCardSkeleton } from "../../../Skeletons/JobsCardSkeleton";
 import { AssessmentTexts, CommonTexts, ModalTexts } from "../../../Utils/Text";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
@@ -26,6 +28,8 @@ export const JobsCards = () => {
   const navigate = useNavigate();
 
   const jobsData = useSelector(getJobs);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const onClickJobCard = useCallback(
     (currentJob) => {
@@ -47,7 +51,9 @@ export const JobsCards = () => {
     },
     [dispatch, navigate]
   );
-  return (
+  return isLoading ? (
+    <JobsCardSkeleton />
+  ) : (
     <>
       <Grid item xs={12}>
         <AutoCompleteMultiSelect
