@@ -3,6 +3,7 @@ import { capitalize, isEqual, uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CardWithNoData } from "../../../CommonJsx/CommonJsxUtils";
 import {
   Font14Weight500SxStyles,
   Font15Weight500SxStyles,
@@ -16,7 +17,7 @@ import { getAssessmentForCandidate } from "../../../Redux/Ducks/Assessments/Asse
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
-import { AssessmentTexts, ModalTexts } from "../../../Utils/Text";
+import { AssessmentTexts, CommonTexts, ModalTexts } from "../../../Utils/Text";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const JobsCards = () => {
@@ -57,6 +58,11 @@ export const JobsCards = () => {
           placeholder={"Select assessment by difficulty level"}
         />
       </Grid>
+      {jobsData.length === 0 && (
+        <Grid item xs={12} key={uniqueId()}>
+          <CardWithNoData text={CommonTexts.noJobsAvailable} />
+        </Grid>
+      )}
       {jobsData.map(
         (
           {
