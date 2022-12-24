@@ -1,11 +1,14 @@
 import { Grid, TextField } from "@mui/material";
 import { debounce } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getApplicantsData } from "../../../Redux/Ducks/Applicants/ApplicantSlice";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 
 export const ApplicantsSearch = () => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -41,6 +44,7 @@ export const ApplicantsSearch = () => {
   return (
     <Grid item xs={12}>
       <TextField
+        disabled={isLoading}
         sx={{ width: "25rem" }}
         value={searchValue}
         onChange={onChangeSearchValue}

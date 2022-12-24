@@ -8,12 +8,16 @@ import {
   CardHeader,
   Typography,
 } from "@mui/material";
+import { isEmpty } from "lodash";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import sampleImage from "../../../../Assests/Adil.jpeg";
 import { applicantDetailsRoute } from "../../../Configs/RoutesConfig";
+import { ApplicantsNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ApplicantSideViewSkeleton } from "../../../Skeletons/ApplicantSideViewSkeleton";
 import { ButtonTexts, CommonTexts } from "../../../Utils/Text";
 
 export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
@@ -21,10 +25,18 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
 
   const applicantDetails = useSelector(getSelectedApplicantDetails);
 
+  const isLoading = useSelector(getIsUserDataLoading);
+
   const onClickViewDetails = () => {
     navigate(applicantDetailsRoute);
   };
 
+  if (isLoading) {
+    return <ApplicantSideViewSkeleton />;
+  }
+  if (isEmpty(applicantDetails)) {
+    return <ApplicantsNoDataCard />;
+  }
   return !isSelectMultipleActive ? (
     <Card sx={{ boxShadow: 0 }}>
       <CardHeader

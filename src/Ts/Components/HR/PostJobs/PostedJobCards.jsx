@@ -9,16 +9,21 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { uniqueId } from "lodash";
+import { isEmpty, uniqueId } from "lodash";
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { employmentTypeBeToUiMap } from "../../../Configs/AppConfig";
+import { PostJobsNoData } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { setCurrentEditingPostJobData } from "../../../Redux/Ducks/PostJobs/PostJobsSlice";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { PostedJobCardsSkelton } from "../../../Skeletons/PostedJobCardsSkeleton";
 import { ModalTexts } from "../../../Utils/Text";
 
 export const PostedJobCards = ({ postJobsData }) => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const onClickEditJob = useCallback(
     ({ currentTarget }) => {
@@ -31,7 +36,11 @@ export const PostedJobCards = ({ postJobsData }) => {
     [dispatch]
   );
 
-  return (
+  return isLoading ? (
+    <PostedJobCardsSkelton />
+  ) : isEmpty(postJobsData) ? (
+    <PostJobsNoData text="No Jobs Available" />
+  ) : (
     <>
       {postJobsData?.map(
         (

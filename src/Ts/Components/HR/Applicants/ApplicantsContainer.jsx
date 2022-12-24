@@ -1,8 +1,15 @@
-import { Button, FormControlLabel, Grid, Switch } from "@mui/material";
+import {
+  Button,
+  FormControlLabel,
+  Grid,
+  Skeleton,
+  Switch,
+} from "@mui/material";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getSelectedApplicantsIds } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { ButtonTexts, HrApplicantTexts, ModalTexts } from "../../../Utils/Text";
 import { ApplicantsCards } from "./ApplicantsCards";
 import { ApplicantsSideView } from "./ApplicantsSideView";
@@ -11,6 +18,8 @@ export const ApplicantsContainer = () => {
   const dispatch = useDispatch();
 
   const selectedApplicantsIds = useSelector(getSelectedApplicantsIds);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const [isSelectMultipleActive, setIsSelectMultipleActive] = useState(false);
 
@@ -38,7 +47,10 @@ export const ApplicantsContainer = () => {
           <Grid container spacing={3}>
             <Grid item xs={6}>
               {shouldDisplayGenerateBtn && (
-                <Button onClick={onClickGenerateAssessment} variant="contained">
+                <Button
+                  disabled={isLoading}
+                  onClick={onClickGenerateAssessment}
+                  variant="contained">
                   {ButtonTexts.generateAssessment}
                 </Button>
               )}
@@ -51,15 +63,19 @@ export const ApplicantsContainer = () => {
                 justifyContent: "flex-end",
                 alignItems: "center",
               }}>
-              <FormControlLabel
-                sx={{ fontWeight: 500, fontSize: 16, color: "#737272" }}
-                value="start"
-                control={
-                  <Switch onClick={onToggleSelectMultiple} color="primary" />
-                }
-                label={HrApplicantTexts.selectMultiple}
-                labelPlacement="start"
-              />
+              {isLoading ? (
+                <Skeleton width={200} height={20} />
+              ) : (
+                <FormControlLabel
+                  sx={{ fontWeight: 500, fontSize: 16, color: "#737272" }}
+                  value="start"
+                  control={
+                    <Switch onClick={onToggleSelectMultiple} color="primary" />
+                  }
+                  label={HrApplicantTexts.selectMultiple}
+                  labelPlacement="start"
+                />
+              )}
             </Grid>
             <ApplicantsCards isSelectMultipleActive={isSelectMultipleActive} />
           </Grid>

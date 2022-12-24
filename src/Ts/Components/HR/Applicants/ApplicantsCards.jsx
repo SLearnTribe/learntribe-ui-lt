@@ -9,11 +9,12 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { cloneDeep, isUndefined, uniqueId } from "lodash";
+import { cloneDeep, isEmpty, isUndefined, uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../../Assests/Adil.jpeg";
 import samplePngImage from "../../../../Assests/Adil.png";
+import { ApplicantsNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import {
   setSelectedApplicantDetails,
   setSelectedApplicantsIds,
@@ -22,9 +23,13 @@ import {
   getHrApplicantData,
   getSelectedApplicantsIds,
 } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ApplicantsCardsSkeleton } from "../../../Skeletons/ApplicantCardsSkeleton";
 
 export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const selectedApplicantsIds = useSelector(getSelectedApplicantsIds);
 
@@ -55,7 +60,11 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
     },
     [dispatch, isSelectMultipleActive]
   );
-  return (
+  return isLoading ? (
+    <ApplicantsCardsSkeleton />
+  ) : isEmpty(applicantData) ? (
+    <ApplicantsNoDataCard />
+  ) : (
     <>
       {applicantData.map((applicant, index) => (
         <Grid item xs={12} key={uniqueId()}>
