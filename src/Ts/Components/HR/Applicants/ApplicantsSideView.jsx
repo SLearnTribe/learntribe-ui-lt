@@ -35,7 +35,7 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
     return <ApplicantSideViewSkeleton />;
   }
   if (isEmpty(applicantDetails)) {
-    return <ApplicantsNoDataCard />;
+    return <ApplicantsNoDataCard text="No Applicant Available" />;
   }
   return !isSelectMultipleActive ? (
     <Card sx={{ boxShadow: 0 }}>

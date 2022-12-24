@@ -63,7 +63,7 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
   return isLoading ? (
     <ApplicantsCardsSkeleton />
   ) : isEmpty(applicantData) ? (
-    <ApplicantsNoDataCard />
+    <ApplicantsNoDataCard text="No Applicants Available" />
   ) : (
     <>
       {applicantData.map((applicant, index) => (

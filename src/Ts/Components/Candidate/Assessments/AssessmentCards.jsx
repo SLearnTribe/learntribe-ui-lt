@@ -12,7 +12,7 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { capitalize, uniqBy, uniqueId } from "lodash";
+import { capitalize, isEmpty, uniqBy, uniqueId } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ import {
   AssessmentStatusMap,
 } from "../../../Configs/Dashboards/DashboardsConfig";
 import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
+import { AssessmentNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import {
   getAssessmentForCandidate,
   setAssessmentInnerFilter,
@@ -107,6 +108,9 @@ export const AssessmentCards = ({ selectedTab }) => {
           placeholder={"Select assessment by difficulty level"}
         />
       </Grid>
+      {isEmpty(filteredAssessmentsData) && (
+        <AssessmentNoDataCard text="No Assessment Available" />
+      )}
       {filteredAssessmentsData.map((row) => {
         const { title, difficulty, description, status, id } = row;
         return (

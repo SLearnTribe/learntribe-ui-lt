@@ -1,3 +1,4 @@
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import {
   Avatar,
   Card,
@@ -33,7 +34,7 @@ export const PostJobsNoData = ({
   );
 };
 
-export const ApplicantsNoDataCard = () => {
+export const ApplicantsNoDataCard = ({ text = "" }) => {
   return (
     <Grid item xs={12}>
       <Card>
@@ -41,7 +42,24 @@ export const ApplicantsNoDataCard = () => {
           avatar={<Avatar sx={{ width: "5rem", height: "5rem" }} />}
           title={
             <Typography sx={{ fontSize: 16, fontWeight: 500, pr: 2 }}>
-              No Applicants Available
+              {text}
+            </Typography>
+          }
+        />
+      </Card>
+    </Grid>
+  );
+};
+
+export const AssessmentNoDataCard = ({ text = "" }) => {
+  return (
+    <Grid item xs={12}>
+      <Card>
+        <CardHeader
+          avatar={<AssignmentIcon sx={{ fontSize: "5rem" }} />}
+          title={
+            <Typography sx={{ fontSize: 16, fontWeight: 500, pr: 2 }}>
+              {text}
             </Typography>
           }
         />

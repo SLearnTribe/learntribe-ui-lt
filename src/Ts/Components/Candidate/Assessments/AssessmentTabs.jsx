@@ -1,9 +1,14 @@
 import { Box, Grid, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { CandidateTabs } from "../../../Configs/Dashboards/DashboardsConfig";
+import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { AssessmentCardsSkeleton } from "../../../Skeletons/AssessmentCardsSkeleton";
 import { AssessmentCards } from "./AssessmentCards";
 
 export const AssessmentTabs = () => {
+  const isLoading = useSelector(getIsUserDataLoading);
+
   const [value, setValue] = React.useState(0);
 
   const [selectedTab, setSelectedTab] = useState("all");
@@ -34,7 +39,9 @@ export const AssessmentTabs = () => {
     );
   }
 
-  return (
+  return isLoading ? (
+    <AssessmentCardsSkeleton />
+  ) : (
     <Grid item xs={12}>
       <Box>
         <Box>
