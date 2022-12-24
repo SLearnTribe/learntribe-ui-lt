@@ -24,10 +24,14 @@ import { employmentTypeBeToUiMap } from "../../Configs/AppConfig";
 import { setCurrentEditingJob } from "../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../Redux/Selectors/Jobs/JobsSelectors";
+import { getIsUserDataLoading } from "../../Redux/Selectors/UserSelectors/UserSelectors";
+import { CandidateJobsCardSkeleton } from "../../Skeletons/CandidateJobsCardSkeleton";
 import { ButtonTexts, CommonTexts, ModalTexts } from "../../Utils/Text";
 
 export const JobsCard = () => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const candidateJobs = useSelector(getJobs);
 
@@ -39,7 +43,9 @@ export const JobsCard = () => {
     },
     [dispatch]
   );
-  return (
+  return isLoading ? (
+    <CandidateJobsCardSkeleton />
+  ) : (
     <>
       <Grid item xs={12}>
         {candidateJobs.length === 0 && (

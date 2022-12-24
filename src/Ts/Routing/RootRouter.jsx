@@ -1,4 +1,3 @@
-import { Backdrop, CircularProgress } from "@mui/material";
 import { isEqual } from "lodash";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,11 +45,11 @@ export default function RootRouter() {
 
   return (
     <>
-      <Backdrop
+      {/* <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={isLoading}>
+        open={isLoading && 0}>
         <CircularProgress color="inherit" />
-      </Backdrop>
+      </Backdrop> */}
       <Modal />
       <Routes>
         {routerMap.map(RenderRoute)}
