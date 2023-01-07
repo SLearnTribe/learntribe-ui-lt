@@ -1,6 +1,6 @@
 import { Logout } from "@mui/icons-material";
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-import SettingsApplicationsOutlinedIcon from "@mui/icons-material/SettingsApplicationsOutlined";
+// import SettingsApplicationsOutlinedIcon from "@mui/icons-material/SettingsApplicationsOutlined";
 import {
   Box,
   CircularProgress,
@@ -80,14 +80,14 @@ export const AccountSettingsMenu = ({
           </ListItem>
         </MenuItem>
       )}
-      <MenuItem onClick={onClickSettings}>
+      {/* <MenuItem onClick={onClickSettings}>
         <ListItem component="div">
           <ListItemIcon>
             <SettingsApplicationsOutlinedIcon color="primary" />
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={onClickLogout}>
         <ListItem component="div">
           <ListItemIcon>
