@@ -1,7 +1,7 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Avatar, Tooltip } from "@mui/material";
+import { Avatar, Link, Tooltip } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,11 +15,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SideNavListItems } from "../../CommonJsx/SideNavListItems";
 import {
+  Font28Weight600SxStyles,
   PermanentDrawerStyles,
   SideNavExpandCollapseChevronStyles,
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
-import { profileRoute } from "../../Configs/RoutesConfig";
+import { rolesConfig } from "../../Configs/AppConfig";
+import { builResumeRoute, profileRoute } from "../../Configs/RoutesConfig";
 import {
   getAllCities,
   setIsSideMenuCollapsed,
@@ -28,7 +30,7 @@ import { postLogout } from "../../Redux/Ducks/userSlice";
 import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import RootRouter from "../../Routing/RootRouter";
-import { SideMenuTexts } from "../../Utils/Text";
+import { CommonTexts, SideMenuTexts } from "../../Utils/Text";
 import themes from "../../Utils/Themes/Themes";
 import { AccountSettingsMenu } from "../CommonComponents/Controls/AccountSettings";
 
@@ -108,7 +110,7 @@ export default function AppContainer(props) {
 
   const open = useSelector(getIsSideMenuCollapsed);
 
-  const { name, given_name, family_name } = useSelector(getUserDetails);
+  const { name, given_name, family_name, role } = useSelector(getUserDetails);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -137,6 +139,10 @@ export default function AppContainer(props) {
   const onClickProfile = () => {
     setAnchorElUser(null);
     navigate(profileRoute);
+  };
+
+  const onClickBuildResume = () => {
+    navigate(builResumeRoute);
   };
 
   const onClickSettings = () => {
@@ -178,6 +184,15 @@ export default function AppContainer(props) {
                 xs: "flex",
               },
             }}>
+            {rolesConfig[role] === "CANDIDATE" && (
+              <Link
+                onClick={onClickBuildResume}
+                underline="always"
+                sx={{ ...Font28Weight600SxStyles, mr: 5, cursor: "pointer" }}>
+                {CommonTexts.buildAResumeForFree}
+              </Link>
+            )}
+
             <Typography sx={{ pr: 2 }} variant="h5" component="h5">
               {name}
             </Typography>

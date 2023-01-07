@@ -15,9 +15,12 @@ export const routes = {
   help: "/help",
   assessmentInstruction: "/assessments/instructions",
   candidateAssessment: "/assessments/instructions/:assessmentId",
+  builResume: "/builResume",
 };
 
 export const examsRoute = routes.base + routes.exams;
+
+export const builResumeRoute = routes.base + routes.builResume;
 
 export const dashboardRoute = routes.base + routes.dashboard;
 

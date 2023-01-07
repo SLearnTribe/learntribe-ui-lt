@@ -227,6 +227,11 @@ export const Font24Weight600SxStyles = {
   fontWeight: 600,
 };
 
+export const Font28Weight600SxStyles = {
+  fontSize: 28,
+  fontWeight: 600,
+};
+
 export const Font21Weight500SxStyles = {
   fontSize: 21,
   fontWeight: 500,

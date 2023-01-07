@@ -14,6 +14,7 @@ export const SideMenuTexts = {
   applicants: "Applicants",
   profile: "Profile",
   help: "Help",
+  resumeBuilder: "Resume builder",
 };
 
 export const DataAttributeTexts = {
@@ -70,6 +71,7 @@ export const CommonTexts = {
   timeRemaining: "Time Remaining :",
   noJobsAvailable: "No Jobs Available",
   noAssessmentsAvailable: "No Assessments Available",
+  buildAResumeForFree: "Build a resume for free ",
 };
 
 export const ButtonTexts = {

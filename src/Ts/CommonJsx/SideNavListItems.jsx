@@ -10,8 +10,9 @@ import { DisplayFlexCenter } from "../CommonStyles/CommonSxStyles";
 import { sideNavMenuItemsConfig } from "../Configs/AppConfig";
 import { getIsSideMenuCollapsed } from "../Redux/Selectors/AppSelectors";
 import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
+import { SideMenuTexts } from "../Utils/Text";
 import { VerticleDivider } from "./CommonJsxUtils";
-import { StyledListItem } from "./SharedJsxStyles";
+import { ResumeBuilderBadge, StyledListItem } from "./SharedJsxStyles";
 
 const CollapsedListItem = ({ row: { path, icon, title }, pathname }) => {
   const isSelected = isEqual(path, pathname);
@@ -38,7 +39,13 @@ const ExpandedListItem = ({ row: { path, icon, title }, pathname }) => {
     <StyledListItem selected={isSelected} button>
       <VerticleDivider isVisible={isSelected} />
       <ListItemIcon>{icon}</ListItemIcon>
-      <ListItemText sx={{ color: "#fff" }} primary={title} />
+      {title === SideMenuTexts.resumeBuilder ? (
+        <ResumeBuilderBadge badgeContent={"New"}>
+          <ListItemText sx={{ color: "#fff" }} primary={title} />
+        </ResumeBuilderBadge>
+      ) : (
+        <ListItemText sx={{ color: "#fff" }} primary={title} />
+      )}
     </StyledListItem>
   );
 };

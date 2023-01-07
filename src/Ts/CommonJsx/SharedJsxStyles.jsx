@@ -18,6 +18,15 @@ export const StyledListItem = styled(ListItem)({
   "&.Mui-selected": { backgroundColor: "#6B6CDC" },
 });
 
+export const ResumeBuilderBadge = styled(Badge)({
+  "& .MuiBadge-badge": {
+    color: "#FFFF04 !important",
+    fontWeight: 700,
+    marginTop: 5,
+    marginRight: -8,
+  },
+});
+
 export const CardWithError = styled(Card)(({ isError }) => ({
   border: isError ? "1px solid red" : "inherit",
 }));

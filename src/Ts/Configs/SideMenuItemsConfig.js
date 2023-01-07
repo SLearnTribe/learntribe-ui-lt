@@ -2,6 +2,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 // import HelpIcon from "@mui/icons-material/Help";
 import PeopleIcon from "@mui/icons-material/People";
 import PostAddIcon from "@mui/icons-material/PostAdd";
@@ -13,6 +14,7 @@ import {
   adminRoute,
   applicantsRoute,
   assessmentsRoute,
+  builResumeRoute,
   candidatesRoute,
   completedExamsRoute,
   createNewExamRoute,
@@ -112,6 +114,11 @@ export const candidateSideNavMenuItems = [
     title: SideMenuTexts.profile,
     path: profileRoute,
     icon: <AccountCircleIcon sx={WhiteColor} />,
+  },
+  {
+    title: SideMenuTexts.resumeBuilder,
+    path: builResumeRoute,
+    icon: <NoteAltIcon sx={WhiteColor} />,
   },
   // {
   //   title: SideMenuTexts.help,

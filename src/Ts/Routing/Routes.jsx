@@ -11,6 +11,7 @@ import { Jobs } from "../Components/Pages/Jobs/Jobs";
 import { PostJobs } from "../Components/Pages/PostJobs/PostJobs";
 import { CandidateProfile } from "../Components/Pages/Profiles/CandidateProfile/Profile";
 import { ApplicantProfile } from "../Components/Pages/Profiles/HRProfile/ApplicantProfile";
+import { ResumeBuilder } from "../Components/Pages/ResumeBuilder/ResumeBuilder";
 import { rolesConfig } from "../Configs/AppConfig";
 import { routes } from "../Configs/RoutesConfig";
 
@@ -78,6 +79,11 @@ const RouterMap = [
   {
     path: routes.profile,
     component: CandidateProfile,
+    permission: rolesConfig.CANDIDATE,
+  },
+  {
+    path: routes.builResume,
+    component: ResumeBuilder,
     permission: rolesConfig.CANDIDATE,
   },
   // {
