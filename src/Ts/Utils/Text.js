@@ -72,6 +72,10 @@ export const CommonTexts = {
   noJobsAvailable: "No Jobs Available",
   noAssessmentsAvailable: "No Assessments Available",
   buildAResumeForFree: "Build a resume for free ",
+  WORK_EXPERIENCE: "WORK EXPERIENCE",
+  SKILLS: "SKILLS",
+  PROJECTS: "PROJECTS",
+  EDUCATION: "EDUCATION",
 };
 
 export const ButtonTexts = {
@@ -95,6 +99,12 @@ export const ButtonTexts = {
   continue: "Continue",
   prev: "Prev",
   next: "Next",
+  currentlyWorkingHere: "Currently working here",
+  addThisResumeToMyProfile: "Add this resume to my profile ",
+  back: "Back",
+  saveAndNext: "Save & Next",
+  download: "Download",
+  goToDashboard: "Go to Dashboard",
 };
 
 export const TabLabelTexts = {
@@ -140,6 +150,8 @@ export const ProfileTexts = {
   skills: "Skills",
   education: "Education",
   resume: "Resume",
+  editInfo: "Edit Info",
+  descriptionAboutYou: "Description about you",
 };
 
 export const TextFieldLabelsAndTexts = {
@@ -162,4 +174,6 @@ export const TextFieldLabelsAndTexts = {
   difficultyLevel: "Difficulty Level",
   selectEmployementType: "Select employment type",
   employmentType: "Employment Type",
+  city: "City",
+  address: "Address",
 };
