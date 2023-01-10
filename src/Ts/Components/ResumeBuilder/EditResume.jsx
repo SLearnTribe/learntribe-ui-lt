@@ -11,6 +11,7 @@ import { ResumeEditInfo } from "./ResumeEditInfo";
 import { ResumeEducation } from "./ResumeEducation";
 import { ResumeExperience } from "./ResumeExperience";
 import { ResumeSkills } from "./ResumeSkills";
+import { ResumeTemplate1 } from "./ResumeTemplate1";
 
 export const EditResume = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ export const EditResume = () => {
           </Grid>
           {/* Small Resume template */}
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <ResumeEditInfo />
+            <ResumeTemplate1 templateId={1} maxHeight={"24.8rem"} />
           </Grid>
           {/* Experience section */}
           <Grid item xs={12}>

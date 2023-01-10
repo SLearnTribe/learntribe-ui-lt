@@ -76,7 +76,7 @@ export const FinalResume = () => {
   const onChangeAddDeafultResume = useCallback(() => {}, []);
   return (
     <Grid container spacing={3} sx={{ pl: 30, pr: 30, mt: 3 }}>
-      <Card sx={{ p: 3, border: "1px solid #7779F5" }}>
+      <Card raised sx={{ p: 3, border: "1px solid #7779F5" }}>
         <Grid item xs={12}>
           <Grid container spacing={3} id="download-Resume-template">
             <Grid item xs={12}>

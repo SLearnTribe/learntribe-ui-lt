@@ -4,14 +4,15 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import {
   Avatar,
-  Button,
   Card,
+  Chip,
   Divider,
   FormControlLabel,
   FormGroup,
   Grid,
   Typography,
 } from "@mui/material";
+import { green } from "@mui/material/colors";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../Assests/Adil.jpeg";
@@ -21,7 +22,7 @@ import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { CommonTexts } from "../../Utils/Text";
 import themes from "../../Utils/Themes/Themes";
 
-export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem" }) => {
+export const ResumeTemplate3 = ({ templateId }) => {
   const dispatch = useDispatch();
 
   const {
@@ -39,6 +40,7 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem" }) => {
   } = resumeBuilderMockData;
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
+  console.log({ selectedTemplate, templateId });
 
   const onSelectTemplate = useCallback(() => {
     dispatch(setResumeTemplate(templateId));
@@ -48,9 +50,8 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem" }) => {
       raised
       sx={{
         p: 2,
-        maxHeight,
-        overflow: "auto",
-        border: selectedTemplate === 1 ? "1px solid #7779F5" : "inherit",
+        maxHeight: "50rem",
+        border: selectedTemplate === 3 ? "1px solid #7779F5" : "inherit",
       }}
       onClick={onSelectTemplate}>
       <Grid container spacing={2}>
@@ -58,9 +59,7 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem" }) => {
           <Grid container spacing={1}>
             <Grid item xs={5}>
               <Typography variant="h6">{name}</Typography>
-              <Typography sx={{ color: themes.light.palette.primary.main }}>
-                {currentRole}
-              </Typography>
+              <Typography sx={{ color: green.A700 }}>{currentRole}</Typography>
               <small>{`${about.slice(0, 50)}...`}</small>
             </Grid>
             <Grid item xs={2}>
@@ -154,13 +153,12 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem" }) => {
             </Grid>
             <Grid item xs={12}>
               {skills.split(", ").map((skill) => (
-                <Button
-                  size="small"
+                <Chip
                   sx={{ ml: 1, mb: 1 }}
-                  color="primary"
-                  variant="contained">
-                  {skill}
-                </Button>
+                  label={skill}
+                  variant="outlined"
+                  color="success"
+                />
               ))}
             </Grid>
             <Grid item xs={12}>
