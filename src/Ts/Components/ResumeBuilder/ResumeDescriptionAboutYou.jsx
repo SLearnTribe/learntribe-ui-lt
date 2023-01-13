@@ -11,6 +11,8 @@ export const ResumeDescriptionAboutYou = () => {
 
   const resumeDetails = useSelector(getResumeDetails);
 
+  const { about = "" } = resumeDetails;
+
   const onChangeAbout = useCallback(
     ({ target: { value } }) => {
       const copyResumeDetails = cloneDeep(resumeDetails);
@@ -35,7 +37,7 @@ export const ResumeDescriptionAboutYou = () => {
           label="Job Description"
           multiline
           rows={4}
-          value={resumeDetails?.about}
+          value={about}
           onChange={onChangeAbout}
           variant="outlined"
         />

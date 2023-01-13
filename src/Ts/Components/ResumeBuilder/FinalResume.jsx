@@ -18,11 +18,13 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import sampleImage from "../../../Assests/Adil.jpeg";
 import {
   Font18Weight500SxStyles,
   JustifyContentSpaceBetweenAlignCenterSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
+import { routes } from "../../Configs/RoutesConfig";
 import { setResumeActiveStepper } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import {
   getResumeBuilderActiveStepper,
@@ -33,6 +35,8 @@ import themes from "../../Utils/Themes/Themes";
 
 export const FinalResume = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const resumeDetails = useSelector(getResumeDetails);
 
@@ -56,6 +60,10 @@ export const FinalResume = () => {
   const goBack = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper - 1));
   }, [dispatch, activeStepper]);
+
+  const onClickGoToDashboard = useCallback(() => {
+    navigate(routes.dashboard);
+  }, [navigate]);
 
   const onClickDownload = useCallback(async () => {
     const pdf = new jsPDF({
@@ -147,7 +155,7 @@ export const FinalResume = () => {
                 {workExperiences?.map(
                   ({ orgName, endDate, startDate, designation }) => (
                     <>
-                      <Grid item xs={12}>
+                      <Grid item xs={12} key={crypto.randomUUID()}>
                         <Typography variant="h6" sx={{ fontWeight: 700 }}>
                           {designation}
                         </Typography>
@@ -247,7 +255,10 @@ export const FinalResume = () => {
         </FormGroup>
       </Grid>
       <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
-        <Button onClick={goBack} sx={{ mr: 2 }} variant="outlined">
+        <Button
+          onClick={onClickGoToDashboard}
+          sx={{ mr: 2 }}
+          variant="outlined">
           {ButtonTexts.goToDashboard}
         </Button>
 

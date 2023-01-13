@@ -7,6 +7,7 @@ import {
   getResumeBuilderActiveStepper,
   getSelectedResumeTemplate,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { ButtonTexts } from "../../Utils/Text";
 import { ResumeTemplate1 } from "./ResumeTemplate1";
 import { ResumeTemplate2 } from "./ResumeTemplate2";
@@ -25,7 +26,7 @@ export const ResumeTemplates = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={4}>
-        <ResumeTemplate1 templateId={1} />
+        <ResumeTemplate1 templateId={1} data={resumeBuilderMockData} />
       </Grid>
       <Grid item xs={4}>
         <ResumeTemplate2 templateId={2} />

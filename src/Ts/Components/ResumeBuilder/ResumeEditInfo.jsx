@@ -69,7 +69,7 @@ export const ResumeEditInfo = () => {
     ({ target: { value } }) => {
       const copyResumeDetails = cloneDeep(resumeDetails);
 
-      copyResumeDetails.phone = value;
+      copyResumeDetails.address = value;
 
       dispatch(updateResumeDetails(copyResumeDetails));
     },
@@ -80,7 +80,7 @@ export const ResumeEditInfo = () => {
     ({ target: { value } }) => {
       const copyResumeDetails = cloneDeep(resumeDetails);
 
-      copyResumeDetails.phone = value;
+      copyResumeDetails.city = value;
 
       dispatch(updateResumeDetails(copyResumeDetails));
     },

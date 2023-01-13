@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { resumeBuilderMockData } from "../../../Utils/MockData/ResumeBuilderData";
 
 const resumeBuilderSlice = createSlice({
   name: "resumeBuilderSlice",
   initialState: {
     activeStep: 0,
-    resumeDetails: resumeBuilderMockData,
+    resumeDetails: {},
     currentScreen: 0,
     selectedTemplate: 0,
   },

@@ -16,27 +16,33 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../Assests/Adil.jpeg";
 import { setResumeTemplate } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getSelectedResumeTemplate } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
-import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
+import {
+  getResumeDetails,
+  getSelectedResumeTemplate,
+} from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { CommonTexts } from "../../Utils/Text";
 import themes from "../../Utils/Themes/Themes";
 
-export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem" }) => {
+export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
   const dispatch = useDispatch();
 
+  const resumeDetails = useSelector(getResumeDetails);
+
+  const resumeData = data ?? resumeDetails;
+
   const {
-    name,
-    email,
-    phone,
-    city,
-    linkedIn,
-    currentRole,
-    skills,
-    about,
-    workExperiences,
-    educationExperiences,
-    projects,
-  } = resumeBuilderMockData;
+    name = "",
+    email = "",
+    phone = null,
+    city = "",
+    linkedIn = "",
+    currentRole = "",
+    skills = "",
+    about = "",
+    workExperiences = [],
+    educationExperiences = [],
+    projects = [],
+  } = resumeData;
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
 
