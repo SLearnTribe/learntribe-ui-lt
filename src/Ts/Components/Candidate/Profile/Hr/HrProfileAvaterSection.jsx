@@ -8,10 +8,11 @@ import {
   CardContent,
   Grid,
   Link,
+  Stack,
   Typography,
 } from "@mui/material";
 import { isEmpty, isEqual, uniqueId } from "lodash";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../../../Assests/Adil.jpeg";
 import {
@@ -23,6 +24,7 @@ import {
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import { getUserDetails } from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
 import {
   ButtonTexts,
   CandidateDashboardTexts,
@@ -34,6 +36,8 @@ import themes from "../../../../Utils/Themes/Themes";
 export const HrProfileAvatarSection = () => {
   const dispatch = useDispatch();
 
+  const { role } = useSelector(getUserDetails);
+
   const { resume = "sample.pdf" } = useSelector(getSelectedApplicantDetails);
 
   const assessmentsData = useSelector(getAssessmentsData);
@@ -41,6 +45,12 @@ export const HrProfileAvatarSection = () => {
   const { completedAssessments = [] } = useSelector(
     getSelectedApplicantDetails
   );
+
+  const [fileName, setFileName] = useState("");
+
+  const onUploadResume = ({ target: { files } }) => {
+    setFileName(files[0].name);
+  };
 
   const assessments = useMemo(() => {
     const assessments = [];
@@ -91,16 +101,42 @@ export const HrProfileAvatarSection = () => {
                 {ProfileTexts.resume}
               </Typography>
             </Grid>
-            <Grid item xs={12} sx={{ pt: "0 !important", display: "flex" }}>
-              <Button
-                sx={ResumeDownloadBtnSxStyles}
-                variant="text"
-                color="primary"
-                endIcon={<FileDownloadOutlinedIcon />}>
-                {resume}
-              </Button>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                pt: "0 !important",
+                display: "flex",
+                justifyContent: "center",
+              }}>
+              {role === "HR" ? (
+                <Button
+                  sx={ResumeDownloadBtnSxStyles}
+                  variant="text"
+                  color="primary"
+                  endIcon={<FileDownloadOutlinedIcon />}>
+                  {resume}
+                </Button>
+              ) : (
+                <Stack direction="column" alignItems="center" spacing={2}>
+                  <Typography
+                    color="text.secondary"
+                    sx={{ fontSize: 16, fontWeight: 600 }}>
+                    {fileName}
+                  </Typography>
+                  <Button variant="outlined" component="label">
+                    {ButtonTexts.uploadResume}
+                    <input
+                      hidden
+                      onChange={onUploadResume}
+                      accept=".doc,.docx,.pdf"
+                      type="file"
+                    />
+                  </Button>
+                </Stack>
+              )}
             </Grid>
-            {!isEmpty(assessments) && (
+            {!isEmpty(assessments) && role === "HR" && (
               <Grid item xs={12}>
                 <Typography
                   sx={HrResumeAssessmentHeaderSxStyles}

@@ -21,7 +21,7 @@ import {
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { rolesConfig } from "../../Configs/AppConfig";
-import { builResumeRoute, profileRoute } from "../../Configs/RoutesConfig";
+import { builResumeRoute, editProfileRoute } from "../../Configs/RoutesConfig";
 import {
   getAllCities,
   setIsSideMenuCollapsed,
@@ -138,7 +138,7 @@ export default function AppContainer(props) {
 
   const onClickProfile = () => {
     setAnchorElUser(null);
-    navigate(profileRoute);
+    navigate(editProfileRoute);
   };
 
   const onClickBuildResume = () => {

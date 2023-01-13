@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import { CandidateViewProfile } from "../Components/Candidate/Profile/CandidateViewProfile";
 import { Applicants } from "../Components/Pages/Applicants/Applicants";
 import { Assessments } from "../Components/Pages/Assessments/Assessments";
 import { CandidateAssessment } from "../Components/Pages/Dashboards/Candidate/CandidateAssessment";
@@ -74,6 +75,11 @@ const RouterMap = [
   {
     path: routes.candidateAssessment,
     component: CandidateAssessment,
+    permission: rolesConfig.CANDIDATE,
+  },
+  {
+    path: routes.editProfile,
+    component: CandidateViewProfile,
     permission: rolesConfig.CANDIDATE,
   },
   {

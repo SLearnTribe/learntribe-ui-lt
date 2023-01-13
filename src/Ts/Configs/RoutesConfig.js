@@ -12,6 +12,7 @@ export const routes = {
   applicants: "/applicants",
   applicantDetails: "/applicants/:email",
   profile: "/profile",
+  editProfile: "/profile/editProfile",
   help: "/help",
   assessmentInstruction: "/assessments/instructions",
   candidateAssessment: "/assessments/instructions/:assessmentId",
@@ -29,6 +30,8 @@ export const postJobsRoute = routes.base + routes.postJobs;
 export const applicantsRoute = routes.base + routes.applicants;
 
 export const applicantDetailsRoute = routes.base + routes.applicantDetails;
+
+export const editProfileRoute = routes.base + routes.editProfile;
 
 export const profileRoute = routes.base + routes.profile;
 

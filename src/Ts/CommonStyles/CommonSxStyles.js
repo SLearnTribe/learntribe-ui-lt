@@ -159,7 +159,7 @@ export const JustifyContentSpaceBetweenSxStyles = {
 };
 
 export const HrResumeAssessmentHeaderSxStyles = {
-  // ...DisplayFlexCenter,
+  ...DisplayFlexCenter,
   fontSize: 20,
   fontWeight: 500,
   pb: 0,

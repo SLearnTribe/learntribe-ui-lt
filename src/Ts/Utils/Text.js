@@ -89,6 +89,7 @@ export const ButtonTexts = {
   saveJob: "Save Job",
   logout: "Logout",
   uploadPhoto: "Upload Photo",
+  uploadResume: "Upload Resume",
   addNewExperience: "Add New Experience",
   addNewResume: "Add New Resume",
   submit: "Submit",
@@ -105,6 +106,7 @@ export const ButtonTexts = {
   saveAndNext: "Save & Next",
   download: "Download",
   goToDashboard: "Go to Dashboard",
+  editProfile: "Edit Profile",
 };
 
 export const TabLabelTexts = {
