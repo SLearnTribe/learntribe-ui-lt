@@ -51,7 +51,10 @@ export const ResumeTemplate2 = ({ templateId }) => {
       sx={{
         p: 2,
         maxHeight: "50rem",
-        border: selectedTemplate === 2 ? "1px solid #7779F5" : "inherit",
+        border:
+          selectedTemplate === 2
+            ? `1px solid ${themes.light.palette.primary.main}`
+            : "inherit",
       }}
       onClick={onSelectTemplate}>
       <Grid container spacing={2}>

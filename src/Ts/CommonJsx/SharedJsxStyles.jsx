@@ -4,6 +4,7 @@ import { teal } from "@mui/material/colors";
 import ListItem from "@mui/material/ListItem";
 import ListSubheader from "@mui/material/ListSubheader";
 import { styled } from "@mui/material/styles";
+import themes from "../Utils/Themes/Themes";
 
 export const StyledListItem = styled(ListItem)({
   fontSize: 24,
@@ -32,7 +33,7 @@ export const CardWithError = styled(Card)(({ isError }) => ({
 }));
 
 export const StyledListSubheader = styled(ListSubheader)({
-  backgroundColor: "#7779F5",
+  backgroundColor: themes.light.palette.primary.main,
   fontWeight: "bold",
 });
 
