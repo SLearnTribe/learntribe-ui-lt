@@ -188,7 +188,12 @@ export default function AppContainer(props) {
               <Link
                 onClick={onClickBuildResume}
                 underline="always"
-                sx={{ ...Font28Weight600SxStyles, mr: 5, cursor: "pointer" }}>
+                sx={{
+                  ...Font28Weight600SxStyles,
+                  mr: 5,
+                  cursor: "pointer",
+                  display: { xs: "none", md: "block" },
+                }}>
                 {CommonTexts.buildAResumeForFree}
               </Link>
             )}

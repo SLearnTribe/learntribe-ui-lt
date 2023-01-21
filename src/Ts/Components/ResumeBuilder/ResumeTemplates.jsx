@@ -25,13 +25,13 @@ export const ResumeTemplates = () => {
   }, [dispatch, activeStepper]);
   return (
     <Grid container spacing={3}>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
         <ResumeTemplate1 templateId={1} data={resumeBuilderMockData} />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
         <ResumeTemplate2 templateId={2} />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
         <ResumeTemplate3 templateId={3} />
       </Grid>
 
