@@ -16,7 +16,7 @@ export const StyledListItem = styled(ListItem)({
   //   },
   // },
   // "&.Mui-selected:hover": { backgroundColor: "#6B6CDC" },
-  "&.Mui-selected": { backgroundColor: "#6B6CDC" },
+  "&.Mui-selected": { backgroundColor: themes.light.palette.primary.light },
 });
 
 export const ResumeBuilderBadge = styled(Badge)({
