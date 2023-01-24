@@ -41,7 +41,9 @@ export const ProfileContactInfoModal = () => {
   );
   return (
     <Dialog maxWidth="md" open={true} onClose={onClose}>
-      <DialogTitle sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
+      <DialogTitle
+        variant="h2"
+        sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
         {currentModal}
         <CloseIcon sx={{ cursor: "pointer" }} onClick={onClose} />
       </DialogTitle>

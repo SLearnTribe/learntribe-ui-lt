@@ -12,7 +12,6 @@ import { assessmentsInstructionsRoute } from "../../../../Configs/RoutesConfig";
 import { setAssessmentForCandidate } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts, CommonTexts } from "../../../../Utils/Text";
-import themes from "../../../../Utils/Themes/Themes";
 
 export const InstructionsPage = () => {
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ export const InstructionsPage = () => {
           sx={{
             fontWeight: 700,
             fontSize: 32,
-            color: themes.light.palette.primary.main,
+            color: (theme) => theme.palette.primary.main,
           }}>
           {CommonTexts.startAssessment}
         </Typography>

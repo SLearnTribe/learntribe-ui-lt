@@ -2,7 +2,6 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import CallIcon from "@mui/icons-material/Call";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import { CandidateDashboardTexts, TabLabelTexts } from "../../Utils/Text";
-import themes from "../../Utils/Themes/Themes";
 
 export const accountMenuItems = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -47,19 +46,19 @@ export const AssessmentTabsConfig = {
 };
 
 export const AssessmentStatusMap = {
-  completed: themes.light.palette.success.dark,
-  blocked: themes.light.palette.error.dark,
-  pending: themes.light.palette.warning.dark,
-  saved: themes.light.palette.info.dark,
-  primary: themes.light.palette.primary.main,
+  completed: (theme) => theme.palette.success.dark,
+  blocked: (theme) => theme.palette.error.dark,
+  pending: (theme) => theme.palette.warning.dark,
+  saved: (theme) => theme.palette.info.dark,
+  primary: (theme) => theme.palette.primary.main,
 };
 
 export const JobsStatusMap = {
-  completed: themes.light.palette.success.dark,
-  blocked: themes.light.palette.error.contrastText,
-  pending: themes.light.palette.primary.main,
-  saved: themes.light.palette.info.dark,
-  start: themes.light.palette.primary.main,
+  completed: (theme) => theme.palette.success.dark,
+  blocked: (theme) => theme.palette.error.contrastText,
+  pending: (theme) => theme.palette.primary.main,
+  saved: (theme) => theme.palette.info.dark,
+  start: (theme) => theme.palette.primary.main,
 };
 
 export const AssessmentDifficultyLevelColorMap = {

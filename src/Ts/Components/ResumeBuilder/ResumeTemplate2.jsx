@@ -13,6 +13,7 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { random } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,10 +22,11 @@ import { setResumeTemplate } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilder
 import { getSelectedResumeTemplate } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { CommonTexts } from "../../Utils/Text";
-import themes from "../../Utils/Themes/Themes";
 
 export const ResumeTemplate2 = ({ templateId }) => {
   const dispatch = useDispatch();
+
+  const theme = useTheme();
 
   const {
     name,
@@ -53,7 +55,7 @@ export const ResumeTemplate2 = ({ templateId }) => {
         maxHeight: "50rem",
         border:
           selectedTemplate === 2
-            ? `1px solid ${themes.light.palette.primary.main}`
+            ? `1px solid ${theme.palette.primary.main}`
             : "inherit",
       }}
       onClick={onSelectTemplate}>
@@ -73,7 +75,7 @@ export const ResumeTemplate2 = ({ templateId }) => {
                   width: 70,
                   height: 70,
                   border: "thick solid",
-                  borderColor: themes.light.palette.primary.dark,
+                  borderColor: (theme) => theme.palette.primary.dark,
                 }}></Avatar>
             </Grid>
             <Grid item xs={5}>

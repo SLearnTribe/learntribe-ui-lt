@@ -182,7 +182,9 @@ export const PostJobsModal = () => {
       open={true}
       onClose={onClickCancel}
       scroll={"paper"}>
-      <DialogTitle id="scroll-dialog-title">{currentModal}</DialogTitle>
+      <DialogTitle variant="h2" id="scroll-dialog-title">
+        {currentModal}
+      </DialogTitle>
       <DialogContent dividers>
         <DialogContentText tabIndex={-1}>
           <Grid container spacing={3}>

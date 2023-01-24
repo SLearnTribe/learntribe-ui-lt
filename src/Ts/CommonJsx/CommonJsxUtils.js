@@ -2,9 +2,15 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
-import { Card, CardContent, Divider, Tooltip, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Divider,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { HrAssessmentCardSxStyles } from "../CommonStyles/CommonSxStyles";
-import themes from "../Utils/Themes/Themes";
 
 export const VerticleDivider = ({ isVisible }) => {
   return (
@@ -60,7 +66,7 @@ export const handleJobSkillIcons = (status) => {
           placement="top-start"
           arrow>
           <PlayCircleFilledWhiteOutlinedIcon
-            style={{ color: themes.light.palette.primary.main }}
+            style={{ color: (theme) => theme.palette.primary.main }}
           />
         </Tooltip>
       );
@@ -91,5 +97,18 @@ export const CardWithNoData = ({
         </Typography>
       </CardContent>
     </Card>
+  );
+};
+
+export const CustomIconButton = ({ children, onClick = null, sx = {} }) => {
+  return (
+    <IconButton
+      color="primary"
+      aria-label="open drawer"
+      edge="start"
+      onClick={onClick}
+      sx={sx}>
+      {children}
+    </IconButton>
   );
 };

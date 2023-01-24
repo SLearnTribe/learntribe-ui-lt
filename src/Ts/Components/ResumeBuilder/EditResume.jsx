@@ -5,7 +5,6 @@ import { JustifyContentFlexEndSxStyles } from "../../CommonStyles/CommonSxStyles
 import { setResumeActiveStepper } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getResumeBuilderActiveStepper } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { ButtonTexts } from "../../Utils/Text";
-import themes from "../../Utils/Themes/Themes";
 import { ResumeDescriptionAboutYou } from "./ResumeDescriptionAboutYou";
 import { ResumeEditInfo } from "./ResumeEditInfo";
 import { ResumeEducation } from "./ResumeEducation";
@@ -39,7 +38,7 @@ export const EditResume = () => {
                 height: 100,
                 ml: 1,
                 border: "thick solid",
-                borderColor: themes.light.palette.primary.dark,
+                borderColor: (theme) => theme.palette.primary.dark,
               }}
             />
           </Grid>

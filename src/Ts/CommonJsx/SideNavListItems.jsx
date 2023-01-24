@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, ListItemButton, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -32,21 +32,47 @@ const CollapsedListItem = ({ row: { path, icon, title }, pathname }) => {
   );
 };
 
-const ExpandedListItem = ({ row: { path, icon, title }, pathname }) => {
-  const isSelected = isEqual(path, pathname) || pathname.includes(path);
+const ExpandedListItem = ({
+  row: { path, icon, title, level = 1, borderRadius = 12 },
+  pathname,
+}) => {
+  const isSelected = isEqual(path, pathname) || path.includes(pathname);
+
+  const textSx = isSelected ? { fontWeight: 600 } : {};
 
   return (
-    <StyledListItem selected={isSelected} button>
-      <VerticleDivider isVisible={isSelected} />
+    <ListItemButton
+      sx={{
+        borderRadius: `${borderRadius}px`,
+        mb: 0.5,
+        alignItems: "flex-start",
+        backgroundColor: level > 1 ? "transparent !important" : "inherit",
+        py: level > 1 ? 1 : 1.25,
+        pl: `${level * 24}px`,
+      }}
+      selected={isSelected}
+      button>
       <ListItemIcon>{icon}</ListItemIcon>
       {title === SideMenuTexts.resumeBuilder ? (
         <ResumeBuilderBadge badgeContent={"New"}>
-          <ListItemText sx={{ color: "#fff" }} primary={title} />
+          <ListItemText
+            primary={
+              <Typography sx={textSx} color="inherit">
+                {title}
+              </Typography>
+            }
+          />
         </ResumeBuilderBadge>
       ) : (
-        <ListItemText sx={{ color: "#fff" }} primary={title} />
+        <ListItemText
+          primary={
+            <Typography sx={textSx} color="inherit">
+              {title}
+            </Typography>
+          }
+        />
       )}
-    </StyledListItem>
+    </ListItemButton>
   );
 };
 

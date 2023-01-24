@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WorkIcon from "@mui/icons-material/Work";
@@ -12,6 +13,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { uniqueId } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +30,42 @@ import { getIsUserDataLoading } from "../../Redux/Selectors/UserSelectors/UserSe
 import { CandidateJobsCardSkeleton } from "../../Skeletons/CandidateJobsCardSkeleton";
 import { ButtonTexts, CommonTexts, ModalTexts } from "../../Utils/Text";
 
+const CardWrapper = styled(Card)(({ theme, darkColor }) => ({
+  // backgroundColor: theme.palette.secondary.dark,
+  // color: "#fff",
+  // overflow: "hidden",
+  position: "relative",
+  "&:after": {
+    content: '""',
+    position: "absolute",
+    width: 210,
+    height: 210,
+    background: darkColor,
+    borderRadius: "50%",
+    top: -85,
+    right: -95,
+    [theme.breakpoints.down("sm")]: {
+      top: -105,
+      right: -140,
+    },
+  },
+  "&:before": {
+    content: '""',
+    position: "absolute",
+
+    background: darkColor,
+    borderLeft: "50px solid #555",
+    borderBottom: "25px solid transparent",
+    [theme.breakpoints.down("sm")]: {
+      top: -155,
+      right: -70,
+    },
+  },
+}));
+
 export const JobsCard = () => {
+  const theme = useTheme();
+
   const dispatch = useDispatch();
 
   const isLoading = useSelector(getIsUserDataLoading);

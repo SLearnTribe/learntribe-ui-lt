@@ -1,9 +1,7 @@
 // @mui
 import { Card, Typography } from "@mui/material";
-import { alpha, styled } from "@mui/material/styles";
+import { alpha, styled, useTheme } from "@mui/material/styles";
 import PropTypes from "prop-types";
-// components
-// import Iconify from "./Iconify";
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +26,42 @@ DashboardStatsCard.propTypes = {
   sx: PropTypes.object,
 };
 
+const CardWrapper = styled(Card)(({ theme, darkColor }) => ({
+  // backgroundColor: theme.palette.secondary.dark,
+  // color: "#fff",
+  // overflow: "hidden",
+  position: "relative",
+  "&:after": {
+    content: '""',
+    position: "absolute",
+    width: 210,
+    height: 210,
+    background: darkColor,
+    borderRadius: "50%",
+    top: -85,
+    right: -95,
+    [theme.breakpoints.down("sm")]: {
+      top: -105,
+      right: -140,
+    },
+  },
+  "&:before": {
+    content: '""',
+    position: "absolute",
+    width: 210,
+    height: 210,
+    background: darkColor,
+    borderRadius: "50%",
+    top: -125,
+    right: -15,
+    opacity: 0.5,
+    [theme.breakpoints.down("sm")]: {
+      top: -155,
+      right: -70,
+    },
+  },
+}));
+
 export default function DashboardStatsCard({
   title,
   total,
@@ -36,9 +70,12 @@ export default function DashboardStatsCard({
   sx,
   ...other
 }) {
+  const theme = useTheme();
   return (
-    <Card
+    <CardWrapper
+      darkColor={theme.palette[color].dark}
       sx={{
+        boxShadow: 3,
         borderRadius: 4,
         py: 1,
         textAlign: "center",
@@ -63,6 +100,6 @@ export default function DashboardStatsCard({
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         {title}
       </Typography>
-    </Card>
+    </CardWrapper>
   );
 }

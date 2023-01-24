@@ -30,6 +30,7 @@ export default function RootRouter() {
   }, [role]);
 
   useEffect(() => {
+    console.log("inside effect");
     if (firstRender.current) {
       dispatch(setUserDataLoading(true));
 

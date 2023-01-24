@@ -1,7 +1,6 @@
 import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import { drawerWidth } from "../Configs/TextsConfig";
-import themes from "../Utils/Themes/Themes";
 
 export const AppBarStyles = {
   width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -13,7 +12,7 @@ export const TemporaryDrawerStyles = {
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
     width: drawerWidth,
-    backgroundColor: themes.light.palette.primary.main,
+    backgroundColor: (theme) => theme.palette.primary.main,
     color: "#fff",
   },
 };
@@ -22,14 +21,14 @@ export const PermanentDrawerStyles = {
   display: { xs: "none", sm: "block" },
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
-    backgroundColor: themes.light.palette.primary.main,
+    backgroundColor: (theme) => theme.palette.primary.main,
     // width: drawerWidth
   },
 };
 
 export const PermanentDrawerPaperStyles = {
   sx: {
-    backgroundColor: themes.light.palette.primary.main,
+    backgroundColor: (theme) => theme.palette.primary.main,
     color: "#fff",
   },
 };
@@ -284,7 +283,7 @@ export const scrollAssessmentSxStyles = {
 
 export const HrAssessmentCardSxStyles = {
   borderRadius: 3,
-  border: `1px solid ${themes.light.palette.primary.main}`,
+  border: (theme) => `1px solid ${theme.palette.primary.main}`,
   width: "20rem",
   display: "flex",
   flexDirection: "column",

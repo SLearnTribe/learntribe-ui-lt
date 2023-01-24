@@ -31,7 +31,6 @@ import {
   ModalTexts,
   ProfileTexts,
 } from "../../../../Utils/Text";
-import themes from "../../../../Utils/Themes/Themes";
 
 export const HrProfileAvatarSection = () => {
   const dispatch = useDispatch();
@@ -69,7 +68,7 @@ export const HrProfileAvatarSection = () => {
   }, [dispatch]);
   return (
     <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
-      <Card>
+      <Card sx={{ boxShadow: 3 }}>
         <CardContent>
           <Grid container spacing={1}>
             <Grid item xs={12}>
@@ -85,7 +84,7 @@ export const HrProfileAvatarSection = () => {
                     width: 100,
                     height: 100,
                     border: "thick solid",
-                    borderColor: themes.light.palette.primary.dark,
+                    borderColor: (theme) => theme.palette.primary.dark,
                   }}></Avatar>
               </Box>
             </Grid>
@@ -152,7 +151,7 @@ export const HrProfileAvatarSection = () => {
                   <CheckCircleOutlineIcon
                     sx={{
                       mr: "1rem",
-                      color: themes.light.palette.success.dark,
+                      color: (theme) => theme.palette.success.dark,
                     }}
                   />
                   <Typography

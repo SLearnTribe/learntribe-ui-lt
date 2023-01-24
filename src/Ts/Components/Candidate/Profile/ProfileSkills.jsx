@@ -62,7 +62,9 @@ export const ProfileSkills = () => {
   return isLoading ? (
     <ProfileSkillsSkeleton />
   ) : (
-    <CardWithError isError={skillsError} sx={{ pl: "1rem", pr: "1rem" }}>
+    <CardWithError
+      isError={skillsError}
+      sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
       <CardHeader
         title={
           <Typography sx={{ fontSize: 25, fontWeight: 600 }}>

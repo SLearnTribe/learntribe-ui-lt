@@ -18,7 +18,6 @@ import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelec
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { CandidateProfileSkeleton } from "../../../Skeletons/CandidateProfileSkeleton";
 import { ButtonTexts } from "../../../Utils/Text";
-import themes from "../../../Utils/Themes/Themes";
 
 export const ProfileAvatarSection = () => {
   const userInfo = useSelector(getUpdatedUserProfileInfo);
@@ -36,7 +35,7 @@ export const ProfileAvatarSection = () => {
     <CandidateProfileSkeleton />
   ) : (
     <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
-      <Card>
+      <Card sx={{ boxShadow: 3 }}>
         <CardContent>
           <Box
             sx={{
@@ -51,7 +50,7 @@ export const ProfileAvatarSection = () => {
                 width: 100,
                 height: 100,
                 border: "thick solid",
-                borderColor: themes.light.palette.primary.dark,
+                borderColor: (theme) => theme.palette.primary.dark,
               }}></Avatar>
           </Box>
           <Typography
@@ -60,7 +59,7 @@ export const ProfileAvatarSection = () => {
               justifyContent: "center",
               marginBottom: 2,
             }}
-            variant="h4">
+            variant="h2">
             {userInfo.name}
           </Typography>
           <Typography

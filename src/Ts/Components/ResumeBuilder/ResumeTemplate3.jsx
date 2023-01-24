@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { green } from "@mui/material/colors";
+import { useTheme } from "@mui/material/styles";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../Assests/Adil.jpeg";
@@ -20,10 +21,11 @@ import { setResumeTemplate } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilder
 import { getSelectedResumeTemplate } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { CommonTexts } from "../../Utils/Text";
-import themes from "../../Utils/Themes/Themes";
 
 export const ResumeTemplate3 = ({ templateId }) => {
   const dispatch = useDispatch();
+
+  const theme = useTheme();
 
   const {
     name,
@@ -40,7 +42,6 @@ export const ResumeTemplate3 = ({ templateId }) => {
   } = resumeBuilderMockData;
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
-  console.log({ selectedTemplate, templateId });
 
   const onSelectTemplate = useCallback(() => {
     dispatch(setResumeTemplate(templateId));
@@ -53,7 +54,7 @@ export const ResumeTemplate3 = ({ templateId }) => {
         maxHeight: "50rem",
         border:
           selectedTemplate === 3
-            ? `1px solid ${themes.light.palette.primary.main}`
+            ? `1px solid ${theme.palette.primary.main}`
             : "inherit",
       }}
       onClick={onSelectTemplate}>
@@ -73,7 +74,7 @@ export const ResumeTemplate3 = ({ templateId }) => {
                   width: 70,
                   height: 70,
                   border: "thick solid",
-                  borderColor: themes.light.palette.primary.dark,
+                  borderColor: (theme) => theme.palette.primary.dark,
                 }}></Avatar>
             </Grid>
             <Grid item xs={5}>

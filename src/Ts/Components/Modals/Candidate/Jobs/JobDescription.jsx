@@ -40,7 +40,7 @@ export const JobDescription = () => {
     rolesAndResponsibilities,
     description,
     qualificationRequired,
-    experienceRequired
+    experienceRequired,
     //     qualificationRequired = [
     //       `A Bachelors of Computer Science or a related field is required
     // 5+ years of IT experience in the development of scalable consumer facing digital solutions
@@ -62,7 +62,9 @@ export const JobDescription = () => {
   );
   return (
     <Dialog maxWidth="md" open={true} onClose={onClose}>
-      <DialogTitle sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
+      <DialogTitle
+        variant="h2"
+        sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
         {currentModal}
         <CloseIcon sx={{ cursor: "pointer" }} onClick={onClose} />
       </DialogTitle>
@@ -103,7 +105,7 @@ export const JobDescription = () => {
                 }}
                 key={uniqueId()}
                 label={skill}
-                onDelete={() => { }}
+                onDelete={() => {}}
                 variant="outlined"
                 color="primary"
                 deleteIcon={handleJobSkillIcons(capitalize(status))}

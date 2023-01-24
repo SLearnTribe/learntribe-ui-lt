@@ -20,7 +20,7 @@ export const HrProfileContentSection = ({ selectedApplicantData }) => {
 
   return (
     <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
-      <Card sx={{ pl: "1rem", pr: "1rem" }}>
+      <Card sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
         <CardContent>
           <Grid container spacing={1}>
             <Grid item xs={12}>

@@ -112,7 +112,7 @@ export const ExperienceSection = () => {
   ) : (
     <CardWithError
       isError={workExperienceError}
-      sx={{ pl: "1rem", pr: "1rem" }}>
+      sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
       <CardHeader
         title={
           <Typography sx={{ fontSize: 25, fontWeight: 600 }}>

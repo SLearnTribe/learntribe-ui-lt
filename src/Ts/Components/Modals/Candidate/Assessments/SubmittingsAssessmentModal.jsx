@@ -9,7 +9,9 @@ import React from "react";
 export const SubmittingsAssessmentModal = () => {
   return (
     <Dialog maxWidth="md" open={true}>
-      <DialogTitle id="scroll-dialog-title">{"currentModal"}</DialogTitle>
+      <DialogTitle variant="h2" id="scroll-dialog-title">
+        {"currentModal"}
+      </DialogTitle>
       <DialogContent dividers>
         <DialogContentText tabIndex={-1}>DialogContentText</DialogContentText>
       </DialogContent>

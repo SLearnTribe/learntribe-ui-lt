@@ -31,7 +31,6 @@ import {
   getResumeDetails,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { ButtonTexts, CommonTexts } from "../../Utils/Text";
-import themes from "../../Utils/Themes/Themes";
 
 export const FinalResume = () => {
   const dispatch = useDispatch();
@@ -86,7 +85,10 @@ export const FinalResume = () => {
     <Grid container spacing={3} sx={{ pl: 30, pr: 30, mt: 3 }}>
       <Card
         raised
-        sx={{ p: 3, border: `1px solid ${themes.light.palette.primary.main}` }}>
+        sx={{
+          p: 3,
+          border: `1px solid ${(theme) => theme.palette.primary.main}`,
+        }}>
         <Grid item xs={12}>
           <Grid container spacing={3} id="download-Resume-template">
             <Grid item xs={12}>
@@ -95,7 +97,7 @@ export const FinalResume = () => {
                   <Typography variant="h4">{name}</Typography>
                   <Typography
                     variant="h6"
-                    sx={{ color: themes.light.palette.primary.main }}>
+                    sx={{ color: (theme) => theme.palette.primary.main }}>
                     {currentRole}
                   </Typography>
                   <Typography>{about}</Typography>
@@ -108,7 +110,7 @@ export const FinalResume = () => {
                       width: 100,
                       height: 100,
                       border: "thick solid",
-                      borderColor: themes.light.palette.primary.dark,
+                      borderColor: (theme) => theme.palette.primary.dark,
                     }}></Avatar>
                 </Grid>
                 <Grid item xs={5} sx={{ pr: 2 }}>
