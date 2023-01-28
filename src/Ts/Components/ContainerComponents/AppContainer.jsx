@@ -21,7 +21,7 @@ import {
   TemporaryDrawerStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { rolesConfig } from "../../Configs/AppConfig";
-import { builResumeRoute, profileRoute } from "../../Configs/RoutesConfig";
+import { builResumeRoute, editProfileRoute } from "../../Configs/RoutesConfig";
 import {
   getAllCities,
   setIsSideMenuCollapsed,
@@ -31,7 +31,6 @@ import { getIsSideMenuCollapsed } from "../../Redux/Selectors/AppSelectors";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import RootRouter from "../../Routing/RootRouter";
 import { CommonTexts, SideMenuTexts } from "../../Utils/Text";
-import themes from "../../Utils/Themes/Themes";
 import { AccountSettingsMenu } from "../CommonComponents/Controls/AccountSettings";
 
 const drawerWidth = 240;
@@ -138,7 +137,7 @@ export default function AppContainer(props) {
 
   const onClickProfile = () => {
     setAnchorElUser(null);
-    navigate(profileRoute);
+    navigate(editProfileRoute);
   };
 
   const onClickBuildResume = () => {
@@ -172,8 +171,7 @@ export default function AppContainer(props) {
             color="primary"
             aria-label="open drawer"
             edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}>
+            onClick={handleDrawerToggle}>
             <MenuIcon />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
@@ -188,7 +186,12 @@ export default function AppContainer(props) {
               <Link
                 onClick={onClickBuildResume}
                 underline="always"
-                sx={{ ...Font28Weight600SxStyles, mr: 5, cursor: "pointer" }}>
+                sx={{
+                  ...Font28Weight600SxStyles,
+                  mr: 5,
+                  cursor: "pointer",
+                  display: { xs: "none", md: "block" },
+                }}>
                 {CommonTexts.buildAResumeForFree}
               </Link>
             )}
@@ -203,7 +206,7 @@ export default function AppContainer(props) {
                 aria-controls={anchorElUser ? "account-menu" : undefined}
                 aria-haspopup="true"
                 aria-expanded={anchorElUser ? "true" : undefined}>
-                <Avatar sx={{ bgcolor: themes.light.palette.primary.main }}>
+                <Avatar sx={{ bgcolor: (theme) => theme.palette.primary.main }}>
                   {given_name?.[0] + family_name?.[0]}
                 </Avatar>
               </IconButton>

@@ -1,6 +1,8 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { assessmentsRoute } from "../../../../Configs/RoutesConfig";
+import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { CommonTexts } from "../../../../Utils/Text";
 import { HrProfileAvatarSection } from "../../../Candidate/Profile/Hr/HrProfileAvaterSection";
 import { HrProfileContentSection } from "../../../Candidate/Profile/Hr/HrProfileContentSection";
@@ -9,10 +11,11 @@ import { ProfilePageFooter } from "../../../Candidate/Profile/Hr/ProfilePageFoot
 import { HeaderLink } from "../../../CommonComponents/HeaderAndLink";
 
 export const ApplicantProfile = () => {
+  const selectedApplicantData = useSelector(getSelectedApplicantDetails);
   return (
     <Grid container spacing={3}>
       <HrProfileAvatarSection />
-      <HrProfileContentSection />
+      <HrProfileContentSection selectedApplicantData={selectedApplicantData} />
       <HeaderLink
         mainText={CommonTexts.previouslyGeneratedAssessments}
         linkText={CommonTexts.viewAll}

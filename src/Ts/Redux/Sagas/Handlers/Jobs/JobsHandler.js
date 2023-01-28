@@ -1,4 +1,5 @@
 import { call, put, select } from "redux-saga/effects";
+import { handleJobsOrCompaniesChartData } from "../../../../Utils/Dashboard/CandidateDashboardUtils";
 import { hanldeJobsResponse } from "../../../../Utils/Jobs/JobsUtils";
 import {
   getJobsData,
@@ -25,14 +26,18 @@ export function* handleGetJobs({ payload: { page = 1, limit = 25 } }) {
 
     const { jobOptions, skillsOptions } = hanldeJobsResponse(data);
 
-    yield put(setJobsData(data));
+    const chartData = handleJobsOrCompaniesChartData(data);
+
+    yield put(setJobsData({ data, chartData }));
 
     yield put(setJobsAssessedForOptions(jobOptions));
 
     yield put(setSkillsOptions(skillsOptions));
   } catch (error) {
     console.log(error);
-    yield put(setJobsData([]));
+    yield put(
+      setJobsData({ data: [], chartData: { series: [], categories: [] } })
+    );
   } finally {
     yield put(setUserDataLoading(false));
   }

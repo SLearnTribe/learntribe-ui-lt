@@ -5,6 +5,7 @@ const appSlice = createSlice({
   initialState: {
     isSideMenuCollapsed: true,
     cityList: [],
+    opened: true,
   },
   reducers: {
     getAllCities() {},
@@ -14,10 +15,18 @@ const appSlice = createSlice({
     setCityList(state, { payload }) {
       state.cityList = payload;
     },
+
+    setCustomDrawerOpenState(state, { payload }) {
+      state.opened = payload;
+    },
   },
 });
 
-export const { setIsSideMenuCollapsed, setCityList, getAllCities } =
-  appSlice.actions;
+export const {
+  setCustomDrawerOpenState,
+  setIsSideMenuCollapsed,
+  setCityList,
+  getAllCities,
+} = appSlice.actions;
 
 export default appSlice.reducer;

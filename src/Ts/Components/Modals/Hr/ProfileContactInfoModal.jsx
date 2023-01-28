@@ -9,12 +9,14 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React, { useCallback } from "react";
+import { isEmpty } from "lodash";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentSpaceBetweenAlignCenterSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
+import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { CommonTexts } from "../../../Utils/Text";
 
 export const ProfileContactInfoModal = () => {
@@ -22,7 +24,13 @@ export const ProfileContactInfoModal = () => {
 
   const currentModal = useSelector(getCurrentModal);
 
-  const { phone, email } = useSelector(getSelectedApplicantDetails);
+  const selectedApplicant = useSelector(getSelectedApplicantDetails);
+
+  const candidateData = useSelector(getUserProfileInfo);
+
+  const { email, phone } = useMemo(() => {
+    return isEmpty(selectedApplicant) ? candidateData : selectedApplicant;
+  }, [candidateData, selectedApplicant]);
 
   const onClose = useCallback(
     (_event, reason) => {
@@ -33,7 +41,9 @@ export const ProfileContactInfoModal = () => {
   );
   return (
     <Dialog maxWidth="md" open={true} onClose={onClose}>
-      <DialogTitle sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
+      <DialogTitle
+        variant="h2"
+        sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
         {currentModal}
         <CloseIcon sx={{ cursor: "pointer" }} onClick={onClose} />
       </DialogTitle>

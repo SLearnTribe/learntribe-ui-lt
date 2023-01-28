@@ -5,6 +5,7 @@ import {
   setUserProfile,
   updateUserProfile,
 } from "../../../Ducks/Profile/ProfileSlice";
+import { updateResumeDetails } from "../../../Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
@@ -25,6 +26,8 @@ export function* handleGetUserProfile(action) {
     const email = data?.email ? data.email : initialUserInfo?.email;
 
     yield put(setUserProfile({ ...data, name, email }));
+
+    yield put(updateResumeDetails({ ...data, name, email }));
 
     yield put(updateUserProfile({ ...data, name, email }));
   } catch (error) {

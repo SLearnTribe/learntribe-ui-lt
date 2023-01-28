@@ -16,7 +16,6 @@ import { JustifyContentFlexEndSxStyles } from "../../../../CommonStyles/CommonSx
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts, CommonTexts, ModalTexts } from "../../../../Utils/Text";
-import themes from "../../../../Utils/Themes/Themes";
 
 export const CandidateAssessment = () => {
   const dispatch = useDispatch();
@@ -75,7 +74,7 @@ export const CandidateAssessment = () => {
           sx={{
             fontWeight: 700,
             fontSize: 32,
-            color: themes.light.palette.primary.main,
+            color: (theme) => theme.palette.primary.main,
           }}>
           {`${assessment?.title} ${CommonTexts.assessment}`}
         </Typography>
@@ -136,10 +135,10 @@ export const CandidateAssessment = () => {
                 sx={{
                   m: 0.5,
                   bgcolor: pageMap[item.page]
-                    ? themes.light.palette.primary.main
+                    ? (theme) => theme.palette.primary.main
                     : "inherit",
                   color: pageMap[item.page]
-                    ? themes.light.palette.background.paper
+                    ? (theme) => theme.palette.background.paper
                     : "inherit",
                 }}
                 {...item}

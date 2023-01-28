@@ -12,7 +12,7 @@ export const TemporaryDrawerStyles = {
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
     width: drawerWidth,
-    backgroundColor: "#7779F5",
+    backgroundColor: (theme) => theme.palette.primary.main,
     color: "#fff",
   },
 };
@@ -21,14 +21,14 @@ export const PermanentDrawerStyles = {
   display: { xs: "none", sm: "block" },
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
-    backgroundColor: "#7779F5",
+    backgroundColor: (theme) => theme.palette.primary.main,
     // width: drawerWidth
   },
 };
 
 export const PermanentDrawerPaperStyles = {
   sx: {
-    backgroundColor: "#7779F5",
+    backgroundColor: (theme) => theme.palette.primary.main,
     color: "#fff",
   },
 };
@@ -159,7 +159,7 @@ export const JustifyContentSpaceBetweenSxStyles = {
 };
 
 export const HrResumeAssessmentHeaderSxStyles = {
-  // ...DisplayFlexCenter,
+  ...DisplayFlexCenter,
   fontSize: 20,
   fontWeight: 500,
   pb: 0,
@@ -283,7 +283,7 @@ export const scrollAssessmentSxStyles = {
 
 export const HrAssessmentCardSxStyles = {
   borderRadius: 3,
-  border: "1px solid #7779F5",
+  border: (theme) => `1px solid ${theme.palette.primary.main}`,
   width: "20rem",
   display: "flex",
   flexDirection: "column",

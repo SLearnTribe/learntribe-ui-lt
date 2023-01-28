@@ -16,6 +16,10 @@ const assessmentsSlice = createSlice({
     isAssignAlertOpen: false,
     assessmentForCandidate: {},
     currentEditingAssessment: {},
+    assessmentsChartData: {
+      series: [],
+      categories: [],
+    },
   },
   reducers: {
     getAssessments() {},
@@ -23,8 +27,9 @@ const assessmentsSlice = createSlice({
     putAssignAssessment() {},
     getdefaultAssessmentsOptions() {},
     postAssessments() {},
-    setAssessmentsData(state, { payload }) {
-      state.assessmentsData = payload;
+    setAssessmentsData(state, { payload: { data, chartData } }) {
+      state.assessmentsData = data;
+      state.assessmentsChartData = chartData;
     },
     setGenerateAssessmentsDropdownData(state, { payload }) {
       state.generateAssessmentDropdownData = payload;

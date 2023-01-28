@@ -1,5 +1,6 @@
 import { call, put, select } from "redux-saga/effects";
 import { hanldeAssessmentResponse } from "../../../../Utils/AssessmentUtils/AssessmentsUtils";
+import { handleAssessmentsChartData } from "../../../../Utils/Dashboard/CandidateDashboardUtils";
 import { getApplicantsData } from "../../../Ducks/Applicants/ApplicantSlice";
 import {
   getAssessments,
@@ -35,13 +36,15 @@ export function* handleGetRecommendedAssessments({
       page,
       limit,
       filters,
-      keyword
+      keyword,
     });
 
     const previouslyGeneratedAssesseementOptions =
       hanldeAssessmentResponse(data);
 
-    yield put(setAssessmentsData(data));
+    const chartData = handleAssessmentsChartData(data);
+
+    yield put(setAssessmentsData({ data, chartData }));
 
     yield put(
       setPreviouslyGeneratedAssessments(previouslyGeneratedAssesseementOptions)

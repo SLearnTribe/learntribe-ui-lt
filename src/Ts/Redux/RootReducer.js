@@ -10,6 +10,7 @@ import jobSlice from "./Ducks/Jobs/JobsSlice";
 import modalSlice from "./Ducks/Modal/ModalSlice";
 import postJobsSlice from "./Ducks/PostJobs/PostJobsSlice";
 import profileSlice from "./Ducks/Profile/ProfileSlice";
+import resumeBuilderSlice from "./Ducks/ResumeBuilder/ResumeBuilderSlice";
 import ThemeReducer from "./Ducks/ThemesReducer";
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   profileSlice,
   jobSlice,
   candidateDashboardSlice,
+  resumeBuilderSlice,
 });
 
 export default rootReducer;

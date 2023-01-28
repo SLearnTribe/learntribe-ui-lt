@@ -25,7 +25,7 @@ export const ResumeUploadSection = () => {
   return isLoading ? (
     <ResumeUploadSkeleton />
   ) : (
-    <Card sx={{ pl: "1rem", pr: "1rem" }}>
+    <Card sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
       <CardHeader
         title={
           <Typography sx={{ fontSize: 25, fontWeight: 600 }}>

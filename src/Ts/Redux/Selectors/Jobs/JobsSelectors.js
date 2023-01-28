@@ -6,3 +6,5 @@ export const getJobsAssessedForOptions = (state) =>
   state.jobSlice.jobsAssessedForOptions;
 
 export const getSkillsOptions = (state) => state.jobSlice.skillsOptions;
+
+export const getJobsOrCompaniesChartData = (state) => state.jobSlice.chartData;

@@ -1,14 +1,13 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 // import HelpIcon from "@mui/icons-material/Help";
 import PeopleIcon from "@mui/icons-material/People";
 import PostAddIcon from "@mui/icons-material/PostAdd";
-import WorkIcon from "@mui/icons-material/Work";
+import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import { TealBadge } from "../CommonJsx/SharedJsxStyles";
-import { WhiteColor } from "../CommonStyles/CommonSxStyles";
 import { SideMenuTexts } from "../Utils/Text";
 import {
   adminRoute,
@@ -19,27 +18,27 @@ import {
   completedExamsRoute,
   createNewExamRoute,
   dashboardRoute,
+  editProfileRoute,
   examsRoute,
   jobsRoute,
   postJobsRoute,
-  profileRoute,
 } from "./RoutesConfig";
 
 export const SideMenuItems = [
   {
     title: SideMenuTexts.dashboard,
     path: dashboardRoute,
-    icon: <DashboardIcon sx={WhiteColor} />,
+    icon: <DashboardOutlinedIcon />,
   },
   {
     title: SideMenuTexts.jobs,
     path: jobsRoute,
-    icon: <WorkIcon sx={WhiteColor} />,
+    icon: <WorkOutlineOutlinedIcon />,
   },
   {
     title: SideMenuTexts.exams,
     path: examsRoute,
-    icon: <AssignmentIcon sx={WhiteColor} />,
+    icon: <AssignmentOutlinedIcon />,
     children: [
       {
         title: SideMenuTexts.completedExams,
@@ -56,12 +55,12 @@ export const SideMenuItems = [
   {
     title: SideMenuTexts.candidates,
     path: candidatesRoute,
-    icon: <PeopleIcon sx={WhiteColor} />,
+    icon: <PeopleIcon />,
   },
   {
     title: SideMenuTexts.admin,
     path: adminRoute,
-    icon: <AdminPanelSettingsIcon sx={WhiteColor} />,
+    icon: <AdminPanelSettingsIcon />,
   },
 ];
 
@@ -69,12 +68,12 @@ export const hrSideNavMenuItems = [
   {
     title: SideMenuTexts.dashboard,
     path: dashboardRoute,
-    icon: <DashboardIcon sx={WhiteColor} />,
+    icon: <DashboardOutlinedIcon />,
   },
   {
     title: SideMenuTexts.postJobs,
     path: postJobsRoute,
-    icon: <PostAddIcon sx={WhiteColor} />,
+    icon: <PostAddIcon />,
   },
   // {
   //   title: SideMenuTexts.assessments,
@@ -84,7 +83,7 @@ export const hrSideNavMenuItems = [
   {
     title: SideMenuTexts.applicants,
     path: applicantsRoute,
-    icon: <PeopleIcon sx={WhiteColor} />,
+    icon: <PeopleIcon />,
   },
   // {
   //   title: SideMenuTexts.profile,
@@ -103,22 +102,22 @@ export const candidateSideNavMenuItems = [
   {
     title: SideMenuTexts.assessments,
     path: assessmentsRoute,
-    icon: <AssignmentIcon sx={WhiteColor} />,
+    icon: <AssignmentOutlinedIcon />,
   },
   {
     title: SideMenuTexts.jobs,
     path: jobsRoute,
-    icon: <WorkIcon sx={WhiteColor} />,
+    icon: <WorkOutlineOutlinedIcon />,
   },
   {
     title: SideMenuTexts.profile,
-    path: profileRoute,
-    icon: <AccountCircleIcon sx={WhiteColor} />,
+    path: editProfileRoute,
+    icon: <AccountCircleOutlinedIcon />,
   },
   {
     title: SideMenuTexts.resumeBuilder,
     path: builResumeRoute,
-    icon: <NoteAltIcon sx={WhiteColor} />,
+    icon: <NoteAltOutlinedIcon />,
   },
   // {
   //   title: SideMenuTexts.help,

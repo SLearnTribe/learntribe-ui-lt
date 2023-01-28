@@ -1,15 +1,13 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { uniqueId } from "lodash";
 import React from "react";
-import { useSelector } from "react-redux";
 import {
   Font18Weight500SxStyles,
   Font21Weight500SxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
-import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { CommonTexts } from "../../../../Utils/Text";
 
-export const HrProfileContentSection = () => {
+export const HrProfileContentSection = ({ selectedApplicantData }) => {
   const {
     name,
     country,
@@ -18,11 +16,11 @@ export const HrProfileContentSection = () => {
     currentRole = "N/A",
     workExperiences = [],
     educationExperiences = [],
-  } = useSelector(getSelectedApplicantDetails);
+  } = selectedApplicantData;
 
   return (
     <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
-      <Card sx={{ pl: "1rem", pr: "1rem" }}>
+      <Card sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
         <CardContent>
           <Grid container spacing={1}>
             <Grid item xs={12}>
