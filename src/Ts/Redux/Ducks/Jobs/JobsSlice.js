@@ -8,12 +8,17 @@ const jobSlice = createSlice({
     isLoading: true,
     jobsAssessedForOptions: [],
     skillsOptions: [],
+    chartData: {
+      series: [],
+      categories: [],
+    },
   },
   reducers: {
     getJobsData() {},
     postJobsData() {},
-    setJobsData(state, { payload }) {
-      state.jobs = payload;
+    setJobsData(state, { payload: { data, chartData } }) {
+      state.jobs = data;
+      state.chartData = chartData;
     },
     setCurrentEditingJob(state, { payload }) {
       state.currentEditingJob = payload;

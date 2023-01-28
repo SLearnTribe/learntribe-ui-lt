@@ -21,3 +21,6 @@ export const getAssessmentOfCandidate = (state) =>
 
 export const getCurrentEditingAssessment = (state) =>
   state.assessmentsSlice.currentEditingAssessment;
+
+export const getAssessmentsChartData = (state) =>
+  state.assessmentsSlice.assessmentsChartData;

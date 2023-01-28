@@ -7,6 +7,8 @@ import { getJobsData } from "../../../../Redux/Ducks/Jobs/JobsSlice";
 import { CandidateDashboardTexts, CommonTexts } from "../../../../Utils/Text";
 import { HeaderLink } from "../../../CommonComponents/HeaderAndLink";
 import { JobsCard } from "../../../CommonComponents/JobsCard";
+import { CandidateJobsComapaniesDonutChart } from "./CandidateAssessmentsChart";
+import { CandidateJobsComapaniesChart } from "./CandidateJobsComapaniesChart";
 import { RecommendedAssessments } from "./RecommendedAssessments";
 import { StatCards } from "./StatCards";
 
@@ -43,6 +45,8 @@ export const CandidateDashboard = () => {
         hideLink={true}
       />
       <StatCards />
+      <CandidateJobsComapaniesChart />
+      <CandidateJobsComapaniesDonutChart />
       <HeaderLink
         mainText={CandidateDashboardTexts.jobsCompaniesConsideringYou}
         linkText={CommonTexts.viewAll}
