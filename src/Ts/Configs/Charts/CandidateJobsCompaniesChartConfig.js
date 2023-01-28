@@ -20,6 +20,16 @@ export const getCandidateJobsCompaniesBarChartConfig = () => {
         text: "",
       },
     },
+    lang: {
+      noData: "Nichts zu anzeigen",
+    },
+    noData: {
+      style: {
+        fontWeight: "bold",
+        fontSize: "15px",
+        color: "#303030",
+      },
+    },
     legend: {},
     tooltip: {
       headerFormat: "<b>{point.x}</b><br/>",

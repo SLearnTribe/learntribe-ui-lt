@@ -1,7 +1,7 @@
 import { cloneDeep, has, uniqBy, uniqueId } from "lodash";
 import { getCandidateJobsCompaniesBarChartConfig } from "../../Configs/Charts/CandidateJobsCompaniesChartConfig";
 import { CandidateStatsConfig } from "../../Configs/Dashboards/DashboardsConfig";
-import { CandidateDashboardTexts } from "../Text";
+import { CandidateDashboardTexts, HrDashboardTexts } from "../Text";
 
 export const handleCandidateActivitiesResponse = ({
   completed,
@@ -52,6 +52,34 @@ export const getAssessmentsChartConfig = ({ series, categories }) => {
   config.series = series;
 
   config.title.text = "Top Recommended Assessments";
+
+  return config;
+};
+
+export const getHiringInLastMonthChartConfig = ({ series, categories }) => {
+  const chartConfig = getCandidateJobsCompaniesBarChartConfig();
+
+  const config = cloneDeep(chartConfig);
+
+  config.xAxis.categories = categories;
+
+  config.series = series;
+
+  config.title.text = "Top " + HrDashboardTexts.hiringsInTheLastMonth;
+
+  return config;
+};
+
+export const getHiringInProgressChartConfig = ({ series, categories }) => {
+  const chartConfig = getCandidateJobsCompaniesBarChartConfig();
+
+  const config = cloneDeep(chartConfig);
+
+  config.xAxis.categories = categories;
+
+  config.series = series;
+
+  config.title.text = "Top " + HrDashboardTexts.hiringsInProgress;
 
   return config;
 };
@@ -124,6 +152,44 @@ export const handleJobsOrCompaniesChartData = (data) => {
       );
 
       series[businessName].data[index] = series[businessName].data[index] + 1;
+    }
+  });
+
+  return {
+    series: Object.values(series),
+    categories: [...new Set(categories)],
+  };
+};
+
+export const handleHiringInProgressChartData = (data) => {
+  const series = {};
+
+  const len = uniqBy(data, "jobTitle").length;
+
+  let businessNameIndex = 0;
+
+  const categories = [];
+
+  data.forEach(({ jobTitle, jobCount }) => {
+    if (!has(series, jobTitle)) {
+      categories.push(jobTitle);
+
+      const data = new Array(len).fill(0);
+
+      data[businessNameIndex] = jobCount;
+
+      series[jobTitle] = {
+        name: jobTitle,
+        data: data,
+      };
+
+      businessNameIndex++;
+    } else {
+      const index = Object.keys(series).findIndex(
+        (category) => category === jobTitle
+      );
+
+      series[jobTitle].data[index] = series[jobTitle].data[index] + jobCount;
     }
   });
 

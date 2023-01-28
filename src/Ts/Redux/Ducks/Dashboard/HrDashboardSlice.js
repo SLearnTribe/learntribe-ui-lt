@@ -6,14 +6,27 @@ const hrDashboardSlice = createSlice({
     hiringInLastMonth: [],
     hiringInProgress: [],
     isLoading: true,
+    hiringInProgressChartData: {
+      series: [],
+      categories: [],
+    },
+    hiringInLastMonthChartData: {
+      series: [],
+      categories: [],
+    },
   },
   reducers: {
     getHrHiringData() {},
-    setHrHiringInLastMonthData(state, { payload }) {
-      state.hiringInLastMonth = payload;
+    setHrHiringInLastMonthData(
+      state,
+      { payload: { data, hiringInLastMonthChartData } }
+    ) {
+      state.hiringInLastMonth = data;
+      state.hiringInLastMonthChartData = hiringInLastMonthChartData;
     },
-    setHrHiringData(state, { payload }) {
-      state.hiringInProgress = payload;
+    setHrHiringData(state, { payload: { data, hiringInProgressChartData } }) {
+      state.hiringInProgress = data;
+      state.hiringInProgressChartData = hiringInProgressChartData;
     },
     setIsHrDashboardLoading(state, { payload }) {
       state.isLoading = payload;

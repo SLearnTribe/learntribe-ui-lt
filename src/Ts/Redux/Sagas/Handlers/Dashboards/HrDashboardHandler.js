@@ -1,6 +1,9 @@
 import { isEmpty } from "lodash";
 import { call, put, select } from "redux-saga/effects";
-import { handleHiringDashboardData } from "../../../../Utils/Dashboard/CandidateDashboardUtils";
+import {
+  handleHiringDashboardData,
+  handleHiringInProgressChartData,
+} from "../../../../Utils/Dashboard/CandidateDashboardUtils";
 import {
   setHrHiringData,
   setHrHiringInLastMonthData,
@@ -28,15 +31,38 @@ export function* handleGetHrDashboard({
     const normalizedData = handleHiringDashboardData(data);
 
     if (isEmpty(category)) {
-      yield put(setHrHiringInLastMonthData(normalizedData));
+      const hiringInLastMonthChartData = handleHiringInProgressChartData(data);
+      yield put(
+        setHrHiringInLastMonthData({
+          data: normalizedData,
+          hiringInLastMonthChartData,
+        })
+      );
     } else {
-      yield put(setHrHiringData(normalizedData));
+      const hiringInProgressChartData = handleHiringInProgressChartData(data);
+
+      yield put(
+        setHrHiringData({
+          data: normalizedData,
+          hiringInProgressChartData,
+        })
+      );
     }
   } catch (error) {
     console.log(error);
-    yield put(setHrHiringInLastMonthData([]));
+    yield put(
+      setHrHiringInLastMonthData({
+        data: [],
+        hiringInLastMonthChartData: { series: [], categories: {} },
+      })
+    );
 
-    yield put(setHrHiringData([]));
+    yield put(
+      setHrHiringData({
+        data: [],
+        hiringInProgressChartData: { series: [], categories: {} },
+      })
+    );
   } finally {
     yield put(setIsHrDashboardLoading(false));
 

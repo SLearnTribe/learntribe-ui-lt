@@ -13,6 +13,8 @@ import {
 import { HrDashboardTexts } from "../../../../Utils/Text";
 import { DataGridTable } from "../../../CommonComponents/DataGridTable";
 import { HeaderLink } from "../../../CommonComponents/HeaderAndLink";
+import { HiringInLastMonthChart } from "./HiringInLastMonthChart";
+import { HiringInProgressChart } from "./HiringInProgressChart";
 
 export const HrDashboard = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,8 @@ export const HrDashboard = () => {
 
   return (
     <Grid container spacing={3}>
+      <HiringInLastMonthChart />
+      <HiringInProgressChart />
       <HeaderLink
         mainText={HrDashboardTexts.hiringsInTheLastMonth}
         hideLink={true}
