@@ -114,7 +114,7 @@ export const AssessmentCards = ({ selectedTab }) => {
       {filteredAssessmentsData.map((row) => {
         const { title, difficulty, description, status, id } = row;
         return (
-          <Grid item xs={12} key={uniqueId()}>
+          <Grid item xs={4} key={uniqueId()}>
             <Card
               sx={{
                 height: "100%",
