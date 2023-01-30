@@ -37,7 +37,7 @@ export const getJobsComapniesChartConfig = ({ series, categories }) => {
   config.series = series;
 
   config.title.text =
-    "Top" + CandidateDashboardTexts.jobsCompaniesConsideringYou;
+    "Top " + CandidateDashboardTexts.jobsCompaniesConsideringYou;
 
   return config;
 };
