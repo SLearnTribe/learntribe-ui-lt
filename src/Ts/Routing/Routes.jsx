@@ -6,6 +6,7 @@ import { CandidateAssessment } from "../Components/Pages/Dashboards/Candidate/Ca
 import { CandidateDashboard } from "../Components/Pages/Dashboards/Candidate/CandidateDashboard";
 import { InstructionsPage } from "../Components/Pages/Dashboards/Candidate/InstructionsPage";
 import { HrDashboard } from "../Components/Pages/Dashboards/HR/HrDashboard";
+import { Help } from "../Components/Pages/Help/Help";
 // import { CandidateHelp } from "../Components/Pages/Help/CandidateHelp/Help";
 // import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
 import { Jobs } from "../Components/Pages/Jobs/Jobs";
@@ -42,11 +43,11 @@ const RouterMap = [
   //   component: ApplicantProfile,
   //   permission: rolesConfig.HR,
   // },
-  // {
-  //   path: routes.help,
-  //   component: HrHelp,
-  //   permission: rolesConfig.HR,
-  // },
+  {
+    path: routes.help,
+    component: Help,
+    permission: rolesConfig.HR,
+  },
   {
     path: routes.dashboard,
     component: CandidateDashboard,
@@ -92,11 +93,11 @@ const RouterMap = [
     component: ResumeBuilder,
     permission: rolesConfig.CANDIDATE,
   },
-  // {
-  //   path: routes.help,
-  //   component: CandidateHelp,
-  //   permission: rolesConfig.CANDIDATE,
-  // },
+  {
+    path: routes.help,
+    component: Help,
+    permission: rolesConfig.CANDIDATE,
+  },
 ];
 
 export const RenderRoute = (route, idx) => {

@@ -11,7 +11,7 @@ export const HiringInLastMonthChart = () => {
 
   const options = getHiringInLastMonthChartConfig(hiringInLastMonth);
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
       <Card sx={{ p: 2, boxShadow: 3 }}>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </Card>

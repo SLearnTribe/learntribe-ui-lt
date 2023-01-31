@@ -76,6 +76,8 @@ export const CommonTexts = {
   SKILLS: "SKILLS",
   PROJECTS: "PROJECTS",
   EDUCATION: "EDUCATION",
+  CONTACT_US: "Contact Us",
+  CONTACT_US_TITLE: "Have any questions? We'd love to hear from you.",
 };
 
 export const ButtonTexts = {
@@ -107,6 +109,7 @@ export const ButtonTexts = {
   download: "Download",
   goToDashboard: "Go to Dashboard",
   editProfile: "Edit Profile",
+  sendInquiry: "Send Inquiry",
 };
 
 export const TabLabelTexts = {
