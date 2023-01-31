@@ -26,16 +26,12 @@ import { AssessmentNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAv
 import {
   getAssessmentForCandidate,
   setAssessmentInnerFilter,
-  setAssessmentsData,
 } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import {
   getAssessmentInnerFilter,
   getAssessmentsData,
 } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
-import {
-  handleFilteredAssessmentsData,
-  handleToggleSaveAssessment,
-} from "../../../Utils/AssessmentUtils/AssessmentsUtils";
+import { handleFilteredAssessmentsData } from "../../../Utils/AssessmentUtils/AssessmentsUtils";
 import { AssessmentTexts, ButtonTexts } from "../../../Utils/Text";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
@@ -50,12 +46,11 @@ export const AssessmentCards = ({ selectedTab }) => {
 
   const onToggleSave = useCallback(
     ({ currentTarget }) => {
-      const updatedAssessmentsData = handleToggleSaveAssessment(
-        assessmentsData,
-        currentTarget
-      );
-
-      dispatch(setAssessmentsData(updatedAssessmentsData));
+      // const updatedAssessmentsData = handleToggleSaveAssessment(
+      //   assessmentsData,
+      //   currentTarget
+      // );
+      // dispatch(setAssessmentsData(updatedAssessmentsData));
     },
     [dispatch, assessmentsData]
   );
