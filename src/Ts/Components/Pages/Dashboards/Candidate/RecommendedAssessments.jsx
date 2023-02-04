@@ -1,13 +1,13 @@
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import {
   Box,
+  Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
   Grid,
   IconButton,
-  Link,
   Typography,
 } from "@mui/material";
 import { uniqueId } from "lodash";
@@ -88,15 +88,12 @@ export const RecommendedAssessments = () => {
             </CardContent>
             <CardActions
               sx={{ display: "flex", justifyContent: "center", mt: "auto" }}>
-              <Link
-                sx={{ fontSize: 16, fontWeight: 700 }}
-                component="button"
-                underline="none"
-                variant="body2"
+              <Button
+                variant="contained"
                 data-id={id}
                 onClick={onStartAssessment}>
                 {ButtonTexts.startNow}
-              </Link>
+              </Button>
             </CardActions>
           </Card>
         ))}

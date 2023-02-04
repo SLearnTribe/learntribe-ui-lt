@@ -99,7 +99,10 @@ export const JobsCard = () => {
             } = row;
             return (
               <Card
-                sx={{ ...HrAssessmentCardSxStyles, width: "25rem" }}
+                sx={{
+                  ...HrAssessmentCardSxStyles,
+                  width: "25rem",
+                }}
                 row
                 key={uniqueId()}>
                 <CardHeader

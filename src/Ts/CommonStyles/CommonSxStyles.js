@@ -283,11 +283,12 @@ export const scrollAssessmentSxStyles = {
 
 export const HrAssessmentCardSxStyles = {
   borderRadius: 3,
-  border: (theme) => `1px solid ${theme.palette.primary.main}`,
   width: "20rem",
   display: "flex",
   flexDirection: "column",
   mr: "1rem",
+  boxShadow: 3,
+  ml: "0.2rem",
 };
 
 export const JustifyContentSpaceBetweenAlignCenterSxStyles = {
