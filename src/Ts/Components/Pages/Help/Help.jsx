@@ -1,12 +1,26 @@
-import { Button, Grid, Link, TextField, Typography } from "@mui/material";
+import emailjs from "@emailjs/browser";
+import {
+  Backdrop,
+  Button,
+  CircularProgress,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import {
   ButtonTexts,
   CommonTexts,
+  ModalTexts,
   TextFieldLabelsAndTexts,
 } from "../../../Utils/Text";
 
 export const Help = () => {
+  const dispatch = useDispatch();
+
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
@@ -15,6 +29,8 @@ export const Help = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [query, setQuery] = useState("");
+
+  const [open, setOpen] = useState(false);
 
   const onChangeQuery = useCallback(({ target: { value } }) => {
     setQuery(value);
@@ -35,23 +51,72 @@ export const Help = () => {
     setPhoneError(false);
   }, []);
 
-  const onSendInquiry = useCallback(() => {
+  const resetForm = useCallback(() => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setQuery("");
+  }, []);
+
+  const validateErrors = useCallback(() => {
+    let hasError = false;
     if (name.length < 1) {
       setNameError(true);
+      hasError = true;
     }
     if (email.length < 1) {
       setEmailError(true);
+      hasError = true;
     }
     if (phone.toString().length < 1) {
       setPhoneError(true);
+      hasError = true;
     }
+    return hasError;
   }, [name, email, phone]);
+
+  const onSendInquiry = useCallback(() => {
+    let hasError = validateErrors();
+
+    if (!hasError) {
+      setOpen(true);
+
+      emailjs
+        .send(
+          "service_jkqlldc",
+          "template_puoyloi",
+          {
+            name,
+            query,
+            email,
+            phone,
+          },
+          "WhgdthXpw4AD0LhRi"
+        )
+        .then(
+          () => {
+            dispatch(setCurrentModal(ModalTexts.help));
+            setOpen(false);
+            resetForm();
+          },
+          (error) => {
+            console.log(error.text);
+            setOpen(false);
+          }
+        );
+    }
+  }, [dispatch, validateErrors, resetForm, name, email, phone, query]);
 
   const onClickEmail = () => {
     window.open(`mailto:support@smilebat.com`);
   };
   return (
     <Grid container spacing={3}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}>
+        <CircularProgress color="primary" />
+      </Backdrop>
       <Grid item xs={12}>
         <Typography variant="h1">{CommonTexts.CONTACT_US}</Typography>
       </Grid>

@@ -5,6 +5,7 @@ import { ModalTexts } from "../../../Utils/Text";
 import { GenerateAssessments } from "../../Modals/Applicants/GenerateAssessments";
 import { SubmittingsAssessmentModal } from "../../Modals/Candidate/Assessments/SubmittingsAssessmentModal";
 import { JobDescription } from "../../Modals/Candidate/Jobs/JobDescription";
+import { ThanksForContactingModal } from "../../Modals/Help/ThanksForContactingModal";
 import { ProfileContactInfoModal } from "../../Modals/Hr/ProfileContactInfoModal";
 import { PostJobsModal } from "../../Modals/PostJobs/PostJobsModal";
 
@@ -24,6 +25,8 @@ export default () => {
       return <JobDescription />;
     case ModalTexts.submittingAssessment:
       return <SubmittingsAssessmentModal />;
+    case ModalTexts.help:
+      return <ThanksForContactingModal />;
     default:
       return null;
   }

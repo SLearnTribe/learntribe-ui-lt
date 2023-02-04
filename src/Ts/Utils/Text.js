@@ -147,6 +147,7 @@ export const ModalTexts = {
   contactInfo: "Contact Info",
   jobDescription: "Job Description",
   submittingAssessment: "Submitting Assessment...",
+  help: "help",
 };
 
 export const ProfileTexts = {
