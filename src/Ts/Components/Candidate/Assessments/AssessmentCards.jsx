@@ -2,6 +2,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import {
   Box,
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -10,13 +11,17 @@ import {
   Grid,
   IconButton,
   Link,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { capitalize, isEmpty, uniqBy, uniqueId } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SxStylesAskWhy } from "../../../CommonStyles/CommonSxStyles";
+import {
+  JustifyContentSpaceBetweenAlignCenterSxStyles,
+  SxStylesAskWhy,
+} from "../../../CommonStyles/CommonSxStyles";
 import {
   AssessmentDifficultyLevelColorMap,
   AssessmentStatusMap,
@@ -107,7 +112,14 @@ export const AssessmentCards = ({ selectedTab }) => {
         <AssessmentNoDataCard text="No Assessment Available" />
       )}
       {filteredAssessmentsData.map((row) => {
-        const { title, difficulty, description, status, id } = row;
+        const {
+          title,
+          difficulty,
+          description,
+          status,
+          id,
+          askWhy = "TCS, CTS, IBM are suggesting this assessment.",
+        } = row;
         return (
           <Grid item xs={4} key={uniqueId()}>
             <Card
@@ -119,9 +131,11 @@ export const AssessmentCards = ({ selectedTab }) => {
               <CardHeader
                 action={
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Link sx={SxStylesAskWhy} onClick={onClickAskWhy}>
-                      {AssessmentTexts.askWhy}
-                    </Link>
+                    <Tooltip placement="top" title={askWhy} arrow>
+                      <Link sx={SxStylesAskWhy} onClick={onClickAskWhy}>
+                        {AssessmentTexts.askWhy}
+                      </Link>
+                    </Tooltip>
                     <IconButton
                       row-data={JSON.stringify(row)}
                       onClick={onToggleSave}>
@@ -133,49 +147,27 @@ export const AssessmentCards = ({ selectedTab }) => {
                     </IconButton>
                   </Box>
                 }
-                title={
-                  <Box sx={{ display: "flex" }}>
-                    <Typography sx={{ fontSize: 20, fontWeight: 600, pr: 2 }}>
-                      {title}
-                    </Typography>
-                    <Chip
-                      sx={{
-                        mr: 2,
-                        color:
-                          AssessmentDifficultyLevelColorMap[difficulty].color,
-                        backgroundColor:
-                          AssessmentDifficultyLevelColorMap[difficulty].bgColor,
-                      }}
-                      key={uniqueId()}
-                      label={difficulty}
-                      size="small"
-                    />
-                  </Box>
-                }
               />
-              <CardContent sx={{ pt: 0 }}>
+              <CardContent sx={{ pt: 0, pb: 0 }}>
                 <Box>
-                  <Typography sx={{ fontSize: 20, fontWeight: 400 }}>
-                    {description}
+                  <Typography sx={{ fontSize: 20, fontWeight: 600, pb: 1 }}>
+                    {title}
                   </Typography>
+                  <Chip
+                    sx={{
+                      mr: 2,
+                      color:
+                        AssessmentDifficultyLevelColorMap[difficulty].color,
+                      backgroundColor:
+                        AssessmentDifficultyLevelColorMap[difficulty].bgColor,
+                    }}
+                    key={uniqueId()}
+                    label={difficulty}
+                    size="small"
+                  />
                 </Box>
               </CardContent>
-              <CardActions
-                sx={{
-                  display: "flex",
-                  justifyContent: "end",
-                  mt: "auto",
-                  pr: 3,
-                }}>
-                <Link
-                  sx={{ fontSize: 16, fontWeight: 700, mr: 2 }}
-                  component="button"
-                  underline="none"
-                  variant="body2"
-                  data-id={id}
-                  onClick={onStartAssessment}>
-                  {ButtonTexts.startNow}
-                </Link>
+              <CardActions sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
                 <Typography
                   sx={{
                     fontSize: 16,
@@ -184,6 +176,12 @@ export const AssessmentCards = ({ selectedTab }) => {
                   }}>
                   {capitalize(status)}
                 </Typography>
+                <Button
+                  variant="contained"
+                  data-id={id}
+                  onClick={onStartAssessment}>
+                  {ButtonTexts.startNow}
+                </Button>
               </CardActions>
             </Card>
           </Grid>
