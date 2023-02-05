@@ -1,8 +1,12 @@
+// import EngineeringTwoToneIcon from "@mui/icons-material/EngineeringTwoTone";
+import EngineeringOutlinedIcon from "@mui/icons-material/EngineeringOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Avatar,
   Box,
   ButtonBase,
+  FormControlLabel,
+  FormGroup,
   IconButton,
   Link,
   Tooltip,
@@ -75,11 +79,24 @@ const Header = ({ handleLeftDrawerToggle }) => {
           },
         }}>
         <Box
-          component="span"
-          sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}>
-          <Typography color={"primary"} variant="h1">
-            SmileBat
-          </Typography>
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+            flexGrow: 1,
+          }}>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <EngineeringOutlinedIcon
+                  color="primary"
+                  sx={{ width: 64, height: 40 }}
+                />
+              }
+              label={<Typography variant="h2">SmileBat</Typography>}
+            />
+          </FormGroup>
           {/* <Logo /> */}
         </Box>
         <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
