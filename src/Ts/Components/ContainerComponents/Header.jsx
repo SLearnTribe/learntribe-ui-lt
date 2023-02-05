@@ -77,7 +77,9 @@ const Header = ({ handleLeftDrawerToggle }) => {
         <Box
           component="span"
           sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}>
-          <Typography variant="h1">SmileBat</Typography>
+          <Typography color={"primary"} variant="h1">
+            SmileBat
+          </Typography>
           {/* <Logo /> */}
         </Box>
         <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
