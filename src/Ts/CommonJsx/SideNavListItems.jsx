@@ -15,7 +15,7 @@ import { VerticleDivider } from "./CommonJsxUtils";
 import { ResumeBuilderBadge, StyledListItem } from "./SharedJsxStyles";
 
 const CollapsedListItem = ({ row: { path, icon, title }, pathname }) => {
-  const isSelected = isEqual(path, pathname);
+  const isSelected = isEqual(path, pathname) || path.includes(pathname);
 
   return (
     <StyledListItem selected={isSelected} sx={{ pl: 0 }} button>
@@ -36,7 +36,10 @@ const ExpandedListItem = ({
   row: { path, icon, title, level = 1, borderRadius = 12 },
   pathname,
 }) => {
-  const isSelected = isEqual(path, pathname) || path.includes(pathname);
+  const isSelected =
+    isEqual(path, pathname) ||
+    pathname.includes(path) ||
+    path.includes(pathname);
 
   const textSx = isSelected ? { fontWeight: 600 } : {};
 
