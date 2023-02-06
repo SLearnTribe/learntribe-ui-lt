@@ -7,7 +7,7 @@ export function requestGetJobs({ accessToken, page = 1, limit = 25 }) {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/jobs/user?page=${page}&limit=${limit}`,
+    url: `http://www.smilebat.xyz/sb-inq/api/v1/jobs/user?page=${page}&limit=${limit}`,
   });
 }
 
@@ -22,6 +22,6 @@ export function requestPostJobs({
       Authorization: `Bearer ${accessToken}`,
     },
     data: postJobData,
-    url: "http://www.smilebat.xyz/api/v1/jobs/user",
+    url: "http://www.smilebat.xyz/sb-inq/api/v1/jobs/user",
   });
 }

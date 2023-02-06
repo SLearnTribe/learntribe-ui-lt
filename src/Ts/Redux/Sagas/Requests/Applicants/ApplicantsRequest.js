@@ -13,6 +13,6 @@ export function requestGetApplicants({
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/profile?page=${page}&limit=${limit}&skill=${skill}&keyword=${keyword}`,
+    url: `http://www.smilebat.xyz/sb-inq/api/v1/profile?page=${page}&limit=${limit}&skill=${skill}&keyword=${keyword}`,
   });
 }

@@ -7,7 +7,7 @@ export function requestGetUserProfile(accessToken) {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/api/v1/profile/user",
+    url: "http://www.smilebat.xyz/sb-inq/api/v1/profile/user",
   });
 }
 
@@ -19,6 +19,6 @@ export function requestPostUserProfile({ accessToken, updatedUserInfo }) {
       Authorization: `Bearer ${accessToken}`,
     },
     data: updatedUserInfo,
-    url: "http://www.smilebat.xyz/api/v1/profile/user",
+    url: "http://www.smilebat.xyz/sb-inq/api/v1/profile/user",
   });
 }

@@ -13,7 +13,7 @@ export function requestGetCandidateRecommendedAssessments({
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/assessments/user?page=${page}&limit=${limit}&filter=${filters}&keyword=${keyword}`,
+    url: `http://www.smilebat.xyz/sb-ast/api/v1/assessments/user?page=${page}&limit=${limit}&filter=${filters}&keyword=${keyword}`,
   });
 }
 
@@ -28,7 +28,7 @@ export function requestPostAssessments({
       Authorization: `Bearer ${accessToken}`,
     },
     data: assessmentToBeGenerated,
-    url: "http://www.smilebat.xyz/api/v1/assessments/user",
+    url: "http://www.smilebat.xyz/sb-ast/api/v1/assessments/user",
   });
 }
 
@@ -39,7 +39,7 @@ export function requestDefaultAssessmentOptions(accessToken) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/api/v1/assessments/preceding",
+    url: "http://www.smilebat.xyz/sb-ast/api/v1/assessments/preceding",
   });
 }
 
@@ -54,7 +54,7 @@ export function requestAssignAssessment({
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/assessments/id/${assessmentId}?assigneeEmail=${assigneeEmail}`,
+    url: `http://www.smilebat.xyz/sb-ast/api/v1/assessments/id/${assessmentId}?assigneeEmail=${assigneeEmail}`,
   });
 }
 
@@ -68,6 +68,6 @@ export function requestGetAssessmentForCandidate({
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/assessments/id/${assessmentId}`,
+    url: `http://www.smilebat.xyz/sb-ast/api/v1/assessments/id/${assessmentId}`,
   });
 }

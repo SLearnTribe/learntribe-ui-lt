@@ -7,6 +7,6 @@ export function requestGetHrActivities({ category, page, limit, accessToken }) {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/api/v1/analytics/hr/activities?page=${page}&limit=${limit}&category=${category}`,
+    url: `http://www.smilebat.xyz/sb-inq/api/v1/analytics/hr/activities?page=${page}&limit=${limit}&category=${category}`,
   });
 }
