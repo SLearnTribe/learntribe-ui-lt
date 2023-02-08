@@ -3,7 +3,7 @@ import axios from "axios";
 export function requestGetUser(hashCode) {
   return axios.request({
     method: "get",
-    url: `http://www.smilebat.xyz/sb-auth/token?code=${hashCode}`,
+    url: `http://www.smilebat.xyz/sb-auth/app/token?code=${hashCode}`,
   });
 }
 
@@ -14,7 +14,7 @@ export function requestPostLogout(accessToken) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/sb-auth/logout",
+    url: "http://www.smilebat.xyz/sb-auth/app/signout",
   });
 }
 
