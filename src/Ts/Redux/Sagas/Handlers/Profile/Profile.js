@@ -25,11 +25,13 @@ export function* handleGetUserProfile(action) {
 
     const email = data?.email ? data.email : initialUserInfo?.email;
 
-    yield put(setUserProfile({ ...data, name, email }));
+    const phone = data?.phone ? data.phone : initialUserInfo?.phone;
 
-    yield put(updateResumeDetails({ ...data, name, email }));
+    yield put(setUserProfile({ ...data, name, email, phone }));
 
-    yield put(updateUserProfile({ ...data, name, email }));
+    yield put(updateResumeDetails({ ...data, name, email, phone }));
+
+    yield put(updateUserProfile({ ...data, name, email, phone }));
   } catch (error) {
     console.log(error);
   } finally {
