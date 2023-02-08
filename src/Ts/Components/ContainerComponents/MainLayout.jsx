@@ -9,7 +9,10 @@ import { styled, useTheme } from "@mui/material/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { drawerWidth } from "../../Configs/Themes/ThemesConfig";
-import { setCustomDrawerOpenState } from "../../Redux/Ducks/App/AppSlice";
+import {
+  getAllCities,
+  setCustomDrawerOpenState,
+} from "../../Redux/Ducks/App/AppSlice";
 import { getIsCustomDrawerOpen } from "../../Redux/Selectors/AppSelectors";
 import RootRouter from "../../Routing/RootRouter";
 import Header from "./Header";
@@ -81,6 +84,10 @@ const MainLayout = () => {
     dispatch(setCustomDrawerOpenState(!matchDownMd));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchDownMd]);
+
+  useEffect(() => {
+    dispatch(getAllCities());
+  }, [dispatch]);
 
   return (
     <Box sx={{ display: "flex" }}>
