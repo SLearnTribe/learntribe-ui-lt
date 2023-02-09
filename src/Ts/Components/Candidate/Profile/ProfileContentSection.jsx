@@ -54,10 +54,10 @@ export const ProfileContentSection = () => {
           <ExperienceSection />
         </Grid>
         <Grid item xs={12}>
-          <SideProjectsSection />
+          <ProfileSkills />
         </Grid>
         <Grid item xs={12}>
-          <ProfileSkills />
+          <SideProjectsSection />
         </Grid>
         <Grid item xs={12}>
           <EducationSection />
