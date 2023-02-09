@@ -8,6 +8,16 @@ export const NewExperienceObject = {
   location: "",
 };
 
+export const NewProjectsObject = {
+  id: null,
+  description: "",
+  name: "",
+  startDate: null,
+  endDate: null,
+  url: "",
+  skills: "",
+};
+
 export const NewEducationObject = {
   collegeName: "",
   degree: null,

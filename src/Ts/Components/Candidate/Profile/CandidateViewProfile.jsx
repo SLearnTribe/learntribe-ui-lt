@@ -2,7 +2,7 @@ import { Button, Grid } from "@mui/material";
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { profileRoute } from "../../../Configs/RoutesConfig";
+import { editProfileRoute } from "../../../Configs/RoutesConfig";
 import { getUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { ButtonTexts } from "../../../Utils/Text";
 import { HrProfileAvatarSection } from "./Hr/HrProfileAvaterSection";
@@ -14,7 +14,7 @@ export const CandidateViewProfile = () => {
   const selectedApplicantData = useSelector(getUserProfileInfo);
 
   const onClickEditProfile = useCallback(() => {
-    navigate(profileRoute);
+    navigate(editProfileRoute);
   }, [navigate]);
 
   return (

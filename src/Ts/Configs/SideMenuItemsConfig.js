@@ -18,11 +18,11 @@ import {
   completedExamsRoute,
   createNewExamRoute,
   dashboardRoute,
-  editProfileRoute,
   examsRoute,
   helpRoute,
   jobsRoute,
   postJobsRoute,
+  profileRoute,
 } from "./RoutesConfig";
 
 export const SideMenuItems = [
@@ -112,7 +112,7 @@ export const candidateSideNavMenuItems = [
   },
   {
     title: SideMenuTexts.profile,
-    path: editProfileRoute,
+    path: profileRoute,
     icon: <AccountCircleOutlinedIcon />,
   },
   {

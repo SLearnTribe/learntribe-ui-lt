@@ -5,7 +5,7 @@ import {
   Font18Weight500SxStyles,
   Font21Weight500SxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
-import { CommonTexts } from "../../../../Utils/Text";
+import { CommonTexts, ProfileTexts } from "../../../../Utils/Text";
 
 export const HrProfileContentSection = ({ selectedApplicantData }) => {
   const {
@@ -16,6 +16,7 @@ export const HrProfileContentSection = ({ selectedApplicantData }) => {
     currentRole = "N/A",
     workExperiences = [],
     educationExperiences = [],
+    sideProjects = [],
   } = selectedApplicantData;
 
   return (
@@ -80,6 +81,27 @@ export const HrProfileContentSection = ({ selectedApplicantData }) => {
                   )} to ${endDate.slice(0, 4)}`}</Typography>
                   <Typography sx={Font21Weight500SxStyles}>
                     {designation}
+                  </Typography>
+                </Grid>
+              )
+            )}
+            <Grid item xs={12}>
+              <Typography
+                color="text.secondary"
+                sx={{ ...Font18Weight500SxStyles, mt: 3 }}>
+                {ProfileTexts.projects}
+              </Typography>
+            </Grid>
+            {sideProjects?.map(
+              ({ description, name, url, startDate, endDate }, index) => (
+                <Grid item xs={12} key={uniqueId()}>
+                  <Typography
+                    sx={Font21Weight500SxStyles}>{`${name}, - ${startDate.slice(
+                    0,
+                    4
+                  )} to ${endDate.slice(0, 4)}`}</Typography>
+                  <Typography sx={Font21Weight500SxStyles}>
+                    {description}
                   </Typography>
                 </Grid>
               )

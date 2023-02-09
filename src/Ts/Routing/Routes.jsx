@@ -79,12 +79,12 @@ const RouterMap = [
     permission: rolesConfig.CANDIDATE,
   },
   {
-    path: routes.editProfile,
+    path: routes.profile,
     component: CandidateViewProfile,
     permission: rolesConfig.CANDIDATE,
   },
   {
-    path: routes.profile,
+    path: routes.editProfile,
     component: CandidateProfile,
     permission: rolesConfig.CANDIDATE,
   },

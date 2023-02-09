@@ -2,6 +2,7 @@ import { Button, Grid, Skeleton } from "@mui/material";
 import { isEmpty, isEqual } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   saveUserProfile,
   setValidationsOnProfile,
@@ -18,15 +19,22 @@ import { EducationSection } from "./EducationSection";
 import { ExperienceSection } from "./ExperienceSection";
 import { ProfileSkills } from "./ProfileSkills";
 import { ResumeUploadSection } from "./ResumeUploadSection";
+import { SideProjectsSection } from "./SideProjectsSection";
 
 export const ProfileContentSection = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const isLoading = useSelector(getIsUserDataLoading);
 
   const userProfileDetails = useSelector(getUpdatedUserProfileInfo);
 
   const userDetails = useSelector(getUserProfileInfo);
+
+  const onGoBack = useCallback(() => {
+    navigate(-1);
+  }, [dispatch, navigate]);
 
   const onSaveUserDetails = useCallback(() => {
     const errorObj = handleValidateUserInfo(userProfileDetails);
@@ -46,6 +54,9 @@ export const ProfileContentSection = () => {
           <ExperienceSection />
         </Grid>
         <Grid item xs={12}>
+          <SideProjectsSection />
+        </Grid>
+        <Grid item xs={12}>
           <ProfileSkills />
         </Grid>
         <Grid item xs={12}>
@@ -58,12 +69,17 @@ export const ProfileContentSection = () => {
           {isLoading ? (
             <Skeleton width={"100%"} height={50} />
           ) : (
-            <Button
-              disabled={isEqual(userDetails, userProfileDetails)}
-              onClick={onSaveUserDetails}
-              variant="contained">
-              {ButtonTexts.submit}
-            </Button>
+            <>
+              <Button sx={{ mr: 3 }} onClick={onGoBack} variant="contained">
+                {ButtonTexts.back}
+              </Button>
+              <Button
+                disabled={isEqual(userDetails, userProfileDetails)}
+                onClick={onSaveUserDetails}
+                variant="contained">
+                {ButtonTexts.submit}
+              </Button>
+            </>
           )}
         </Grid>
       </Grid>
