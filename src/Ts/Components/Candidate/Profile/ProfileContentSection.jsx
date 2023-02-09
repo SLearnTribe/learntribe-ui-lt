@@ -15,6 +15,7 @@ import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/Use
 import { handleValidateUserInfo } from "../../../Utils/Profile/CandidateProfileUtils";
 import { ButtonTexts } from "../../../Utils/Text";
 import { BasicInfoSection } from "./BasicInfoSection";
+import { PaySection } from "./Compensation";
 import { EducationSection } from "./EducationSection";
 import { ExperienceSection } from "./ExperienceSection";
 import { ProfileSkills } from "./ProfileSkills";
@@ -55,6 +56,9 @@ export const ProfileContentSection = () => {
         </Grid>
         <Grid item xs={12}>
           <ProfileSkills />
+        </Grid>
+        <Grid item xs={12}>
+          <PaySection />
         </Grid>
         <Grid item xs={12}>
           <SideProjectsSection />

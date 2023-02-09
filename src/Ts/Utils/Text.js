@@ -80,6 +80,12 @@ export const CommonTexts = {
   EDUCATION: "EDUCATION",
   CONTACT_US: "Contact Us",
   CONTACT_US_TITLE: "Have any questions? We'd love to hear from you.",
+  currentCTC: "Current CTC",
+  expectedCTC: "Expected CTC",
+  currentCTCPerAnnum: "Current CTC Per Annum",
+  expectedCTCPerAnnum: "Expected CTC Per Annum",
+  noticePeriodInDays: "Notice Period In Days",
+  availableForInterview: "Available For Interview",
 };
 
 export const ButtonTexts = {
@@ -163,6 +169,7 @@ export const ProfileTexts = {
   resume: "Resume",
   editInfo: "Edit Info",
   descriptionAboutYou: "Description about you",
+  compensation: "Compensation",
 };
 
 export const TextFieldLabelsAndTexts = {
