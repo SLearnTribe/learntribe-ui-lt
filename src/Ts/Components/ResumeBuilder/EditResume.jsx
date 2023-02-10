@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentFlexEndSxStyles } from "../../CommonStyles/CommonSxStyles";
 import {
-  saveResumeDetails,
+  // saveResumeDetails,
   setResumeActiveStepper,
 } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import {
@@ -33,7 +33,7 @@ export const EditResume = () => {
 
   const onSaveAndNext = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper + 1));
-    dispatch(saveResumeDetails(resumeDetails));
+    // dispatch(saveResumeDetails(resumeDetails));
   }, [dispatch, activeStepper, resumeDetails]);
   return (
     <Grid container spacing={3}>

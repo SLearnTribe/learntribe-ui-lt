@@ -138,7 +138,7 @@ export const ResumeEducation = () => {
                   mask="____-__-__"
                   inputFormat="YYYY-MM-DD"
                   label="Date of completion"
-                  value={dateOfCompletion}
+                  value={dateOfCompletion || null}
                   onChange={(newValue) => {
                     onChangeStartDate(newValue, index);
                   }}

@@ -111,6 +111,17 @@ export const ResumeExperience = () => {
     [dispatch, resumeDetails]
   );
 
+  const onChangeDescription = useCallback(
+    (value, index) => {
+      const copyResumeDetails = cloneDeep(resumeDetails);
+
+      copyResumeDetails.workExperiences[index].description = value;
+
+      dispatch(updateCurrentResume(copyResumeDetails));
+    },
+    [dispatch, resumeDetails]
+  );
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -119,7 +130,7 @@ export const ResumeExperience = () => {
         </Typography>
       </Grid>
       {workExperiences?.map(
-        ({ orgName, designation, startDate, endDate }, index) => (
+        ({ orgName, designation, startDate, endDate, description }, index) => (
           <React.Fragment key={index}>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextField
@@ -157,7 +168,7 @@ export const ResumeExperience = () => {
                   mask="____-__-__"
                   inputFormat="YYYY-MM-DD"
                   label="From Date"
-                  value={startDate}
+                  value={startDate || null}
                   onChange={(newValue) => {
                     onChangeStartDate(newValue, index);
                   }}
@@ -173,7 +184,7 @@ export const ResumeExperience = () => {
                   mask="____-__-__"
                   inputFormat="YYYY-MM-DD"
                   label="To Date"
-                  value={endDate}
+                  value={endDate || null}
                   onChange={(newValue) => {
                     onChangeEndDate(newValue, index);
                   }}
@@ -182,6 +193,20 @@ export const ResumeExperience = () => {
                   )}
                 />
               </LocalizationProvider>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                sx={{ width: "100%" }}
+                id="filled-multiline-flexible"
+                label={CommonTexts.achivementTasks}
+                multiline
+                rows={4}
+                value={description}
+                onChange={({ target: { value } }) =>
+                  onChangeDescription(value, index)
+                }
+                variant="outlined"
+              />
             </Grid>
           </React.Fragment>
         )

@@ -88,6 +88,8 @@ export const CommonTexts = {
   expectedCTCPerAnnum: "Expected CTC Per Annum",
   noticePeriodInDays: "Notice Period In Days",
   availableForInterview: "Available For Interview",
+  currentDesignation: "Current Designation",
+  achivementTasks: "Achievements/Tasks",
 };
 
 export const ButtonTexts = {

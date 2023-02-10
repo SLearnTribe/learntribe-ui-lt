@@ -112,7 +112,7 @@ export const ResumeProjects = () => {
                   mask="____-__-__"
                   inputFormat="YYYY-MM-DD"
                   label="From Date"
-                  value={startDate}
+                  value={startDate || null}
                   onChange={(newValue) => {
                     onChangeStartDate(newValue, index);
                   }}
@@ -128,7 +128,7 @@ export const ResumeProjects = () => {
                   mask="____-__-__"
                   inputFormat="YYYY-MM-DD"
                   label="To Date"
-                  value={endDate}
+                  value={endDate || null}
                   onChange={(newValue) => {
                     onChangeEndDate(newValue, index);
                   }}

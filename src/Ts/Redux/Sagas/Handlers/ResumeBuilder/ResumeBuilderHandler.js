@@ -1,9 +1,6 @@
 import { call, put, select } from "redux-saga/effects";
 import { defaultResumeList } from "../../../../Configs/ResumeBuilder/ResumeBuilderConfig";
-import {
-  updateCurrentResume,
-  updateResumeList,
-} from "../../../Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { updateResumeList } from "../../../Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
@@ -24,12 +21,10 @@ export function* handleGetResumeDetails() {
     const resumeData = data.length === 0 ? defaultResumeList : data;
 
     yield put(updateResumeList(resumeData));
-    yield put(updateCurrentResume(resumeData));
   } catch (error) {
     console.log(error);
     yield put(setUserDataLoading(false)); //will remove
     yield put(updateResumeList(defaultResumeList));
-    yield put(updateCurrentResume(defaultResumeList[0]));
   }
 }
 

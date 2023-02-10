@@ -16,7 +16,7 @@ export function requestPostResumeDetails({
   updatedResumeDetails,
 }) {
   return axios.request({
-    method: "post",
+    method: "put",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,

@@ -30,6 +30,8 @@ import {
   getResumeBuilderActiveStepper,
   getResumeDetails,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { FilledResumeMockData } from "../../Utils/MockData/ResumeBuilderData";
+import { normalizeYearMonthDate } from "../../Utils/ResumeBuilder/ResumeBuilderUtils";
 import { ButtonTexts, CommonTexts } from "../../Utils/Text";
 
 export const FinalResume = () => {
@@ -47,14 +49,14 @@ export const FinalResume = () => {
     phone = null,
     city = null,
     linkedIn = null,
-    currentRole = null,
+    currentDesignation = null,
     skills = null,
     about = null,
     workExperiences = [],
     educationExperiences = [],
     projects = [],
     useThisResumeAsDefault = false,
-  } = resumeDetails;
+  } = FilledResumeMockData;
 
   const goBack = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper - 1));
@@ -94,13 +96,21 @@ export const FinalResume = () => {
             <Grid item xs={12}>
               <Grid container spacing={3}>
                 <Grid item xs={5}>
-                  <Typography variant="h4">{name}</Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{ color: (theme) => theme.palette.primary.main }}>
-                    {currentRole}
-                  </Typography>
-                  <Typography>{about}</Typography>
+                  <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                      <Typography variant="h1">{name}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography
+                        variant="h3"
+                        sx={{ color: (theme) => theme.palette.primary.main }}>
+                        {currentDesignation}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography>{about}</Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
                 <Grid item xs={2}>
                   <Avatar
@@ -150,54 +160,97 @@ export const FinalResume = () => {
             </Grid>
             {/* Body section of 2 columns  */}
             <Grid item xs={6}>
-              <Grid container spacing={3}>
+              <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  <Typography variant="h2" sx={{ fontWeight: 700 }}>
                     {CommonTexts.WORK_EXPERIENCE}
                   </Typography>
                 </Grid>
                 {workExperiences?.map(
-                  ({ orgName, endDate, startDate, designation }) => (
+                  (
+                    { orgName, endDate, startDate, designation, description },
+                    index
+                  ) => (
                     <>
                       <Grid item xs={12} key={crypto.randomUUID()}>
-                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                          {designation}
-                        </Typography>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{ fontWeight: 700 }}>
-                          {orgName}
-                        </Typography>
-                        <Typography>{`${startDate} - ${endDate}`}</Typography>
+                        <Grid
+                          container
+                          spacing={1}
+                          sx={{ mt: index > 0 ? 1 : 0 }}>
+                          <Grid item xs={12}>
+                            <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                              {designation}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography sx={{ fontWeight: 600 }}>
+                              {orgName}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              color={"primary"}>{`${normalizeYearMonthDate(
+                              startDate
+                            )} - ${normalizeYearMonthDate(
+                              endDate
+                            )}`}</Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography color={"primary"}>
+                              {CommonTexts.achivementTasks}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography>{description}</Typography>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </>
                   )
                 )}
 
                 <Grid item xs={12}>
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  <Typography variant="h2" sx={{ fontWeight: 700, mt: 2 }}>
                     {CommonTexts.EDUCATION}
                   </Typography>
                 </Grid>
 
                 {educationExperiences?.map(
-                  ({ collegeName, fieldOfStudy, degree, dateOfCompletion }) => (
+                  (
+                    { collegeName, fieldOfStudy, degree, dateOfCompletion },
+                    index
+                  ) => (
                     <>
                       <Grid item xs={12}>
-                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                          {degree}
-                        </Typography>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{ fontWeight: 700 }}>
-                          {collegeName}
-                        </Typography>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{ fontWeight: 700 }}>
-                          {fieldOfStudy}
-                        </Typography>
-                        <Typography>{dateOfCompletion}</Typography>
+                        <Grid
+                          container
+                          spacing={1}
+                          sx={{ mt: index > 0 ? 1 : 0 }}>
+                          <Grid item xs={12}>
+                            <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                              {degree}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              variant="subtitle1"
+                              sx={{ fontWeight: 700 }}>
+                              {collegeName}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              variant="subtitle1"
+                              sx={{ fontWeight: 700 }}>
+                              {fieldOfStudy}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography color={"primary"}>
+                              {normalizeYearMonthDate(dateOfCompletion)}
+                            </Typography>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </>
                   )

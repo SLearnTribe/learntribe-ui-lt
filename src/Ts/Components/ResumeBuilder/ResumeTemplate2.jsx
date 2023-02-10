@@ -27,6 +27,7 @@ import {
   getSelectedResumeTemplate,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
+import { handleCurrentResume } from "../../Utils/ResumeBuilder/ResumeBuilderUtils";
 import { CommonTexts } from "../../Utils/Text";
 
 export const ResumeTemplate2 = ({ templateId }) => {
@@ -54,7 +55,8 @@ export const ResumeTemplate2 = ({ templateId }) => {
 
   const onSelectTemplate = useCallback(() => {
     dispatch(setResumeTemplate(templateId));
-    dispatch(updateCurrentResume(resumeList[1]));
+    const currentResume = handleCurrentResume(resumeList[0]);
+    dispatch(updateCurrentResume(currentResume));
   }, [dispatch, templateId, resumeList]);
   return (
     <Card

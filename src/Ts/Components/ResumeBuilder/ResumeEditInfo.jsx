@@ -30,6 +30,7 @@ export const ResumeEditInfo = () => {
     phone = null,
     address = "",
     city = "",
+    currentDesignation = "",
   } = resumeDetails;
 
   const onChangeName = useCallback(
@@ -59,6 +60,17 @@ export const ResumeEditInfo = () => {
       const copyResumeDetails = cloneDeep(resumeDetails);
 
       copyResumeDetails.phone = value;
+
+      dispatch(updateCurrentResume(copyResumeDetails));
+    },
+    [dispatch, resumeDetails]
+  );
+
+  const onChangeCurrentDesignation = useCallback(
+    ({ target: { value } }) => {
+      const copyResumeDetails = cloneDeep(resumeDetails);
+
+      copyResumeDetails.currentDesignation = value;
 
       dispatch(updateCurrentResume(copyResumeDetails));
     },
@@ -130,6 +142,17 @@ export const ResumeEditInfo = () => {
           id="outlined-basic"
           label={CommonTexts.email}
           placeholder={TextFieldLabelsAndTexts.enterEmail}
+          variant="outlined"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          sx={{ width: "100%" }}
+          value={currentDesignation}
+          onChange={onChangeCurrentDesignation}
+          id="outlined-basic"
+          label={CommonTexts.currentDesignation}
+          placeholder={CommonTexts.currentDesignation}
           variant="outlined"
         />
       </Grid>

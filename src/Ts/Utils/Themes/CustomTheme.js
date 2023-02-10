@@ -16,7 +16,7 @@ export const customTheme = () => {
     backgroundDefault: color.paper,
     // background: color.primaryLight, // Look for Bg color
     background: "#fff", // Look for Bg color
-    darkTextPrimary: color.grey700,
+    darkTextPrimary: "#121926",
     darkTextSecondary: color.grey500,
     textDark: color.grey900,
     menuSelected: color.secondaryDark,
