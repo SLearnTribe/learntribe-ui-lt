@@ -15,7 +15,9 @@ import { ResumeDescriptionAboutYou } from "./ResumeDescriptionAboutYou";
 import { ResumeEditInfo } from "./ResumeEditInfo";
 import { ResumeEducation } from "./ResumeEducation";
 import { ResumeExperience } from "./ResumeExperience";
+import { ResumeProjects } from "./ResumeProjects";
 import { ResumeSkills } from "./ResumeSkills";
+import { ResumeSocialNetworking } from "./ResumeSocialNetworking";
 import { ResumeTemplate1 } from "./ResumeTemplate1";
 
 export const EditResume = () => {
@@ -80,6 +82,14 @@ export const EditResume = () => {
           {/* Description about you section */}
           <Grid item xs={12}>
             <ResumeDescriptionAboutYou />
+          </Grid>
+          {/* Description about you section */}
+          <Grid item xs={12}>
+            <ResumeProjects />
+          </Grid>
+          {/* Description about you section */}
+          <Grid item xs={12}>
+            <ResumeSocialNetworking />
           </Grid>
           {/* Education section */}
           <Grid item xs={12}>

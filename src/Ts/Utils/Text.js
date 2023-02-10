@@ -48,6 +48,8 @@ export const CommonTexts = {
   projectUrl: "Project URL",
   companyName: "Company Name",
   projectName: "Project Name",
+  linkedInUrl: "LinkedIn Profile URL",
+  githubUrl: "Github Profile URL",
   from: "From",
   to: "To",
   selectFromDate: "Select from date",
@@ -170,6 +172,7 @@ export const ProfileTexts = {
   editInfo: "Edit Info",
   descriptionAboutYou: "Description about you",
   compensation: "Compensation",
+  socialNetworks: "Social Networks",
 };
 
 export const TextFieldLabelsAndTexts = {
