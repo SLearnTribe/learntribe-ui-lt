@@ -9,3 +9,8 @@ export const getResumeDetails = (state) =>
 
 export const getSelectedResumeTemplate = (state) =>
   state.resumeBuilderSlice.selectedTemplate;
+
+export const getCurrentEditingResume = (state) =>
+  state.resumeBuilderSlice.currentResume;
+
+export const getResumeList = (state) => state.resumeBuilderSlice.resumesList;

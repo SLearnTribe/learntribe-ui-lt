@@ -8,8 +8,8 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentSpaceBetweenAlignCenterSxStyles } from "../../CommonStyles/CommonSxStyles";
 import { NewEducationObject } from "../../Configs/Profile/ProfileConfig";
-import { updateResumeDetails } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getResumeDetails } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { AvailableDegreeOptions } from "../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
@@ -21,7 +21,7 @@ import { AutoCompleteSelect } from "../CommonComponents/Controls/AutoComplete";
 export const ResumeEducation = () => {
   const dispatch = useDispatch();
 
-  const resumeDetails = useSelector(getResumeDetails);
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const { educationExperiences = [] } = resumeDetails;
 
@@ -30,7 +30,7 @@ export const ResumeEducation = () => {
 
     copyResumeDetails.educationExperiences.push(NewEducationObject);
 
-    dispatch(updateResumeDetails(copyResumeDetails));
+    dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
 
   const onClickDeleteEducation = useCallback(() => {
@@ -38,7 +38,7 @@ export const ResumeEducation = () => {
 
     copyResumeDetails.educationExperiences.splice(-1);
 
-    dispatch(updateResumeDetails(copyResumeDetails));
+    dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
 
   const onChangeStartDate = useCallback(
@@ -50,7 +50,7 @@ export const ResumeEducation = () => {
       copyResumeDetails.educationExperiences[index].dateOfCompletion =
         formattedDate;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -61,7 +61,7 @@ export const ResumeEducation = () => {
 
       copyResumeDetails.educationExperiences[index].fieldOfStudy = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -72,7 +72,7 @@ export const ResumeEducation = () => {
 
       copyResumeDetails.educationExperiences[index].collegeName = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -83,7 +83,7 @@ export const ResumeEducation = () => {
 
       copyResumeDetails.educationExperiences[index].degree = title;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -170,13 +170,13 @@ export const ResumeEducation = () => {
           onClick={onClickDeleteEducation}
           color="secondary"
           variant="outlined">
-          {ButtonTexts.deleteExperience}
+          {ButtonTexts.deleteEducation}
         </Button>
         <Button
           onClick={onClickAddNewEducation}
           color="primary"
           variant="outlined">
-          {ButtonTexts.addNewExperience}
+          {ButtonTexts.addNewEducation}
         </Button>
       </Grid>
     </Grid>

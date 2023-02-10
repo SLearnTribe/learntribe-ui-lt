@@ -2,15 +2,15 @@ import { Grid, Typography } from "@mui/material";
 import { cloneDeep, isUndefined } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateResumeDetails } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getResumeDetails } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { CommonTexts, ProfileTexts } from "../../Utils/Text";
 import { AutoCompleteAddTags } from "../CommonComponents/Controls/AutoComplete";
 
 export const ResumeSkills = () => {
   const dispatch = useDispatch();
 
-  const resumeDetails = useSelector(getResumeDetails);
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const normalizedSkills = useMemo(() => {
     if (isUndefined(resumeDetails?.skills)) {
@@ -18,8 +18,8 @@ export const ResumeSkills = () => {
     }
     const copySkills = cloneDeep(resumeDetails?.skills);
 
-    return copySkills.length > 0 ? copySkills.split(", ") : [];
-  }, [resumeDetails.skills]);
+    return copySkills?.length > 0 ? copySkills?.split(", ") : [];
+  }, [resumeDetails?.skills]);
 
   const onInputChange = useCallback(
     (_e, value) => {
@@ -27,7 +27,7 @@ export const ResumeSkills = () => {
 
       copyResumeDetails.skills = value.length > 0 ? value.join(", ") : [];
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );

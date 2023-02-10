@@ -2,8 +2,14 @@ import { Avatar, Button, Grid } from "@mui/material";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentFlexEndSxStyles } from "../../CommonStyles/CommonSxStyles";
-import { setResumeActiveStepper } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getResumeBuilderActiveStepper } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import {
+  saveResumeDetails,
+  setResumeActiveStepper,
+} from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import {
+  getCurrentEditingResume,
+  getResumeBuilderActiveStepper,
+} from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { ButtonTexts } from "../../Utils/Text";
 import { ResumeDescriptionAboutYou } from "./ResumeDescriptionAboutYou";
 import { ResumeEditInfo } from "./ResumeEditInfo";
@@ -17,13 +23,16 @@ export const EditResume = () => {
 
   const activeStepper = useSelector(getResumeBuilderActiveStepper);
 
+  const resumeDetails = useSelector(getCurrentEditingResume);
+
   const goBack = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper - 1));
   }, [dispatch, activeStepper]);
 
   const onSaveAndNext = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper + 1));
-  }, [dispatch, activeStepper]);
+    dispatch(saveResumeDetails(resumeDetails));
+  }, [dispatch, activeStepper, resumeDetails]);
   return (
     <Grid container spacing={3}>
       {/* 1st Column */}

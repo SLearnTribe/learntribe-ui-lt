@@ -7,8 +7,12 @@ const resumeBuilderSlice = createSlice({
     resumeDetails: {},
     currentScreen: 0,
     selectedTemplate: 0,
+    resumesList: [],
+    currentResume: {},
   },
   reducers: {
+    getResumeDetailsList() {},
+    saveResumeDetails() {},
     setResumeActiveStepper(state, { payload }) {
       state.activeStep = payload;
     },
@@ -21,6 +25,12 @@ const resumeBuilderSlice = createSlice({
     updateResumeDetails(state, { payload }) {
       state.resumeDetails = payload;
     },
+    updateResumeList(state, { payload }) {
+      state.resumesList = payload;
+    },
+    updateCurrentResume(state, { payload }) {
+      state.currentResume = payload;
+    },
   },
 });
 
@@ -29,6 +39,11 @@ export const {
   setResumeCurrentScreen,
   setResumeTemplate,
   updateResumeDetails,
+  getResumeDetails,
+  updateResumeList,
+  getResumeDetailsList,
+  updateCurrentResume,
+  saveResumeDetails,
 } = resumeBuilderSlice.actions;
 
 export default resumeBuilderSlice.reducer;

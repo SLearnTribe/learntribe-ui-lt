@@ -2,9 +2,9 @@ import { Grid, TextField, Typography } from "@mui/material";
 import { cloneDeep } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateResumeDetails } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getProfileValidations } from "../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
-import { getResumeDetails } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import {
   CommonTexts,
   ProfileTexts,
@@ -14,7 +14,7 @@ import {
 export const ResumeEditInfo = () => {
   const dispatch = useDispatch();
 
-  const resumeDetails = useSelector(getResumeDetails);
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const {
     nameError = false,
@@ -38,7 +38,7 @@ export const ResumeEditInfo = () => {
 
       copyResumeDetails.name = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -49,7 +49,7 @@ export const ResumeEditInfo = () => {
 
       copyResumeDetails.email = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -60,7 +60,7 @@ export const ResumeEditInfo = () => {
 
       copyResumeDetails.phone = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -71,7 +71,7 @@ export const ResumeEditInfo = () => {
 
       copyResumeDetails.address = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -82,7 +82,7 @@ export const ResumeEditInfo = () => {
 
       copyResumeDetails.city = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );

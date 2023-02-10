@@ -20,8 +20,8 @@ import {
   JustifyContentSpaceBetweenAlignCenterSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { NewExperienceObject } from "../../Configs/Profile/ProfileConfig";
-import { updateResumeDetails } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getResumeDetails } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import {
   ButtonTexts,
   CommonTexts,
@@ -32,7 +32,7 @@ import {
 export const ResumeExperience = () => {
   const dispatch = useDispatch();
 
-  const resumeDetails = useSelector(getResumeDetails);
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const { workExperiences = [] } = resumeDetails;
 
@@ -41,7 +41,7 @@ export const ResumeExperience = () => {
 
     copyResumeDetails.workExperiences.push(NewExperienceObject);
 
-    dispatch(updateResumeDetails(copyResumeDetails));
+    dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
 
   const onClickDeleteEducation = useCallback(() => {
@@ -49,7 +49,7 @@ export const ResumeExperience = () => {
 
     copyResumeDetails.workExperiences.splice(-1);
 
-    dispatch(updateResumeDetails(copyResumeDetails));
+    dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
 
   const onChangeStartDate = useCallback(
@@ -60,7 +60,7 @@ export const ResumeExperience = () => {
 
       copyResumeDetails.workExperiences[index].startDate = formattedDate;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -73,7 +73,7 @@ export const ResumeExperience = () => {
 
       copyResumeDetails.workExperiences[index].endDate = formattedDate;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -84,7 +84,7 @@ export const ResumeExperience = () => {
 
       copyResumeDetails.workExperiences[index].orgName = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -95,7 +95,7 @@ export const ResumeExperience = () => {
 
       copyResumeDetails.workExperiences[index].designation = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );
@@ -106,7 +106,7 @@ export const ResumeExperience = () => {
 
       copyResumeDetails.currentlyWorkingHere = checked;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );

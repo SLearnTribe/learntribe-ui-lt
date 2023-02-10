@@ -2,14 +2,14 @@ import { Grid, TextField, Typography } from "@mui/material";
 import { cloneDeep } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateResumeDetails } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getResumeDetails } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { ProfileTexts } from "../../Utils/Text";
 
 export const ResumeDescriptionAboutYou = () => {
   const dispatch = useDispatch();
 
-  const resumeDetails = useSelector(getResumeDetails);
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const { about = "" } = resumeDetails;
 
@@ -19,7 +19,7 @@ export const ResumeDescriptionAboutYou = () => {
 
       copyResumeDetails.about = value;
 
-      dispatch(updateResumeDetails(copyResumeDetails));
+      dispatch(updateCurrentResume(copyResumeDetails));
     },
     [dispatch, resumeDetails]
   );

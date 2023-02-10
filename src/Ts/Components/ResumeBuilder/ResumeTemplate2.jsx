@@ -18,8 +18,14 @@ import { random } from "lodash";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../Assests/Adil.jpeg";
-import { setResumeTemplate } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getSelectedResumeTemplate } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import {
+  setResumeTemplate,
+  updateCurrentResume,
+} from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import {
+  getResumeList,
+  getSelectedResumeTemplate,
+} from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { CommonTexts } from "../../Utils/Text";
 
@@ -44,9 +50,12 @@ export const ResumeTemplate2 = ({ templateId }) => {
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
 
+  const resumeList = useSelector(getResumeList);
+
   const onSelectTemplate = useCallback(() => {
     dispatch(setResumeTemplate(templateId));
-  }, [dispatch, templateId]);
+    dispatch(updateCurrentResume(resumeList[1]));
+  }, [dispatch, templateId, resumeList]);
   return (
     <Card
       raised

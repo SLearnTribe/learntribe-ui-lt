@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
+  getResumeDetailsList,
   setResumeActiveStepper,
   setResumeTemplate,
 } from "../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
@@ -12,6 +13,8 @@ export const ResumeBuilder = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getResumeDetailsList());
+
     return () => {
       dispatch(setResumeActiveStepper(0));
       dispatch(setResumeTemplate(0));

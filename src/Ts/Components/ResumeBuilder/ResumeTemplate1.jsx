@@ -16,9 +16,13 @@ import { useTheme } from "@mui/material/styles";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../Assests/Adil.jpeg";
-import { setResumeTemplate } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import {
-  getResumeDetails,
+  setResumeTemplate,
+  updateCurrentResume,
+} from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import {
+  getCurrentEditingResume,
+  getResumeList,
   getSelectedResumeTemplate,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { CommonTexts } from "../../Utils/Text";
@@ -28,7 +32,7 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
 
   const theme = useTheme();
 
-  const resumeDetails = useSelector(getResumeDetails);
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const resumeData = data ?? resumeDetails;
 
@@ -48,9 +52,12 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
 
+  const resumeList = useSelector(getResumeList);
+
   const onSelectTemplate = useCallback(() => {
     dispatch(setResumeTemplate(templateId));
-  }, [dispatch, templateId]);
+    dispatch(updateCurrentResume(resumeList[0]));
+  }, [dispatch, templateId, resumeList]);
   return (
     <Card
       raised
@@ -72,7 +79,7 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
               <Typography sx={{ color: (theme) => theme.palette.primary.main }}>
                 {currentRole}
               </Typography>
-              <small>{`${about.slice(0, 50)}...`}</small>
+              <small>{`${about?.slice(0, 50)}...`}</small>
             </Grid>
             <Grid item xs={2}>
               <Avatar
@@ -111,7 +118,7 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
                 <FormControlLabel
                   labelPlacement="start"
                   control={<LinkedInIcon sx={{ m: 0.5 }} />}
-                  label={<small>{linkedIn.slice(0, 10)}</small>}
+                  label={<small>{linkedIn?.slice(0, 10)}</small>}
                 />
               </FormGroup>
             </Grid>
@@ -164,7 +171,7 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
               <Typography variant="h6">{CommonTexts.SKILLS}</Typography>
             </Grid>
             <Grid item xs={12}>
-              {skills.split(", ").map((skill) => (
+              {skills?.split(", ").map((skill) => (
                 <Button
                   size="small"
                   sx={{ ml: 1, mb: 1 }}

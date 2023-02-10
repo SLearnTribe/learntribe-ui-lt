@@ -12,6 +12,10 @@ import { getCandidateActivities } from "../Ducks/Dashboard/CandidateDashboardSli
 import { getHrHiringData } from "../Ducks/Dashboard/HrDashboardSlice";
 import { getJobsData, postJobsData } from "../Ducks/Jobs/JobsSlice";
 import { getUserProfile, saveUserProfile } from "../Ducks/Profile/ProfileSlice";
+import {
+  getResumeDetailsList,
+  saveResumeDetails,
+} from "../Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getUserData, postLogout } from "../Ducks/userSlice";
 import {
   handleGetAllCities,
@@ -33,6 +37,10 @@ import {
   handleGetUserProfile,
   handleSaveUserProfile,
 } from "./Handlers/Profile/Profile";
+import {
+  handleGetResumeDetails,
+  handleSaveResumeDetails,
+} from "./Handlers/ResumeBuilder/ResumeBuilderHandler";
 
 export function* watcherSaga() {
   // GET
@@ -52,12 +60,14 @@ export function* watcherSaga() {
     handleGetAssessmentForCandidate
   );
   yield takeLatest(getAllCities.type, handleGetAllCities);
+  yield takeLatest(getResumeDetailsList.type, handleGetResumeDetails);
 
   //POST
   yield takeLatest(saveUserProfile.type, handleSaveUserProfile);
   yield takeLatest(postJobsData.type, handlePostJobs);
   yield takeLatest(postAssessments.type, handleGenerateAssessments);
   yield takeLatest(postLogout.type, handlePostLogout);
+  yield takeLatest(saveResumeDetails.type, handleSaveResumeDetails);
 
   //PUT
   yield takeLatest(putAssignAssessment.type, handleAssignAssessment);

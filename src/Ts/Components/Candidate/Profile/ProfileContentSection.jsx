@@ -35,7 +35,7 @@ export const ProfileContentSection = () => {
 
   const onGoBack = useCallback(() => {
     navigate(-1);
-  }, [dispatch, navigate]);
+  }, [navigate]);
 
   const onSaveUserDetails = useCallback(() => {
     const errorObj = handleValidateUserInfo(userProfileDetails);

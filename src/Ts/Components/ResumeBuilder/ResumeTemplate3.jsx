@@ -17,8 +17,14 @@ import { useTheme } from "@mui/material/styles";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../Assests/Adil.jpeg";
-import { setResumeTemplate } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getSelectedResumeTemplate } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import {
+  setResumeTemplate,
+  updateCurrentResume,
+} from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import {
+  getResumeList,
+  getSelectedResumeTemplate,
+} from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { CommonTexts } from "../../Utils/Text";
 
@@ -43,9 +49,12 @@ export const ResumeTemplate3 = ({ templateId }) => {
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
 
+  const resumeList = useSelector(getResumeList);
+
   const onSelectTemplate = useCallback(() => {
     dispatch(setResumeTemplate(templateId));
-  }, [dispatch, templateId]);
+    dispatch(updateCurrentResume(resumeList[2]));
+  }, [dispatch, templateId, resumeList]);
   return (
     <Card
       raised
