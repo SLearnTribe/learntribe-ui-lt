@@ -23,7 +23,7 @@ import { JobsStatusMap } from "../../../../Configs/Dashboards/DashboardsConfig";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getCurrentEditingJob } from "../../../../Redux/Selectors/Jobs/JobsSelectors";
 import { getCurrentModal } from "../../../../Redux/Selectors/Modal/ModalSelectors";
-import { CommonTexts, ModalTexts } from "../../../../Utils/Text";
+import { CommonTexts, ModalTexts, PostJobsTexts } from "../../../../Utils/Text";
 
 export const JobDescription = () => {
   const dispatch = useDispatch();
@@ -41,6 +41,7 @@ export const JobDescription = () => {
     description,
     qualificationRequired,
     experienceRequired,
+    salaryBudget = "N/A",
     //     qualificationRequired = [
     //       `A Bachelors of Computer Science or a related field is required
     // 5+ years of IT experience in the development of scalable consumer facing digital solutions
@@ -151,6 +152,20 @@ export const JobDescription = () => {
                 {qualification}
               </Typography>
             ))} */}
+            <Grid item xs={12}>
+              <Typography sx={Font22Weight600SxStyles}>
+                {PostJobsTexts.salaryBudget}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography
+                sx={{
+                  ...Font20Weight500SxStyles,
+                  whiteSpace: "pre-line",
+                }}>
+                {salaryBudget}
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
       </DialogContent>
