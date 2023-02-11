@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import ProfileSection from "./ProfileSection";
 import { useNavigate } from "react-router-dom";
@@ -25,8 +25,6 @@ import { postLogout } from "../../Redux/Ducks/userSlice";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import { CommonTexts } from "../../Utils/Text";
 import { AccountSettingsMenu } from "../CommonComponents/Controls/AccountSettings";
-// project imports
-// import { Logo } from "./Logo";
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -40,6 +38,12 @@ const Header = ({ handleLeftDrawerToggle }) => {
   const { name, given_name, family_name, role } = useSelector(getUserDetails);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const normalizedName = useMemo(() => {
+    const list = name?.split(" ");
+
+    return list?.slice(-1);
+  }, [name]);
 
   const onClickBuildResume = () => {
     navigate(builResumeRoute);
@@ -150,7 +154,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
         )}
 
         <Typography variant="h1" sx={{ pr: 2 }}>
-          {name}
+          {`Hello, ${normalizedName}`}
         </Typography>
         <Tooltip title="Account settings">
           <IconButton

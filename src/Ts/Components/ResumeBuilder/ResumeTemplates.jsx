@@ -22,6 +22,7 @@ export const ResumeTemplates = () => {
 
   const onClickNext = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper + 1));
+    // dispatch(updateCurrentResume());
   }, [dispatch, activeStepper]);
   return (
     <Grid container spacing={3}>

@@ -54,7 +54,7 @@ export const FinalResume = () => {
     about = null,
     workExperiences = [],
     educationExperiences = [],
-    projects = [],
+    sideProjects = [],
     useThisResumeAsDefault = false,
   } = FilledResumeMockData;
 
@@ -149,7 +149,7 @@ export const FinalResume = () => {
                     <FormControlLabel
                       labelPlacement="start"
                       control={<LinkedInIcon sx={{ m: 0.5 }} />}
-                      label={linkedIn}
+                      label={linkedIn.slice(28)}
                     />
                   </FormGroup>
                 </Grid>
@@ -260,7 +260,7 @@ export const FinalResume = () => {
             <Grid item xs={6}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  <Typography variant="h2" sx={{ fontWeight: 700 }}>
                     {CommonTexts.SKILLS}
                   </Typography>
                 </Grid>
@@ -275,20 +275,24 @@ export const FinalResume = () => {
                   ))}
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  <Typography variant="h2" sx={{ fontWeight: 700 }}>
                     {CommonTexts.PROJECTS}
                   </Typography>
                 </Grid>
-                {projects?.map(({ name, description, endDate, startDate }) => (
-                  <>
-                    <Grid item xs={12}>
-                      <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                        {`${name} (${startDate} - ${endDate})`}
-                      </Typography>
-                      <Typography>{description}</Typography>
-                    </Grid>
-                  </>
-                ))}
+                {sideProjects?.map(
+                  ({ name, description, endDate, startDate }) => (
+                    <>
+                      <Grid item xs={12}>
+                        <Typography sx={{ fontWeight: 700 }}>
+                          {`${name} (${normalizeYearMonthDate(
+                            startDate
+                          )} - ${normalizeYearMonthDate(endDate)})`}
+                        </Typography>
+                        <Typography>{description}</Typography>
+                      </Grid>
+                    </>
+                  )
+                )}
               </Grid>
             </Grid>
           </Grid>
