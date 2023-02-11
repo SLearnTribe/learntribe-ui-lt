@@ -46,6 +46,7 @@ export const PostJobsModal = () => {
     businessName = "",
     qualificationRequired: qualification,
     location = "",
+    salaryBudget = "",
   } = useSelector(getCurrentEditingJob);
 
   const cities = useSelector(getAllCityList);
@@ -74,6 +75,8 @@ export const PostJobsModal = () => {
   const [jobLocation, setJobLocation] = useState(location);
 
   const [companyName, setCompanyName] = useState(businessName);
+
+  const [budget, setBudget] = useState(salaryBudget);
 
   const [qualificationRequired, setQualificationRequired] =
     useState(qualification);
@@ -139,6 +142,10 @@ export const PostJobsModal = () => {
 
   const onChangeExperience = ({ target: { value } }) => {
     setExperienceRequired(+value);
+  };
+
+  const onChangeBudget = ({ target: { value } }) => {
+    setBudget(+value);
   };
 
   const onChangeCompanyName = ({ target: { value } }) => {
@@ -253,6 +260,16 @@ export const PostJobsModal = () => {
             </Grid>
             <Grid item xs={6}>
               <TextField
+                sx={{ width: "100%" }}
+                value={companyName}
+                onChange={onChangeCompanyName}
+                id="outlined-basic"
+                label={PostJobsTexts.companyName}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
                 type="number"
                 sx={{ width: "100%" }}
                 value={experienceRequired}
@@ -265,14 +282,16 @@ export const PostJobsModal = () => {
             <Grid item xs={6}>
               <TextField
                 sx={{ width: "100%" }}
-                value={companyName}
-                onChange={onChangeCompanyName}
+                type="number"
+                value={budget}
+                onChange={onChangeBudget}
                 id="outlined-basic"
-                label={PostJobsTexts.companyName}
+                label={PostJobsTexts.salaryBudget}
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12}>
+
+            <Grid item xs={6}>
               <Autocomplete
                 id="free-solo-demo"
                 freeSolo

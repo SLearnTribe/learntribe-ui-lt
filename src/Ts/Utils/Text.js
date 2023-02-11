@@ -151,6 +151,7 @@ export const PostJobsTexts = {
   jobTitle: "Job title",
   jobLocation: "Job Location",
   companyName: "Company Name",
+  salaryBudget: "Salary Budget for this job",
 };
 
 export const ModalTexts = {
