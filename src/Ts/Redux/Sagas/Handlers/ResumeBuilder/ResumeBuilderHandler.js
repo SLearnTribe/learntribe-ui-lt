@@ -25,6 +25,8 @@ export function* handleGetResumeDetails() {
     console.log(error);
     yield put(setUserDataLoading(false)); //will remove
     yield put(updateResumeList(defaultResumeList));
+  } finally {
+    yield put(setUserDataLoading(false));
   }
 }
 

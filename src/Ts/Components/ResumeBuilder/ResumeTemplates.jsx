@@ -7,6 +7,8 @@ import {
   getResumeBuilderActiveStepper,
   getSelectedResumeTemplate,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { getIsUserDataLoading } from "../../Redux/Selectors/UserSelectors/UserSelectors";
+import { ResumeTemplatesSkeletons } from "../../Skeletons/ResumeTemplatesSkeletons";
 import { resumeBuilderMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { ButtonTexts } from "../../Utils/Text";
 import { ResumeTemplate1 } from "./ResumeTemplate1";
@@ -20,6 +22,8 @@ export const ResumeTemplates = () => {
 
   const selectedTemplate = useSelector(getSelectedResumeTemplate);
 
+  const isLoading = useSelector(getIsUserDataLoading);
+
   const onClickNext = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper + 1));
     // dispatch(updateCurrentResume());
@@ -27,13 +31,25 @@ export const ResumeTemplates = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-        <ResumeTemplate1 templateId={1} data={resumeBuilderMockData} />
+        {isLoading ? (
+          <ResumeTemplatesSkeletons />
+        ) : (
+          <ResumeTemplate1 templateId={1} data={resumeBuilderMockData} />
+        )}
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-        <ResumeTemplate2 templateId={2} />
+        {isLoading ? (
+          <ResumeTemplatesSkeletons />
+        ) : (
+          <ResumeTemplate2 templateId={2} />
+        )}
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-        <ResumeTemplate3 templateId={3} />
+        {isLoading ? (
+          <ResumeTemplatesSkeletons />
+        ) : (
+          <ResumeTemplate3 templateId={3} />
+        )}
       </Grid>
 
       <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
