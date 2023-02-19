@@ -1,8 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+# Cointinuos Integration
+[![Continuos Iteration](https://github.com/SLearnTribe/learntribe-ui-lt/actions/workflows/continuos-integration.yml/badge.svg?branch=develop&event=push)](https://github.com/SLearnTribe/learntribe-ui-lt/actions/workflows/continuos-integration.yml)
 
 In the project directory, you can run:
 
