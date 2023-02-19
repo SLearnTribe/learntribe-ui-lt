@@ -1,4 +1,5 @@
 import { isEmpty, isNull } from "lodash";
+import { emailRegexTest } from "../AppUtils";
 
 export const handleValidateUserInfo = (userProfileDetails) => {
   const {
@@ -13,11 +14,6 @@ export const handleValidateUserInfo = (userProfileDetails) => {
     educationExperiences = [],
   } = userProfileDetails;
 
-  const emailRegex = new RegExp(
-    // eslint-disable-next-line no-control-regex
-    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
-  ); //"([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])"
-
   let errorObject = {};
 
   if (isEmpty(name) || isNull(name)) {
@@ -26,7 +22,7 @@ export const handleValidateUserInfo = (userProfileDetails) => {
   if (phone?.length < 10 || isNull(phone)) {
     errorObject.phoneError = true;
   }
-  if (!emailRegex.test(email) || isNull(email)) {
+  if (!emailRegexTest.test(email) || isNull(email)) {
     errorObject.emailError = true;
   }
   if (isNull(gender)) {

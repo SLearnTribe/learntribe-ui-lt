@@ -20,3 +20,8 @@ export const parseJwt = (token) => {
 
   return JSON.parse(jsonPayload);
 };
+
+export const emailRegexTest = new RegExp(
+  // eslint-disable-next-line no-control-regex
+  "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+);
