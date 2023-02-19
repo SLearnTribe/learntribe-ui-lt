@@ -1,12 +1,9 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import MainLayout from "./Ts/Components/ContainerComponents/MainLayout";
-// import { postLogout } from "./Ts/Redux/Ducks/userSlice";
-import { getIsDarkTheme } from "./Ts/Redux/Selectors/ExamSelectors";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
 
 export interface AppContainerProps {
@@ -14,9 +11,9 @@ export interface AppContainerProps {
 }
 
 function App() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const isDarkTheme: boolean = useSelector(getIsDarkTheme);
+  // const isDarkTheme: boolean = useSelector(getIsDarkTheme);
 
   // const expiratiomTime = useSelector(getExpirationToken)
 

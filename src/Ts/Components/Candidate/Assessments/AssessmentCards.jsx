@@ -49,16 +49,13 @@ export const AssessmentCards = ({ selectedTab }) => {
 
   const assessmentInnerFilter = useSelector(getAssessmentInnerFilter);
 
-  const onToggleSave = useCallback(
-    ({ currentTarget }) => {
-      // const updatedAssessmentsData = handleToggleSaveAssessment(
-      //   assessmentsData,
-      //   currentTarget
-      // );
-      // dispatch(setAssessmentsData(updatedAssessmentsData));
-    },
-    [dispatch, assessmentsData]
-  );
+  const onToggleSave = useCallback(({ currentTarget }) => {
+    // const updatedAssessmentsData = handleToggleSaveAssessment(
+    //   assessmentsData,
+    //   currentTarget
+    // );
+    // dispatch(setAssessmentsData(updatedAssessmentsData));
+  }, []);
 
   const difficultyOptions = useMemo(() => {
     const normalizedOptions = assessmentsData.map(({ difficulty }) => {
@@ -115,7 +112,7 @@ export const AssessmentCards = ({ selectedTab }) => {
         const {
           title,
           difficulty,
-          description,
+          // description,
           status,
           id,
           askWhy = "TCS, CTS, IBM are suggesting this assessment.",

@@ -17,10 +17,7 @@ import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
 import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { NewProjectsObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
-import {
-  getProfileValidations,
-  getUpdatedUserProfileInfo,
-} from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionSkeleton";
 import { ButtonTexts, CommonTexts, ProfileTexts } from "../../../Utils/Text";
@@ -33,11 +30,7 @@ export const SideProjectsSection = () => {
 
   const isLoading = useSelector(getIsUserDataLoading);
 
-  const formErrors = useSelector(getProfileValidations);
-
   const { sideProjects = [] } = userInfo;
-
-  const { workExperienceError = false } = formErrors;
 
   const onClickAddNewProject = useCallback(() => {
     const copyUserInfo = cloneDeep(userInfo);

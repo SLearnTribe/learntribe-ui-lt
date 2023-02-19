@@ -24,7 +24,6 @@ export const HeaderLink = ({ mainText, linkText, route, hideLink = false }) => {
               to={route}
               style={{
                 color: "inherit",
-                textDecoration: "inherit",
                 fontSize: 24,
                 fontWeight: 600,
                 float: "right",

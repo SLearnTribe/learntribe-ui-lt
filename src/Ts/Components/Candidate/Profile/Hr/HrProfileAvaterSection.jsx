@@ -23,7 +23,6 @@ import {
 } from "../../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
-import { getAssessmentsData } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { getUserDetails } from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
 import {
   ButtonTexts,
@@ -38,8 +37,6 @@ export const HrProfileAvatarSection = () => {
   const { role } = useSelector(getUserDetails);
 
   const { resume = "sample.pdf" } = useSelector(getSelectedApplicantDetails);
-
-  const assessmentsData = useSelector(getAssessmentsData);
 
   const { completedAssessments = [] } = useSelector(
     getSelectedApplicantDetails

@@ -26,10 +26,7 @@ import {
 } from "../../CommonStyles/CommonSxStyles";
 import { routes } from "../../Configs/RoutesConfig";
 import { setResumeActiveStepper } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import {
-  getResumeBuilderActiveStepper,
-  getResumeDetails,
-} from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { getResumeBuilderActiveStepper } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { FilledResumeMockData } from "../../Utils/MockData/ResumeBuilderData";
 import { normalizeYearMonthDate } from "../../Utils/ResumeBuilder/ResumeBuilderUtils";
 import { ButtonTexts, CommonTexts } from "../../Utils/Text";
@@ -38,8 +35,6 @@ export const FinalResume = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  const resumeDetails = useSelector(getResumeDetails);
 
   const activeStepper = useSelector(getResumeBuilderActiveStepper);
 

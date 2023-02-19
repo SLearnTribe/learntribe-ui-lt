@@ -40,7 +40,7 @@ export const PostJobsModal = () => {
     title = "",
     description = "",
     experienceRequired: experience = "",
-    rolesAndResponsibilities = "",
+    // rolesAndResponsibilities = "",
     requiredSkills = [],
     employmentType = null,
     businessName = "",

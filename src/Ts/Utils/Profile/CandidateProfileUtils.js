@@ -6,7 +6,7 @@ export const handleValidateUserInfo = (userProfileDetails) => {
     email,
     phone,
     country = null,
-    location = null,
+    // location = null,
     gender,
     workExperiences = [],
     skills = null,
@@ -14,6 +14,7 @@ export const handleValidateUserInfo = (userProfileDetails) => {
   } = userProfileDetails;
 
   const emailRegex = new RegExp(
+    // eslint-disable-next-line no-control-regex
     "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
   ); //"([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])"
 

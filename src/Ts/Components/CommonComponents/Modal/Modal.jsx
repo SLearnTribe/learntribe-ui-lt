@@ -9,7 +9,7 @@ import { ThanksForContactingModal } from "../../Modals/Help/ThanksForContactingM
 import { ProfileContactInfoModal } from "../../Modals/Hr/ProfileContactInfoModal";
 import { PostJobsModal } from "../../Modals/PostJobs/PostJobsModal";
 
-export default () => {
+const ModalWrapper = () => {
   const currentModal = useSelector(getCurrentModal);
 
   switch (currentModal) {
@@ -31,3 +31,5 @@ export default () => {
       return null;
   }
 };
+
+export default ModalWrapper;

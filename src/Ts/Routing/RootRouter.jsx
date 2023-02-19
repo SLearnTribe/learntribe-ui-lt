@@ -6,10 +6,7 @@ import Modal from "../Components/CommonComponents/Modal/Modal";
 import { rolesConfig } from "../Configs/AppConfig";
 import { dashboardRoute } from "../Configs/RoutesConfig";
 import { getUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
-import {
-  getIsUserDataLoading,
-  getUserDetails,
-} from "../Redux/Selectors/UserSelectors/UserSelectors";
+import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
 import RouterMap, { RenderRoute } from "./Routes";
 
 export default function RootRouter() {
@@ -17,7 +14,7 @@ export default function RootRouter() {
 
   const { role } = useSelector(getUserDetails);
 
-  const isLoading = useSelector(getIsUserDataLoading);
+  // const isLoading = useSelector(getIsUserDataLoading);
 
   const { hash } = useLocation();
 
