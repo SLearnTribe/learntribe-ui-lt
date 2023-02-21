@@ -100,6 +100,7 @@ export const ButtonTexts = {
   cancel: "Cancel",
   postJob: "Post Job",
   generate: "Generate",
+  assign: "Assign",
   send: "Send",
   saveJob: "Save Job",
   logout: "Logout",

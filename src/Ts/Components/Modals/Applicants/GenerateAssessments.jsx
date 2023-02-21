@@ -39,7 +39,12 @@ import {
   handleGenerateAssessmentPostData,
   hanldeDisableGenerateBtn,
 } from "../../../Utils/AssessmentUtils/AssessmentsUtils";
-import { ButtonTexts, TextFieldLabelsAndTexts } from "../../../Utils/Text";
+import {
+  ButtonTexts,
+  CommonTexts,
+  ModalTexts,
+  TextFieldLabelsAndTexts,
+} from "../../../Utils/Text";
 import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -112,7 +117,7 @@ export const GenerateAssessments = () => {
       selectedApplicantsIds,
       selectedApplicantDetails
     );
-    dispatch(postAssessments(postData));
+    dispatch(postAssessments({ postData, currentModal }));
   }, [
     dispatch,
     jobsAssessedFor,
@@ -121,6 +126,7 @@ export const GenerateAssessments = () => {
     difficultyLevel,
     selectedApplicantsIds,
     selectedApplicantDetails,
+    currentModal,
   ]);
 
   const onClickCancel = useCallback(
@@ -147,6 +153,12 @@ export const GenerateAssessments = () => {
     skillsList,
     difficultyLevel,
   ]);
+
+  const buttonText = useMemo(() => {
+    return currentModal === ModalTexts.assignAssessment
+      ? CommonTexts.assign
+      : ButtonTexts.generate;
+  }, [currentModal]);
 
   return (
     <Dialog
@@ -249,7 +261,7 @@ export const GenerateAssessments = () => {
           disabled={shouldDisableGenerateButton}
           variant="contained"
           onClick={onClickGenerate}>
-          {ButtonTexts.generate}
+          {buttonText}
         </Button>
       </DialogActions>
     </Dialog>

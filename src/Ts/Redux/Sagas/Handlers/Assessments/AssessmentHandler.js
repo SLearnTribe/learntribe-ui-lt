@@ -1,6 +1,9 @@
 import { call, put, select } from "redux-saga/effects";
 import { hanldeAssessmentResponse } from "../../../../Utils/AssessmentUtils/AssessmentsUtils";
+import { AssignSuccessSnackbar } from "../../../../Utils/CommonUtils";
 import { handleAssessmentsChartData } from "../../../../Utils/Dashboard/CandidateDashboardUtils";
+import { ModalTexts } from "../../../../Utils/Text";
+import { updateSnackbar } from "../../../Ducks/App/AppSlice";
 import { getApplicantsData } from "../../../Ducks/Applicants/ApplicantSlice";
 import {
   getAssessments,
@@ -56,7 +59,9 @@ export function* handleGetRecommendedAssessments({
   }
 }
 
-export function* handleGenerateAssessments({ payload }) {
+export function* handleGenerateAssessments({
+  payload: { postData, currentModal },
+}) {
   try {
     yield put(setCurrentModal(null));
 
@@ -66,7 +71,7 @@ export function* handleGenerateAssessments({ payload }) {
 
     yield call(requestPostAssessments, {
       accessToken,
-      assessmentToBeGenerated: payload,
+      assessmentToBeGenerated: postData,
     });
 
     yield put(
@@ -76,6 +81,10 @@ export function* handleGenerateAssessments({ payload }) {
     yield put(getAssessments({ page: 1, limit: 25 }));
 
     yield put(setCurrentEditingAssessment({}));
+
+    if (currentModal === ModalTexts.assignAssessment) {
+      yield put(updateSnackbar(AssignSuccessSnackbar));
+    }
   } catch (error) {
     console.log(error);
     yield put(setIsAssessmentsLoading(false));
