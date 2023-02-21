@@ -6,7 +6,7 @@ import {
   Grid,
   Link,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,7 @@ import {
   ButtonTexts,
   CommonTexts,
   ModalTexts,
-  TextFieldLabelsAndTexts,
+  TextFieldLabelsAndTexts
 } from "../../../Utils/Text";
 
 export const Help = () => {

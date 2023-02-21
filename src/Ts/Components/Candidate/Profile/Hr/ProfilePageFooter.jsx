@@ -8,7 +8,10 @@ import { CommonTexts, ModalTexts } from "../../../../Utils/Text";
 export const ProfilePageFooter = () => {
   const dispatch = useDispatch();
 
-  const onClickScheduleACall = () => {};
+  const onClickScheduleACall = useCallback(() => {
+    dispatch(getdefaultAssessmentsOptions());
+    dispatch(setCurrentModal(ModalTexts.scheduleCall));
+  }, [dispatch]);
 
   const onClickGenerateAssessment = useCallback(() => {
     dispatch(getdefaultAssessmentsOptions());

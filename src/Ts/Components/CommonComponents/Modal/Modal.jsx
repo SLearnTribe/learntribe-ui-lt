@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
 import { ModalTexts } from "../../../Utils/Text";
 import { GenerateAssessments } from "../../Modals/Applicants/GenerateAssessments";
+import { ScheduleCall } from "../../Modals/Applicants/ScheduleCall";
 import { SubmittingsAssessmentModal } from "../../Modals/Candidate/Assessments/SubmittingsAssessmentModal";
 import { JobDescription } from "../../Modals/Candidate/Jobs/JobDescription";
 import { ThanksForContactingModal } from "../../Modals/Help/ThanksForContactingModal";
@@ -27,6 +28,8 @@ const ModalWrapper = () => {
       return <SubmittingsAssessmentModal />;
     case ModalTexts.help:
       return <ThanksForContactingModal />;
+    case ModalTexts.scheduleCall:
+      return <ScheduleCall />;
     default:
       return null;
   }

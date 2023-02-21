@@ -100,6 +100,7 @@ export const ButtonTexts = {
   cancel: "Cancel",
   postJob: "Post Job",
   generate: "Generate",
+  send: "Send",
   saveJob: "Save Job",
   logout: "Logout",
   uploadPhoto: "Upload Photo",
@@ -163,6 +164,7 @@ export const ModalTexts = {
   jobDescription: "Job Description",
   submittingAssessment: "Submitting Assessment...",
   help: "help",
+  scheduleCall: "Schedule Call",
 };
 
 export const ProfileTexts = {
