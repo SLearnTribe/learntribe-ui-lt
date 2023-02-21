@@ -15,6 +15,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import moment from "moment";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { applicantsRoute } from "../../../Configs/RoutesConfig";
+import { updateSnackbar } from "../../../Redux/Ducks/App/AppSlice";
 import { setCurrentEditingAssessment } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
@@ -25,11 +28,14 @@ import {
   getJobsAssessedForOptions,
 } from "../../../Redux/Selectors/Jobs/JobsSelectors";
 import { getCurrentModal } from "../../../Redux/Selectors/Modal/ModalSelectors";
+import { ScheduleCallSuccessSnackbar } from "../../../Utils/CommonUtils";
 import { ButtonTexts, TextFieldLabelsAndTexts } from "../../../Utils/Text";
 import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const ScheduleCall = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const currentModal = useSelector(getCurrentModal);
 
@@ -69,6 +75,9 @@ export const ScheduleCall = () => {
     const formattedDate = moment(new Date(meetingTime.$d)).format(
       "YYYY-MM-DD HH:MM"
     );
+    dispatch(setCurrentModal(null));
+
+    navigate(applicantsRoute);
 
     emailjs
       .send(
@@ -88,7 +97,7 @@ export const ScheduleCall = () => {
       )
       .then(
         () => {
-          dispatch(setCurrentModal(null));
+          dispatch(updateSnackbar(ScheduleCallSuccessSnackbar));
         },
         (error) => {
           console.log(error.text);
@@ -100,6 +109,7 @@ export const ScheduleCall = () => {
     meetingTime,
     currentEditingJob,
     selectedApplicantDetails,
+    navigate,
   ]);
 
   const onChangeMeetingLink = useCallback(({ target: { value } }) => {

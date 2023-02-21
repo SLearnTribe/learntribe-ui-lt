@@ -2,6 +2,7 @@ import { isEqual } from "lodash";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { AlertSnackbar } from "../Components/CommonComponents/Controls/Snackbar";
 import Modal from "../Components/CommonComponents/Modal/Modal";
 import { rolesConfig } from "../Configs/AppConfig";
 import { dashboardRoute } from "../Configs/RoutesConfig";
@@ -49,6 +50,7 @@ export default function RootRouter() {
         <CircularProgress color="inherit" />
       </Backdrop> */}
       <Modal />
+      <AlertSnackbar />
       <Routes>
         {routerMap.map(RenderRoute)}
         <Route path="*" element={<Navigate to={dashboardRoute} replace />} />

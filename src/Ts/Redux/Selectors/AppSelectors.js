@@ -8,3 +8,5 @@ export const getIsSideMenuCollapsed = (state) =>
 export const getAllCityList = (state) => state.appSlice.cityList;
 
 export const getIsCustomDrawerOpen = (state) => state.appSlice.opened;
+
+export const getSnackbarDetails = (state) => state.appSlice.snackbar;

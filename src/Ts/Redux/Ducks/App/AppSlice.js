@@ -6,6 +6,7 @@ const appSlice = createSlice({
     isSideMenuCollapsed: true,
     cityList: [],
     opened: true,
+    snackbar: { text: "", open: false, variant: "filled", severity: "success" },
   },
   reducers: {
     getAllCities() {},
@@ -19,6 +20,9 @@ const appSlice = createSlice({
     setCustomDrawerOpenState(state, { payload }) {
       state.opened = payload;
     },
+    updateSnackbar(state, { payload }) {
+      state.snackbar = payload;
+    },
   },
 });
 
@@ -27,6 +31,7 @@ export const {
   setIsSideMenuCollapsed,
   setCityList,
   getAllCities,
+  updateSnackbar,
 } = appSlice.actions;
 
 export default appSlice.reducer;
