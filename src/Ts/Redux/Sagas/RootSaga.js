@@ -13,7 +13,9 @@ import { getHrHiringData } from "../Ducks/Dashboard/HrDashboardSlice";
 import { getJobsData, postJobsData } from "../Ducks/Jobs/JobsSlice";
 import { getUserProfile, saveUserProfile } from "../Ducks/Profile/ProfileSlice";
 import {
+  getDownloadResume,
   getResumeDetailsList,
+  postUploadResume,
   saveResumeDetails,
 } from "../Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getUserData, postLogout } from "../Ducks/userSlice";
@@ -38,8 +40,10 @@ import {
   handleSaveUserProfile,
 } from "./Handlers/Profile/Profile";
 import {
+  handleDownloadResume,
   handleGetResumeDetails,
   handleSaveResumeDetails,
+  handleUploadResume,
 } from "./Handlers/ResumeBuilder/ResumeBuilderHandler";
 
 export function* watcherSaga() {
@@ -61,6 +65,7 @@ export function* watcherSaga() {
   );
   yield takeLatest(getAllCities.type, handleGetAllCities);
   yield takeLatest(getResumeDetailsList.type, handleGetResumeDetails);
+  yield takeLatest(getDownloadResume.type, handleDownloadResume);
 
   //POST
   yield takeLatest(saveUserProfile.type, handleSaveUserProfile);
@@ -68,6 +73,7 @@ export function* watcherSaga() {
   yield takeLatest(postAssessments.type, handleGenerateAssessments);
   yield takeLatest(postLogout.type, handlePostLogout);
   yield takeLatest(saveResumeDetails.type, handleSaveResumeDetails);
+  yield takeLatest(postUploadResume.type, handleUploadResume);
 
   //PUT
   yield takeLatest(putAssignAssessment.type, handleAssignAssessment);

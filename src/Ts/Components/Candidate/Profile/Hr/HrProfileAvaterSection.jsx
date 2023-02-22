@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { isEmpty, isEqual, uniqueId } from "lodash";
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sampleImage from "../../../../../Assests/Adil.jpeg";
 import {
@@ -22,6 +22,10 @@ import {
   ResumeDownloadBtnSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
+import {
+  getDownloadResume,
+  postUploadResume,
+} from "../../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { getUserDetails } from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
 import {
@@ -46,6 +50,13 @@ export const HrProfileAvatarSection = () => {
 
   const onUploadResume = ({ target: { files } }) => {
     setFileName(files[0].name);
+    if (files[0] !== null) {
+      dispatch(postUploadResume(files[0]));
+    }
+  };
+
+  const onClickDownloadResume = () => {
+    dispatch(getDownloadResume());
   };
 
   const assessments = useMemo(() => {
@@ -107,6 +118,7 @@ export const HrProfileAvatarSection = () => {
               }}>
               {role === "HR" ? (
                 <Button
+                  onClick={onClickDownloadResume}
                   sx={ResumeDownloadBtnSxStyles}
                   variant="text"
                   color="primary"

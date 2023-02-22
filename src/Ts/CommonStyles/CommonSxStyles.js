@@ -180,18 +180,21 @@ export const SuccessAlertSxStyles = {
   fontWeight: 700,
   color: "#0f5132",
   bgcolor: "#d1e7dd",
+  boxShadow: 3,
 };
 
 export const WarningAlertSxStyles = {
   fontWeight: 700,
   color: "#664d03",
   bgcolor: "#fff3cd",
+  boxShadow: 3,
 };
 
 export const ErrorAlertSxStyles = {
   fontWeight: 700,
   color: "#842029",
   bgcolor: "#f8d7da",
+  boxShadow: 3,
 };
 
 export const InfoAlertSxStyles = {

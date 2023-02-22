@@ -7,19 +7,25 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postUploadResume } from "../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { ResumeUploadSkeleton } from "../../../Skeletons/ResumeUploadSkeleton";
 import { ButtonTexts, ProfileTexts } from "../../../Utils/Text";
 
 export const ResumeUploadSection = () => {
+  const dispatch = useDispatch();
+
   const isLoading = useSelector(getIsUserDataLoading);
 
   const [fileName, setFileName] = useState("");
 
   const onUploadResume = ({ target: { files } }) => {
     setFileName(files[0].name);
+    if (files[0] !== null) {
+      dispatch(postUploadResume(files[0]));
+    }
   };
 
   return isLoading ? (

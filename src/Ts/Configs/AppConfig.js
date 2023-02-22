@@ -1,4 +1,9 @@
 import {
+  ErrorAlertSxStyles,
+  SuccessAlertSxStyles,
+  WarningAlertSxStyles,
+} from "../CommonStyles/CommonSxStyles";
+import {
   candidateSideNavMenuItems,
   hrSideNavMenuItems,
 } from "./SideMenuItemsConfig";
@@ -27,4 +32,10 @@ export const employmentTypeOptions = [
 export const employmentTypeBeToUiMap = {
   FULL_TIME: "Full time",
   PART_TIME: "Part time",
+};
+
+export const alertStylesConfig = {
+  success: SuccessAlertSxStyles,
+  warning: WarningAlertSxStyles,
+  error: ErrorAlertSxStyles,
 };

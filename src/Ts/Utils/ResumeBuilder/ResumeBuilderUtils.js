@@ -23,3 +23,13 @@ export const handleCurrentResume = (currentResume) => {
 export const normalizeYearMonthDate = (date) => {
   return date.slice(0, 7).replace("-", "/");
 };
+
+export const handleResumeSave = () => {};
+
+export const prepareFormDataResumeParsing = (file) => {
+  const formData = new FormData();
+
+  formData.append("file", file);
+
+  return formData;
+};

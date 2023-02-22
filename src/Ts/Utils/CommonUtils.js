@@ -11,3 +11,29 @@ export const AssignSuccessSnackbar = {
   text: "Assigned assessment successfully",
   open: true,
 };
+
+export const ResumeUploadSuccessAlert = {
+  ...EmptySnackbarState,
+  text: "Resume uploaded successfully",
+  open: true,
+};
+
+export const ResumeUploadErrorAlert = {
+  ...EmptySnackbarState,
+  text: "Resume upload failed",
+  open: true,
+  severity: "error",
+};
+
+export const ResumeDownloadErrorAlert = {
+  ...EmptySnackbarState,
+  text: "Resume upload failed",
+  open: true,
+  severity: "error",
+};
+
+export const ResumeDownloadSuccessAlert = {
+  ...EmptySnackbarState,
+  text: "Resume uploaded successfully",
+  open: true,
+};
