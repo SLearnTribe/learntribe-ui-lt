@@ -178,26 +178,26 @@ export const ResumeDownloadBtnSxStyles = {
 
 export const SuccessAlertSxStyles = {
   fontWeight: 700,
-  color: "#fff",
-  bgcolor: "#2e7d32",
-};
-
-export const InfoAlertSxStyles = {
-  fontWeight: 700,
-  color: "#fff",
-  bgcolor: "#0288d1",
+  color: "#0f5132",
+  bgcolor: "#d1e7dd",
 };
 
 export const WarningAlertSxStyles = {
   fontWeight: 700,
-  color: "#fff",
-  bgcolor: "#ed6c02",
+  color: "#664d03",
+  bgcolor: "#fff3cd",
 };
 
 export const ErrorAlertSxStyles = {
   fontWeight: 700,
-  color: "#fff",
-  bgcolor: "#d32f2f",
+  color: "#842029",
+  bgcolor: "#f8d7da",
+};
+
+export const InfoAlertSxStyles = {
+  fontWeight: 700,
+  color: "#055160",
+  bgcolor: "#cff4fc",
 };
 
 export const ContactInfoLinkSxStyles = {

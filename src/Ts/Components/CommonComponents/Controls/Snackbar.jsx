@@ -1,5 +1,4 @@
 import { Alert, Snackbar } from "@mui/material";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SuccessAlertSxStyles } from "../../../CommonStyles/CommonSxStyles";
 import { updateSnackbar } from "../../../Redux/Ducks/App/AppSlice";
@@ -23,7 +22,7 @@ export const AlertSnackbar = () => {
       onClose={onClose}>
       <Alert
         onClose={onClose}
-        sx={SuccessAlertSxStyles}
+        sx={{ ...SuccessAlertSxStyles, boxShadow: 3 }}
         variant={variant}
         severity={severity}>
         {text}
