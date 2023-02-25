@@ -208,6 +208,7 @@ export const ContactInfoLinkSxStyles = {
   fontWeight: 500,
   ...DisplayFlexCenter,
   cursor: "pointer",
+  marginBottom: "1rem",
 };
 
 export const Font20Weight500SxStyles = {

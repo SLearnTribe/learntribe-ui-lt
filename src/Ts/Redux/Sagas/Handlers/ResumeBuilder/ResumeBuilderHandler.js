@@ -57,17 +57,18 @@ export function* handleSaveResumeDetails({ payload: updatedResumeDetails }) {
   }
 }
 
-export function* handleUploadResume({ payload }) {
+export function* handleUploadResume({ payload: { email, file } }) {
   try {
     yield put(setUserDataLoading(true)); // For now genral loader
 
     const accessToken = yield select(selectors.getAccessToken);
 
-    const formData = prepareFormDataResumeParsing(payload);
+    const formData = prepareFormDataResumeParsing(file);
 
     yield call(requestPostResumeUpload, {
       accessToken,
       formData,
+      email,
     });
 
     yield put(updateSnackbar(ResumeUploadSuccessAlert));
@@ -79,7 +80,7 @@ export function* handleUploadResume({ payload }) {
   }
 }
 
-export function* handleDownloadResume() {
+export function* handleDownloadResume({ payload: email }) {
   try {
     yield put(setUserDataLoading(true)); // For now genral loader
 
@@ -87,6 +88,7 @@ export function* handleDownloadResume() {
 
     yield call(requestGetResumeDownload, {
       accessToken,
+      email,
     });
 
     yield put(updateSnackbar(ResumeDownloadSuccessAlert));

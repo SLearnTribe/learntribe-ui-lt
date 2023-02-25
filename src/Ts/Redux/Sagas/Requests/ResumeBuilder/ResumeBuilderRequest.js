@@ -26,18 +26,18 @@ export function requestPostResumeDetails({
   });
 }
 
-export function requestGetResumeDownload({ accessToken }) {
+export function requestGetResumeDownload({ accessToken, email }) {
   return axios.request({
     method: "get",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "text/plain",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/sb-rsp/api/v1/resume/download",
+    url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume/download?email=${email}`,
   });
 }
 
-export function requestPostResumeUpload({ accessToken, formData }) {
+export function requestPostResumeUpload({ accessToken, formData, email }) {
   return axios.request({
     method: "post",
     headers: {
@@ -45,6 +45,6 @@ export function requestPostResumeUpload({ accessToken, formData }) {
       Authorization: `Bearer ${accessToken}`,
     },
     data: formData,
-    url: "http://www.smilebat.xyz/sb-rsp/api/v1/resume/upload",
+    url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume/upload?email=${email}`,
   });
 }

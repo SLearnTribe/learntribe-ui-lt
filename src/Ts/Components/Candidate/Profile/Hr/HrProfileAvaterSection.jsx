@@ -1,5 +1,7 @@
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { LoadingButton } from "@mui/lab";
 import {
   Avatar,
   Box,
@@ -27,7 +29,11 @@ import {
   postUploadResume,
 } from "../../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
-import { getUserDetails } from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
+import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import {
+  getIsUserDataLoading,
+  getUserDetails,
+} from "../../../../Redux/Selectors/UserSelectors/UserSelectors";
 import {
   ButtonTexts,
   CandidateDashboardTexts,
@@ -40,23 +46,36 @@ export const HrProfileAvatarSection = () => {
 
   const { role } = useSelector(getUserDetails);
 
-  const { resume = "sample.pdf" } = useSelector(getSelectedApplicantDetails);
+  const { resume = "sample.pdf", email } = useSelector(
+    getSelectedApplicantDetails
+  );
+
+  const { email: candidateEmail, name: resumeName } =
+    useSelector(getUserProfileInfo);
 
   const { completedAssessments = [] } = useSelector(
     getSelectedApplicantDetails
   );
 
+  const isLoading = useSelector(getIsUserDataLoading);
+
   const [fileName, setFileName] = useState("");
 
   const onUploadResume = ({ target: { files } }) => {
-    setFileName(files[0].name);
+    // setFileName(files[0].name);
+    const fileExtension = files[0].name.slice(files[0].name.lastIndexOf("."));
+
+    setFileName(`${resumeName}${fileExtension}`);
+
     if (files[0] !== null) {
-      dispatch(postUploadResume(files[0]));
+      dispatch(
+        postUploadResume({ file: files[0], email: email ?? candidateEmail })
+      );
     }
   };
 
   const onClickDownloadResume = () => {
-    dispatch(getDownloadResume());
+    dispatch(getDownloadResume(email ?? candidateEmail));
   };
 
   const assessments = useMemo(() => {
@@ -126,21 +145,34 @@ export const HrProfileAvatarSection = () => {
                   {resume}
                 </Button>
               ) : (
-                <Stack direction="column" alignItems="center" spacing={2}>
+                <Stack direction="column" alignItems="center" spacing={1}>
                   <Typography
                     color="text.secondary"
                     sx={{ fontSize: 16, fontWeight: 600 }}>
                     {fileName}
                   </Typography>
-                  <Button variant="outlined" component="label">
-                    {ButtonTexts.uploadResume}
-                    <input
-                      hidden
-                      onChange={onUploadResume}
-                      accept=".doc,.docx,.pdf"
-                      type="file"
-                    />
-                  </Button>
+                  {isLoading ? (
+                    <LoadingButton
+                      loading
+                      loadingPosition="start"
+                      startIcon={<FileUploadIcon />}
+                      variant="outlined">
+                      {ButtonTexts.uploadResume}
+                    </LoadingButton>
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      component="label"
+                      startIcon={<FileUploadIcon />}>
+                      {ButtonTexts.uploadResume}
+                      <input
+                        hidden
+                        onChange={onUploadResume}
+                        accept=".doc,.docx,.pdf"
+                        type="file"
+                      />
+                    </Button>
+                  )}
                 </Stack>
               )}
             </Grid>
