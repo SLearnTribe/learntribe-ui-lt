@@ -1,3 +1,4 @@
+import moment from "moment";
 import { EmptySnackbarState } from "./AppUtils";
 
 export const ScheduleCallSuccessSnackbar = {
@@ -36,4 +37,8 @@ export const ResumeDownloadSuccessAlert = {
   ...EmptySnackbarState,
   text: "Resume uploaded successfully",
   open: true,
+};
+
+export const formatMMMYYYDate = (dateString) => {
+  return moment(dateString, "YYYYMMDD").format("MMM YYYY");
 };

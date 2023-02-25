@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { cloneDeep, isNull } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
@@ -16,7 +16,7 @@ import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionS
 import { CommonTexts, ProfileTexts } from "../../../Utils/Text";
 import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
 
-const noticePeriodOptions = [
+const availableForInterviewOptions = [
   { title: "Yes" },
   { title: "No" },
   { title: "Not Immediately" },
@@ -33,6 +33,7 @@ export const PaySection = () => {
     currentCTC = null,
     expectedCTC = null,
     noticePeriod = null,
+    availableForInterview = null,
   } = userInfo;
 
   const onChangeCurrentCTC = useCallback(
@@ -72,7 +73,7 @@ export const PaySection = () => {
     (_e, { title }, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.noticePeriod = title;
+      copyUserInfo.availableForInterview = title;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -80,7 +81,7 @@ export const PaySection = () => {
   );
 
   return isLoading ? (
-    <ExperienceSectionSkeleton />
+    <ExperienceSectionSkeleton text={ProfileTexts.compensation} />
   ) : (
     <CardWithError sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
       <CardHeader
@@ -130,12 +131,12 @@ export const PaySection = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <AutoCompleteSelect
-              options={noticePeriodOptions}
+              options={availableForInterviewOptions}
               value={
-                isNull(noticePeriod)
+                isNull(availableForInterview)
                   ? null
                   : {
-                      title: noticePeriod,
+                      title: availableForInterview,
                     }
               }
               onChange={onChangeAvailability}

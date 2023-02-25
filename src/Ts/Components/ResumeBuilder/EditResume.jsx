@@ -1,5 +1,5 @@
 import { Avatar, Button, Grid } from "@mui/material";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { JustifyContentFlexEndSxStyles } from "../../CommonStyles/CommonSxStyles";
 import {
@@ -15,7 +15,6 @@ import { ResumeExperience } from "./ResumeExperience";
 import { ResumeProjects } from "./ResumeProjects";
 import { ResumeSkills } from "./ResumeSkills";
 import { ResumeSocialNetworking } from "./ResumeSocialNetworking";
-import { ResumeTemplate1 } from "./ResumeTemplate1";
 
 export const EditResume = () => {
   const dispatch = useDispatch();
@@ -59,13 +58,13 @@ export const EditResume = () => {
       <Grid item xs={12} xl={10} lg={10} md={10} sm={12}>
         <Grid container spacing={2}>
           {/* Edit info name, email, city */}
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <ResumeEditInfo />
           </Grid>
           {/* Small Resume template */}
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          {/* <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <ResumeTemplate1 templateId={1} maxHeight={"24.8rem"} />
-          </Grid>
+          </Grid> */}
           {/* Experience section */}
           <Grid item xs={12}>
             <ResumeExperience />

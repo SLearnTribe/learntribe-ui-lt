@@ -6,18 +6,17 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { JustifyContentSpaceBetweenSxStyles } from "../CommonStyles/CommonSxStyles";
 import { ProfileTexts } from "../Utils/Text";
 
-export const ExperienceSectionSkeleton = () => {
+export const ExperienceSectionSkeleton = ({
+  text = ProfileTexts.experience,
+}) => {
   return (
     <Card sx={{ pl: "1rem", pr: "1rem" }}>
       <CardHeader
         title={
-          <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
-            {ProfileTexts.experience}
-          </Typography>
+          <Typography sx={{ fontSize: 25, fontWeight: 600 }}>{text}</Typography>
         }
       />
       <CardContent>

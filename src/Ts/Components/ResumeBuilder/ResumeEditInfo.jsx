@@ -1,6 +1,6 @@
 import { Grid, TextField, Typography } from "@mui/material";
 import { cloneDeep } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getProfileValidations } from "../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
@@ -105,7 +105,7 @@ export const ResumeEditInfo = () => {
           {ProfileTexts.editInfo}
         </Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           required
           error={nameError}
@@ -118,7 +118,7 @@ export const ResumeEditInfo = () => {
           variant="outlined"
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           required
           error={phoneError}
@@ -132,7 +132,7 @@ export const ResumeEditInfo = () => {
           variant="outlined"
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           required
           error={emailError}
@@ -145,7 +145,7 @@ export const ResumeEditInfo = () => {
           variant="outlined"
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           sx={{ width: "100%" }}
           value={currentDesignation}
@@ -156,10 +156,8 @@ export const ResumeEditInfo = () => {
           variant="outlined"
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
-          required
-          error={addressError}
           sx={{ width: "100%" }}
           value={address}
           onChange={onChangeAddress}
@@ -169,7 +167,7 @@ export const ResumeEditInfo = () => {
           variant="outlined"
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           required
           error={cityError}
