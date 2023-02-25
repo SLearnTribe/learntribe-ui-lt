@@ -120,13 +120,15 @@ export const HrProfileAvatarSection = () => {
                 {ButtonTexts.contactInfo}
               </Link>
             </Grid>
-            <Grid item xs={12}>
-              <Typography
-                color="text.secondary"
-                sx={HrResumeAssessmentHeaderSxStyles}>
-                {ProfileTexts.resume}
-              </Typography>
-            </Grid>
+            {role === "CANDIDATE" ? (
+              <Grid item xs={12}>
+                <Typography
+                  color="text.secondary"
+                  sx={HrResumeAssessmentHeaderSxStyles}>
+                  {ProfileTexts.resume}
+                </Typography>
+              </Grid>
+            ) : null}
             <Grid
               item
               xs={12}
@@ -139,10 +141,10 @@ export const HrProfileAvatarSection = () => {
                 <Button
                   onClick={onClickDownloadResume}
                   sx={ResumeDownloadBtnSxStyles}
-                  variant="text"
+                  variant="outlined"
                   color="primary"
-                  endIcon={<FileDownloadOutlinedIcon />}>
-                  {resume}
+                  startIcon={<FileDownloadOutlinedIcon />}>
+                  {ButtonTexts.downloadResume}
                 </Button>
               ) : (
                 <Stack direction="column" alignItems="center" spacing={1}>

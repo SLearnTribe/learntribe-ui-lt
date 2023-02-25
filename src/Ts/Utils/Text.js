@@ -126,6 +126,7 @@ export const ButtonTexts = {
   goToDashboard: "Go to Dashboard",
   editProfile: "Edit Profile",
   sendInquiry: "Send Inquiry",
+  downloadResume: "Download Resume",
 };
 
 export const TabLabelTexts = {

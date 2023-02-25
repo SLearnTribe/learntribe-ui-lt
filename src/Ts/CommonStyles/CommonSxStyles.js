@@ -174,6 +174,7 @@ export const ResumeDownloadBtnSxStyles = {
   fontSize: 18,
   fontWeight: 500,
   pl: 0,
+  width: "100%",
 };
 
 export const SuccessAlertSxStyles = {
