@@ -1,6 +1,6 @@
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { LoadingButton } from "@mui/lab";
 import {
   Avatar,
@@ -21,7 +21,6 @@ import {
   ContactInfoLinkSxStyles,
   HrProfileAssessementsSxStyles,
   HrResumeAssessmentHeaderSxStyles,
-  ResumeDownloadBtnSxStyles,
 } from "../../../../CommonStyles/CommonSxStyles";
 import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
 import {
@@ -138,14 +137,14 @@ export const HrProfileAvatarSection = () => {
                 justifyContent: "center",
               }}>
               {role === "HR" ? (
-                <Button
+                <LoadingButton
                   onClick={onClickDownloadResume}
-                  sx={ResumeDownloadBtnSxStyles}
-                  variant="outlined"
-                  color="primary"
-                  startIcon={<FileDownloadOutlinedIcon />}>
+                  loading={isLoading}
+                  loadingPosition="start"
+                  startIcon={<FileDownloadOutlinedIcon />}
+                  variant="outlined">
                   {ButtonTexts.downloadResume}
-                </Button>
+                </LoadingButton>
               ) : (
                 <Stack direction="column" alignItems="center" spacing={1}>
                   <Typography
@@ -157,7 +156,7 @@ export const HrProfileAvatarSection = () => {
                     <LoadingButton
                       loading
                       loadingPosition="start"
-                      startIcon={<FileUploadIcon />}
+                      startIcon={<FileUploadOutlinedIcon />}
                       variant="outlined">
                       {ButtonTexts.uploadResume}
                     </LoadingButton>
@@ -165,7 +164,7 @@ export const HrProfileAvatarSection = () => {
                     <Button
                       variant="outlined"
                       component="label"
-                      startIcon={<FileUploadIcon />}>
+                      startIcon={<FileUploadOutlinedIcon />}>
                       {ButtonTexts.uploadResume}
                       <input
                         hidden
