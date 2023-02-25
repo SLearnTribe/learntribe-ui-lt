@@ -30,8 +30,8 @@ export const PaySection = () => {
   const isLoading = useSelector(getIsUserDataLoading);
 
   const {
-    currentCTC = null,
-    expectedCTC = null,
+    currentCtc = null,
+    expectedCtc = null,
     noticePeriod = null,
     availableForInterview = null,
   } = userInfo;
@@ -40,7 +40,7 @@ export const PaySection = () => {
     ({ target: { value } }) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.currentCTC = value;
+      copyUserInfo.currentCtc = value;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -51,7 +51,7 @@ export const PaySection = () => {
     ({ target: { value } }) => {
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.expectedCTC = value;
+      copyUserInfo.expectedCtc = value;
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -96,7 +96,7 @@ export const PaySection = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
               sx={{ width: "100%" }}
-              value={currentCTC}
+              value={currentCtc}
               type="number"
               onChange={onChangeCurrentCTC}
               id="outlined-basic"
@@ -108,7 +108,7 @@ export const PaySection = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
               sx={{ width: "100%" }}
-              value={expectedCTC}
+              value={expectedCtc}
               type="number"
               onChange={onChangeExpectedCTC}
               id="outlined-basic"
