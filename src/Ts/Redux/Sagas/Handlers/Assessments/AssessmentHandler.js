@@ -14,6 +14,7 @@ import {
   setIsAssessmentsLoading,
   setIsAssignAlertOpen,
   setPreviouslyGeneratedAssessments,
+  updateAssessmentModal,
 } from "../../../Ducks/Assessments/AssessmentsSlice";
 import { setCurrentModal } from "../../../Ducks/Modal/ModalSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
@@ -24,6 +25,7 @@ import {
   requestGetAssessmentForCandidate,
   requestGetCandidateRecommendedAssessments,
   requestPostAssessments,
+  requestPostSubmitAssessment,
 } from "../../Requests/Assessments/AssessmentsRequest";
 
 export function* handleGetRecommendedAssessments({
@@ -143,5 +145,27 @@ export function* handleGetAssessmentForCandidate({ payload }) {
     console.log(error);
   } finally {
     yield put(setUserDataLoading(false)); //will remove
+  }
+}
+
+export function* handlePostSubmitAssessment({
+  payload: { assessmentId, submitAssessmentDetails },
+}) {
+  try {
+    yield put(updateAssessmentModal({ showSubmitUI: true }));
+
+    yield put(setUserDataLoading(true));
+
+    const accessToken = yield select(selectors.getAccessToken);
+
+    yield call(requestPostSubmitAssessment, {
+      accessToken,
+      assessmentId,
+      submitAssessmentDetails,
+    });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    yield put(setUserDataLoading(false));
   }
 }

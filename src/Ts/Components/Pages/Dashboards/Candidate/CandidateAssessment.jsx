@@ -6,21 +6,26 @@ import {
   PaginationItem,
   Radio,
   RadioGroup,
-  Typography,
 } from "@mui/material";
 import { cloneDeep, isEqual, uniqueId } from "lodash";
 import React, { useCallback, useState } from "react";
-import Countdown from "react-countdown";
 import { useDispatch, useSelector } from "react-redux";
-import { JustifyContentFlexEndSxStyles } from "../../../../CommonStyles/CommonSxStyles";
-import { setCurrentModal } from "../../../../Redux/Ducks/Modal/ModalSlice";
-import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
-import { ButtonTexts, CommonTexts, ModalTexts } from "../../../../Utils/Text";
+import {
+  postSubmitAssessment,
+  updateAssessmentModal,
+} from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
+import {
+  getAssessmentOfCandidate,
+  getAssessmentsModal,
+} from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import { ButtonTexts } from "../../../../Utils/Text";
 
 export const CandidateAssessment = () => {
   const dispatch = useDispatch();
 
   const assessment = useSelector(getAssessmentOfCandidate);
+
+  const { answers: assessmentAnswers } = useSelector(getAssessmentsModal);
 
   const [page, setPage] = useState(1);
 
@@ -30,11 +35,17 @@ export const CandidateAssessment = () => {
 
   const onClickOption = useCallback(
     ({ currentTarget }) => {
-      const id = currentTarget.getAttribute("data-id");
+      const { id, question } = JSON.parse(
+        currentTarget.getAttribute("data-row")
+      );
 
       const option = currentTarget.getAttribute("data-value");
 
       const copyValue = cloneDeep(answers);
+
+      const copyAnswersPostData = cloneDeep(assessmentAnswers);
+
+      copyAnswersPostData[id] = { question, id, answer: option };
 
       const copyPageMap = cloneDeep(pageMap);
 
@@ -45,8 +56,10 @@ export const CandidateAssessment = () => {
       setAnswers(copyValue);
 
       setPageMap(copyPageMap);
+
+      dispatch(updateAssessmentModal({ answers: copyAnswersPostData }));
     },
-    [answers, pageMap, page]
+    [dispatch, answers, pageMap, page, assessmentAnswers]
   );
 
   const onChangePage = useCallback((_event, value) => {
@@ -61,34 +74,19 @@ export const CandidateAssessment = () => {
     setPage((value) => value + 1);
   }, []);
 
-  const onClickSubmit = useCallback(() => {}, []);
-
-  const onCompleteTimer = useCallback(() => {
-    dispatch(setCurrentModal(ModalTexts.submittingAssessment));
-  }, [dispatch]);
+  const onClickSubmit = useCallback(() => {
+    dispatch(
+      postSubmitAssessment({
+        assessmentId: assessment.id,
+        submitAssessmentDetails: {
+          challengeResponses: Object.values(assessmentAnswers),
+        },
+      })
+    );
+  }, [dispatch, assessmentAnswers, assessment?.id]);
 
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            fontSize: 32,
-            color: (theme) => theme.palette.primary.main,
-          }}>
-          {`${assessment?.title} ${CommonTexts.assessment}`}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
-        {CommonTexts.timeRemaining}
-        <Countdown
-          onComplete={onCompleteTimer}
-          renderer={({ formatted: { minutes, seconds } }) => (
-            <b>{`${minutes}:${seconds}`}</b>
-          )}
-          date={assessment?.timer}
-        />
-      </Grid>
       <Grid item lg={9} xl={9} md={8} sm={12} xs={12}>
         <Grid container spacing={3}>
           <Grid item xs={12}>{`Q.${page} ${
@@ -108,7 +106,9 @@ export const CandidateAssessment = () => {
               <FormControlLabel
                 key={uniqueId()}
                 onClick={onClickOption}
-                data-id={assessment?.challengeResponses[page - 1]?.id}
+                data-row={JSON.stringify(
+                  assessment?.challengeResponses[page - 1]
+                )}
                 data-value={option}
                 value={option}
                 control={<Radio />}

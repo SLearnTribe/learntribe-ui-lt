@@ -90,6 +90,7 @@ export const CommonTexts = {
   availableForInterview: "Available For Interview",
   currentDesignation: "Current Designation",
   achivementTasks: "Achievements/Tasks",
+  submittingResults: "Submitting Results",
 };
 
 export const ButtonTexts = {
@@ -127,6 +128,7 @@ export const ButtonTexts = {
   editProfile: "Edit Profile",
   sendInquiry: "Send Inquiry",
   downloadResume: "Download Resume",
+  goToAssessments: "Go To Assessments",
 };
 
 export const TabLabelTexts = {

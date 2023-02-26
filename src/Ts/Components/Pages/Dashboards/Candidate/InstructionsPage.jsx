@@ -1,6 +1,6 @@
 import { Button, Grid, Typography } from "@mui/material";
 import { uniqueId } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { JustifyContentFlexEndSxStyles } from "../../../../CommonStyles/CommonSxStyles";
@@ -9,7 +9,7 @@ import {
   RelatedInformation,
 } from "../../../../Configs/Dashboards/DashboardsConfig";
 import { assessmentsInstructionsRoute } from "../../../../Configs/RoutesConfig";
-import { setAssessmentForCandidate } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
+import { updateAssessmentModal } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts, CommonTexts } from "../../../../Utils/Text";
 
@@ -22,10 +22,9 @@ export const InstructionsPage = () => {
 
   const onClickContinue = useCallback(() => {
     navigate(`${assessmentsInstructionsRoute}/${assessment?.id}`);
-    dispatch(
-      setAssessmentForCandidate({ ...assessment, timer: Date.now() + 50000 })
-    );
-  }, [dispatch, navigate, assessment]);
+
+    dispatch(updateAssessmentModal({ open: true }));
+  }, [dispatch, navigate, assessment?.id]);
 
   const onClickCancel = useCallback(() => {
     navigate(-1);

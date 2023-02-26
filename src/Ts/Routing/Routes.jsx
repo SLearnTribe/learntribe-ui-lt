@@ -2,13 +2,14 @@ import { Route } from "react-router-dom";
 import { CandidateViewProfile } from "../Components/Candidate/Profile/CandidateViewProfile";
 import { Applicants } from "../Components/Pages/Applicants/Applicants";
 import { Assessments } from "../Components/Pages/Assessments/Assessments";
-import { CandidateAssessment } from "../Components/Pages/Dashboards/Candidate/CandidateAssessment";
+// import { CandidateAssessment } from "../Components/Pages/Dashboards/Candidate/CandidateAssessment";
 import { CandidateDashboard } from "../Components/Pages/Dashboards/Candidate/CandidateDashboard";
 import { InstructionsPage } from "../Components/Pages/Dashboards/Candidate/InstructionsPage";
 import { HrDashboard } from "../Components/Pages/Dashboards/HR/HrDashboard";
 import { Help } from "../Components/Pages/Help/Help";
 // import { CandidateHelp } from "../Components/Pages/Help/CandidateHelp/Help";
 // import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
+import { FullScreenAssessmentModal } from "../Components/Modals/Assessment/FullScreenAssessmentModal";
 import { Jobs } from "../Components/Pages/Jobs/Jobs";
 import { PostJobs } from "../Components/Pages/PostJobs/PostJobs";
 import { CandidateProfile } from "../Components/Pages/Profiles/CandidateProfile/Profile";
@@ -75,7 +76,8 @@ const RouterMap = [
   },
   {
     path: routes.candidateAssessment,
-    component: CandidateAssessment,
+    component: FullScreenAssessmentModal,
+    // component: CandidateAssessment,
     permission: rolesConfig.CANDIDATE,
   },
   {

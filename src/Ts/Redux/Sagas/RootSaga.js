@@ -6,6 +6,7 @@ import {
   getAssessments,
   getdefaultAssessmentsOptions,
   postAssessments,
+  postSubmitAssessment,
   putAssignAssessment,
 } from "../Ducks/Assessments/AssessmentsSlice";
 import { getCandidateActivities } from "../Ducks/Dashboard/CandidateDashboardSlice";
@@ -31,6 +32,7 @@ import {
   handleGetAssessmentForCandidate,
   handleGetDefaultPreviouslyGeneratedAssessments,
   handleGetRecommendedAssessments,
+  handlePostSubmitAssessment,
 } from "./Handlers/Assessments/AssessmentHandler";
 import { handleGetCandidateActivities } from "./Handlers/Dashboards/CandidateDashboardHandler";
 import { handleGetHrDashboard } from "./Handlers/Dashboards/HrDashboardHandler";
@@ -74,6 +76,7 @@ export function* watcherSaga() {
   yield takeLatest(postLogout.type, handlePostLogout);
   yield takeLatest(saveResumeDetails.type, handleSaveResumeDetails);
   yield takeLatest(postUploadResume.type, handleUploadResume);
+  yield takeLatest(postSubmitAssessment.type, handlePostSubmitAssessment);
 
   //PUT
   yield takeLatest(putAssignAssessment.type, handleAssignAssessment);

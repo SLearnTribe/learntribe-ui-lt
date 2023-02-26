@@ -24,3 +24,9 @@ export const getCurrentEditingAssessment = (state) =>
 
 export const getAssessmentsChartData = (state) =>
   state.assessmentsSlice.assessmentsChartData;
+
+export const getAssessmentsModal = (state) =>
+  state.assessmentsSlice.assessmentModal;
+
+export const getAssessmentTimer = (state) =>
+  state.assessmentsSlice.assessmentTimer;

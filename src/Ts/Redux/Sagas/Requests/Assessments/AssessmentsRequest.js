@@ -5,7 +5,7 @@ export function requestGetCandidateRecommendedAssessments({
   page = 1,
   limit = 25,
   filters = ["COMPLETED", "PENDING", "BLOCKED", "FAILED", "PASSED"],
-  keyword
+  keyword,
 }) {
   return axios.request({
     method: "get",
@@ -68,6 +68,22 @@ export function requestGetAssessmentForCandidate({
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
+    url: `http://www.smilebat.xyz/sb-ast/api/v1/assessments/id/${assessmentId}`,
+  });
+}
+
+export function requestPostSubmitAssessment({
+  accessToken,
+  assessmentId,
+  submitAssessmentDetails,
+}) {
+  return axios.request({
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    data: submitAssessmentDetails,
     url: `http://www.smilebat.xyz/sb-ast/api/v1/assessments/id/${assessmentId}`,
   });
 }

@@ -4,29 +4,44 @@ import {
   GenerateAssessmentsDropdownMockData,
 } from "../../../Utils/MockData/DashboardData";
 
+const defaultState = {
+  assessmentsData: AssessmentsMockData(),
+  generateAssessmentDropdownData: GenerateAssessmentsDropdownMockData,
+  assessmentInnerFilter: [],
+  isLoading: true,
+  previouslyGeneratedAssessments: [],
+  defaultAssessmentsOptions: [],
+  isAssignAlertOpen: false,
+  assessmentForCandidate: {},
+  currentEditingAssessment: {},
+  assessmentsChartData: {
+    series: [],
+    categories: [],
+  },
+  assessmentTimer: null,
+  assessmentModal: {
+    open: false,
+    answers: {},
+    showSubmitUI: false,
+  },
+};
+
 const assessmentsSlice = createSlice({
   name: "assessments",
-  initialState: {
-    assessmentsData: AssessmentsMockData(),
-    generateAssessmentDropdownData: GenerateAssessmentsDropdownMockData,
-    assessmentInnerFilter: [],
-    isLoading: true,
-    previouslyGeneratedAssessments: [],
-    defaultAssessmentsOptions: [],
-    isAssignAlertOpen: false,
-    assessmentForCandidate: {},
-    currentEditingAssessment: {},
-    assessmentsChartData: {
-      series: [],
-      categories: [],
-    },
-  },
+  initialState: defaultState,
   reducers: {
     getAssessments() {},
     getAssessmentForCandidate() {},
     putAssignAssessment() {},
     getdefaultAssessmentsOptions() {},
     postAssessments() {},
+    postSubmitAssessment() {},
+    updateAssessmentModal(state, { payload }) {
+      state.assessmentModal = { ...state.assessmentModal, ...payload };
+    },
+    updateAssessmentTimer(state, { payload }) {
+      state.assessmentTimer = payload;
+    },
     setAssessmentsData(state, { payload: { data, chartData } }) {
       state.assessmentsData = data;
       state.assessmentsChartData = chartData;
@@ -59,6 +74,9 @@ const assessmentsSlice = createSlice({
 });
 
 export const {
+  updateAssessmentTimer,
+  postSubmitAssessment,
+  updateAssessmentModal,
   setAssessmentForCandidate,
   getAssessmentForCandidate,
   getAssessments,
