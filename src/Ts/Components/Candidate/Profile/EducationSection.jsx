@@ -9,12 +9,15 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { cloneDeep, isEmpty, isNull } from "lodash";
+import { cloneDeep, isNull } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
-import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
+import {
+  FlexAlignCenterStyles,
+  JustifyContentFlexEndSxStyles,
+} from "../../../CommonStyles/CommonSxStyles";
 import { NewEducationObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
 import {
@@ -26,10 +29,12 @@ import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionS
 import { AvailableDegreeOptions } from "../../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
+  CommonTexts,
   ProfileTexts,
   TextFieldLabelsAndTexts,
 } from "../../../Utils/Text";
 import { AutoCompleteSelect } from "../../CommonComponents/Controls/AutoComplete";
+import { DeleteIconWithLabel } from "../../CommonComponents/Controls/ButtonControls";
 
 export const EducationSection = () => {
   const dispatch = useDispatch();
@@ -48,14 +53,6 @@ export const EducationSection = () => {
     const copyUserInfo = cloneDeep(userInfo);
     console.log(copyUserInfo);
     copyUserInfo.educationExperiences.push(NewEducationObject);
-
-    dispatch(updateUserProfile(copyUserInfo));
-  }, [dispatch, userInfo]);
-
-  const onClickDeleteEducation = useCallback(() => {
-    const copyUserInfo = cloneDeep(userInfo);
-
-    copyUserInfo.educationExperiences.splice(-1);
 
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
@@ -106,6 +103,28 @@ export const EducationSection = () => {
     [dispatch, userInfo]
   );
 
+  const onClickDeleteEducation = useCallback(
+    (index) => {
+      const copyUserInfo = cloneDeep(userInfo);
+
+      copyUserInfo.educationExperiences.splice(index, 1);
+
+      dispatch(updateUserProfile(copyUserInfo));
+    },
+    [dispatch, userInfo]
+  );
+
+  const onChangeLocation = useCallback(
+    (value, index) => {
+      const copyUserInfo = cloneDeep(userInfo);
+
+      copyUserInfo.educationExperiences[index].location = value;
+
+      dispatch(updateUserProfile(copyUserInfo));
+    },
+    [dispatch, userInfo]
+  );
+
   return isLoading ? (
     <ExperienceSectionSkeleton />
   ) : (
@@ -123,7 +142,14 @@ export const EducationSection = () => {
         <Grid container spacing={3}>
           {educationExperiences?.map(
             (
-              { fieldOfStudy, dateOfCompletion, endDate, collegeName, degree },
+              {
+                fieldOfStudy,
+                dateOfCompletion,
+                endDate,
+                collegeName,
+                degree,
+                location,
+              },
               index
             ) => (
               <React.Fragment key={index}>
@@ -191,17 +217,39 @@ export const EducationSection = () => {
                     variant="outlined"
                   />
                 </Grid>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    value={location}
+                    onChange={({ target: { value } }) =>
+                      onChangeLocation(value, index)
+                    }
+                    id="outlined-basic"
+                    label={CommonTexts.location}
+                    placeholder={TextFieldLabelsAndTexts.enterLocation}
+                    variant="outlined"
+                  />
+                </Grid>
+
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  sx={FlexAlignCenterStyles}>
+                  <DeleteIconWithLabel
+                    onClick={() => onClickDeleteEducation(index)}
+                    label={CommonTexts.delete}
+                    sx={{ fontWeight: 600, pl: "0.5rem" }}
+                    iconSx={{ fontSize: "1.75rem" }}
+                  />
+                </Grid>
               </React.Fragment>
             )
           )}
-          <Grid item xs={12} sx={JustifyContentSpaceBetweenSxStyles}>
-            <Button
-              disabled={isEmpty(educationExperiences)}
-              onClick={onClickDeleteEducation}
-              color="secondary"
-              variant="outlined">
-              {ButtonTexts.deleteEducation}
-            </Button>
+          <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
             <Button
               onClick={onClickAddNewEducation}
               color="primary"

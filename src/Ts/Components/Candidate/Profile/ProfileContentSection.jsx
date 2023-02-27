@@ -1,6 +1,6 @@
 import { Button, Grid, Skeleton } from "@mui/material";
 import { isEmpty, isEqual } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {

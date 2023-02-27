@@ -58,7 +58,7 @@ export const ExperienceSection = () => {
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
 
-  const onClickDeleteEducation = useCallback(
+  const onClickDeleteWork = useCallback(
     (index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
@@ -128,7 +128,7 @@ export const ExperienceSection = () => {
     [dispatch, userInfo]
   );
 
-  const onChangeWorkLocation = useCallback(
+  const onChangeLocation = useCallback(
     (value, index) => {
       const copyUserInfo = cloneDeep(userInfo);
 
@@ -261,7 +261,7 @@ export const ExperienceSection = () => {
                     sx={{ width: "100%" }}
                     value={location}
                     onChange={({ target: { value } }) =>
-                      onChangeWorkLocation(value, index)
+                      onChangeLocation(value, index)
                     }
                     id="outlined-basic"
                     label={CommonTexts.location}
@@ -296,7 +296,7 @@ export const ExperienceSection = () => {
                   xl={3}
                   sx={FlexAlignCenterStyles}>
                   <DeleteIconWithLabel
-                    onClick={() => onClickDeleteEducation(index)}
+                    onClick={() => onClickDeleteWork(index)}
                     label={CommonTexts.delete}
                     sx={{ fontWeight: 600, pl: "0.5rem" }}
                     iconSx={{ fontSize: "1.75rem" }}
