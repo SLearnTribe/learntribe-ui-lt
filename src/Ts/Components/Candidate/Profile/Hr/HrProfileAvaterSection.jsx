@@ -37,7 +37,6 @@ import {
   ButtonTexts,
   CandidateDashboardTexts,
   ModalTexts,
-  ProfileTexts,
 } from "../../../../Utils/Text";
 
 export const HrProfileAvatarSection = () => {
@@ -119,15 +118,7 @@ export const HrProfileAvatarSection = () => {
                 {ButtonTexts.contactInfo}
               </Link>
             </Grid>
-            {role === "CANDIDATE" ? (
-              <Grid item xs={12}>
-                <Typography
-                  color="text.secondary"
-                  sx={HrResumeAssessmentHeaderSxStyles}>
-                  {ProfileTexts.resume}
-                </Typography>
-              </Grid>
-            ) : null}
+
             <Grid
               item
               xs={12}
