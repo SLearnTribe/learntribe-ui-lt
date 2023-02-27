@@ -78,7 +78,14 @@ export const HrProfileContentSection = ({ selectedApplicantData }) => {
                 </Grid>
                 {workExperiences?.map(
                   (
-                    { orgName, location, endDate, startDate, designation },
+                    {
+                      orgName,
+                      location,
+                      endDate,
+                      startDate,
+                      designation,
+                      currentlyWorking = false,
+                    },
                     index
                   ) => (
                     <Grid item xs={12} key={uniqueId()}>
@@ -87,7 +94,11 @@ export const HrProfileContentSection = ({ selectedApplicantData }) => {
                           Font21Weight500SxStyles
                         }>{`${orgName}, ${location} - ${formatMMMYYYDate(
                         startDate
-                      )} to ${formatMMMYYYDate(endDate)}`}</Typography>
+                      )} to ${
+                        currentlyWorking
+                          ? CommonTexts.present
+                          : formatMMMYYYDate(endDate)
+                      }`}</Typography>
                       <Typography sx={Font21Weight500SxStyles}>
                         {designation}
                       </Typography>
