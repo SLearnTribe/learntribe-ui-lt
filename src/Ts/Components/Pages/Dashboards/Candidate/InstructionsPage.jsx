@@ -9,8 +9,14 @@ import {
   RelatedInformation,
 } from "../../../../Configs/Dashboards/DashboardsConfig";
 import { assessmentsInstructionsRoute } from "../../../../Configs/RoutesConfig";
-import { updateAssessmentModal } from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
-import { getAssessmentOfCandidate } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import {
+  getAssessmentForCandidate,
+  updateAssessmentModal,
+} from "../../../../Redux/Ducks/Assessments/AssessmentsSlice";
+import {
+  getAssessmentId,
+  getAssessmentOfCandidate,
+} from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { ButtonTexts, CommonTexts } from "../../../../Utils/Text";
 
 export const InstructionsPage = () => {
@@ -20,11 +26,15 @@ export const InstructionsPage = () => {
 
   const assessment = useSelector(getAssessmentOfCandidate);
 
+  const id = useSelector(getAssessmentId);
+
   const onClickContinue = useCallback(() => {
     navigate(`${assessmentsInstructionsRoute}/${assessment?.id}`);
 
     dispatch(updateAssessmentModal({ open: true }));
-  }, [dispatch, navigate, assessment?.id]);
+
+    dispatch(getAssessmentForCandidate(id));
+  }, [dispatch, navigate, assessment?.id, id]);
 
   const onClickCancel = useCallback(() => {
     navigate(-1);

@@ -91,6 +91,7 @@ export const CommonTexts = {
   currentDesignation: "Current Designation",
   achivementTasks: "Achievements/Tasks",
   submittingResults: "Submitting Results",
+  loadingAssessment: "Loading Assessment",
 };
 
 export const ButtonTexts = {

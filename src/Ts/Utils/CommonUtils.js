@@ -42,3 +42,7 @@ export const ResumeDownloadSuccessAlert = {
 export const formatMMMYYYDate = (dateString) => {
   return moment(dateString, "YYYYMMDD").format("MMM YYYY");
 };
+
+export const isObjectEmpty = (object) => {
+  return Object.keys(object).length === 0;
+};

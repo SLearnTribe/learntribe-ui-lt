@@ -28,5 +28,4 @@ export const getAssessmentsChartData = (state) =>
 export const getAssessmentsModal = (state) =>
   state.assessmentsSlice.assessmentModal;
 
-export const getAssessmentTimer = (state) =>
-  state.assessmentsSlice.assessmentTimer;
+export const getAssessmentId = (state) => state.assessmentsSlice.assessmentId;

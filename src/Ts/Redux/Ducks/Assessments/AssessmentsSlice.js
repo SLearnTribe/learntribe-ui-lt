@@ -18,6 +18,7 @@ const defaultState = {
     series: [],
     categories: [],
   },
+  assessmentId: null,
   assessmentTimer: null,
   assessmentModal: {
     open: false,
@@ -38,6 +39,9 @@ const assessmentsSlice = createSlice({
     postSubmitAssessment() {},
     updateAssessmentModal(state, { payload }) {
       state.assessmentModal = { ...state.assessmentModal, ...payload };
+    },
+    updateAssessmentId(state, { payload }) {
+      state.assessmentId = payload;
     },
     updateAssessmentTimer(state, { payload }) {
       state.assessmentTimer = payload;
@@ -74,6 +78,7 @@ const assessmentsSlice = createSlice({
 });
 
 export const {
+  updateAssessmentId,
   updateAssessmentTimer,
   postSubmitAssessment,
   updateAssessmentModal,

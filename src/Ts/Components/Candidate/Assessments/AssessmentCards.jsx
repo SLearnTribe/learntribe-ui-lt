@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { capitalize, isEmpty, uniqBy, uniqueId } from "lodash";
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -29,8 +29,8 @@ import {
 import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
 import { AssessmentNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import {
-  getAssessmentForCandidate,
   setAssessmentInnerFilter,
+  updateAssessmentId,
 } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import {
   getAssessmentInnerFilter,
@@ -78,7 +78,7 @@ export const AssessmentCards = ({ selectedTab }) => {
     ({ currentTarget }) => {
       const id = currentTarget.getAttribute("data-id");
 
-      dispatch(getAssessmentForCandidate(id));
+      dispatch(updateAssessmentId(id));
 
       navigate(assessmentsInstructionsRoute);
     },

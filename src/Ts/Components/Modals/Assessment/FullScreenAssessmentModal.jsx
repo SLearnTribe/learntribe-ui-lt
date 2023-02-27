@@ -14,15 +14,15 @@ import {
 import {
   postSubmitAssessment,
   updateAssessmentModal,
-  updateAssessmentTimer,
 } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import {
   getAssessmentOfCandidate,
-  getAssessmentTimer,
   getAssessmentsModal,
 } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import { isObjectEmpty } from "../../../Utils/CommonUtils";
 import { CommonTexts } from "../../../Utils/Text";
 import { CandidateAssessment } from "../../Pages/Dashboards/Candidate/CandidateAssessment";
+import { LoadingAssessment } from "../../Pages/Dashboards/Candidate/LoadingAssessment";
 import { SubmittingAssessments } from "../../Pages/Dashboards/Candidate/SubmittingAssessments";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -40,11 +40,22 @@ export const FullScreenAssessmentModal = () => {
     showSubmitUI,
   } = useSelector(getAssessmentsModal);
 
-  const timer = useSelector(getAssessmentTimer);
+  const { requiredTimeInMilliSec = Date.now() + 5000000000 } = assessment;
+
+  const handleBeforeUnload = (e) => {
+    e.preventDefault();
+    const message =
+      "Are you sure you want to leave? All provided data will be lost. And you can't re-take assessment";
+    e.returnValue = message;
+    return message;
+  };
 
   React.useEffect(() => {
-    dispatch(updateAssessmentTimer(Date.now() + 5000000000));
-    // eslint-disable-next-line
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   const handleClose = () => {
@@ -93,14 +104,23 @@ export const FullScreenAssessmentModal = () => {
                   renderer={({ formatted: { minutes, seconds } }) => (
                     <b>{`${minutes}:${seconds}`}</b>
                   )}
-                  date={timer}
+                  date={requiredTimeInMilliSec}
                 />
               </Box>
             ) : null}
           </Toolbar>
         </AppBar>
-        <DialogContent sx={showSubmitUI ? DisplayFlexCenter : {}}>
-          {showSubmitUI ? <SubmittingAssessments /> : <CandidateAssessment />}
+        <DialogContent
+          sx={
+            showSubmitUI || isObjectEmpty(assessment) ? DisplayFlexCenter : {}
+          }>
+          {showSubmitUI ? (
+            <SubmittingAssessments />
+          ) : isObjectEmpty(assessment) ? (
+            <LoadingAssessment />
+          ) : (
+            <CandidateAssessment />
+          )}
         </DialogContent>
       </Dialog>
     </div>
