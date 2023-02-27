@@ -45,6 +45,11 @@ export const AlignCenterStyles = {
   alignItems: "center",
 };
 
+export const FlexAlignCenterStyles = {
+  display: "flex",
+  alignItems: "center",
+};
+
 export const WhiteColor = {
   color: "#fff",
 };

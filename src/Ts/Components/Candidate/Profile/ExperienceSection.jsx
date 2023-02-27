@@ -9,12 +9,15 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { cloneDeep, isEmpty } from "lodash";
+import { cloneDeep } from "lodash";
 import moment from "moment";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
-import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
+import {
+  FlexAlignCenterStyles,
+  JustifyContentFlexEndSxStyles,
+} from "../../../CommonStyles/CommonSxStyles";
 import { NewExperienceObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
 import {
@@ -29,6 +32,10 @@ import {
   ProfileTexts,
   TextFieldLabelsAndTexts,
 } from "../../../Utils/Text";
+import {
+  CheckboxWithLabel,
+  DeleteIconWithLabel,
+} from "../../CommonComponents/Controls/ButtonControls";
 
 export const ExperienceSection = () => {
   const dispatch = useDispatch();
@@ -51,13 +58,16 @@ export const ExperienceSection = () => {
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
 
-  const onClickDeleteEducation = useCallback(() => {
-    const copyUserInfo = cloneDeep(userInfo);
+  const onClickDeleteEducation = useCallback(
+    (index) => {
+      const copyUserInfo = cloneDeep(userInfo);
 
-    copyUserInfo.workExperiences.splice(-1);
+      copyUserInfo.workExperiences.splice(index, 1);
 
-    dispatch(updateUserProfile(copyUserInfo));
-  }, [dispatch, userInfo]);
+      dispatch(updateUserProfile(copyUserInfo));
+    },
+    [dispatch, userInfo]
+  );
 
   const onChangeStartDate = useCallback(
     (value, index) => {
@@ -107,6 +117,53 @@ export const ExperienceSection = () => {
     [dispatch, userInfo]
   );
 
+  const onChangeCurrentlyWorking = useCallback(
+    (value, index) => {
+      const copyUserInfo = cloneDeep(userInfo);
+
+      copyUserInfo.workExperiences[index].currentlyWorking = value;
+
+      dispatch(updateUserProfile(copyUserInfo));
+    },
+    [dispatch, userInfo]
+  );
+
+  const onChangeWorkLocation = useCallback(
+    (value, index) => {
+      const copyUserInfo = cloneDeep(userInfo);
+
+      copyUserInfo.workExperiences[index].location = value;
+
+      dispatch(updateUserProfile(copyUserInfo));
+    },
+    [dispatch, userInfo]
+  );
+
+  const { workMap } = useMemo(() => {
+    const workMap = {};
+
+    let isWorkPresent = false;
+
+    workExperiences.forEach(({ currentlyWorking = false }, index) => {
+      if (currentlyWorking) {
+        workMap[index] = true;
+        isWorkPresent = true;
+      } else {
+        workMap[index] = false;
+      }
+    });
+
+    workExperiences.forEach((ele, index) => {
+      if (isWorkPresent) {
+        workMap[index] = !workMap[index];
+      } else {
+        workMap[index] = false;
+      }
+    });
+
+    return { workMap };
+  }, [workExperiences]);
+
   return isLoading ? (
     <ExperienceSectionSkeleton />
   ) : (
@@ -123,7 +180,17 @@ export const ExperienceSection = () => {
       <CardContent>
         <Grid container spacing={3}>
           {workExperiences?.map(
-            ({ orgName, designation, startDate, endDate }, index) => (
+            (
+              {
+                orgName,
+                designation,
+                startDate,
+                endDate,
+                currentlyWorking = false,
+                location = "",
+              },
+              index
+            ) => (
               <React.Fragment key={index}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <TextField
@@ -155,6 +222,7 @@ export const ExperienceSection = () => {
                     variant="outlined"
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
@@ -174,6 +242,7 @@ export const ExperienceSection = () => {
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
+                      disabled={currentlyWorking}
                       mask="____-__-__"
                       inputFormat="YYYY-MM-DD"
                       label="To Date"
@@ -187,17 +256,56 @@ export const ExperienceSection = () => {
                     />
                   </LocalizationProvider>
                 </Grid>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    value={location}
+                    onChange={({ target: { value } }) =>
+                      onChangeWorkLocation(value, index)
+                    }
+                    id="outlined-basic"
+                    label={CommonTexts.location}
+                    placeholder={TextFieldLabelsAndTexts.enterLocation}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={3}
+                  lg={3}
+                  xl={3}
+                  sx={FlexAlignCenterStyles}>
+                  <CheckboxWithLabel
+                    disabled={workMap[index]}
+                    sx={{ fontWeight: 600 }}
+                    checked={currentlyWorking}
+                    onChange={({ target: { checked } }) =>
+                      onChangeCurrentlyWorking(checked, index)
+                    }
+                    label={CommonTexts.present}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={3}
+                  lg={3}
+                  xl={3}
+                  sx={FlexAlignCenterStyles}>
+                  <DeleteIconWithLabel
+                    onClick={() => onClickDeleteEducation(index)}
+                    label={CommonTexts.delete}
+                    sx={{ fontWeight: 600, pl: "0.5rem" }}
+                    iconSx={{ fontSize: "1.75rem" }}
+                  />
+                </Grid>
               </React.Fragment>
             )
           )}
-          <Grid item xs={12} sx={JustifyContentSpaceBetweenSxStyles}>
-            <Button
-              disabled={isEmpty(workExperiences)}
-              onClick={onClickDeleteEducation}
-              color="secondary"
-              variant="outlined">
-              {ButtonTexts.deleteExperience}
-            </Button>
+          <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
             <Button
               onClick={onClickAddNewExperience}
               color="primary"

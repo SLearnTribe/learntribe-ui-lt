@@ -45,6 +45,7 @@ export const CommonTexts = {
   mobileNo: "Mobile No.",
   city: "City",
   role: "Role",
+  location: "Location",
   projectUrl: "Project URL",
   companyName: "Company Name",
   projectName: "Project Name",
@@ -92,6 +93,8 @@ export const CommonTexts = {
   achivementTasks: "Achievements/Tasks",
   submittingResults: "Submitting Results",
   loadingAssessment: "Loading Assessment",
+  present: "Present",
+  delete: "Delete",
 };
 
 export const ButtonTexts = {
@@ -207,4 +210,5 @@ export const TextFieldLabelsAndTexts = {
   employmentType: "Employment Type",
   city: "City",
   address: "Address",
+  enterLocation: "Enter location",
 };
