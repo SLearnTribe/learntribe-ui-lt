@@ -9,12 +9,15 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { cloneDeep, isEmpty } from "lodash";
+import { cloneDeep } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
-import { JustifyContentSpaceBetweenSxStyles } from "../../../CommonStyles/CommonSxStyles";
+import {
+  FlexAlignCenterStyles,
+  JustifyContentFlexEndSxStyles,
+} from "../../../CommonStyles/CommonSxStyles";
 import { NewProjectsObject } from "../../../Configs/Profile/ProfileConfig";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
 import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
@@ -22,6 +25,7 @@ import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/Use
 import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionSkeleton";
 import { ButtonTexts, CommonTexts, ProfileTexts } from "../../../Utils/Text";
 import { AutoCompleteAddTags } from "../../CommonComponents/Controls/AutoComplete";
+import { DeleteIconWithLabel } from "../../CommonComponents/Controls/ButtonControls";
 
 export const SideProjectsSection = () => {
   const dispatch = useDispatch();
@@ -36,14 +40,6 @@ export const SideProjectsSection = () => {
     const copyUserInfo = cloneDeep(userInfo);
 
     copyUserInfo.sideProjects.push(NewProjectsObject);
-
-    dispatch(updateUserProfile(copyUserInfo));
-  }, [dispatch, userInfo]);
-
-  const onClickDeleteProject = useCallback(() => {
-    const copyUserInfo = cloneDeep(userInfo);
-
-    copyUserInfo.sideProjects.splice(-1);
 
     dispatch(updateUserProfile(copyUserInfo));
   }, [dispatch, userInfo]);
@@ -113,6 +109,17 @@ export const SideProjectsSection = () => {
       const copyUserInfo = cloneDeep(userInfo);
 
       copyUserInfo.sideProjects[index].description = value;
+
+      dispatch(updateUserProfile(copyUserInfo));
+    },
+    [dispatch, userInfo]
+  );
+
+  const onClickDeleteEducation = useCallback(
+    (index) => {
+      const copyUserInfo = cloneDeep(userInfo);
+
+      copyUserInfo.sideProjects.splice(index, 1);
 
       dispatch(updateUserProfile(copyUserInfo));
     },
@@ -204,7 +211,7 @@ export const SideProjectsSection = () => {
                     placeholder={CommonTexts.addSkills.slice(0, -1)}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={12} md={10} lg={10} xl={10}>
                   <TextField
                     sx={{ width: "100%" }}
                     id="filled-multiline-flexible"
@@ -216,17 +223,25 @@ export const SideProjectsSection = () => {
                     variant="outlined"
                   />
                 </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={2}
+                  lg={2}
+                  xl={2}
+                  sx={FlexAlignCenterStyles}>
+                  <DeleteIconWithLabel
+                    onClick={() => onClickDeleteEducation(index)}
+                    label={CommonTexts.delete}
+                    sx={{ fontWeight: 600, pl: "0.5rem" }}
+                    iconSx={{ fontSize: "1.75rem" }}
+                  />
+                </Grid>
               </React.Fragment>
             )
           )}
-          <Grid item xs={12} sx={JustifyContentSpaceBetweenSxStyles}>
-            <Button
-              disabled={isEmpty(sideProjects)}
-              onClick={onClickDeleteProject}
-              color="secondary"
-              variant="outlined">
-              {ButtonTexts.deleteProject}
-            </Button>
+          <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
             <Button
               onClick={onClickAddNewProject}
               color="primary"

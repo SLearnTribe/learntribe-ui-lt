@@ -2,13 +2,13 @@ import { Button, Grid, TextField, Typography } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { cloneDeep, isEmpty } from "lodash";
+import { cloneDeep } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FlexAlignCenterStyles,
-  JustifyContentSpaceBetweenAlignCenterSxStyles,
+  JustifyContentFlexEndSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { NewProjectsObject } from "../../Configs/Profile/ProfileConfig";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
@@ -27,14 +27,6 @@ export const ResumeProjects = () => {
     const copyResumeDetails = cloneDeep(resumeDetails);
 
     copyResumeDetails.sideProjects.push(NewProjectsObject);
-
-    dispatch(updateCurrentResume(copyResumeDetails));
-  }, [dispatch, resumeDetails]);
-
-  const onClickDeleteProject = useCallback(() => {
-    const copyResumeDetails = cloneDeep(resumeDetails);
-
-    copyResumeDetails.sideProjects.splice(-1);
 
     dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
@@ -183,15 +175,7 @@ export const ResumeProjects = () => {
           </React.Fragment>
         )
       )}
-      <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
-        <Button
-          disabled={isEmpty(sideProjects)}
-          onClick={onClickDeleteProject}
-          color="secondary"
-          sx={{ mr: 2 }}
-          variant="outlined">
-          {ButtonTexts.deleteProject}
-        </Button>
+      <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
         <Button
           onClick={onClickAddNewProject}
           color="primary"
