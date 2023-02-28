@@ -2,21 +2,26 @@ import { Button, Grid, TextField, Typography } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { cloneDeep, isEmpty, isNull } from "lodash";
+import { cloneDeep, isNull } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { JustifyContentSpaceBetweenAlignCenterSxStyles } from "../../CommonStyles/CommonSxStyles";
+import {
+  FlexAlignCenterStyles,
+  JustifyContentFlexEndSxStyles,
+} from "../../CommonStyles/CommonSxStyles";
 import { NewEducationObject } from "../../Configs/Profile/ProfileConfig";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { AvailableDegreeOptions } from "../../Utils/MockData/DashboardData";
 import {
   ButtonTexts,
+  CommonTexts,
   ProfileTexts,
   TextFieldLabelsAndTexts,
 } from "../../Utils/Text";
 import { AutoCompleteSelect } from "../CommonComponents/Controls/AutoComplete";
+import { DeleteIconWithLabel } from "../CommonComponents/Controls/ButtonControls";
 
 export const ResumeEducation = () => {
   const dispatch = useDispatch();
@@ -29,14 +34,6 @@ export const ResumeEducation = () => {
     const copyResumeDetails = cloneDeep(resumeDetails);
 
     copyResumeDetails.educationExperiences.push(NewEducationObject);
-
-    dispatch(updateCurrentResume(copyResumeDetails));
-  }, [dispatch, resumeDetails]);
-
-  const onClickDeleteEducation = useCallback(() => {
-    const copyResumeDetails = cloneDeep(resumeDetails);
-
-    copyResumeDetails.educationExperiences.splice(-1);
 
     dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
@@ -87,6 +84,29 @@ export const ResumeEducation = () => {
     },
     [dispatch, resumeDetails]
   );
+
+  const onClickDeleteEducation = useCallback(
+    (index) => {
+      const copyResumeDetails = cloneDeep(resumeDetails);
+
+      copyResumeDetails.educationExperiences.splice(index, 1);
+
+      dispatch(updateCurrentResume(copyResumeDetails));
+    },
+    [dispatch, resumeDetails]
+  );
+
+  const onChangeLocation = useCallback(
+    (value, index) => {
+      const copyResumeDetails = cloneDeep(resumeDetails);
+
+      copyResumeDetails.educationExperiences[index].location = value;
+
+      dispatch(updateCurrentResume(copyResumeDetails));
+    },
+    [dispatch, resumeDetails]
+  );
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -95,7 +115,10 @@ export const ResumeEducation = () => {
         </Typography>
       </Grid>
       {educationExperiences?.map(
-        ({ fieldOfStudy, dateOfCompletion, collegeName, degree }, index) => (
+        (
+          { fieldOfStudy, dateOfCompletion, collegeName, degree, location },
+          index
+        ) => (
           <React.Fragment key={index}>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextField
@@ -161,17 +184,39 @@ export const ResumeEducation = () => {
                 variant="outlined"
               />
             </Grid>
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+              <TextField
+                sx={{ width: "100%" }}
+                value={location}
+                onChange={({ target: { value } }) =>
+                  onChangeLocation(value, index)
+                }
+                id="outlined-basic"
+                label={CommonTexts.location}
+                placeholder={TextFieldLabelsAndTexts.enterLocation}
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={6}
+              lg={6}
+              xl={6}
+              sx={FlexAlignCenterStyles}>
+              <DeleteIconWithLabel
+                onClick={() => onClickDeleteEducation(index)}
+                label={CommonTexts.delete}
+                sx={{ fontWeight: 600, pl: "0.5rem" }}
+                iconSx={{ fontSize: "1.75rem" }}
+              />
+            </Grid>
           </React.Fragment>
         )
       )}
-      <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
-        <Button
-          disabled={isEmpty(educationExperiences)}
-          onClick={onClickDeleteEducation}
-          color="secondary"
-          variant="outlined">
-          {ButtonTexts.deleteEducation}
-        </Button>
+      <Grid item xs={12} sx={JustifyContentFlexEndSxStyles}>
         <Button
           onClick={onClickAddNewEducation}
           color="primary"
