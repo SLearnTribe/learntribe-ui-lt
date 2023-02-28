@@ -165,6 +165,11 @@ export const ResumeExperience = () => {
           index
         ) => (
           <React.Fragment key={index}>
+            <Grid item xs={12}>
+              <Typography sx={{ fontWeight: 600 }}>
+                {`${CommonTexts.WORK_EXPERIENCE} ${index + 1}`}
+              </Typography>
+            </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextField
                 required

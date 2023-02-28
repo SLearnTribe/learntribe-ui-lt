@@ -95,6 +95,8 @@ export const CommonTexts = {
   loadingAssessment: "Loading Assessment",
   present: "Present",
   delete: "Delete",
+  WORK_EXPERIENCE: "Work Experience",
+  PROJECT: "Project",
 };
 
 export const ButtonTexts = {

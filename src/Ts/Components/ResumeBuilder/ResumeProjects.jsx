@@ -101,6 +101,11 @@ export const ResumeProjects = () => {
         ({ description, name, url, skills, startDate, endDate }, index) => (
           <React.Fragment key={index}>
             <Grid item xs={12}>
+              <Typography sx={{ fontWeight: 600 }}>
+                {`${CommonTexts.PROJECT} ${index + 1}`}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 sx={{ width: "100%" }}
                 value={name}
