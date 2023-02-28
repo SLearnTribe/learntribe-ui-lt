@@ -1,13 +1,8 @@
-import {
-  CardContent,
-  CardHeader,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { CardContent, CardHeader, Grid, TextField } from "@mui/material";
 import { cloneDeep, isUndefined } from "lodash";
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CardTitleWithInfoIcon } from "../../../CommonJsx/CommonJsxUtils";
 import { CardWithError } from "../../../CommonJsx/SharedJsxStyles";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
 import {
@@ -67,9 +62,10 @@ export const ProfileSkills = () => {
       sx={{ pl: "1rem", pr: "1rem", boxShadow: 3 }}>
       <CardHeader
         title={
-          <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
-            {ProfileTexts.skills}
-          </Typography>
+          <CardTitleWithInfoIcon
+            text={ProfileTexts.skills}
+            tooltipText={CommonTexts.SKILLS_TOOLTIP}
+          />
         }
       />
       <CardContent>

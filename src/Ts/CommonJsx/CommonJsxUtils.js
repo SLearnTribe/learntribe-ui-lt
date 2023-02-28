@@ -1,5 +1,6 @@
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
 import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import {
@@ -110,5 +111,16 @@ export const CustomIconButton = ({ children, onClick = null, sx = {} }) => {
       sx={sx}>
       {children}
     </IconButton>
+  );
+};
+
+export const CardTitleWithInfoIcon = ({ text, tooltipText = null }) => {
+  return (
+    <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
+      {text}
+      <Tooltip placement="top" title={tooltipText} arrow>
+        <InfoTwoToneIcon sx={{ ml: "0.5rem", mb: "-0.2rem" }} />
+      </Tooltip>
+    </Typography>
   );
 };

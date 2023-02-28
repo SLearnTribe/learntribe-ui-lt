@@ -1,7 +1,8 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { cloneDeep, isUndefined } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CardTitleWithInfoIcon } from "../../CommonJsx/CommonJsxUtils";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { CommonTexts, ProfileTexts } from "../../Utils/Text";
@@ -35,9 +36,10 @@ export const ResumeSkills = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
-          {ProfileTexts.skills}
-        </Typography>
+        <CardTitleWithInfoIcon
+          text={ProfileTexts.skills}
+          tooltipText={CommonTexts.SKILLS_TOOLTIP}
+        />
       </Grid>
       <Grid item xs={12}>
         <AutoCompleteAddTags

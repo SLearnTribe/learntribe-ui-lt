@@ -97,6 +97,7 @@ export const CommonTexts = {
   delete: "Delete",
   WORK_EXPERIENCE: "Work Experience",
   PROJECT: "Project",
+  SKILLS_TOOLTIP: "Type skill and hit enter to add",
 };
 
 export const ButtonTexts = {
