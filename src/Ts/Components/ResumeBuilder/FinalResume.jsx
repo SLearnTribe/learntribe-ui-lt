@@ -16,19 +16,22 @@ import {
 } from "@mui/material";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import sampleImage from "../../../Assests/Adil.jpeg";
 import {
   Font18Weight500SxStyles,
   JustifyContentSpaceBetweenAlignCenterSxStyles,
+  JustifyContentSpaceBetweenSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { routes } from "../../Configs/RoutesConfig";
 import { setResumeActiveStepper } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
-import { getResumeBuilderActiveStepper } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
-import { FilledResumeMockData } from "../../Utils/MockData/ResumeBuilderData";
-import { normalizeYearMonthDate } from "../../Utils/ResumeBuilder/ResumeBuilderUtils";
+import {
+  getCurrentEditingResume,
+  getResumeBuilderActiveStepper,
+} from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { formatMMMYYYDate } from "../../Utils/CommonUtils";
 import { ButtonTexts, CommonTexts } from "../../Utils/Text";
 
 export const FinalResume = () => {
@@ -37,6 +40,8 @@ export const FinalResume = () => {
   const navigate = useNavigate();
 
   const activeStepper = useSelector(getResumeBuilderActiveStepper);
+
+  const resumeDetails = useSelector(getCurrentEditingResume);
 
   const {
     name = null,
@@ -51,7 +56,7 @@ export const FinalResume = () => {
     educationExperiences = [],
     sideProjects = [],
     useThisResumeAsDefault = false,
-  } = FilledResumeMockData;
+  } = resumeDetails;
 
   const goBack = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper - 1));
@@ -163,7 +168,15 @@ export const FinalResume = () => {
                 </Grid>
                 {workExperiences?.map(
                   (
-                    { orgName, endDate, startDate, designation, description },
+                    {
+                      orgName,
+                      endDate,
+                      startDate,
+                      designation,
+                      description,
+                      location,
+                      currentlyWorking = false,
+                    },
                     index
                   ) => (
                     <>
@@ -182,13 +195,20 @@ export const FinalResume = () => {
                               {orgName}
                             </Typography>
                           </Grid>
-                          <Grid item xs={12}>
-                            <Typography
-                              color={"primary"}>{`${normalizeYearMonthDate(
+                          <Grid
+                            item
+                            xs={12}
+                            sx={JustifyContentSpaceBetweenSxStyles}>
+                            <Typography color={"primary"}>{`${formatMMMYYYDate(
                               startDate
-                            )} - ${normalizeYearMonthDate(
-                              endDate
-                            )}`}</Typography>
+                            )} - ${
+                              currentlyWorking
+                                ? CommonTexts.present
+                                : formatMMMYYYDate(endDate)
+                            }`}</Typography>
+                            <Typography color={"primary"}>
+                              {location}
+                            </Typography>
                           </Grid>
                           <Grid item xs={12}>
                             <Typography color={"primary"}>
@@ -242,7 +262,7 @@ export const FinalResume = () => {
                           </Grid>
                           <Grid item xs={12}>
                             <Typography color={"primary"}>
-                              {normalizeYearMonthDate(dateOfCompletion)}
+                              {formatMMMYYYDate(dateOfCompletion)}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -260,7 +280,7 @@ export const FinalResume = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  {skills.split(", ").map((skill) => (
+                  {skills?.split(", ").map((skill) => (
                     <Button
                       sx={{ ml: 2, mb: 2 }}
                       color="primary"
@@ -279,9 +299,9 @@ export const FinalResume = () => {
                     <>
                       <Grid item xs={12}>
                         <Typography sx={{ fontWeight: 700 }}>
-                          {`${name} (${normalizeYearMonthDate(
+                          {`${name} (${formatMMMYYYDate(
                             startDate
-                          )} - ${normalizeYearMonthDate(endDate)})`}
+                          )} - ${formatMMMYYYDate(endDate)})`}
                         </Typography>
                         <Typography>{description}</Typography>
                       </Grid>
