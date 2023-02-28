@@ -1,6 +1,6 @@
 import { Grid, TextField, Typography } from "@mui/material";
 import { cloneDeep } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
@@ -36,7 +36,7 @@ export const ResumeSocialNetworking = () => {
   );
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
         <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
           {ProfileTexts.socialNetworks}

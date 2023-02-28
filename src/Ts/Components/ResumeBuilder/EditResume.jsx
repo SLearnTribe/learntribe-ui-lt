@@ -33,7 +33,7 @@ export const EditResume = () => {
     <Grid container spacing={3}>
       {/* 1st Column */}
       <Grid item xs={12} xl={2} lg={2} md={2} sm={12}>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
             <Avatar
               alt="Remy Sharp"
@@ -56,7 +56,7 @@ export const EditResume = () => {
       </Grid>
       {/* 2nd Column */}
       <Grid item xs={12} xl={10} lg={10} md={10} sm={12}>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           {/* Edit info name, email, city */}
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <ResumeEditInfo />

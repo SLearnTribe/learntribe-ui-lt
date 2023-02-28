@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { cloneDeep, isUndefined } from "lodash";
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
@@ -33,7 +33,7 @@ export const ResumeSkills = () => {
   );
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
         <Typography sx={{ fontSize: 25, fontWeight: 600 }}>
           {ProfileTexts.skills}
