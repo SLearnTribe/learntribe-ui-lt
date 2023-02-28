@@ -3,6 +3,8 @@ import { defaultResumeList } from "../../../../Configs/ResumeBuilder/ResumeBuild
 import {
   ResumeDownloadErrorAlert,
   ResumeDownloadSuccessAlert,
+  ResumeSaveErrorAlert,
+  ResumeSaveSuccessAlert,
   ResumeUploadErrorAlert,
   ResumeUploadSuccessAlert,
 } from "../../../../Utils/CommonUtils";
@@ -16,6 +18,7 @@ import {
   requestGetResumeDownload,
   requestPostResumeDetails,
   requestPostResumeUpload,
+  requestPostSave,
 } from "../../Requests/ResumeBuilder/ResumeBuilderRequest";
 
 export function* handleGetResumeDetails() {
@@ -100,6 +103,26 @@ export function* handleDownloadResume({ payload: email }) {
         text: error.response.data.message,
       })
     );
+  } finally {
+    yield put(setUserDataLoading(false));
+  }
+}
+
+export function* handleSaveResume({ payload }) {
+  try {
+    yield put(setUserDataLoading(true)); // For now genral loader
+
+    const accessToken = yield select(selectors.getAccessToken);
+
+    yield call(requestPostSave, {
+      accessToken,
+      payload,
+    });
+
+    yield put(updateSnackbar(ResumeSaveSuccessAlert));
+  } catch (error) {
+    console.log(error);
+    yield put(updateSnackbar(ResumeSaveErrorAlert));
   } finally {
     yield put(setUserDataLoading(false));
   }

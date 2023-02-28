@@ -27,7 +27,6 @@ export const EditResume = () => {
 
   const onSaveAndNext = useCallback(() => {
     dispatch(setResumeActiveStepper(activeStepper + 1));
-    // dispatch(saveResumeDetails(resumeDetails));
   }, [dispatch, activeStepper]);
   return (
     <Grid container spacing={3}>
@@ -95,7 +94,7 @@ export const EditResume = () => {
               {ButtonTexts.back}
             </Button>
             <Button variant="contained" onClick={onSaveAndNext}>
-              {ButtonTexts.saveAndNext}
+              {ButtonTexts.next}
             </Button>
           </Grid>
         </Grid>

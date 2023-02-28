@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { cloneDeep } from "lodash";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -26,10 +27,14 @@ import {
   JustifyContentSpaceBetweenSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
 import { routes } from "../../Configs/RoutesConfig";
-import { setResumeActiveStepper } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import {
+  postSaveResume,
+  setResumeActiveStepper,
+} from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import {
   getCurrentEditingResume,
   getResumeBuilderActiveStepper,
+  getSelectedResumeTemplate,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { formatMMMYYYDate } from "../../Utils/CommonUtils";
 import { ButtonTexts, CommonTexts } from "../../Utils/Text";
@@ -42,6 +47,8 @@ export const FinalResume = () => {
   const activeStepper = useSelector(getResumeBuilderActiveStepper);
 
   const resumeDetails = useSelector(getCurrentEditingResume);
+
+  const templateId = useSelector(getSelectedResumeTemplate);
 
   const {
     name = null,
@@ -65,6 +72,14 @@ export const FinalResume = () => {
   const onClickGoToDashboard = useCallback(() => {
     navigate(routes.dashboard);
   }, [navigate]);
+
+  const onClickSave = useCallback(() => {
+    const copyResumeData = cloneDeep(resumeDetails);
+
+    copyResumeData.templateId = templateId;
+
+    dispatch(postSaveResume(copyResumeData));
+  }, [dispatch, resumeDetails, templateId]);
 
   const onClickDownload = useCallback(async () => {
     const pdf = new jsPDF({
@@ -341,6 +356,13 @@ export const FinalResume = () => {
         <Box>
           <Button onClick={goBack} sx={{ mr: 2 }} variant="outlined">
             {ButtonTexts.back}
+          </Button>
+          <Button
+            onClick={onClickSave}
+            sx={{ mr: 2 }}
+            color="primary"
+            variant="contained">
+            {ButtonTexts.save}
           </Button>
           <Button onClick={onClickDownload} color="primary" variant="contained">
             {ButtonTexts.download}

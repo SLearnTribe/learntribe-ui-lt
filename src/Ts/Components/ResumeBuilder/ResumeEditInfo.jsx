@@ -21,14 +21,14 @@ export const ResumeEditInfo = () => {
     emailError = false,
     phoneError = false,
     cityError = false,
-    addressError = false,
+    // addressError = false,
   } = useSelector(getProfileValidations);
 
   const {
     name = "",
     email = "",
     phone = null,
-    address = "",
+    // address = "",
     city = "",
     currentDesignation = "",
   } = resumeDetails;
@@ -77,16 +77,16 @@ export const ResumeEditInfo = () => {
     [dispatch, resumeDetails]
   );
 
-  const onChangeAddress = useCallback(
-    ({ target: { value } }) => {
-      const copyResumeDetails = cloneDeep(resumeDetails);
+  // const onChangeAddress = useCallback(
+  //   ({ target: { value } }) => {
+  //     const copyResumeDetails = cloneDeep(resumeDetails);
 
-      copyResumeDetails.address = value;
+  //     copyResumeDetails.address = value;
 
-      dispatch(updateCurrentResume(copyResumeDetails));
-    },
-    [dispatch, resumeDetails]
-  );
+  //     dispatch(updateCurrentResume(copyResumeDetails));
+  //   },
+  //   [dispatch, resumeDetails]
+  // );
 
   const onChangeCity = useCallback(
     ({ target: { value } }) => {

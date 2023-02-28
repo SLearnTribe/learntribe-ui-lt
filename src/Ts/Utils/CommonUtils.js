@@ -39,6 +39,19 @@ export const ResumeDownloadSuccessAlert = {
   open: true,
 };
 
+export const ResumeSaveSuccessAlert = {
+  ...EmptySnackbarState,
+  text: "Resume saved successfully",
+  open: true,
+};
+
+export const ResumeSaveErrorAlert = {
+  ...EmptySnackbarState,
+  text: "Resume save failed",
+  open: true,
+  severity: "error",
+};
+
 export const formatMMMYYYDate = (dateString) => {
   return moment(dateString, "YYYYMMDD").format("MMM YYYY");
 };

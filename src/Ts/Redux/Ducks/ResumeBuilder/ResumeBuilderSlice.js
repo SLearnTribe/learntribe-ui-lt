@@ -15,6 +15,7 @@ const resumeBuilderSlice = createSlice({
     saveResumeDetails() {},
     getDownloadResume() {},
     postUploadResume() {},
+    postSaveResume() {},
     setResumeActiveStepper(state, { payload }) {
       state.activeStep = payload;
     },
@@ -37,6 +38,7 @@ const resumeBuilderSlice = createSlice({
 });
 
 export const {
+  postSaveResume,
   setResumeActiveStepper,
   getDownloadResume,
   postUploadResume,

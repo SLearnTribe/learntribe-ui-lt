@@ -95,7 +95,7 @@ export const CommonTexts = {
   loadingAssessment: "Loading Assessment",
   present: "Present",
   delete: "Delete",
-  WORK_EXPERIENCE: "Work Experience",
+  workExperience: "Work Experience",
   PROJECT: "Project",
   SKILLS_TOOLTIP: "Type skill and hit enter to add",
 };
@@ -111,6 +111,7 @@ export const ButtonTexts = {
   assign: "Assign",
   send: "Send",
   saveJob: "Save Job",
+  save: "Save",
   logout: "Logout",
   uploadPhoto: "Upload Photo",
   uploadResume: "Upload Resume",

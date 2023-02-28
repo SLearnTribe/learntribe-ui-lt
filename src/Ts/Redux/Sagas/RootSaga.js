@@ -16,6 +16,7 @@ import { getUserProfile, saveUserProfile } from "../Ducks/Profile/ProfileSlice";
 import {
   getDownloadResume,
   getResumeDetailsList,
+  postSaveResume,
   postUploadResume,
   saveResumeDetails,
 } from "../Ducks/ResumeBuilder/ResumeBuilderSlice";
@@ -44,6 +45,7 @@ import {
 import {
   handleDownloadResume,
   handleGetResumeDetails,
+  handleSaveResume,
   handleSaveResumeDetails,
   handleUploadResume,
 } from "./Handlers/ResumeBuilder/ResumeBuilderHandler";
@@ -77,6 +79,7 @@ export function* watcherSaga() {
   yield takeLatest(saveResumeDetails.type, handleSaveResumeDetails);
   yield takeLatest(postUploadResume.type, handleUploadResume);
   yield takeLatest(postSubmitAssessment.type, handlePostSubmitAssessment);
+  yield takeLatest(postSaveResume.type, handleSaveResume);
 
   //PUT
   yield takeLatest(putAssignAssessment.type, handleAssignAssessment);

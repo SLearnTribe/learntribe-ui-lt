@@ -40,14 +40,6 @@ export const ResumeExperience = () => {
     dispatch(updateCurrentResume(copyResumeDetails));
   }, [dispatch, resumeDetails]);
 
-  const onClickDeleteEducation = useCallback(() => {
-    const copyResumeDetails = cloneDeep(resumeDetails);
-
-    copyResumeDetails.workExperiences.splice(-1);
-
-    dispatch(updateCurrentResume(copyResumeDetails));
-  }, [dispatch, resumeDetails]);
-
   const onChangeStartDate = useCallback(
     (value, index) => {
       const copyResumeDetails = cloneDeep(resumeDetails);
@@ -167,7 +159,7 @@ export const ResumeExperience = () => {
           <React.Fragment key={index}>
             <Grid item xs={12}>
               <Typography sx={{ fontWeight: 600 }}>
-                {`${CommonTexts.WORK_EXPERIENCE} ${index + 1}`}
+                {`${CommonTexts.workExperience} ${index + 1}`}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>

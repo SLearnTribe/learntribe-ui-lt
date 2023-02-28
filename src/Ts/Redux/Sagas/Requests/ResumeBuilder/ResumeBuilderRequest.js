@@ -48,3 +48,15 @@ export function requestPostResumeUpload({ accessToken, formData, email }) {
     url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume/upload?email=${email}`,
   });
 }
+
+export function requestPostSave({ accessToken, payload }) {
+  return axios.request({
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    data: payload,
+    url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume`,
+  });
+}
