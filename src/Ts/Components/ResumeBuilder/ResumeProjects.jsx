@@ -6,11 +6,15 @@ import { cloneDeep, isEmpty } from "lodash";
 import moment from "moment";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { JustifyContentSpaceBetweenAlignCenterSxStyles } from "../../CommonStyles/CommonSxStyles";
+import {
+  FlexAlignCenterStyles,
+  JustifyContentSpaceBetweenAlignCenterSxStyles,
+} from "../../CommonStyles/CommonSxStyles";
 import { NewProjectsObject } from "../../Configs/Profile/ProfileConfig";
 import { updateCurrentResume } from "../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getCurrentEditingResume } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import { ButtonTexts, CommonTexts, ProfileTexts } from "../../Utils/Text";
+import { DeleteIconWithLabel } from "../CommonComponents/Controls/ButtonControls";
 
 export const ResumeProjects = () => {
   const dispatch = useDispatch();
@@ -83,6 +87,17 @@ export const ResumeProjects = () => {
     [dispatch, resumeDetails]
   );
 
+  const onClickDeleteEducation = useCallback(
+    (index) => {
+      const copyResumeDetails = cloneDeep(resumeDetails);
+
+      copyResumeDetails.sideProjects.splice(index, 1);
+
+      dispatch(updateCurrentResume(copyResumeDetails));
+    },
+    [dispatch, resumeDetails]
+  );
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -138,7 +153,7 @@ export const ResumeProjects = () => {
                 />
               </LocalizationProvider>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={12} md={10} lg={10} xl={10}>
               <TextField
                 sx={{ width: "100%" }}
                 id="filled-multiline-flexible"
@@ -148,6 +163,21 @@ export const ResumeProjects = () => {
                 value={description}
                 onChange={(e) => onChangeDescription(e, index)}
                 variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={2}
+              lg={2}
+              xl={2}
+              sx={FlexAlignCenterStyles}>
+              <DeleteIconWithLabel
+                onClick={() => onClickDeleteEducation(index)}
+                label={CommonTexts.delete}
+                sx={{ fontWeight: 600, pl: "0.5rem" }}
+                iconSx={{ fontSize: "1.75rem" }}
               />
             </Grid>
           </React.Fragment>
