@@ -26,6 +26,7 @@ import {
 } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { ExperienceSectionSkeleton } from "../../../Skeletons/ExperienceSectionSkeleton";
+import { handleWorkPresenrMap } from "../../../Utils/CommonUtils";
 import {
   ButtonTexts,
   CommonTexts,
@@ -139,29 +140,8 @@ export const ExperienceSection = () => {
     [dispatch, userInfo]
   );
 
-  const { workMap } = useMemo(() => {
-    const workMap = {};
-
-    let isWorkPresent = false;
-
-    workExperiences.forEach(({ currentlyWorking = false }, index) => {
-      if (currentlyWorking) {
-        workMap[index] = true;
-        isWorkPresent = true;
-      } else {
-        workMap[index] = false;
-      }
-    });
-
-    workExperiences.forEach((ele, index) => {
-      if (isWorkPresent) {
-        workMap[index] = !workMap[index];
-      } else {
-        workMap[index] = false;
-      }
-    });
-
-    return { workMap };
+  const workMap = useMemo(() => {
+    return handleWorkPresenrMap(workExperiences);
   }, [workExperiences]);
 
   return isLoading ? (

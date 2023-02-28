@@ -156,7 +156,7 @@ export const ResumeEditInfo = () => {
           variant="outlined"
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+      {/* <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           sx={{ width: "100%" }}
           value={address}
@@ -166,7 +166,7 @@ export const ResumeEditInfo = () => {
           placeholder={TextFieldLabelsAndTexts.address}
           variant="outlined"
         />
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <TextField
           required

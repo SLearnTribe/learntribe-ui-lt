@@ -46,3 +46,28 @@ export const formatMMMYYYDate = (dateString) => {
 export const isObjectEmpty = (object) => {
   return Object.keys(object).length === 0;
 };
+
+export const handleWorkPresenrMap = (workExperiences) => {
+  const workMap = {};
+
+  let isWorkPresent = false;
+
+  workExperiences.forEach(({ currentlyWorking = false }, index) => {
+    if (currentlyWorking) {
+      workMap[index] = true;
+      isWorkPresent = true;
+    } else {
+      workMap[index] = false;
+    }
+  });
+
+  workExperiences.forEach((ele, index) => {
+    if (isWorkPresent) {
+      workMap[index] = !workMap[index];
+    } else {
+      workMap[index] = false;
+    }
+  });
+
+  return workMap;
+};
