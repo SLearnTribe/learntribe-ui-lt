@@ -38,7 +38,10 @@ export const SubmittingAssessments = () => {
           <CircularSaveButton isLoading={isLoading} />
         </Grid>
         <Grid item xs={12} sx={DisplayFlexCenter}>
-          <Button variant="contained" onClick={goBackToAssessments}>
+          <Button
+            disabled={isLoading}
+            variant="contained"
+            onClick={goBackToAssessments}>
             {ButtonTexts.goToAssessments}
           </Button>
         </Grid>
