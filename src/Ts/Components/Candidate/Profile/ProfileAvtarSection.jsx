@@ -10,10 +10,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { isEmpty } from "lodash";
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import sampleImage from "../../../../Assests/Adil.jpeg";
 import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { CandidateProfileSkeleton } from "../../../Skeletons/CandidateProfileSkeleton";
@@ -24,13 +21,13 @@ export const ProfileAvatarSection = () => {
 
   const isLoading = useSelector(getIsUserDataLoading);
 
-  const [file, setFile] = useState(sampleImage);
+  // const [file, setFile] = useState(sampleImage);
 
-  const onChangePhoto = (e) => {
-    if (!isEmpty(e.target.files)) {
-      setFile(URL.createObjectURL(e.target.files[0]));
-    }
-  };
+  // const onChangePhoto = (e) => {
+  //   if (!isEmpty(e.target.files)) {
+  //     setFile(URL.createObjectURL(e.target.files[0]));
+  //   }
+  // };
   return isLoading ? (
     <CandidateProfileSkeleton />
   ) : (
@@ -97,7 +94,7 @@ export const ProfileAvatarSection = () => {
             {ButtonTexts.uploadPhoto}
             <input
               hidden
-              onChange={onChangePhoto}
+              // onChange={onChangePhoto}
               accept="image/*"
               type="file"
             />
