@@ -206,6 +206,9 @@ export const ExperienceSection = () => {
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
+                      minDate={
+                        index > 0 ? workExperiences?.[index - 1]?.endDate : null
+                      }
                       mask="____-__-__"
                       inputFormat="YYYY-MM-DD"
                       label="From Date"
@@ -222,6 +225,7 @@ export const ExperienceSection = () => {
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
+                      minDate={startDate ?? new Date()}
                       disabled={currentlyWorking}
                       mask="____-__-__"
                       inputFormat="YYYY-MM-DD"

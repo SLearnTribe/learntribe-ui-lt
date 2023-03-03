@@ -80,9 +80,9 @@ export const AssessmentCard = ({
           <Chip
             sx={{
               mr: 2,
-              color: AssessmentDifficultyLevelColorMap[difficulty].color,
+              color: AssessmentDifficultyLevelColorMap?.[difficulty]?.color,
               backgroundColor:
-                AssessmentDifficultyLevelColorMap[difficulty].bgColor,
+                AssessmentDifficultyLevelColorMap?.[difficulty]?.bgColor,
             }}
             key={crypto.randomUUID()}
             label={capitalize(difficulty)}
