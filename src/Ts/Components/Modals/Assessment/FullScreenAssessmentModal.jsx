@@ -5,11 +5,10 @@ import Slide from "@mui/material/Slide";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import Countdown from "react-countdown";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  AlignCenterStyles,
   DisplayFlexCenter,
-  JustifyContentFlexEndSxStyles,
 } from "../../../CommonStyles/CommonSxStyles";
 import {
   postSubmitAssessment,
@@ -21,6 +20,7 @@ import {
 } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { isObjectEmpty } from "../../../Utils/CommonUtils";
 import { CommonTexts } from "../../../Utils/Text";
+import { CountDownTimer } from "../../CommonComponents/Controls/CountDownTimer";
 import { CandidateAssessment } from "../../Pages/Dashboards/Candidate/CandidateAssessment";
 import { LoadingAssessment } from "../../Pages/Dashboards/Candidate/LoadingAssessment";
 import { SubmittingAssessments } from "../../Pages/Dashboards/Candidate/SubmittingAssessments";
@@ -40,7 +40,7 @@ export const FullScreenAssessmentModal = () => {
     showSubmitUI,
   } = useSelector(getAssessmentsModal);
 
-  const { reqTimeInMillis = Date.now() + 5000000000 } = assessment;
+  const { reqTimeInMillis = 120000 } = assessment;
 
   const handleBeforeUnload = (e) => {
     e.preventDefault();
@@ -97,14 +97,11 @@ export const FullScreenAssessmentModal = () => {
               {`${assessment?.title} ${CommonTexts.assessment}`}
             </Typography>
             {!showSubmitUI ? (
-              <Box sx={JustifyContentFlexEndSxStyles}>
+              <Box sx={AlignCenterStyles}>
                 {CommonTexts.timeRemaining}
-                <Countdown
+                <CountDownTimer
                   onComplete={onCompleteTimer}
-                  renderer={({ formatted: { minutes, seconds } }) => (
-                    <b>{`${minutes}:${seconds}`}</b>
-                  )}
-                  date={reqTimeInMillis}
+                  duration={reqTimeInMillis / 1000}
                 />
               </Box>
             ) : null}

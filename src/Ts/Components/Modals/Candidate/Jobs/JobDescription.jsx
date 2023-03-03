@@ -35,7 +35,7 @@ export const JobDescription = () => {
     businessName,
     location = "N/A",
     employmentType,
-    jobLevel = "N/A",
+    // jobLevel = "N/A",
     requiredAssessments,
     // rolesAndResponsibilities,
     description,
