@@ -29,7 +29,7 @@ export const AssessmentCard = ({
   onStartAssessment = () => null,
   title,
   askWhy = null,
-  businessName,
+  businessName = "",
   sx = {
     height: "100%",
     display: "flex",
@@ -41,7 +41,7 @@ export const AssessmentCard = ({
     <Card row={row} key={crypto.randomUUID()} sx={sx}>
       <CardHeader
         title={
-          !!businessName ? (
+          businessName === "" ? (
             <Chip
               label="Recommended"
               size="small"
@@ -51,16 +51,17 @@ export const AssessmentCard = ({
           ) : null
         }
         action={
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-            <Tooltip placement="top" title={askWhy} arrow>
-              <Link sx={SxStylesAskWhy}>{AssessmentTexts.askWhy}</Link>
-            </Tooltip>
-            {/* <IconButton
+          businessName !== "" ? (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+              <Tooltip placement="top" title={askWhy} arrow>
+                <Link sx={SxStylesAskWhy}>{AssessmentTexts.askWhy}</Link>
+              </Tooltip>
+              {/* <IconButton
                       row-data={JSON.stringify(row)}
                       onClick={onToggleSave}>
                       {status === "SAVED" ? (
@@ -69,7 +70,8 @@ export const AssessmentCard = ({
                         <BookmarkBorderIcon color="primary" />
                       )}
                     </IconButton> */}
-          </Box>
+            </Box>
+          ) : null
         }
       />
       <CardContent sx={{ pt: 0, pb: 0 }}>
