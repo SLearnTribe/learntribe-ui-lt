@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { cloneDeep } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../../Redux/Ducks/Profile/ProfileSlice";
 import { getAllCityList } from "../../../Redux/Selectors/AppSelectors";
@@ -118,6 +118,7 @@ export const BasicInfoSection = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              disabled={true}
               required
               error={nameError}
               sx={{ width: "100%" }}
