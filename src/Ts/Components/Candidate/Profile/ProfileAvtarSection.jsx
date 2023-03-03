@@ -2,9 +2,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import {
   Avatar,
   Box,
-  Button,
   Card,
-  CardActions,
   CardContent,
   Divider,
   Grid,
@@ -14,7 +12,6 @@ import { useSelector } from "react-redux";
 import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { CandidateProfileSkeleton } from "../../../Skeletons/CandidateProfileSkeleton";
-import { ButtonTexts } from "../../../Utils/Text";
 
 export const ProfileAvatarSection = () => {
   const userInfo = useSelector(getUpdatedUserProfileInfo);
@@ -81,7 +78,7 @@ export const ProfileAvatarSection = () => {
             {userInfo.country}
           </Typography>
         </CardContent>
-        <CardActions>
+        {/* <CardActions>
           <Button
             component="label"
             variant="contained"
@@ -99,7 +96,7 @@ export const ProfileAvatarSection = () => {
               type="file"
             />
           </Button>
-        </CardActions>
+        </CardActions> */}
         <Divider light />
       </Card>
     </Grid>

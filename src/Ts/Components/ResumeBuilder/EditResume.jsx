@@ -46,11 +46,11 @@ export const EditResume = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Button sx={{ mt: 2 }} variant="outlined">
               {ButtonTexts.uploadPhoto}
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
       {/* 2nd Column */}
