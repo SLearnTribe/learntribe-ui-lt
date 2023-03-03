@@ -3,7 +3,7 @@ import axios from "axios";
 export function requestGetUser(hashCode) {
   return axios.request({
     method: "get",
-    url: `http://www.smilebat.xyz/sb-auth/app/token/local?code=${hashCode}`,
+    url: `http://www.smilebat.xyz/sb-auth/app/token?code=${hashCode}`,
   });
 }
 
