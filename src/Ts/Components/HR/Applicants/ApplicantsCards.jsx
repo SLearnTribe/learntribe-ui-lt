@@ -10,10 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { cloneDeep, isEmpty, isUndefined, uniqueId } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sampleImage from "../../../../Assests/Adil.jpeg";
-import samplePngImage from "../../../../Assests/Adil.png";
 import { ApplicantsNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import {
   setSelectedApplicantDetails,
@@ -77,7 +75,7 @@ export const ApplicantsCards = ({ isSelectMultipleActive = false }) => {
                 <Avatar
                   sx={{ width: "5rem", height: "5rem" }}
                   alt="Remy Sharp"
-                  src={index === 0 ? sampleImage : samplePngImage}
+                  // src={index === 0 ? sampleImage : samplePngImage}
                 />
               }
               action={

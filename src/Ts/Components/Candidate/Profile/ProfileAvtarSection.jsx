@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { isEmpty } from "lodash";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import sampleImage from "../../../../Assests/Adil.jpeg";
 import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
@@ -45,7 +45,7 @@ export const ProfileAvatarSection = () => {
             }}>
             <Avatar
               alt="Remy Sharp"
-              src={file}
+              // src={file}
               sx={{
                 width: 100,
                 height: 100,

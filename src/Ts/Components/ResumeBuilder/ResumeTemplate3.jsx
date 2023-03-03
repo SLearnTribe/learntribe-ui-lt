@@ -14,9 +14,8 @@ import {
 } from "@mui/material";
 import { green } from "@mui/material/colors";
 import { useTheme } from "@mui/material/styles";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sampleImage from "../../../Assests/Adil.jpeg";
 import {
   setResumeTemplate,
   updateCurrentResume,
@@ -80,7 +79,7 @@ export const ResumeTemplate3 = ({ templateId }) => {
             <Grid item xs={2}>
               <Avatar
                 alt="Remy Sharp"
-                src={sampleImage}
+                // src={sampleImage}
                 sx={{
                   width: 70,
                   height: 70,

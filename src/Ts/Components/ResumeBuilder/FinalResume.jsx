@@ -20,7 +20,6 @@ import { cloneDeep } from "lodash";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import sampleImage from "../../../Assests/Adil.jpeg";
 import {
   Font18Weight500SxStyles,
   JustifyContentSpaceBetweenAlignCenterSxStyles,
@@ -130,7 +129,7 @@ export const FinalResume = () => {
                 <Grid item xs={2}>
                   <Avatar
                     alt="Remy Sharp"
-                    src={sampleImage}
+                    // src={sampleImage}
                     sx={{
                       width: 100,
                       height: 100,

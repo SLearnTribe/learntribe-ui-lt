@@ -16,7 +16,6 @@ import {
 import { isEmpty, isEqual, uniqueId } from "lodash";
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sampleImage from "../../../../../Assests/Adil.jpeg";
 import {
   ContactInfoLinkSxStyles,
   HrProfileAssessementsSxStyles,
@@ -45,9 +44,7 @@ export const HrProfileAvatarSection = () => {
   const { role } = useSelector(getUserDetails);
 
   //resume = "sample.pdf"
-  const { email } = useSelector(
-    getSelectedApplicantDetails
-  );
+  const { email } = useSelector(getSelectedApplicantDetails);
 
   const { email: candidateEmail, name: resumeName } =
     useSelector(getUserProfileInfo);
@@ -105,7 +102,7 @@ export const HrProfileAvatarSection = () => {
                 }}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={sampleImage}
+                  // src={sampleImage}
                   sx={{
                     width: 100,
                     height: 100,

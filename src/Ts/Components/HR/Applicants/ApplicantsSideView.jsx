@@ -9,10 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import { isEmpty } from "lodash";
-import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import sampleImage from "../../../../Assests/Adil.jpeg";
 import { applicantDetailsRoute } from "../../../Configs/RoutesConfig";
 import { ApplicantsNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import { getSelectedApplicantDetails } from "../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
@@ -44,7 +42,7 @@ export const ApplicantsSideView = ({ isSelectMultipleActive }) => {
           <Avatar
             sx={{ width: "5rem", height: "5rem" }}
             alt="Remy Sharp"
-            src={sampleImage}
+            // src={sampleImage}
           />
         }
         title={
