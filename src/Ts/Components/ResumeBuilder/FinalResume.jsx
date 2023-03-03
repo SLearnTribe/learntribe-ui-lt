@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Card,
-  Checkbox,
   Divider,
   FormControlLabel,
   FormGroup,
@@ -21,7 +20,6 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  Font18Weight500SxStyles,
   JustifyContentSpaceBetweenAlignCenterSxStyles,
   JustifyContentSpaceBetweenSxStyles,
 } from "../../CommonStyles/CommonSxStyles";
@@ -61,7 +59,7 @@ export const FinalResume = () => {
     workExperiences = [],
     educationExperiences = [],
     sideProjects = [],
-    useThisResumeAsDefault = false,
+    // useThisResumeAsDefault = false,
   } = resumeDetails;
 
   const goBack = useCallback(() => {
@@ -96,7 +94,7 @@ export const FinalResume = () => {
     pdf.save(`${name}.pdf`);
   }, [name]);
 
-  const onChangeAddDeafultResume = useCallback(() => {}, []);
+  // const onChangeAddDeafultResume = useCallback(() => {}, []);
   return (
     <Grid container spacing={3} sx={{ pl: 30, pr: 30, mt: 3 }}>
       <Card
@@ -327,7 +325,7 @@ export const FinalResume = () => {
           </Grid>
         </Grid>
       </Card>
-      <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
+      {/* <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
         <FormGroup>
           <FormControlLabel
             control={
@@ -343,7 +341,7 @@ export const FinalResume = () => {
             }
           />
         </FormGroup>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
         <Button
           onClick={onClickGoToDashboard}
