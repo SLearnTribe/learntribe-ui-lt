@@ -34,7 +34,7 @@ export const CandidateTabs = [
   TabLabelTexts.completed,
   TabLabelTexts.blocked,
   TabLabelTexts.pending,
-  TabLabelTexts.saved,
+  // TabLabelTexts.saved,
 ];
 
 export const AssessmentTabsConfig = {

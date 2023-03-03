@@ -40,7 +40,7 @@ export const FullScreenAssessmentModal = () => {
     showSubmitUI,
   } = useSelector(getAssessmentsModal);
 
-  const { requiredTimeInMilliSec = Date.now() + 5000000000 } = assessment;
+  const { reqTimeInMillis = Date.now() + 5000000000 } = assessment;
 
   const handleBeforeUnload = (e) => {
     e.preventDefault();
@@ -104,7 +104,7 @@ export const FullScreenAssessmentModal = () => {
                   renderer={({ formatted: { minutes, seconds } }) => (
                     <b>{`${minutes}:${seconds}`}</b>
                   )}
-                  date={requiredTimeInMilliSec}
+                  date={reqTimeInMillis}
                 />
               </Box>
             ) : null}

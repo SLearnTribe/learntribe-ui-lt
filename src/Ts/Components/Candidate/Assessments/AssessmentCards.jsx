@@ -1,31 +1,8 @@
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Chip,
-  Grid,
-  IconButton,
-  Link,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import { capitalize, isEmpty, uniqBy, uniqueId } from "lodash";
+import { Grid } from "@mui/material";
+import { isEmpty, uniqBy, uniqueId } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  JustifyContentSpaceBetweenAlignCenterSxStyles,
-  SxStylesAskWhy,
-} from "../../../CommonStyles/CommonSxStyles";
-import {
-  AssessmentDifficultyLevelColorMap,
-  AssessmentStatusMap,
-} from "../../../Configs/Dashboards/DashboardsConfig";
 import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
 import { AssessmentNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import {
@@ -37,7 +14,7 @@ import {
   getAssessmentsData,
 } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { handleFilteredAssessmentsData } from "../../../Utils/AssessmentUtils/AssessmentsUtils";
-import { AssessmentTexts, ButtonTexts } from "../../../Utils/Text";
+import { AssessmentCard } from "../../CommonComponents/Controls/AssessmentCard";
 import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const AssessmentCards = ({ selectedTab }) => {
@@ -116,71 +93,19 @@ export const AssessmentCards = ({ selectedTab }) => {
           status,
           id,
           askWhy = "TCS, CTS, IBM are suggesting this assessment.",
+          businessName,
         } = row;
         return (
           <Grid item xs={4} key={uniqueId()}>
-            <Card
-              sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-              }}>
-              <CardHeader
-                action={
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Tooltip placement="top" title={askWhy} arrow>
-                      <Link sx={SxStylesAskWhy} onClick={onClickAskWhy}>
-                        {AssessmentTexts.askWhy}
-                      </Link>
-                    </Tooltip>
-                    <IconButton
-                      row-data={JSON.stringify(row)}
-                      onClick={onToggleSave}>
-                      {status === "SAVED" ? (
-                        <BookmarkIcon color="primary" />
-                      ) : (
-                        <BookmarkBorderIcon color="primary" />
-                      )}
-                    </IconButton>
-                  </Box>
-                }
-              />
-              <CardContent sx={{ pt: 0, pb: 0 }}>
-                <Box>
-                  <Typography sx={{ fontSize: 20, fontWeight: 600, pb: 1 }}>
-                    {title}
-                  </Typography>
-                  <Chip
-                    sx={{
-                      mr: 2,
-                      color:
-                        AssessmentDifficultyLevelColorMap[difficulty].color,
-                      backgroundColor:
-                        AssessmentDifficultyLevelColorMap[difficulty].bgColor,
-                    }}
-                    key={uniqueId()}
-                    label={difficulty}
-                    size="small"
-                  />
-                </Box>
-              </CardContent>
-              <CardActions sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
-                <Typography
-                  sx={{
-                    fontSize: 16,
-                    fontWeight: 500,
-                    color: AssessmentStatusMap[status?.toLowerCase()],
-                  }}>
-                  {capitalize(status)}
-                </Typography>
-                <Button
-                  variant="contained"
-                  data-id={id}
-                  onClick={onStartAssessment}>
-                  {ButtonTexts.startNow}
-                </Button>
-              </CardActions>
-            </Card>
+            <AssessmentCard
+              businessName={businessName}
+              title={title}
+              id={id}
+              difficulty={difficulty}
+              status={status}
+              askWhy={askWhy}
+              onStartAssessment={onStartAssessment}
+            />
           </Grid>
         );
       })}

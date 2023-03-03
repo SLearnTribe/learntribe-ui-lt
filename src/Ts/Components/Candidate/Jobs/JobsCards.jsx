@@ -20,7 +20,6 @@ import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { JobsCardSkeleton } from "../../../Skeletons/JobsCardSkeleton";
 import { AssessmentTexts, CommonTexts, ModalTexts } from "../../../Utils/Text";
-import { AutoCompleteMultiSelect } from "../../CommonComponents/Controls/AutoComplete";
 
 export const JobsCards = () => {
   const dispatch = useDispatch();
@@ -55,15 +54,6 @@ export const JobsCards = () => {
     <JobsCardSkeleton />
   ) : (
     <>
-      <Grid item xs={12}>
-        <AutoCompleteMultiSelect
-          options={[]}
-          value={[]}
-          //   onChange={onFilterByDifficulty}
-          label={"Filter by assessment difficulty level"}
-          placeholder={"Select assessment by difficulty level"}
-        />
-      </Grid>
       {jobsData.length === 0 && (
         <Grid item xs={12} key={uniqueId()}>
           <CardWithNoData text={CommonTexts.noJobsAvailable} />
@@ -132,7 +122,7 @@ export const JobsCards = () => {
                               }}>
                               {isEqual(status, "PENDING")
                                 ? "Start Now"
-                                : capitalize(status)}
+                                : capitalize(status).replaceAll("_", " ")}
                             </Typography>
                           </Grid>
                         </React.Fragment>

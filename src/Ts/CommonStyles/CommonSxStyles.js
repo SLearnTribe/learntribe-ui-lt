@@ -293,7 +293,7 @@ export const scrollAssessmentSxStyles = {
 
 export const HrAssessmentCardSxStyles = {
   borderRadius: 3,
-  width: "20rem",
+  width: "30rem",
   display: "flex",
   flexDirection: "column",
   mr: "1rem",

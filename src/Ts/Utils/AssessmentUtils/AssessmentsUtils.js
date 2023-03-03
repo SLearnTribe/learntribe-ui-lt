@@ -128,3 +128,7 @@ export const handleGenerateAssessmentPostData = (
 
   return postData;
 };
+
+export const hanldeStartBtnDisable = (status) => {
+  return status?.toLowerCase() !== "pending";
+};

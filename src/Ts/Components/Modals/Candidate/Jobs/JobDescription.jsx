@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { capitalize, uniqueId } from "lodash";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleJobSkillIcons } from "../../../../CommonJsx/CommonJsxUtils";
 import {
@@ -33,7 +33,7 @@ export const JobDescription = () => {
   const {
     title,
     businessName,
-    city = "N/A",
+    location = "N/A",
     employmentType,
     jobLevel = "N/A",
     requiredAssessments,
@@ -79,7 +79,7 @@ export const JobDescription = () => {
               sx={{
                 ...Font20Weight500SxStyles,
                 whiteSpace: "pre-line",
-              }}>{`${businessName}, ${city}\n${employmentTypeBeToUiMap[employmentType]}, ${jobLevel}`}</Typography>
+              }}>{`${businessName}, ${location}\n${employmentTypeBeToUiMap[employmentType]}`}</Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography sx={Font24Weight600SxStyles}>

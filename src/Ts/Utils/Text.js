@@ -24,8 +24,8 @@ export const DataAttributeTexts = {
 export const CandidateDashboardTexts = {
   yourActivities: "Your Activities",
   assessmentsCompleted: "Assessments Completed",
-  jobsApplied: "Jobs Applied",
-  interviewCalls: "Interview Calls",
+  jobsApplied: "Jobs Considering You",
+  interviewCalls: "Scheduled Calls",
   jobsCompaniesConsideringYou: "Jobs/Companies considering you",
   recommendedAssessmentsForYou: "Recommended Assessments for you",
   filter: "Filter",
