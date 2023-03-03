@@ -26,13 +26,13 @@ export const AssessmentCards = ({ selectedTab }) => {
 
   const assessmentInnerFilter = useSelector(getAssessmentInnerFilter);
 
-  const onToggleSave = useCallback(({ currentTarget }) => {
-    // const updatedAssessmentsData = handleToggleSaveAssessment(
-    //   assessmentsData,
-    //   currentTarget
-    // );
-    // dispatch(setAssessmentsData(updatedAssessmentsData));
-  }, []);
+  // const onToggleSave = useCallback(({ currentTarget }) => {
+  //   // const updatedAssessmentsData = handleToggleSaveAssessment(
+  //   //   assessmentsData,
+  //   //   currentTarget
+  //   // );
+  //   // dispatch(setAssessmentsData(updatedAssessmentsData));
+  // }, []);
 
   const difficultyOptions = useMemo(() => {
     const normalizedOptions = assessmentsData.map(({ difficulty }) => {
@@ -70,7 +70,7 @@ export const AssessmentCards = ({ selectedTab }) => {
     );
   }, [assessmentsData, selectedTab, assessmentInnerFilter]);
 
-  const onClickAskWhy = () => {};
+  // const onClickAskWhy = () => {};
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
