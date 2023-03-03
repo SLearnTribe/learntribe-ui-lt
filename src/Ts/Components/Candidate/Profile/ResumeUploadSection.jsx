@@ -7,9 +7,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postUploadResume } from "../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
+import { getUpdatedUserProfileInfo } from "../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
 import { getIsUserDataLoading } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 import { ResumeUploadSkeleton } from "../../../Skeletons/ResumeUploadSkeleton";
 import { ButtonTexts, ProfileTexts } from "../../../Utils/Text";
@@ -19,12 +19,11 @@ export const ResumeUploadSection = () => {
 
   const isLoading = useSelector(getIsUserDataLoading);
 
-  const [fileName, setFileName] = useState("");
+  const { name = "Resume", email } = useSelector(getUpdatedUserProfileInfo);
 
   const onUploadResume = ({ target: { files } }) => {
-    setFileName(files[0].name);
     if (files[0] !== null) {
-      dispatch(postUploadResume(files[0]));
+      dispatch(postUploadResume({ file: files[0], email }));
     }
   };
 
@@ -55,7 +54,7 @@ export const ResumeUploadSection = () => {
               <Typography
                 color="text.secondary"
                 sx={{ fontSize: 16, fontWeight: 600 }}>
-                {fileName}
+                {`${name}.pdf`}
               </Typography>
             </Stack>
           </Grid>
