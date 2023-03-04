@@ -16,6 +16,7 @@ import {
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { cloneDeep } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -195,7 +196,7 @@ export const FinalResume = () => {
                     index
                   ) => (
                     <>
-                      <Grid item xs={12} key={crypto.randomUUID()}>
+                      <Grid item xs={12} key={uniqueId()}>
                         <Grid
                           container
                           spacing={1}

@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import capitalize from "lodash/capitalize";
+import uniqueId from "lodash/uniqueId";
 import {
   JustifyContentSpaceBetweenAlignCenterSxStyles,
   SxStylesAskWhy,
@@ -38,7 +39,7 @@ export const AssessmentCard = ({
   row = false,
 }) => {
   return (
-    <Card row={row} key={crypto.randomUUID()} sx={sx}>
+    <Card row={row} key={uniqueId()} sx={sx}>
       <CardHeader
         title={
           businessName === "" ? (
@@ -86,7 +87,7 @@ export const AssessmentCard = ({
               backgroundColor:
                 AssessmentDifficultyLevelColorMap?.[difficulty]?.bgColor,
             }}
-            key={crypto.randomUUID()}
+            key={uniqueId()}
             label={capitalize(difficulty)}
             size="small"
           />
