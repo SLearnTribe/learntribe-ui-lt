@@ -1,9 +1,11 @@
 import axios from "axios";
+const LOCALHOST = "localhost";
 
 export function requestGetUser(hashCode) {
+  const localhost = window.location.hostname === LOCALHOST ? "local" : "";
   return axios.request({
     method: "get",
-    url: `http://www.smilebat.xyz/sb-auth/app/token?code=${hashCode}`,
+    url: `http://www.smilebat.xyz/sb-auth/app/token/${localhost}?code=${hashCode}`,
   });
 }
 
