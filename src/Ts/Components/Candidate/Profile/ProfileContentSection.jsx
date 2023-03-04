@@ -78,7 +78,7 @@ export const ProfileContentSection = () => {
                 {ButtonTexts.back}
               </Button>
               <Button
-                disabled={isEqual(userDetails, userProfileDetails)}
+                disabled={isEqual(userDetails, userProfileDetails) || isLoading}
                 onClick={onSaveUserDetails}
                 variant="contained">
                 {ButtonTexts.submit}

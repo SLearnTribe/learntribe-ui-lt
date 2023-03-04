@@ -33,6 +33,7 @@ import {
   getResumeBuilderActiveStepper,
   getSelectedResumeTemplate,
 } from "../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
+import { getIsUserDataLoading } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import { formatMMMYYYDate } from "../../Utils/CommonUtils";
 import { ButtonTexts, CommonTexts } from "../../Utils/Text";
 
@@ -44,6 +45,8 @@ export const FinalResume = () => {
   const activeStepper = useSelector(getResumeBuilderActiveStepper);
 
   const resumeDetails = useSelector(getCurrentEditingResume);
+
+  const isLoading = useSelector(getIsUserDataLoading);
 
   const templateId = useSelector(getSelectedResumeTemplate);
 
@@ -344,6 +347,7 @@ export const FinalResume = () => {
       </Grid> */}
       <Grid item xs={12} sx={JustifyContentSpaceBetweenAlignCenterSxStyles}>
         <Button
+          disabled={isLoading}
           onClick={onClickGoToDashboard}
           sx={{ mr: 2 }}
           variant="outlined">
@@ -351,17 +355,26 @@ export const FinalResume = () => {
         </Button>
 
         <Box>
-          <Button onClick={goBack} sx={{ mr: 2 }} variant="outlined">
+          <Button
+            disabled={isLoading}
+            onClick={goBack}
+            sx={{ mr: 2 }}
+            variant="outlined">
             {ButtonTexts.back}
           </Button>
           <Button
+            disabled={isLoading}
             onClick={onClickSave}
             sx={{ mr: 2 }}
             color="primary"
             variant="contained">
             {ButtonTexts.save}
           </Button>
-          <Button onClick={onClickDownload} color="primary" variant="contained">
+          <Button
+            disabled={isLoading}
+            onClick={onClickDownload}
+            color="primary"
+            variant="contained">
             {ButtonTexts.download}
           </Button>
         </Box>

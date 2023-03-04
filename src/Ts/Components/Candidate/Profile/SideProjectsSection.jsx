@@ -171,6 +171,7 @@ export const SideProjectsSection = () => {
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
+                      maxDate={new Date()}
                       mask="____-__-__"
                       inputFormat="YYYY-MM-DD"
                       label="From Date"
@@ -187,6 +188,7 @@ export const SideProjectsSection = () => {
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
+                      maxDate={new Date()}
                       mask="____-__-__"
                       inputFormat="YYYY-MM-DD"
                       label="To Date"

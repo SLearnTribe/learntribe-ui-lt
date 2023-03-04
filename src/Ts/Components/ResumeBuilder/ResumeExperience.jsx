@@ -212,6 +212,7 @@ export const ResumeExperience = () => {
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <MobileDatePicker
+                  disabled={currentlyWorking}
                   minDate={moment(startDate).add(1, "d")}
                   maxDate={new Date()}
                   mask="____-__-__"
