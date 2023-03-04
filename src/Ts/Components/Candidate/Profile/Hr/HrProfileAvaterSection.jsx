@@ -44,7 +44,7 @@ export const HrProfileAvatarSection = () => {
 
   const { role } = useSelector(getUserDetails);
 
-  const { document } = useSelector(getDocument);
+  // const { document } = useSelector(getDocument);
   //resume = "sample.pdf"
   const { email } = useSelector(getSelectedApplicantDetails);
 
