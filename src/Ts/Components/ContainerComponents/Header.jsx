@@ -40,9 +40,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const normalizedName = useMemo(() => {
-    const list = name?.split(" ");
-
-    return list?.slice(-1);
+    return name?.split(" ")[0];
   }, [name]);
 
   const onClickBuildResume = () => {
@@ -154,7 +152,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
         )}
 
         <Typography variant="h1" sx={{ pr: 2 }}>
-          {`Hello, ${normalizedName}`}
+          {`Hi ${normalizedName}!`}
         </Typography>
         <Tooltip title="Account settings">
           <IconButton

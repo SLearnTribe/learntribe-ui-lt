@@ -1,10 +1,8 @@
 import { Logout } from "@mui/icons-material";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 // import SettingsApplicationsOutlinedIcon from "@mui/icons-material/SettingsApplicationsOutlined";
 import {
   Box,
   CircularProgress,
-  IconButton,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -12,11 +10,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
 import { AccountSettingsPaperProps } from "../../../CommonStyles/CommonSxStyles";
-import { rolesConfig } from "../../../Configs/AppConfig";
-import { getUserDetails } from "../../../Redux/Selectors/UserSelectors/UserSelectors";
 
 export const ProfileCompletionBar = ({ percentage }) => {
   return (
@@ -48,7 +42,7 @@ export const AccountSettingsMenu = ({
   onClickSettings,
   onClickProfile,
 }) => {
-  const { role } = useSelector(getUserDetails);
+  // const { role } = useSelector(getUserDetails);
 
   return (
     <Menu
@@ -67,7 +61,7 @@ export const AccountSettingsMenu = ({
       }}
       open={Boolean(anchorElUser)}
       onClose={onClose}>
-      {rolesConfig[role] === "CANDIDATE" && (
+      {/* {rolesConfig[role] === "CANDIDATE" && (
         <MenuItem onClick={onClickProfile}>
           <ListItem component="div">
             <ListItemIcon>
@@ -79,7 +73,7 @@ export const AccountSettingsMenu = ({
             </IconButton>
           </ListItem>
         </MenuItem>
-      )}
+      )} */}
       {/* <MenuItem onClick={onClickSettings}>
         <ListItem component="div">
           <ListItemIcon>
