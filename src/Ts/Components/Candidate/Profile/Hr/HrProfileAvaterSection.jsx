@@ -28,7 +28,6 @@ import {
 } from "../../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
-import { getDocument } from "../../../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import {
   getIsUserDataLoading,
   getUserDetails,
