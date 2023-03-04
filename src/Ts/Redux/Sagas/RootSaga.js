@@ -12,6 +12,7 @@ import {
 import { getCandidateActivities } from "../Ducks/Dashboard/CandidateDashboardSlice";
 import { getHrHiringData } from "../Ducks/Dashboard/HrDashboardSlice";
 import { getJobsData, postJobsData } from "../Ducks/Jobs/JobsSlice";
+import { postAssessmentsProctoring } from "../Ducks/Proctoring/AssessmentProcSlice";
 import { getUserProfile, saveUserProfile } from "../Ducks/Profile/ProfileSlice";
 import {
   getDownloadResume,
@@ -38,6 +39,7 @@ import {
 import { handleGetCandidateActivities } from "./Handlers/Dashboards/CandidateDashboardHandler";
 import { handleGetHrDashboard } from "./Handlers/Dashboards/HrDashboardHandler";
 import { handleGetJobs, handlePostJobs } from "./Handlers/Jobs/JobsHandler";
+import { handleAssessmentProctoring } from "./Handlers/Proctoring/AssessmentProctoringHandler";
 import {
   handleGetUserProfile,
   handleSaveUserProfile,
@@ -80,6 +82,7 @@ export function* watcherSaga() {
   yield takeLatest(postUploadResume.type, handleUploadResume);
   yield takeLatest(postSubmitAssessment.type, handlePostSubmitAssessment);
   yield takeLatest(postSaveResume.type, handleSaveResume);
+  yield takeLatest(postAssessmentsProctoring.type, handleAssessmentProctoring);
 
   //PUT
   yield takeLatest(putAssignAssessment.type, handleAssignAssessment);

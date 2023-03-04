@@ -13,6 +13,13 @@ export const AssignSuccessSnackbar = {
   open: true,
 };
 
+export const DefaultProctoringAlerts = {
+  text: "",
+  open: true,
+  variant: "filled",
+  severity: "info",
+};
+
 export const ResumeUploadSuccessAlert = {
   ...EmptySnackbarState,
   text: "Resume uploaded successfully",

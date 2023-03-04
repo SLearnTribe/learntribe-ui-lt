@@ -18,6 +18,7 @@ import {
   getAssessmentOfCandidate,
   getAssessmentsModal,
 } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import { getAssessmentProcData } from "../../../Redux/Selectors/Proctoring/AssessmentProcSelectors";
 import { isObjectEmpty } from "../../../Utils/CommonUtils";
 import { CommonTexts } from "../../../Utils/Text";
 import { CountDownTimer } from "../../CommonComponents/Controls/CountDownTimer";
@@ -33,6 +34,8 @@ export const FullScreenAssessmentModal = () => {
   const dispatch = useDispatch();
 
   const assessment = useSelector(getAssessmentOfCandidate);
+
+  const procResponse = useSelector(getAssessmentProcData);
 
   const {
     open,
@@ -68,10 +71,11 @@ export const FullScreenAssessmentModal = () => {
         assessmentId: assessment.id,
         submitAssessmentDetails: {
           challengeResponses: Object.values(assessmentAnswers),
+          procResponse,
         },
       })
     );
-  }, [dispatch, assessment?.id, assessmentAnswers]);
+  }, [dispatch, procResponse, assessment?.id, assessmentAnswers]);
 
   return (
     <div>

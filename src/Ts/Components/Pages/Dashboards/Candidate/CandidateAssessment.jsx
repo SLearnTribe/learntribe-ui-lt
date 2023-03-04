@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControlLabel,
   Grid,
@@ -10,6 +11,7 @@ import {
 import { cloneDeep, isEqual, uniqueId } from "lodash";
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ProctoringWebcam } from "../../../../Proctoring/ProctoringWebcam";
 import {
   postSubmitAssessment,
   updateAssessmentModal,
@@ -18,6 +20,7 @@ import {
   getAssessmentOfCandidate,
   getAssessmentsModal,
 } from "../../../../Redux/Selectors/Assessments/AssessmentsSelectors";
+import { getAssessmentProcData } from "../../../../Redux/Selectors/Proctoring/AssessmentProcSelectors";
 import { ButtonTexts } from "../../../../Utils/Text";
 
 export const CandidateAssessment = () => {
@@ -26,6 +29,8 @@ export const CandidateAssessment = () => {
   const assessment = useSelector(getAssessmentOfCandidate);
 
   const { answers: assessmentAnswers } = useSelector(getAssessmentsModal);
+
+  const procResponse = useSelector(getAssessmentProcData);
 
   const [page, setPage] = useState(1);
 
@@ -80,10 +85,11 @@ export const CandidateAssessment = () => {
         assessmentId: assessment.id,
         submitAssessmentDetails: {
           challengeResponses: Object.values(assessmentAnswers),
+          procResponse,
         },
       })
     );
-  }, [dispatch, assessmentAnswers, assessment?.id]);
+  }, [dispatch, procResponse, assessmentAnswers, assessment?.id]);
 
   return (
     <Grid container spacing={3}>
@@ -147,6 +153,9 @@ export const CandidateAssessment = () => {
             );
           }}
         />
+        <Box sx={{ float: "right" }}>
+          <ProctoringWebcam />
+        </Box>
       </Grid>
       <Grid item xs={12}>
         <Button
