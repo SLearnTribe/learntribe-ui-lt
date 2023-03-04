@@ -16,13 +16,20 @@ import {
   requestPostJobs,
 } from "../../Requests/Jobs/JobsRequests";
 
-export function* handleGetJobs({ payload: { page = 1, limit = 25 } }) {
+export function* handleGetJobs({
+  payload: { page = 1, limit = 25, keyword = "" },
+}) {
   try {
     yield put(setUserDataLoading(true));
 
     const accessToken = yield select(selectors.getAccessToken);
 
-    const { data } = yield call(requestGetJobs, { accessToken, page, limit });
+    const { data } = yield call(requestGetJobs, {
+      accessToken,
+      page,
+      limit,
+      keyword,
+    });
 
     const { jobOptions, skillsOptions } = hanldeJobsResponse(data);
 
