@@ -9,6 +9,7 @@ const resumeBuilderSlice = createSlice({
     selectedTemplate: 0,
     resumesList: [],
     currentResume: {},
+    document: ''
   },
   reducers: {
     getResumeDetailsList() {},
@@ -34,6 +35,9 @@ const resumeBuilderSlice = createSlice({
     updateCurrentResume(state, { payload }) {
       state.currentResume = payload;
     },
+    updateDocument(state, { payload }) {
+      state.document = payload;
+    }
   },
 });
 
@@ -50,6 +54,7 @@ export const {
   getResumeDetailsList,
   updateCurrentResume,
   saveResumeDetails,
+  updateDocument
 } = resumeBuilderSlice.actions;
 
 export default resumeBuilderSlice.reducer;

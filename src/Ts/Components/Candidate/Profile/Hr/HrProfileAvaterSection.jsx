@@ -28,6 +28,7 @@ import {
 } from "../../../../Redux/Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { getSelectedApplicantDetails } from "../../../../Redux/Selectors/ApplicantSelectors/ApplicantSelectors";
 import { getUserProfileInfo } from "../../../../Redux/Selectors/ProfileSelectors/ProfileSelectors";
+import { getDocument } from "../../../../Redux/Selectors/ResumeBuilder/ResumeBuilderSelectors";
 import {
   getIsUserDataLoading,
   getUserDetails,
@@ -43,6 +44,7 @@ export const HrProfileAvatarSection = () => {
 
   const { role } = useSelector(getUserDetails);
 
+  const { document } = useSelector(getDocument);
   //resume = "sample.pdf"
   const { email } = useSelector(getSelectedApplicantDetails);
 
@@ -126,6 +128,7 @@ export const HrProfileAvatarSection = () => {
                 justifyContent: "center",
               }}>
               {role === "HR" ? (
+                <>
                 <LoadingButton
                   onClick={onClickDownloadResume}
                   loading={isLoading}
@@ -134,6 +137,7 @@ export const HrProfileAvatarSection = () => {
                   variant="outlined">
                   {ButtonTexts.downloadResume}
                 </LoadingButton>
+              </>
               ) : (
                 <Stack direction="column" alignItems="center" spacing={1}>
                   <Typography

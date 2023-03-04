@@ -14,3 +14,5 @@ export const getCurrentEditingResume = (state) =>
   state.resumeBuilderSlice.currentResume;
 
 export const getResumeList = (state) => state.resumeBuilderSlice.resumesList;
+
+export const getDocument = (state) => state.resumeBuilderSlice.document;
