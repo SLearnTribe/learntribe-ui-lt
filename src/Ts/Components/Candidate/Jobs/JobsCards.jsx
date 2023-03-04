@@ -13,7 +13,7 @@ import {
 } from "../../../CommonStyles/CommonSxStyles";
 import { JobsStatusMap } from "../../../Configs/Dashboards/DashboardsConfig";
 import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
-import { getAssessmentForCandidate } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
+import { updateAssessmentId } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
 import { setCurrentEditingJob } from "../../../Redux/Ducks/Jobs/JobsSlice";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import { getJobs } from "../../../Redux/Selectors/Jobs/JobsSelectors";
@@ -40,10 +40,10 @@ export const JobsCards = () => {
   );
 
   const onClickStartNow = useCallback(
-    (e, status, id) => {
+    (e, status, assessmentId) => {
       e.stopPropagation();
       if (status === "PENDING") {
-        dispatch(getAssessmentForCandidate(id));
+        dispatch(updateAssessmentId(assessmentId));
 
         navigate(assessmentsInstructionsRoute);
       }
@@ -106,27 +106,31 @@ export const JobsCards = () => {
                           {AssessmentTexts.assessmentsRequired}
                         </Typography>
                       </Grid>
-                      {requiredAssessments?.map(({ skill, status }) => (
-                        <React.Fragment key={uniqueId()}>
-                          <Grid item xs={7} sm={6} md={8} lg={8} xl={8}>
-                            <Typography sx={Font15Weight500SxStyles}>
-                              {skill}
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={5} sm={6} md={4} lg={4} xl={4}>
-                            <Typography
-                              onClick={(e) => onClickStartNow(e, status, id)}
-                              sx={{
-                                ...Font14Weight500SxStyles,
-                                color: JobsStatusMap?.[status.toLowerCase()],
-                              }}>
-                              {isEqual(status, "PENDING")
-                                ? "Start Now"
-                                : capitalize(status).replaceAll("_", " ")}
-                            </Typography>
-                          </Grid>
-                        </React.Fragment>
-                      ))}
+                      {requiredAssessments?.map(
+                        ({ skill, status, id: assessmentId = null }) => (
+                          <React.Fragment key={uniqueId()}>
+                            <Grid item xs={7} sm={6} md={8} lg={8} xl={8}>
+                              <Typography sx={Font15Weight500SxStyles}>
+                                {skill}
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={5} sm={6} md={4} lg={4} xl={4}>
+                              <Typography
+                                onClick={(e) =>
+                                  onClickStartNow(e, status, assessmentId)
+                                }
+                                sx={{
+                                  ...Font14Weight500SxStyles,
+                                  color: JobsStatusMap?.[status.toLowerCase()],
+                                }}>
+                                {isEqual(status, "PENDING")
+                                  ? "Start Now"
+                                  : capitalize(status).replaceAll("_", " ")}
+                              </Typography>
+                            </Grid>
+                          </React.Fragment>
+                        )
+                      )}
                     </Grid>
                   </Grid>
                 </Grid>
