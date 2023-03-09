@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import MainLayout from "./Ts/Components/ContainerComponents/MainLayout";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
-import {configurationIdentityServerWithoutDiscovery} from './configurations'
+import { configurationIdentityServerWithoutDiscovery } from "./configurations";
 import { LoadingAssessment } from "./Ts/Components/Pages/Dashboards/Candidate/LoadingAssessment";
 
 export interface AppContainerProps {
@@ -19,10 +19,18 @@ function App() {
 
   // const expiratiomTime = useSelector(getExpirationToken)
 
-
   // const onCompleteTimer = () => {
   //   dispatch(postLogout());
   // }
+
+  const onEvent = (configurationName = "", eventName = "", data = "") => {
+    // console.log(`oidc:${configurationName}:${eventName}`, data);
+    //loginCallbackAsync_error
+    // console.log(configurationName + " -- " + eventName + " -- " + JSON.stringify(data));
+    if (eventName === 'loginCallbackAsync_error') {
+      window.location.href = 'http://localhost:3000/smile-bat/dashboard';
+    }
+  };
 
   return (
     <ThemeProvider theme={customTheme()}>
@@ -31,12 +39,15 @@ function App() {
         onComplete={onCompleteTimer}
         date={Date.now() + 500000000}
       /> */}
-      <OidcProvider loadingComponent={LoadingAssessment} 
-      configuration={configurationIdentityServerWithoutDiscovery} 
-      configurationName='default'>
-      <Router>
-        <MainLayout />
-      </Router>
+      <OidcProvider
+        loadingComponent={LoadingAssessment}
+        configuration={configurationIdentityServerWithoutDiscovery}
+        configurationName="default"
+        onEvent={onEvent}
+      >
+        <Router>
+          <MainLayout />
+        </Router>
       </OidcProvider>
     </ThemeProvider>
   );
