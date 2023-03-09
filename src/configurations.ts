@@ -58,8 +58,8 @@ const localSecret = 'EfuSTQbsp7tSgnJK9USbTvmPGiOdOaKv';
 const domainSecret = 'bP9zTt7zArJBbIYwmFCE2AiyzFTD1Ppo'
 export const configurationIdentityServerWithoutDiscovery = {
     client_id: 'nginx',
-    redirect_uri: 'http://localhost:3000/smile-bat/assessments',
-    silent_redirect_uri: 'http://localhost:3000/smile-bat/silent',
+    redirect_uri: 'http://localhost:3000/smile-bat/dashboard',
+    silent_redirect_uri: 'http://localhost:3000/smile-bat/dashboard',
     silent_login_uri: 'http://localhost:3000',
     scope: 'openid email profile',
     authority:domain,
