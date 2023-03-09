@@ -1,3 +1,4 @@
+import { OidcSecure,useOidcAccessToken,useOidcUser } from "@axa-fr/react-oidc";
 import { isEqual } from "lodash";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,13 +7,15 @@ import { AlertSnackbar } from "../Components/CommonComponents/Controls/Snackbar"
 import Modal from "../Components/CommonComponents/Modal/Modal";
 import { rolesConfig } from "../Configs/AppConfig";
 import { dashboardRoute } from "../Configs/RoutesConfig";
-import { getUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
+import { getUserData, setUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
 import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
 import RouterMap, { RenderRoute } from "./Routes";
 
 export default function RootRouter() {
   const dispatch = useDispatch();
+  const { accessToken, accessTokenPayload } = useOidcAccessToken();
 
+  
   const { role } = useSelector(getUserDetails);
 
   // const isLoading = useSelector(getIsUserDataLoading);
@@ -23,24 +26,28 @@ export default function RootRouter() {
 
   const routerMap = useMemo(() => {
     return RouterMap.filter(({ permission }) =>
-      isEqual(permission, rolesConfig[role])
+      isEqual(permission, rolesConfig[accessTokenPayload && accessTokenPayload.role ? accessTokenPayload.role: "HR"])
     );
   }, [role]);
 
   useEffect(() => {
     console.log("inside effect");
-    if (firstRender.current) {
+    //if (firstRender.current) {
       dispatch(setUserDataLoading(true));
+      const access_token = accessToken;
+      const userDetails = accessTokenPayload;
+      if (access_token && userDetails) {
+        dispatch(setUserData({userDetails,access_token}));
+      }
+      // const hashParams = new URLSearchParams(hash);
 
-      const hashParams = new URLSearchParams(hash);
+      // const hashCode = hashParams.get("code");
 
-      const hashCode = hashParams.get("code");
+      //dispatch(getUserData(accessTokenPayload));
 
-      dispatch(getUserData(hashCode));
-
-      firstRender.current = false;
-    }
-  }, [dispatch, hash]);
+      // firstRender.current = false;
+    //}
+  }, []);
 
   return (
     <>
@@ -52,8 +59,9 @@ export default function RootRouter() {
       <Modal />
       <AlertSnackbar />
       <Routes>
+       {/* <Route path="/" element={ <OidcSecure><p>Logged in</p></OidcSecure>} /> */}
         {routerMap.map(RenderRoute)}
-        <Route path="*" element={<Navigate to={dashboardRoute} replace />} />
+        {/* <Route path="*" element={<Navigate to={dashboardRoute} replace />} /> */}
       </Routes>
     </>
   );

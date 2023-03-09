@@ -12,7 +12,7 @@ export const HrProfileContentSection = ({ selectedApplicantData }) => {
     name,
     country,
     about = "",
-    skills,
+    skills = "",
     currentRole = "N/A",
     workExperiences = [],
     educationExperiences = [],

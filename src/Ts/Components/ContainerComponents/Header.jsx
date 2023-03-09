@@ -1,4 +1,5 @@
 // import EngineeringTwoToneIcon from "@mui/icons-material/EngineeringTwoTone";
+import { useOidc } from "@axa-fr/react-oidc";
 import EngineeringOutlinedIcon from "@mui/icons-material/EngineeringOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -34,6 +35,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const { login, logout, renewTokens, isAuthenticated } = useOidc();
 
   const { name, given_name, family_name, role } = useSelector(getUserDetails);
 
@@ -61,8 +63,9 @@ const Header = ({ handleLeftDrawerToggle }) => {
 
   const onClickLogout = useCallback(() => {
     setAnchorElUser(null);
-    dispatch(postLogout());
-  }, [dispatch]);
+    // dispatch(postLogout());
+    logout();
+  }, []);
 
   const onClickProfile = () => {
     setAnchorElUser(null);

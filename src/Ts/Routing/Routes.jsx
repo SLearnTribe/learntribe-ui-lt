@@ -17,6 +17,7 @@ import { ApplicantProfile } from "../Components/Pages/Profiles/HRProfile/Applica
 import { ResumeBuilder } from "../Components/Pages/ResumeBuilder/ResumeBuilder";
 import { rolesConfig } from "../Configs/AppConfig";
 import { routes } from "../Configs/RoutesConfig";
+import { OidcSecure } from "@axa-fr/react-oidc";
 
 const RouterMap = [
   {
@@ -104,11 +105,11 @@ const RouterMap = [
 
 export const RenderRoute = (route, idx) => {
   return (
-    <Route
-      key={idx}
-      path={routes.base + route.path}
-      element={<route.component />}
-    />
+      <Route
+        key={idx}
+        path={routes.base + route.path}
+        element={<OidcSecure><route.component /></OidcSecure>}
+      />
   );
 };
 

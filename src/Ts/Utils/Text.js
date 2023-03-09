@@ -98,6 +98,7 @@ export const CommonTexts = {
   workExperience: "Work Experience",
   PROJECT: "Project",
   SKILLS_TOOLTIP: "Type skill and hit enter to add",
+  loadingUi: "Smile .Bat"
 };
 
 export const ButtonTexts = {
