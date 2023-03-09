@@ -7,7 +7,7 @@ export function requestGetJobs({ accessToken, page = 1, limit = 25, keyword }) {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/sb-inq/api/v1/jobs/user?page=${page}&limit=${limit}&$keyword=${keyword}`,
+    url: `http://www.smilebat.xyz/sb-inq/api/v1/jobs/user?page=${page}&limit=${limit}&keyword=${keyword}`,
   });
 }
 
