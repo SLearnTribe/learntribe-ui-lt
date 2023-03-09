@@ -56,11 +56,12 @@ const domain = 'http://www.smilebat.xyz/auth'
 const local = 'localhost:8085/auth'
 const localSecret = 'EfuSTQbsp7tSgnJK9USbTvmPGiOdOaKv';
 const domainSecret = 'bP9zTt7zArJBbIYwmFCE2AiyzFTD1Ppo'
+const redirects = 'localhost:3000';
 export const configurationIdentityServerWithoutDiscovery = {
     client_id: 'nginx',
-    redirect_uri: 'http://localhost:3000/smile-bat/dashboard',
-    silent_redirect_uri: 'http://localhost:3000',
-    silent_login_uri: 'http://localhost:3000',
+    redirect_uri: 'http://www.smilebat.xyz/smile-bat/dashboard',
+    silent_redirect_uri: 'http://www.smilebat.xyz',
+    silent_login_uri: 'http://www.smilebat.xyz',
     scope: 'openid email profile',
     authority:domain,
     authority_configuration: {
