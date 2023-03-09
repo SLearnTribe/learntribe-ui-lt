@@ -53,10 +53,10 @@ export const configurationIdentityServerWithHash = {
 };
 
 const domain = 'http://www.smilebat.xyz/auth'
-const local = 'localhost:8085/auth'
-const localSecret = 'EfuSTQbsp7tSgnJK9USbTvmPGiOdOaKv';
+//const local = 'localhost:8085/auth'
+//const localSecret = 'EfuSTQbsp7tSgnJK9USbTvmPGiOdOaKv';
 const domainSecret = 'bP9zTt7zArJBbIYwmFCE2AiyzFTD1Ppo'
-const redirects = 'localhost:3000';
+//const redirects = 'localhost:3000';
 export const configurationIdentityServerWithoutDiscovery = {
     client_id: 'nginx',
     redirect_uri: 'http://www.smilebat.xyz/smile-bat/dashboard',

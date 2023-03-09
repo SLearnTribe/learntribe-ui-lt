@@ -16,13 +16,12 @@ import {
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import React, { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import ProfileSection from "./ProfileSection";
 import { useNavigate } from "react-router-dom";
 import { Font28Weight600SxStyles } from "../../CommonStyles/CommonSxStyles";
 import { rolesConfig } from "../../Configs/AppConfig";
 import { builResumeRoute, editProfileRoute } from "../../Configs/RoutesConfig";
-import { postLogout } from "../../Redux/Ducks/userSlice";
 import { getUserDetails } from "../../Redux/Selectors/UserSelectors/UserSelectors";
 import { CommonTexts } from "../../Utils/Text";
 import { AccountSettingsMenu } from "../CommonComponents/Controls/AccountSettings";
@@ -32,10 +31,10 @@ import { AccountSettingsMenu } from "../CommonComponents/Controls/AccountSetting
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const { login, logout, renewTokens, isAuthenticated } = useOidc();
+  const { logout } = useOidc();
 
   const { name, given_name, family_name, role } = useSelector(getUserDetails);
 
@@ -65,7 +64,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
     setAnchorElUser(null);
     // dispatch(postLogout());
     logout();
-  }, []);
+  }, [logout]);
 
   const onClickProfile = () => {
     setAnchorElUser(null);

@@ -1,14 +1,14 @@
-import { OidcSecure,useOidcAccessToken,useOidcUser } from "@axa-fr/react-oidc";
+import { useOidcAccessToken } from "@axa-fr/react-oidc";
 import { isEqual } from "lodash";
-import React, { useEffect, useMemo, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { useDispatch } from "react-redux";
+import { Routes } from "react-router-dom";
 import { AlertSnackbar } from "../Components/CommonComponents/Controls/Snackbar";
 import Modal from "../Components/CommonComponents/Modal/Modal";
 import { rolesConfig } from "../Configs/AppConfig";
-import { dashboardRoute } from "../Configs/RoutesConfig";
-import { getUserData, setUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
-import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
+//import { dashboardRoute } from "../Configs/RoutesConfig";
+import { setUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
+//import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
 import RouterMap, { RenderRoute } from "./Routes";
 
 export default function RootRouter() {
@@ -16,19 +16,19 @@ export default function RootRouter() {
   const { accessToken, accessTokenPayload } = useOidcAccessToken();
 
   
-  const { role } = useSelector(getUserDetails);
+  //const { role } = useSelector(getUserDetails);
 
   // const isLoading = useSelector(getIsUserDataLoading);
 
-  const { hash } = useLocation();
+  // const { hash } = useLocation();
 
-  const firstRender = useRef(true);
+  // const firstRender = useRef(true);
 
   const routerMap = useMemo(() => {
     return RouterMap.filter(({ permission }) =>
       isEqual(permission, rolesConfig[accessTokenPayload && accessTokenPayload.role ? accessTokenPayload.role: "HR"])
     );
-  }, [role]);
+  }, [accessTokenPayload]);
 
   useEffect(() => {
     console.log("inside effect");
@@ -47,7 +47,7 @@ export default function RootRouter() {
 
       // firstRender.current = false;
     //}
-  }, []);
+  }, [accessToken,accessTokenPayload,dispatch]);
 
   return (
     <>

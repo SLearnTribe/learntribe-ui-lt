@@ -5,8 +5,6 @@ import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import store from "./Ts/Redux/Store/ConfigureStore";
-import { OidcProvider } from "@axa-fr/react-oidc";
-
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
