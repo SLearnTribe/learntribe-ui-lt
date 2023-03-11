@@ -98,7 +98,10 @@ export const CommonTexts = {
   workExperience: "Work Experience",
   PROJECT: "Project",
   SKILLS_TOOLTIP: "Type skill and hit enter to add",
-  loadingUi: "Smile .Bat"
+  loadingUi: "Smile .Bat",
+  errorPageDefaultTitle: "Sorry, authentication failed!",
+  errorPageDefaultSubTitle:
+    "Sorry, we couldn’t authenticat you please try to login again",
 };
 
 export const ButtonTexts = {
@@ -138,6 +141,7 @@ export const ButtonTexts = {
   sendInquiry: "Send Inquiry",
   downloadResume: "Download Resume",
   goToAssessments: "Go To Assessments",
+  login: "Login",
 };
 
 export const TabLabelTexts = {

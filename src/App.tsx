@@ -3,10 +3,11 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
+import { ErrorPage } from "./Authentication/ErrorPage";
+import { LoadingComponent } from "./Authentication/LoadingComponent";
 import MainLayout from "./Ts/Components/ContainerComponents/MainLayout";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
 import { configurationIdentityServerWithoutDiscovery } from "./configurations";
-import { LoadingAssessment } from "./Ts/Components/Pages/Dashboards/Candidate/LoadingAssessment";
 
 export interface AppContainerProps {
   window?: () => Window;
@@ -32,6 +33,8 @@ function App() {
     }
   };
 
+
+
   return (
     <ThemeProvider theme={customTheme()}>
       <CssBaseline />
@@ -40,7 +43,9 @@ function App() {
         date={Date.now() + 500000000}
       /> */}
       <OidcProvider
-        loadingComponent={LoadingAssessment}
+        loadingComponent={LoadingComponent}
+        authenticatingComponent={LoadingComponent}
+        authenticatingErrorComponent={ErrorPage}
         configuration={configurationIdentityServerWithoutDiscovery}
         configurationName="default"
         onEvent={onEvent}
