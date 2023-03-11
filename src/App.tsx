@@ -7,7 +7,7 @@ import { ErrorPage } from "./Authentication/ErrorPage";
 import { LoadingComponent } from "./Authentication/LoadingComponent";
 import MainLayout from "./Ts/Components/ContainerComponents/MainLayout";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
-import { configurationIdentityServerWithoutDiscovery } from "./configurations";
+import { configurationReact } from "./configurations";
 
 export interface AppContainerProps {
   window?: () => Window;
@@ -27,13 +27,11 @@ function App() {
   const onEvent = (configurationName = "", eventName = "", data = "") => {
     // console.log(`oidc:${configurationName}:${eventName}`, data);
     //loginCallbackAsync_error
-    // console.log(configurationName + " -- " + eventName + " -- " + JSON.stringify(data));
-    if (eventName === 'loginCallbackAsync_error') {
-      window.location.href = 'http://www.smilebat.xyz/smile-bat/help';
+    console.log(configurationName + " -- " + eventName + " -- " + JSON.stringify(data));
+    if (eventName === "loginCallbackAsync_error") {
+      //window.location.href = "http://www.smilebat.xyz/smile-bat/help";
     }
   };
-
-
 
   return (
     <ThemeProvider theme={customTheme()}>
@@ -46,7 +44,7 @@ function App() {
         loadingComponent={LoadingComponent}
         authenticatingComponent={LoadingComponent}
         authenticatingErrorComponent={ErrorPage}
-        configuration={configurationIdentityServerWithoutDiscovery}
+        configuration={configurationReact}
         configurationName="default"
         onEvent={onEvent}
       >

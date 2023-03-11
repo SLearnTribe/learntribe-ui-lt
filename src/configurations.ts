@@ -52,33 +52,26 @@ export const configurationIdentityServerWithHash = {
     service_worker_only: false,
 };
 
-const domain = 'http://www.smilebat.xyz/auth'
-//const local = 'localhost:8085/auth'
-//const localSecret = 'EfuSTQbsp7tSgnJK9USbTvmPGiOdOaKv';
-const domainSecret = 'bP9zTt7zArJBbIYwmFCE2AiyzFTD1Ppo'
-//const redirects = 'localhost:3000';
-export const configurationIdentityServerWithoutDiscovery = {
-    client_id: 'nginx',
-    redirect_uri: 'http://www.smilebat.xyz/smile-bat/dashboard',
-    silent_redirect_uri: 'http://www.smilebat.xyz',
-    silent_login_uri: 'http://www.smilebat.xyz',
+const domain = 'https://www.smilebat.xyz:8443';
+export const configurationReact = {
+    client_id: 'interactive.public.smilebat',
+    redirect_uri: window.location.origin + '/authentication/callback',
+    silent_redirect_uri: window.location.origin + '/authentication/silent-callback',
+    silent_login_uri: 'http://www.smilebat.xyz/auth',
     scope: 'openid email profile',
-    authority:domain,
+    authority: domain,
     authority_configuration: {
-      authorization_endpoint:domain+'/realms/master/protocol/openid-connect/auth',
-      token_endpoint: domain +'/realms/master/protocol/openid-connect/token',
-      userinfo_endpoint: domain +'/realms/master/protocol/openid-connect/userinfo',
-      end_session_endpoint: domain +'/realms/master/protocol/openid-connect/logout',
-      check_session_iframe: domain +'/realms/master/protocol/openid-connect/login-status-iframe.html',
-      revocation_endpoint: domain +'/realms/master/protocol/openid-connect/revoke',
+      authorization_endpoint: domain + '/realms/master/protocol/openid-connect/auth',
+      token_endpoint: domain + '/realms/master/protocol/openid-connect/token',
+      userinfo_endpoint: domain + '/realms/master/protocol/openid-connect/userinfo',
+      end_session_endpoint: domain + '/realms/master/protocol/openid-connect/logout',
+      check_session_iframe: domain + '/realms/master/protocol/openid-connect/login-status-iframe.html',
+      revocation_endpoint: domain + '/realms/master/protocol/openid-connect/revoke',
       issuer: domain + '/realms/master',
     },
     refresh_time_before_tokens_expiration_in_second: 10,
     service_worker_relative_url: '/OidcServiceWorker.js',
     service_worker_only: false,
-    token_request_extras: {
-        client_secret: domainSecret,
-    },
 };
 
 export const configurationAuth0 = {
