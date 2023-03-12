@@ -6,16 +6,21 @@ import {
   Grid,
   Link,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
+import {
+  EMAIL_HELP_PUBLIC_ID,
+  EMAIL_HELP_SERVICE_ID,
+  EMAIL_HELP_TEMPLATE_ID,
+} from "../../../Configs/EmailConfigs";
 import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
 import {
   ButtonTexts,
   CommonTexts,
   ModalTexts,
-  TextFieldLabelsAndTexts
+  TextFieldLabelsAndTexts,
 } from "../../../Utils/Text";
 
 export const Help = () => {
@@ -83,15 +88,15 @@ export const Help = () => {
 
       emailjs
         .send(
-          "service_jkqlldc",
-          "template_puoyloi",
+          EMAIL_HELP_SERVICE_ID,
+          EMAIL_HELP_TEMPLATE_ID,
           {
             name,
             query,
             email,
             phone,
           },
-          "WhgdthXpw4AD0LhRi"
+          EMAIL_HELP_PUBLIC_ID
         )
         .then(
           () => {
