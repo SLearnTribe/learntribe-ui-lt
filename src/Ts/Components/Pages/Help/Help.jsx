@@ -15,11 +15,14 @@ import {
   EMAIL_HELP_SERVICE_ID,
   EMAIL_HELP_TEMPLATE_ID,
 } from "../../../Configs/EmailConfigs";
-import { setCurrentModal } from "../../../Redux/Ducks/Modal/ModalSlice";
+import { updateSnackbar } from "../../../Redux/Ducks/App/AppSlice";
+import {
+  HelpErrorSnackbar,
+  HelpSuccessSnackbar,
+} from "../../../Utils/CommonUtils";
 import {
   ButtonTexts,
   CommonTexts,
-  ModalTexts,
   TextFieldLabelsAndTexts,
 } from "../../../Utils/Text";
 
@@ -83,32 +86,36 @@ export const Help = () => {
   const onSendInquiry = useCallback(() => {
     let hasError = validateErrors();
 
-    if (!hasError) {
-      setOpen(true);
+    try {
+      if (!hasError) {
+        setOpen(true);
 
-      emailjs
-        .send(
-          EMAIL_HELP_SERVICE_ID,
-          EMAIL_HELP_TEMPLATE_ID,
-          {
-            name,
-            query,
-            email,
-            phone,
-          },
-          EMAIL_HELP_PUBLIC_ID
-        )
-        .then(
-          () => {
-            dispatch(setCurrentModal(ModalTexts.help));
-            setOpen(false);
-            resetForm();
-          },
-          (error) => {
-            console.log(error.text);
-            setOpen(false);
-          }
-        );
+        emailjs
+          .send(
+            EMAIL_HELP_SERVICE_ID,
+            EMAIL_HELP_TEMPLATE_ID,
+            {
+              name,
+              query,
+              email,
+              phone,
+            },
+            EMAIL_HELP_PUBLIC_ID
+          )
+          .then(
+            () => {
+              dispatch(updateSnackbar(HelpSuccessSnackbar));
+              setOpen(false);
+              resetForm();
+            },
+            (error) => {
+              console.log(error.text);
+              setOpen(false);
+            }
+          );
+      }
+    } catch (e) {
+      dispatch(updateSnackbar(HelpErrorSnackbar));
     }
   }, [dispatch, validateErrors, resetForm, name, email, phone, query]);
 

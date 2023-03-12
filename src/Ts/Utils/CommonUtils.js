@@ -7,6 +7,19 @@ export const ScheduleCallSuccessSnackbar = {
   open: true,
 };
 
+export const HelpSuccessSnackbar = {
+  ...EmptySnackbarState,
+  text: "Inquiry sent successfully",
+  open: true,
+};
+
+export const HelpErrorSnackbar = {
+  ...EmptySnackbarState,
+  text: "Failed to send inquiry",
+  open: true,
+  severity: "error",
+};
+
 export const AssignSuccessSnackbar = {
   ...EmptySnackbarState,
   text: "Assigned assessment successfully",
