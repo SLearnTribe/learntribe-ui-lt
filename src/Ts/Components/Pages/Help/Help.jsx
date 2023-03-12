@@ -11,9 +11,9 @@ import {
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  EMAIL_HELP_PUBLIC_ID,
-  EMAIL_HELP_SERVICE_ID,
   EMAIL_HELP_TEMPLATE_ID,
+  EMAIL_PUBLIC_ID,
+  EMAIL_SERVICE_ID,
 } from "../../../Configs/EmailConfigs";
 import { updateSnackbar } from "../../../Redux/Ducks/App/AppSlice";
 import {
@@ -92,7 +92,7 @@ export const Help = () => {
 
         emailjs
           .send(
-            EMAIL_HELP_SERVICE_ID,
+            EMAIL_SERVICE_ID,
             EMAIL_HELP_TEMPLATE_ID,
             {
               name,
@@ -100,7 +100,7 @@ export const Help = () => {
               email,
               phone,
             },
-            EMAIL_HELP_PUBLIC_ID
+            EMAIL_PUBLIC_ID
           )
           .then(
             () => {

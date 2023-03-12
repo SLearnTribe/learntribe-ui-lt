@@ -13,9 +13,14 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import moment from "moment";
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  EMAIL_PUBLIC_ID,
+  EMAIL_SCHEDULE_CALL_TEMPLATE_ID,
+  EMAIL_SERVICE_ID,
+} from "../../../Configs/EmailConfigs";
 import { applicantsRoute } from "../../../Configs/RoutesConfig";
 import { updateSnackbar } from "../../../Redux/Ducks/App/AppSlice";
 import { setCurrentEditingAssessment } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
@@ -81,8 +86,8 @@ export const ScheduleCall = () => {
 
     emailjs
       .send(
-        "service_jkqlldc",
-        "template_m73ykkr",
+        EMAIL_SERVICE_ID,
+        EMAIL_SCHEDULE_CALL_TEMPLATE_ID,
         {
           company: currentEditingJob?.businessName,
           candidate: selectedApplicantDetails?.name,
@@ -93,7 +98,7 @@ export const ScheduleCall = () => {
           experienceRequired: currentEditingJob?.experienceRequired,
           requiredSkills: currentEditingJob?.requiredSkills,
         },
-        "WhgdthXpw4AD0LhRi"
+        EMAIL_PUBLIC_ID
       )
       .then(
         () => {
