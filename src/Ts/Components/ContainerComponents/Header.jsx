@@ -13,6 +13,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import startCase from "lodash/startCase";
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import React, { useCallback, useMemo } from "react";
@@ -41,7 +42,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const normalizedName = useMemo(() => {
-    return name?.split(" ")[0];
+    return startCase(name?.split(" ")[0]);
   }, [name]);
 
   const onClickBuildResume = () => {
