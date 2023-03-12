@@ -33,6 +33,8 @@ function App() {
     }
   };
 
+
+
   return (
     <ThemeProvider theme={customTheme()}>
       <CssBaseline />
@@ -43,6 +45,7 @@ function App() {
       <OidcProvider
         loadingComponent={LoadingComponent}
         authenticatingComponent={LoadingComponent}
+        callbackSuccessComponent={LoadingComponent}
         authenticatingErrorComponent={ErrorPage}
         configuration={configurationReact}
         configurationName="default"

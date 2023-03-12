@@ -9,6 +9,7 @@ import { HrDashboard } from "../Components/Pages/Dashboards/HR/HrDashboard";
 import { Help } from "../Components/Pages/Help/Help";
 // import { CandidateHelp } from "../Components/Pages/Help/CandidateHelp/Help";
 // import { HrHelp } from "../Components/Pages/Help/HRHelp/Help";
+import { OidcSecure } from "@axa-fr/react-oidc";
 import { FullScreenAssessmentModal } from "../Components/Modals/Assessment/FullScreenAssessmentModal";
 import { Jobs } from "../Components/Pages/Jobs/Jobs";
 import { PostJobs } from "../Components/Pages/PostJobs/PostJobs";
@@ -17,7 +18,6 @@ import { ApplicantProfile } from "../Components/Pages/Profiles/HRProfile/Applica
 import { ResumeBuilder } from "../Components/Pages/ResumeBuilder/ResumeBuilder";
 import { rolesConfig } from "../Configs/AppConfig";
 import { routes } from "../Configs/RoutesConfig";
-import { OidcSecure } from "@axa-fr/react-oidc";
 
 const RouterMap = [
   {
@@ -105,11 +105,15 @@ const RouterMap = [
 
 export const RenderRoute = (route, idx) => {
   return (
-      <Route
-        key={idx}
-        path={routes.base + route.path}
-        element={<OidcSecure><route.component /></OidcSecure>}
-      />
+    <Route
+      key={idx}
+      path={routes.base + route.path}
+      element={
+        <OidcSecure>
+          <route.component />
+        </OidcSecure>
+      }
+    />
   );
 };
 

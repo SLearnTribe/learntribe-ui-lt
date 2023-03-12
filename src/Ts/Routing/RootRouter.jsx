@@ -2,7 +2,7 @@ import { useOidcAccessToken } from "@axa-fr/react-oidc";
 import { isEqual } from "lodash";
 import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { Routes,Route, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { AlertSnackbar } from "../Components/CommonComponents/Controls/Snackbar";
 import Modal from "../Components/CommonComponents/Modal/Modal";
 import { rolesConfig } from "../Configs/AppConfig";
@@ -10,8 +10,8 @@ import { dashboardRoute } from "../Configs/RoutesConfig";
 import { setUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
 //import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
 // import { ErrorPage } from "../../Authentication/ErrorPage";
-import RouterMap, { RenderRoute } from "./Routes";
 import { OidcSecure } from "@axa-fr/react-oidc";
+import RouterMap, { RenderRoute } from "./Routes";
 
 export default function RootRouter() {
   const dispatch = useDispatch();
@@ -69,7 +69,14 @@ export default function RootRouter() {
       <Routes>
         {/* <Route path="*" element={<ErrorPage />} /> */}
 
-        <Route path="*" element={ <OidcSecure><Navigate to={dashboardRoute} replace/></OidcSecure>} />
+        <Route
+          path="/"
+          element={
+            <OidcSecure>
+              <Navigate to={dashboardRoute} replace />
+            </OidcSecure>
+          }
+        />
         {routerMap.map(RenderRoute)}
         {/* <Route path="*" element={<Navigate to={dashboardRoute} replace />} /> */}
       </Routes>

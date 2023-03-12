@@ -3,14 +3,12 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useCallback } from "react";
-import { useNavigate } from "react-router";
 import { Page404 } from "../Svg/Page404";
-import { routes } from "../Ts/Configs/RoutesConfig";
 import { ButtonTexts, CommonTexts } from "../Ts/Utils/Text";
 
 // ----------------------------------------------------------------------
 
-const StyledContent = styled("div")(({ theme }) => ({
+export const StyledCenteredContent = styled("div")(({ theme }) => ({
   maxWidth: 480,
   margin: "auto",
   minHeight: "100vh",
@@ -26,17 +24,15 @@ export const ErrorPage = ({
   title = CommonTexts.errorPageDefaultTitle,
   subTitle = CommonTexts.errorPageDefaultSubTitle,
   buttonText = ButtonTexts.login,
-  navigateTo = routes.dashboard,
 }) => {
-  const navigate = useNavigate();
-
   const onClickGoToDashboard = useCallback(() => {
-    navigate(navigateTo);
-  }, [navigate, navigateTo]);
+    window.location.href = window.location.origin;
+  }, []);
   return (
     <>
       <Container>
-        <StyledContent sx={{ textAlign: "center", alignItems: "center" }}>
+        <StyledCenteredContent
+          sx={{ textAlign: "center", alignItems: "center" }}>
           <Typography variant="h3" paragraph>
             {title}
           </Typography>
@@ -53,7 +49,7 @@ export const ErrorPage = ({
             variant="contained">
             {buttonText}
           </Button>
-        </StyledContent>
+        </StyledCenteredContent>
       </Container>
     </>
   );

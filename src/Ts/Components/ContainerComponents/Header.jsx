@@ -63,7 +63,9 @@ const Header = ({ handleLeftDrawerToggle }) => {
   const onClickLogout = useCallback(() => {
     setAnchorElUser(null);
     // dispatch(postLogout());
-    logout();
+    logout().then(() => {
+      window.location.href = window.location.origin;
+    });
   }, [logout]);
 
   const onClickProfile = () => {

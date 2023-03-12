@@ -1,4 +1,5 @@
 export const routes = {
+  home: "/",
   base: "/smile-bat",
   exams: "/exams",
   dashboard: "/dashboard",
@@ -18,6 +19,8 @@ export const routes = {
   candidateAssessment: "/assessments/instructions/:assessmentId",
   builResume: "/builResume",
 };
+
+export const homeRoute = routes.home;
 
 export const examsRoute = routes.base + routes.exams;
 
