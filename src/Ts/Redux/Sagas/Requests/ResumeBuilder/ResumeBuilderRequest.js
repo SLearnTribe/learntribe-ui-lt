@@ -7,7 +7,7 @@ export function requestGetResumeDetails({ accessToken }) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/sb-rsp/api/v1/resume",
+    url: "https://www.smilebat.xyz/sb-rsp/api/v1/resume",
   });
 }
 
@@ -22,7 +22,7 @@ export function requestPostResumeDetails({
       Authorization: `Bearer ${accessToken}`,
     },
     data: updatedResumeDetails,
-    url: "http://www.smilebat.xyz/sb-rsp/api/v1/resume",
+    url: "https://www.smilebat.xyz/sb-rsp/api/v1/resume",
   });
 }
 
@@ -33,7 +33,7 @@ export function requestGetResumeDownload({ accessToken, email }) {
       "Content-Type": "text/plain",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume/download?email=${email}`,
+    url: `https://www.smilebat.xyz/sb-rsp/api/v1/resume/download?email=${email}`,
   });
 }
 
@@ -45,7 +45,7 @@ export function requestPostResumeUpload({ accessToken, formData, email }) {
       Authorization: `Bearer ${accessToken}`,
     },
     data: formData,
-    url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume/upload?email=${email}`,
+    url: `https://www.smilebat.xyz/sb-rsp/api/v1/resume/upload?email=${email}`,
   });
 }
 
@@ -57,6 +57,6 @@ export function requestPostSave({ accessToken, payload }) {
       Authorization: `Bearer ${accessToken}`,
     },
     data: payload,
-    url: `http://www.smilebat.xyz/sb-rsp/api/v1/resume`,
+    url: `https://www.smilebat.xyz/sb-rsp/api/v1/resume`,
   });
 }

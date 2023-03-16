@@ -29,7 +29,7 @@ function App() {
     //loginCallbackAsync_error
     console.log(configurationName + " -- " + eventName + " -- " + JSON.stringify(data));
     if (eventName === "loginCallbackAsync_error") {
-      //window.location.href = "http://www.smilebat.xyz/smile-bat/help";
+      //window.location.href = "https://www.smilebat.xyz/smile-bat/help";
     }
   };
 

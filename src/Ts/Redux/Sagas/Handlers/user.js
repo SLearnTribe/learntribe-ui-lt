@@ -47,7 +47,7 @@ export function* handlePostLogout() {
     console.log(error);
     yield put(setUserDataLoading(false));
   } finally {
-    window.location.href = "http://www.smilebat.xyz";
+    window.location.href = "https://www.smilebat.xyz";
   }
 }
 

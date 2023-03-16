@@ -5,7 +5,7 @@ export function requestGetUser(hashCode) {
   const localhost = window.location.hostname === LOCALHOST ? "local" : "";
   return axios.request({
     method: "get",
-    url: `http://www.smilebat.xyz/sb-auth/app/token/${localhost}?code=${hashCode}`,
+    url: `https://www.smilebat.xyz/sb-auth/app/token/${localhost}?code=${hashCode}`,
   });
 }
 
@@ -16,7 +16,7 @@ export function requestPostLogout(accessToken) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/sb-auth/app/signout",
+    url: "https://www.smilebat.xyz/sb-auth/app/signout",
   });
 }
 

@@ -451,7 +451,7 @@ export const loggedInUserDetailsMockData = {
   iat: 1668237473,
   auth_time: 1668237472,
   jti: "1131bcce-8d83-43b7-ada7-923d3758adf1",
-  iss: "http://www.smilebat.xyz/auth/realms/master",
+  iss: "https://www.smilebat.xyz/auth/realms/master",
   aud: "account",
   sub: "953dbd82-f34c-4ae6-b7a8-159f4d98bdc3",
   typ: "Bearer",

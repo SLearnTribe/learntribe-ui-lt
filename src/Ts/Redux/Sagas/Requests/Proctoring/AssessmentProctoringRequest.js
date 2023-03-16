@@ -13,6 +13,6 @@ export function requestPostAssessmentProctoring({
       Authorization: `Bearer ${accessToken}`,
     },
     data: { data: images, good, many, bad, message },
-    url: `http://www.smilebat.xyz/sb-proc/proc`,
+    url: `https://www.smilebat.xyz/sb-proc/proc`,
   });
 }

@@ -11,6 +11,7 @@ import { setUserData, setUserDataLoading } from "../Redux/Ducks/userSlice";
 //import { getUserDetails } from "../Redux/Selectors/UserSelectors/UserSelectors";
 // import { ErrorPage } from "../../Authentication/ErrorPage";
 import { OidcSecure } from "@axa-fr/react-oidc";
+import { getUserProfile } from "../Redux/Ducks/Profile/ProfileSlice";
 import RouterMap, { RenderRoute } from "./Routes";
 
 export default function RootRouter() {
@@ -51,7 +52,7 @@ export default function RootRouter() {
 
     // const hashCode = hashParams.get("code");
 
-    //dispatch(getUserData(accessTokenPayload));
+    dispatch(getUserProfile(access_token));
 
     // firstRender.current = false;
     //}

@@ -13,9 +13,9 @@ import {
   requestPostUserProfile,
 } from "../../Requests/Profile/ProfileRequests";
 
-export function* handleGetUserProfile(action) {
+export function* handleGetUserProfile({ payload: accessToken }) {
   try {
-    const accessToken = yield select(selectors.getAccessToken);
+    // const accessToken = yield select(selectors.getAccessToken);
 
     const initialUserInfo = yield select(selectors.getUserDetails);
 

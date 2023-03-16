@@ -5,11 +5,22 @@
 // Domains used by OIDC server must be also declared here
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const trustedDomains = {
-    default:["https://demo.duendesoftware.com", "https://kdhttps.auth0.com","https://www.smilebat.xyz:8443"],
-    config_classic: ["https://demo.duendesoftware.com"] ,
-    config_without_silent_login: ["https://demo.duendesoftware.com"] ,
-    config_without_refresh_token: ["https://demo.duendesoftware.com"],
-    config_without_refresh_token_silent_login: ["https://demo.duendesoftware.com"],
-    config_google: ["https://oauth2.googleapis.com", "https://openidconnect.googleapis.com", "https://accounts.google.com"],
-    config_with_hash: ["https://demo.duendesoftware.com"]
+  default: [
+    "https://demo.duendesoftware.com",
+    "https://kdhttps.auth0.com",
+    "https://www.smilebat.xyz:8443",
+    "https://www.smilebat.xyz",
+  ],
+  config_classic: ["https://demo.duendesoftware.com"],
+  config_without_silent_login: ["https://demo.duendesoftware.com"],
+  config_without_refresh_token: ["https://demo.duendesoftware.com"],
+  config_without_refresh_token_silent_login: [
+    "https://demo.duendesoftware.com",
+  ],
+  config_google: [
+    "https://oauth2.googleapis.com",
+    "https://openidconnect.googleapis.com",
+    "https://accounts.google.com",
+  ],
+  config_with_hash: ["https://demo.duendesoftware.com"],
 };

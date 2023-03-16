@@ -10,9 +10,9 @@ const userSlice = createSlice({
   reducers: {
     getUserData() {},
     postLogout() {},
-    setUserData(state, { payload }) {
-      state.userDetails = payload.userDetails;
-      state.access_token = payload.access_token;
+    setUserData(state, { payload: { userDetails, access_token } }) {
+      state.userDetails = userDetails;
+      state.access_token = access_token;
     },
     setUserDataLoading(state, { payload }) {
       state.isLoading = payload;

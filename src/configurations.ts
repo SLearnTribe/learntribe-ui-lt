@@ -57,7 +57,7 @@ export const configurationReact = {
     client_id: 'interactive.public.smilebat',
     redirect_uri: window.location.origin + '/authentication/callback',
     silent_redirect_uri: window.location.origin + '/authentication/silent-callback',
-    silent_login_uri: 'http://www.smilebat.xyz/auth',
+    silent_login_uri: 'https://www.smilebat.xyz/auth',
     scope: 'openid email profile',
     authority: domain,
     authority_configuration: {

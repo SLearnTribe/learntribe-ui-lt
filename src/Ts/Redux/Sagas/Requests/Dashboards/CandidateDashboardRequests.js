@@ -7,6 +7,6 @@ export function requestGetCandidateActivities(accessToken) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    url: "http://www.smilebat.xyz/sb-inq/api/v1/analytics/candidate/activities",
+    url: "https://www.smilebat.xyz/sb-inq/api/v1/analytics/candidate/activities",
   });
 }
