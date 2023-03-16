@@ -27,14 +27,22 @@ export function requestPostResumeDetails({
 }
 
 export function requestGetResumeDownload({ accessToken, email }) {
-  return axios.request({
-    method: "get",
-    headers: {
-      "Content-Type": "text/plain",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    url: `https://www.smilebat.xyz/sb-rsp/api/v1/resume/download?email=${email}`,
-  });
+  return axios
+    .request({
+      method: "get",
+      responseType: "blob",
+      headers: {
+        "Content-Type": "text/plain",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      url: `https://www.smilebat.xyz/sb-rsp/api/v1/resume/download?email=${email}`,
+    })
+    .then((response) => response.data)
+    .then((blob) => {
+      const file = new Blob([blob], { type: "application/pdf" });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
 }
 
 export function requestPostResumeUpload({ accessToken, formData, email }) {
