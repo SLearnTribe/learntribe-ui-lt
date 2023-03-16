@@ -27,7 +27,7 @@ function App() {
   const onEvent = (configurationName = "", eventName = "", data = "") => {
     // console.log(`oidc:${configurationName}:${eventName}`, data);
     //loginCallbackAsync_error
-    console.log(configurationName + " -- " + eventName + " -- " + JSON.stringify(data));
+    // console.log(configurationName + " -- " + eventName + " -- " + JSON.stringify(data));
     if (eventName === "loginCallbackAsync_error") {
       //window.location.href = "https://www.smilebat.xyz/smile-bat/help";
     }
