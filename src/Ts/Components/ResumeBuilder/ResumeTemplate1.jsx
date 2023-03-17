@@ -64,7 +64,8 @@ export const ResumeTemplate1 = ({ templateId, maxHeight = "50rem", data }) => {
       raised
       sx={{
         p: 2,
-        maxHeight,
+        height: "36rem",
+        // maxHeight,
         overflow: "auto",
         border:
           selectedTemplate === 1

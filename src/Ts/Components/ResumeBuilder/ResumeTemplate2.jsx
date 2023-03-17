@@ -53,22 +53,45 @@ export const ResumeTemplate2 = ({ templateId }) => {
   const resumeList = useSelector(getResumeList);
 
   const onSelectTemplate = useCallback(() => {
-    dispatch(setResumeTemplate(templateId));
-    const currentResume = handleCurrentResume(resumeList[0]);
-    dispatch(updateCurrentResume(currentResume));
+    if (0) {
+      //for now 1 delete later
+      dispatch(setResumeTemplate(templateId));
+      const currentResume = handleCurrentResume(resumeList[0]);
+      dispatch(updateCurrentResume(currentResume));
+    }
   }, [dispatch, templateId, resumeList]);
   return (
     <Card
       raised
       sx={{
         p: 2,
-        maxHeight: "50rem",
+        position: "relative",
+        height: "36rem",
         border:
           selectedTemplate === 2
             ? `1px solid ${theme.palette.primary.main}`
             : "inherit",
       }}
       onClick={onSelectTemplate}>
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          height: "100%",
+          left: 0,
+          width: "100%",
+          bgcolor: "rgba(0, 0, 0, 0.54)",
+          color: "white",
+          padding: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 1,
+        }}>
+        <Typography variant="h1" sx={{ color: "#fff" }}>
+          Coming Soon
+        </Typography>
+      </Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Grid container spacing={1}>
