@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Card,
+  CircularProgress,
   Divider,
   FormControlLabel,
   FormGroup,
@@ -365,6 +366,9 @@ export const FinalResume = () => {
           </Button>
           <Button
             disabled={isLoading}
+            startIcon={
+              isLoading ? <CircularProgress color="inherit" size={16} /> : null
+            }
             onClick={onClickSave}
             sx={{ mr: 2 }}
             color="primary"
