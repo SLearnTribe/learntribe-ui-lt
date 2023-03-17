@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { isEmpty, isEqual } from "lodash";
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   employmentTypeBeToUiMap,
@@ -84,7 +84,11 @@ export const PostJobsModal = () => {
   const [addedSkills, setAddedSkills] = useState(skills);
 
   const onInputChange = (_e, value) => {
-    setAddedSkills(value);
+    let skill = value[value.length - 1];
+
+    if (skill.trim().length > 0) {
+      setAddedSkills(value);
+    }
   };
 
   const onClickPost = useCallback(() => {

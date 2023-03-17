@@ -18,9 +18,9 @@ import { BasicInfoSection } from "./BasicInfoSection";
 import { PaySection } from "./Compensation";
 import { EducationSection } from "./EducationSection";
 import { ExperienceSection } from "./ExperienceSection";
-import { ProfileSkills } from "./ProfileSkills";
 import { ResumeUploadSection } from "./ResumeUploadSection";
 import { SideProjectsSection } from "./SideProjectsSection";
+import { ProfileSkills } from "./SkillsSection";
 
 export const ProfileContentSection = () => {
   const dispatch = useDispatch();

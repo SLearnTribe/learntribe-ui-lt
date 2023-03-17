@@ -34,11 +34,15 @@ export const ProfileSkills = () => {
 
   const onInputChange = useCallback(
     (_e, value) => {
-      const copyUserInfo = cloneDeep(userInfo);
+      let skill = value[value.length - 1];
 
-      copyUserInfo.skills = value.length > 0 ? value.join(", ") : [];
+      if (skill.trim().length > 0) {
+        const copyUserInfo = cloneDeep(userInfo);
 
-      dispatch(updateUserProfile(copyUserInfo));
+        copyUserInfo.skills = value.length > 0 ? value.join(", ") : [];
+
+        dispatch(updateUserProfile(copyUserInfo));
+      }
     },
     [dispatch, userInfo]
   );

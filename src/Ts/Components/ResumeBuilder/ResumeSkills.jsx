@@ -24,11 +24,15 @@ export const ResumeSkills = () => {
 
   const onInputChange = useCallback(
     (_e, value) => {
-      const copyResumeDetails = cloneDeep(resumeDetails);
+      let skill = value[value.length - 1];
 
-      copyResumeDetails.skills = value.length > 0 ? value.join(", ") : [];
+      if (skill.trim().length > 0) {
+        const copyResumeDetails = cloneDeep(resumeDetails);
 
-      dispatch(updateCurrentResume(copyResumeDetails));
+        copyResumeDetails.skills = value.length > 0 ? value.join(", ") : [];
+
+        dispatch(updateCurrentResume(copyResumeDetails));
+      }
     },
     [dispatch, resumeDetails]
   );
