@@ -96,31 +96,33 @@ export const CandidateAssessment = () => {
       <Grid item lg={9} xl={9} md={8} sm={12} xs={12}>
         <Grid container spacing={3}>
           <Grid item xs={12}>{`Q.${page} ${
-            assessment?.challengeResponses[page - 1]?.question
+            assessment?.challengeResponses?.[page - 1]?.question
           }`}</Grid>
           <RadioGroup
             sx={{ p: 3 }}
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
             value={
-              answers[assessment?.challengeResponses[page - 1]?.id]
-                ? answers[assessment?.challengeResponses[page - 1]?.id]
+              answers?.[assessment?.challengeResponses?.[page - 1]?.id]
+                ? answers?.[assessment?.challengeResponses?.[page - 1]?.id]
                 : null
             }
-            data-id={assessment?.challengeResponses[page - 1]?.id}>
-            {assessment?.challengeResponses[page - 1]?.options.map((option) => (
-              <FormControlLabel
-                key={uniqueId()}
-                onClick={onClickOption}
-                data-row={JSON.stringify(
-                  assessment?.challengeResponses[page - 1]
-                )}
-                data-value={option}
-                value={option}
-                control={<Radio />}
-                label={option}
-              />
-            ))}
+            data-id={assessment?.challengeResponses?.[page - 1]?.id}>
+            {assessment?.challengeResponses?.[page - 1]?.options.map(
+              (option) => (
+                <FormControlLabel
+                  key={uniqueId()}
+                  onClick={onClickOption}
+                  data-row={JSON.stringify(
+                    assessment?.challengeResponses[page - 1]
+                  )}
+                  data-value={option}
+                  value={option}
+                  control={<Radio />}
+                  label={option}
+                />
+              )
+            )}
           </RadioGroup>
         </Grid>
       </Grid>
@@ -133,8 +135,8 @@ export const CandidateAssessment = () => {
           selected
           hidePrevButton
           variant="outlined"
-          siblingCount={assessment?.challengeResponses.length}
-          count={assessment?.challengeResponses.length}
+          siblingCount={assessment?.challengeResponses?.length}
+          count={assessment?.challengeResponses?.length}
           renderItem={(item) => {
             return (
               <PaginationItem
@@ -165,7 +167,7 @@ export const CandidateAssessment = () => {
           variant="outlined">
           {ButtonTexts.prev}
         </Button>
-        {!isEqual(page, assessment?.challengeResponses.length) ? (
+        {!isEqual(page, assessment?.challengeResponses?.length) ? (
           <Button onClick={onClickNext} variant="contained">
             {ButtonTexts.next}
           </Button>
