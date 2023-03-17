@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { assessmentsInstructionsRoute } from "../../../Configs/RoutesConfig";
 import { AssessmentNoDataCard } from "../../../NoDataAvailable/PostJobs/NoJobsAvailable";
 import {
+  setAssessmentForCandidate,
   setAssessmentInnerFilter,
   updateAssessmentId,
 } from "../../../Redux/Ducks/Assessments/AssessmentsSlice";
@@ -52,10 +53,10 @@ export const AssessmentCards = ({ selectedTab }) => {
   );
 
   const onStartAssessment = useCallback(
-    ({ currentTarget }) => {
-      const id = currentTarget.getAttribute("data-id");
+    (row) => {
+      dispatch(updateAssessmentId(row.id));
 
-      dispatch(updateAssessmentId(id));
+      dispatch(setAssessmentForCandidate(row));
 
       navigate(assessmentsInstructionsRoute);
     },
@@ -104,7 +105,7 @@ export const AssessmentCards = ({ selectedTab }) => {
               difficulty={difficulty}
               status={status}
               askWhy={askWhy}
-              onStartAssessment={onStartAssessment}
+              onStartAssessment={() => onStartAssessment(row)}
             />
           </Grid>
         );

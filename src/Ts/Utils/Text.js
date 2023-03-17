@@ -71,7 +71,7 @@ export const CommonTexts = {
   aGeneralInformation: "A. General Information",
   bRelatedInformation: "B. Related Information",
   instructionNote:
-    "Note: The following Assessment will be a Proctored exam and duration is 30min",
+    "Note: The following Assessment will be a Proctored exam and duration is",
   assessment: "Assessment",
   timeRemaining: "Time Remaining :",
   noJobsAvailable: "No Jobs Available",

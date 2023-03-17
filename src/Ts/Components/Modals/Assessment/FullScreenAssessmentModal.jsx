@@ -43,7 +43,7 @@ export const FullScreenAssessmentModal = () => {
     showSubmitUI,
   } = useSelector(getAssessmentsModal);
 
-  const { reqTimeInMillis = 120000 } = assessment;
+  const { reqTimeInMillis = 120000, title = "" } = assessment;
 
   const handleBeforeUnload = (e) => {
     e.preventDefault();
@@ -98,7 +98,7 @@ export const FullScreenAssessmentModal = () => {
                 flex: 1,
                 color: (theme) => theme.palette.primary.main,
               }}>
-              {`${assessment?.title} ${CommonTexts.assessment}`}
+              {`${title} ${CommonTexts.assessment}`}
             </Typography>
             {!showSubmitUI ? (
               <Box sx={AlignCenterStyles}>

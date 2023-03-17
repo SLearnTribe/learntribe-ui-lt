@@ -73,11 +73,13 @@ export const InstructionsPage = () => {
           </Typography>
         ))}
       </Grid>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <Typography sx={{ fontWeight: 500, fontSize: 18 }}>
-          {CommonTexts.instructionNote}
+          {`${CommonTexts.instructionNote} ${Math.floor(
+            assessment?.reqTimeInMillis / 60000
+          )}mins`}
         </Typography>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         <Typography sx={{ fontWeight: 600, fontSize: 18 }}>
           {CommonTexts.bRelatedInformation}
