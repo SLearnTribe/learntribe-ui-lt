@@ -33,6 +33,7 @@ export const CandidateDashboardTexts = {
 
 export const AssessmentTexts = {
   askWhy: "Ask why?",
+  suggestingThisAssessment: "suggesting this assessment.",
   assessmentsRequired: "Assessments Required",
 };
 

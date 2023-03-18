@@ -59,7 +59,10 @@ export const AssessmentCard = ({
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-              <Tooltip placement="top" title={askWhy} arrow>
+              <Tooltip
+                placement="top"
+                title={`${businessName} ${AssessmentTexts.suggestingThisAssessment}`}
+                arrow>
                 <Link sx={SxStylesAskWhy}>{AssessmentTexts.askWhy}</Link>
               </Tooltip>
               {/* <IconButton
