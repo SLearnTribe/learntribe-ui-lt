@@ -18,7 +18,7 @@ import { BasicInfoSection } from "./BasicInfoSection";
 import { PaySection } from "./Compensation";
 import { EducationSection } from "./EducationSection";
 import { ExperienceSection } from "./ExperienceSection";
-import { ResumeUploadSection } from "./ResumeUploadSection";
+// import { ResumeUploadSection } from "./ResumeUploadSection";
 import { SideProjectsSection } from "./SideProjectsSection";
 import { ProfileSkills } from "./SkillsSection";
 
@@ -67,7 +67,7 @@ export const ProfileContentSection = () => {
           <EducationSection />
         </Grid>
         <Grid item xs={12}>
-          <ResumeUploadSection />
+          {/* <ResumeUploadSection /> */}
         </Grid>
         <Grid item xs={12}>
           {isLoading ? (
