@@ -4,7 +4,6 @@ import {
   ResumeDownloadErrorAlert,
   ResumeDownloadSuccessAlert,
   ResumeSaveErrorAlert,
-  ResumeSaveSuccessAlert,
   ResumeUploadErrorAlert,
   ResumeUploadSuccessAlert,
 } from "../../../../Utils/CommonUtils";
@@ -124,7 +123,7 @@ export function* handleSaveResume({ payload }) {
       payload,
     });
 
-    yield put(updateSnackbar(ResumeSaveSuccessAlert));
+    // yield put(updateSnackbar(ResumeSaveSuccessAlert));
 
     yield put(getResumeDetailsList());
   } catch (error) {

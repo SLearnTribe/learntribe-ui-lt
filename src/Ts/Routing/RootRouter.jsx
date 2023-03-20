@@ -71,7 +71,7 @@ export default function RootRouter() {
         {/* <Route path="*" element={<ErrorPage />} /> */}
 
         <Route
-          path="/"
+          path="*"
           element={
             <OidcSecure>
               <Navigate to={dashboardRoute} replace />
