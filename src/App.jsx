@@ -10,6 +10,15 @@ import { CommonTexts } from "./Ts/Utils/Text";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
 import { configurationReact } from "./configurations";
 
+const SessionLostComponent = () => {
+  return (
+    <ErrorPage
+      title={CommonTexts.sessionTimedOutTitle}
+      subTitle={CommonTexts.sessionTimedOutSubTitle}
+    />
+  );
+};
+
 function App() {
   // const dispatch = useDispatch()
 
@@ -34,16 +43,11 @@ function App() {
     <ThemeProvider theme={customTheme()}>
       <CssBaseline />
       <OidcProvider
-        sessionLostComponent={
-          <ErrorPage
-            title={CommonTexts.sessionTimedOutTitle}
-            subTitle={CommonTexts.sessionTimedOutSubTitle}
-          />
-        }
-        loadingComponent={<LoadingComponent />}
-        authenticatingComponent={<LoadingComponent />}
-        callbackSuccessComponent={<LoadingComponent />}
-        authenticatingErrorComponent={<ErrorPage />}
+        sessionLostComponent={SessionLostComponent}
+        loadingComponent={LoadingComponent}
+        authenticatingComponent={LoadingComponent}
+        callbackSuccessComponent={LoadingComponent}
+        authenticatingErrorComponent={ErrorPage}
         configuration={configurationReact}
         configurationName="default"
         onEvent={onEvent}>
