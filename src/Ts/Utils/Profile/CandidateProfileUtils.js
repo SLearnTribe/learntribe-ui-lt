@@ -19,7 +19,7 @@ export const handleValidateUserInfo = (userProfileDetails) => {
   if (isEmpty(name) || isNull(name)) {
     errorObject.nameError = true;
   }
-  if (phone?.length < 10 || isNull(phone)) {
+  if (phone?.length < 10 || phone?.length > 10 || isNull(phone)) {
     errorObject.phoneError = true;
   }
   if (!emailRegexTest.test(email) || isNull(email)) {

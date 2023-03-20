@@ -22,6 +22,12 @@ const availableForInterviewOptions = [
   { title: "Not Immediately" },
 ];
 
+const availableForInterviewOptionsMap = {
+  Yes: "YES",
+  N0: "NO",
+  "Not Immediately": "NOT_IMMEDIATELY",
+};
+
 export const PaySection = () => {
   const dispatch = useDispatch();
 
@@ -70,10 +76,12 @@ export const PaySection = () => {
   );
 
   const onChangeAvailability = useCallback(
-    (_e, { title }, index) => {
+    (_e, { title }) => {
+      console.log(availableForInterviewOptionsMap[title]);
       const copyUserInfo = cloneDeep(userInfo);
 
-      copyUserInfo.availableForInterview = title;
+      copyUserInfo.availableForInterview =
+        availableForInterviewOptionsMap[title];
 
       dispatch(updateUserProfile(copyUserInfo));
     },
