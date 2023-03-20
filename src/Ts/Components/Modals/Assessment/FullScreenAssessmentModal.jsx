@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   AlignCenterStyles,
   DisplayFlexCenter,
@@ -17,6 +18,7 @@ import {
 import {
   getAssessmentOfCandidate,
   getAssessmentsModal,
+  getShowAssessmentTimer,
 } from "../../../Redux/Selectors/Assessments/AssessmentsSelectors";
 import { getAssessmentProcData } from "../../../Redux/Selectors/Proctoring/AssessmentProcSelectors";
 import { isObjectEmpty } from "../../../Utils/CommonUtils";
@@ -33,9 +35,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export const FullScreenAssessmentModal = () => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const assessment = useSelector(getAssessmentOfCandidate);
 
   const procResponse = useSelector(getAssessmentProcData);
+
+  const showAssessmentTimer = useSelector(getShowAssessmentTimer);
 
   const {
     open,
@@ -58,8 +64,9 @@ export const FullScreenAssessmentModal = () => {
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
+      navigate(-1);
     };
-  }, []);
+  }, [navigate]);
 
   const handleClose = () => {
     dispatch(updateAssessmentModal({ open: false }));
@@ -100,7 +107,7 @@ export const FullScreenAssessmentModal = () => {
               }}>
               {`${title} ${CommonTexts.assessment}`}
             </Typography>
-            {!showSubmitUI ? (
+            {!showSubmitUI && showAssessmentTimer ? (
               <Box sx={AlignCenterStyles}>
                 {CommonTexts.timeRemaining}
                 <CountDownTimer

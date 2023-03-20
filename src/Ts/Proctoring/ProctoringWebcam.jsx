@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Webcam from "react-webcam";
+import { updateShowAssessmentTimer } from "../Redux/Ducks/Assessments/AssessmentsSlice";
 import { postAssessmentsProctoring } from "../Redux/Ducks/Proctoring/AssessmentProcSlice";
 
 const videoConstraints = {
@@ -17,6 +18,8 @@ export const ProctoringWebcam = () => {
   const [images, setImages] = useState([]);
 
   const capture = React.useCallback(() => {
+    dispatch(updateShowAssessmentTimer(true));
+
     const imageSrc = webcamRef.current.getScreenshot();
 
     setImages(images.concat(imageSrc));

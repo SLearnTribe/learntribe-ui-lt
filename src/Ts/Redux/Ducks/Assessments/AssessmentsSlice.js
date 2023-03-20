@@ -20,6 +20,7 @@ const defaultState = {
   },
   assessmentId: null,
   assessmentTimer: null,
+  showAssessmentTimer: false,
   assessmentModal: {
     open: false,
     answers: {},
@@ -45,6 +46,9 @@ const assessmentsSlice = createSlice({
     },
     updateAssessmentTimer(state, { payload }) {
       state.assessmentTimer = payload;
+    },
+    updateShowAssessmentTimer(state, { payload }) {
+      state.showAssessmentTimer = payload;
     },
     setAssessmentsData(state, { payload: { data, chartData } }) {
       state.assessmentsData = data;
@@ -78,6 +82,7 @@ const assessmentsSlice = createSlice({
 });
 
 export const {
+  updateShowAssessmentTimer,
   updateAssessmentId,
   updateAssessmentTimer,
   postSubmitAssessment,

@@ -29,3 +29,6 @@ export const getAssessmentsModal = (state) =>
   state.assessmentsSlice.assessmentModal;
 
 export const getAssessmentId = (state) => state.assessmentsSlice.assessmentId;
+
+export const getShowAssessmentTimer = (state) =>
+  state.assessmentsSlice.showAssessmentTimer;

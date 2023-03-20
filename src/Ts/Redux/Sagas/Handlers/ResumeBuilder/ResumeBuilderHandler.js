@@ -10,7 +10,11 @@ import {
 } from "../../../../Utils/CommonUtils";
 import { prepareFormDataResumeParsing } from "../../../../Utils/ResumeBuilder/ResumeBuilderUtils";
 import { updateSnackbar } from "../../../Ducks/App/AppSlice";
-import { updateDocument, updateResumeList } from "../../../Ducks/ResumeBuilder/ResumeBuilderSlice";
+import {
+  getResumeDetailsList,
+  updateDocument,
+  updateResumeList,
+} from "../../../Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
 import * as selectors from "../../../Selectors/UserSelectors/UserSelectors";
 import {
@@ -89,7 +93,7 @@ export function* handleDownloadResume({ payload: email }) {
 
     const accessToken = yield select(selectors.getAccessToken);
 
-    const {data} = yield call(requestGetResumeDownload, {
+    const { data } = yield call(requestGetResumeDownload, {
       accessToken,
       email,
     });
@@ -121,6 +125,8 @@ export function* handleSaveResume({ payload }) {
     });
 
     yield put(updateSnackbar(ResumeSaveSuccessAlert));
+
+    yield put(getResumeDetailsList());
   } catch (error) {
     console.log(error);
     yield put(updateSnackbar(ResumeSaveErrorAlert));

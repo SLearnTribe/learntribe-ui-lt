@@ -52,7 +52,7 @@ export function* handleSaveUserProfile({ payload: updatedUserInfo }) {
       updatedUserInfo,
     });
 
-    yield put(getUserProfile());
+    yield put(getUserProfile(accessToken));
   } catch (error) {
     console.log(error);
     yield put(setIsProfileLoading(false));
