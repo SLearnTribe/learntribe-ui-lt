@@ -143,7 +143,7 @@ export const HrProfileAvatarSection = () => {
                     color="text.secondary"
                     sx={{ fontSize: 16, fontWeight: 600, display: "flex" }}>
                     {fileName}
-                    <FileDownloadOutlinedIcon />
+                    {fileName.length > 0 && <FileDownloadOutlinedIcon />}
                   </Typography>
 
                   <LoadingButton

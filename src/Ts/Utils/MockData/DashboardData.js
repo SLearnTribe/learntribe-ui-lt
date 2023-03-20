@@ -407,6 +407,9 @@ export const AvailableDegreeOptions = [
   { title: "PG" },
   { title: "MBA" },
   { title: "MS" },
+  { title: "BSC" },
+  { title: "MSC" },
+  { title: "MTECH" },
 ];
 
 export const JobsMockData = (len = 5) => {
