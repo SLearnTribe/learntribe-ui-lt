@@ -5,7 +5,6 @@ import { LoadingButton } from "@mui/lab";
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardContent,
   Grid,
@@ -128,44 +127,39 @@ export const HrProfileAvatarSection = () => {
               }}>
               {role === "HR" ? (
                 <>
-                <LoadingButton
-                  onClick={onClickDownloadResume}
-                  loading={isLoading}
-                  loadingPosition="start"
-                  startIcon={<FileDownloadOutlinedIcon />}
-                  variant="outlined">
-                  {ButtonTexts.downloadResume}
-                </LoadingButton>
-              </>
+                  <LoadingButton
+                    onClick={onClickDownloadResume}
+                    loading={isLoading}
+                    loadingPosition="start"
+                    startIcon={<FileDownloadOutlinedIcon />}
+                    variant="outlined">
+                    {ButtonTexts.downloadResume}
+                  </LoadingButton>
+                </>
               ) : (
                 <Stack direction="column" alignItems="center" spacing={1}>
                   <Typography
+                    onClick={onClickDownloadResume}
                     color="text.secondary"
-                    sx={{ fontSize: 16, fontWeight: 600 }}>
+                    sx={{ fontSize: 16, fontWeight: 600, display: "flex" }}>
                     {fileName}
+                    <FileDownloadOutlinedIcon />
                   </Typography>
-                  {isLoading ? (
-                    <LoadingButton
-                      loading
-                      loadingPosition="start"
-                      startIcon={<FileUploadOutlinedIcon />}
-                      variant="outlined">
-                      {ButtonTexts.uploadResume}
-                    </LoadingButton>
-                  ) : (
-                    <Button
-                      variant="outlined"
-                      component="label"
-                      startIcon={<FileUploadOutlinedIcon />}>
-                      {ButtonTexts.uploadResume}
-                      <input
-                        hidden
-                        onChange={onUploadResume}
-                        accept=".doc,.docx,.pdf"
-                        type="file"
-                      />
-                    </Button>
-                  )}
+
+                  <LoadingButton
+                    loading={isLoading}
+                    variant="outlined"
+                    component="label"
+                    startIcon={<FileUploadOutlinedIcon />}>
+                    {ButtonTexts.uploadResume}
+
+                    <input
+                      hidden
+                      onChange={onUploadResume}
+                      accept=".doc,.docx,.pdf"
+                      type="file"
+                    />
+                  </LoadingButton>
                 </Stack>
               )}
             </Grid>
