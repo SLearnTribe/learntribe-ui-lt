@@ -56,20 +56,8 @@ export const FullScreenAssessmentModal = () => {
     const message =
       "Are you sure you want to leave? All provided data will be lost. And you can't re-take assessment";
     e.returnValue = message;
+
     return message;
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      navigate(-1);
-    };
-  }, [navigate]);
-
-  const handleClose = () => {
-    dispatch(updateAssessmentModal({ open: false }));
   };
 
   const onCompleteTimer = React.useCallback(() => {
@@ -83,6 +71,24 @@ export const FullScreenAssessmentModal = () => {
       })
     );
   }, [dispatch, procResponse, assessment?.id, assessmentAnswers]);
+
+  React.useEffect(() => {
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (isObjectEmpty(assessment)) {
+      navigate(-1);
+    }
+  }, [navigate, assessment]);
+
+  const handleClose = () => {
+    dispatch(updateAssessmentModal({ open: false }));
+  };
 
   return (
     <div>
