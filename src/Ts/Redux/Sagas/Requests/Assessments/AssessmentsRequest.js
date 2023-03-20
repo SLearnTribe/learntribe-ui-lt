@@ -10,7 +10,7 @@ export function requestGetCandidateRecommendedAssessments({
   return axios.request({
     method: "get",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
     url: `https://www.smilebat.xyz/sb-ast/api/v1/assessments/user?page=${page}&limit=${limit}&filter=${filters}&keyword=${keyword}`,
