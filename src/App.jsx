@@ -6,12 +6,9 @@ import "./App.css";
 import { ErrorPage } from "./Authentication/ErrorPage";
 import { LoadingComponent } from "./Authentication/LoadingComponent";
 import MainLayout from "./Ts/Components/ContainerComponents/MainLayout";
+import { CommonTexts } from "./Ts/Utils/Text";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
 import { configurationReact } from "./configurations";
-
-export interface AppContainerProps {
-  window?: () => Window;
-}
 
 function App() {
   // const dispatch = useDispatch()
@@ -33,24 +30,23 @@ function App() {
     }
   };
 
-
-
   return (
     <ThemeProvider theme={customTheme()}>
       <CssBaseline />
-      {/* <Countdown
-        onComplete={onCompleteTimer}
-        date={Date.now() + 500000000}
-      /> */}
       <OidcProvider
-        loadingComponent={LoadingComponent}
-        authenticatingComponent={LoadingComponent}
-        callbackSuccessComponent={LoadingComponent}
-        authenticatingErrorComponent={ErrorPage}
+        sessionLostComponent={
+          <ErrorPage
+            title={CommonTexts.sessionTimedOutTitle}
+            subTitle={CommonTexts.sessionTimedOutSubTitle}
+          />
+        }
+        loadingComponent={<LoadingComponent />}
+        authenticatingComponent={<LoadingComponent />}
+        callbackSuccessComponent={<LoadingComponent />}
+        authenticatingErrorComponent={<ErrorPage />}
         configuration={configurationReact}
         configurationName="default"
-        onEvent={onEvent}
-      >
+        onEvent={onEvent}>
         <Router>
           <MainLayout />
         </Router>

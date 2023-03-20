@@ -103,6 +103,8 @@ export const CommonTexts = {
   errorPageDefaultTitle: "Sorry, authentication failed!",
   errorPageDefaultSubTitle:
     "Sorry, we couldn’t authenticat you please try to login again",
+  sessionTimedOutTitle: "Session Timedout",
+  sessionTimedOutSubTitle: "Sorry, session expired please try to login again",
 };
 
 export const ButtonTexts = {
