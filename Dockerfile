@@ -1,29 +1,32 @@
-# Fetching the latest node image on apline linux
-FROM node:18 AS builder
+# Use a lightweight Node.js image as a base
+FROM node:alpine
 
-# Declaring env
-ENV NODE_ENV production
-
-# Setting up the work directory
+# Set the working directory
 WORKDIR /app
 
-# Installing dependencies
-COPY ./package.json ./
-# RUN npm install
+# Copy package.json and package-lock.json files
+COPY package*.json ./
 
-RUN NODE_ENV=development npm install
+# Install dependencies
+RUN npm ci --only=production
 
-# Copying all the files in our project
+# Copy the rest of the application code
 COPY . .
 
-# Building our application
+# Build the production version of the app
 RUN npm run build
 
-# Fetching the latest nginx image
-FROM nginx
+# Use a lightweight Nginx image as a base for serving the app
+FROM nginx:alpine
 
-# Copying built assets from builder
-COPY --from=builder /app/build /usr/share/nginx/html
+# Copy the production build from the previous stage to the Nginx image
+COPY --from=0 /app/build /usr/share/nginx/html
 
-# Copying our nginx.conf
+# Copy the custom Nginx configuration file to the image
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80 for serving the app
+EXPOSE 80
+
+# Start Nginx server when the container starts
+CMD ["nginx", "-g", "daemon off;"]
