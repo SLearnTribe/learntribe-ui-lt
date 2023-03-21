@@ -97,6 +97,8 @@ export function* handleDownloadResume({ payload: email }) {
       email,
     });
 
+    console.log(data);
+
     // yield put(updateDocument(data));
     yield put(updateSnackbar(ResumeDownloadSuccessAlert));
   } catch (error) {

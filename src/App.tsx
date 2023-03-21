@@ -3,21 +3,16 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
+import { SessionLostComponent } from "./Authentication/CommonComponents";
 import { ErrorPage } from "./Authentication/ErrorPage";
 import { LoadingComponent } from "./Authentication/LoadingComponent";
 import MainLayout from "./Ts/Components/ContainerComponents/MainLayout";
-import { CommonTexts } from "./Ts/Utils/Text";
 import { customTheme } from "./Ts/Utils/Themes/CustomTheme";
 import { configurationReact } from "./configurations";
 
-const SessionLostComponent = () => {
-  return (
-    <ErrorPage
-      title={CommonTexts.sessionTimedOutTitle}
-      subTitle={CommonTexts.sessionTimedOutSubTitle}
-    />
-  );
-};
+export interface AppContainerProps {
+  window?: () => Window;
+}
 
 function App() {
   // const dispatch = useDispatch()
