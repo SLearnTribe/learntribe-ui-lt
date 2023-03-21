@@ -1,4 +1,4 @@
-name: Package Release Next Dev Iteration
+name: Package Release Safety
 on: 
   workflow_dispatch:
     inputs:
