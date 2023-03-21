@@ -1,5 +1,5 @@
 # Fetching the latest node image on apline linux
-FROM node:16 AS builder
+FROM node:18 AS builder
 
 # Declaring env
 ENV NODE_ENV production
@@ -9,7 +9,9 @@ WORKDIR /app
 
 # Installing dependencies
 COPY ./package.json ./
-RUN npm install
+# RUN npm install
+
+RUN NODE_ENV=development npm install
 
 # Copying all the files in our project
 COPY . .
