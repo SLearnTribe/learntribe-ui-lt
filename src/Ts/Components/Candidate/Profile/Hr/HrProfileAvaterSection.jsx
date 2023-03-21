@@ -71,7 +71,9 @@ export const HrProfileAvatarSection = () => {
   };
 
   const onClickDownloadResume = () => {
-    dispatch(getDownloadResume(email ?? candidateEmail));
+    if (!isLoading) {
+      dispatch(getDownloadResume(email ?? candidateEmail));
+    }
   };
 
   const assessments = useMemo(() => {
