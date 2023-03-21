@@ -11,7 +11,7 @@ import { prepareFormDataResumeParsing } from "../../../../Utils/ResumeBuilder/Re
 import { updateSnackbar } from "../../../Ducks/App/AppSlice";
 import {
   getResumeDetailsList,
-  updateDocument,
+  // updateDocument,
   updateResumeList,
 } from "../../../Ducks/ResumeBuilder/ResumeBuilderSlice";
 import { setUserDataLoading } from "../../../Ducks/userSlice";
@@ -92,12 +92,12 @@ export function* handleDownloadResume({ payload: email }) {
 
     const accessToken = yield select(selectors.getAccessToken);
 
-    const { data } = yield call(requestGetResumeDownload, {
+    const data = yield call(requestGetResumeDownload, {
       accessToken,
       email,
     });
 
-    yield put(updateDocument(data));
+    // yield put(updateDocument(data));
     yield put(updateSnackbar(ResumeDownloadSuccessAlert));
   } catch (error) {
     console.log(error);
