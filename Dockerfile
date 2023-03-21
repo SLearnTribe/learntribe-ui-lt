@@ -2,7 +2,7 @@
 FROM node:19.5.0-alpine AS builder
 
 # Declaring env
-# ENV NODE_ENV production
+ENV NODE_ENV production
 
 # Setting up the work directory
 WORKDIR /app
