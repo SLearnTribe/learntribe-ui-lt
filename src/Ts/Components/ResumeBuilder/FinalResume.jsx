@@ -166,7 +166,7 @@ export const FinalResume = () => {
                     <FormControlLabel
                       labelPlacement="start"
                       control={<LinkedInIcon sx={{ m: 0.5 }} />}
-                      label={linkedIn.slice(28)}
+                      label={linkedIn?.slice(28)}
                     />
                   </FormGroup>
                 </Grid>
